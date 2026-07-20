@@ -1,0 +1,6 @@
+interface:
+  display_name: "SYNC"
+  short_description: "Synchronize branches safely"
+  default_prompt: "Use $sync to fetch the latest remote code, update the local base, bring it into the current branch, resolve conflicts, and validate the result."
+policy:
+  allow_implicit_invocation: true

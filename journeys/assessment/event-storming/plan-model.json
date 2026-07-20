@@ -1,0 +1,938 @@
+{
+  "dashboardTitle": "ODD - Payments - Codex 20260616",
+  "bands": [
+    {
+      "id": "caminho_feliz_negative_kpis",
+      "title": "Caminho Feliz | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_feliz_negative_kpis_1_flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_2_flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view_exception env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.cliente.encontrado.view_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_feliz_negative_trends",
+      "title": "Caminho Feliz | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_feliz_negative_trends_1_flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_2_flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view_exception env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.cliente.encontrado.view_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_feliz_positive_kpis",
+      "title": "Caminho Feliz | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_feliz_positive_kpis_1_flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_2_flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.cliente.encontrado.view"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_feliz_positive_trends",
+      "title": "Caminho Feliz | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_feliz_positive_trends_1_flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_2_flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.cliente.encontrado.view"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_negative_kpis",
+      "title": "Caminho Alternativo | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_negative_kpis_1_flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva - Exceções | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_kpis_2_flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado - Exceções | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_kpis_3_flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado - Exceções | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado_exception env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.cadastrado_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_kpis_4_flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_kpis_5_flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_negative_trends",
+      "title": "Caminho Alternativo | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_negative_trends_1_flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva - Exceções | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_trends_2_flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado - Exceções | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_trends_3_flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado - Exceções | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado_exception env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.cadastrado_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_trends_4_flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_negative_trends_5_flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada_exception"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_positive_kpis",
+      "title": "Caminho Alternativo | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_positive_kpis_1_flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_kpis_2_flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_kpis_3_flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.cadastrado"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_kpis_4_flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_kpis_5_flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada | Caminho Alternativo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_positive_trends",
+      "title": "Caminho Alternativo | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_positive_trends_1_flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento salva | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_trends_2_flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_trends_3_flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.cobranca.cadastrada.cliente.cadastrado"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:3:event:pagamento.cobranca.cadastrada.cliente.cadastrado"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_trends_4_flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_positive_trends_5_flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada | Caminho Alternativo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "normal",
+          "sourceEventKeys": [
+            "pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "sourceOccurrenceKeys": [
+            "flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada"
+          ],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    }
+  ],
+  "customEvents": [
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+      "text": "Synthetic event emitted from row 5",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+        "env:dev",
+        "stage:cliente_nao_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_nao_encontrado"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception",
+      "text": "Synthetic exception event emitted from row 5",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception",
+        "env:dev",
+        "stage:cliente_nao_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_nao_encontrado"
+    },
+    {
+      "title": "pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+      "text": "Synthetic event emitted from row 1",
+      "tags": [
+        "event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+        "env:dev",
+        "stage:pagamento_salva",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_via_checkout",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "pagamento_salva"
+    },
+    {
+      "title": "pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception",
+      "text": "Synthetic exception event emitted from row 1",
+      "tags": [
+        "event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception",
+        "env:dev",
+        "stage:pagamento_salva",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_via_checkout",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "pagamento_salva"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.cliente.encontrado.view",
+      "text": "Synthetic event emitted from row 2",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.cliente.encontrado.view",
+        "env:dev",
+        "stage:cliente_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "cliente_encontrado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.cliente.encontrado.view_exception",
+      "text": "Synthetic exception event emitted from row 2",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.cliente.encontrado.view_exception",
+        "env:dev",
+        "stage:cliente_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_encontrado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.pendente",
+      "text": "Synthetic event emitted from row 3",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.pendente",
+        "env:dev",
+        "stage:pagamento_pendente",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "pagamento_pendente"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.pendente_exception",
+      "text": "Synthetic exception event emitted from row 3",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception",
+        "env:dev",
+        "stage:pagamento_pendente",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "pagamento_pendente"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.fatura.criada",
+      "text": "Synthetic event emitted from row 4",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.fatura.criada",
+        "env:dev",
+        "stage:fatura_criada",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "fatura_criada"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.fatura.criada_exception",
+      "text": "Synthetic exception event emitted from row 4",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.fatura.criada_exception",
+        "env:dev",
+        "stage:fatura_criada",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "fatura_criada"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.cadastrado",
+      "text": "Synthetic event emitted from row 6",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.cadastrado",
+        "env:dev",
+        "stage:cliente_cadastrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "cliente_cadastrado"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.cadastrado_exception",
+      "text": "Synthetic exception event emitted from row 6",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.cadastrado_exception",
+        "env:dev",
+        "stage:cliente_cadastrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_cadastrado"
+    }
+  ],
+  "sloSuggestions": [
+    {
+      "id": "pagamento_salva_availability",
+      "name": "Intenções de Pagamento Salvas com Sucesso",
+      "objective": "Garantir que as intenções de pagamento sejam salvas com sucesso para que os clientes possam prosseguir com o processo de pagamento.",
+      "sliType": "availability",
+      "target": "99.9%",
+      "rationale": "A salvaguarda bem-sucedida da intenção de pagamento é o primeiro passo crítico no fluxo de pagamentos. Sem isso, o cliente não pode continuar com o processo.",
+      "sourceEventKeys": [
+        "pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+      ],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+        "flow:caminho-alternativo:step:1:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+      ],
+      "queryHint": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)"
+    },
+    {
+      "id": "cliente_encontrado_availability",
+      "name": "Clientes Encontrados com Sucesso",
+      "objective": "Assegurar que os clientes sejam encontrados com sucesso para que o pagamento possa ser processado.",
+      "sliType": "availability",
+      "target": "99.5%",
+      "rationale": "A capacidade de encontrar o cliente é crucial para o processamento do pagamento. Um alto número de falhas nesse estágio pode indicar problemas no sistema de busca de clientes.",
+      "sourceEventKeys": [
+        "pagamento.processamento.pagamentos.cliente.encontrado.view"
+      ],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:2:event:pagamento.processamento.pagamentos.cliente.encontrado.view"
+      ],
+      "queryHint": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view env:dev)"
+    },
+    {
+      "id": "cliente_nao_encontrado_error_rate",
+      "name": "Taxa de Falha ao Não Encontrar o Cliente",
+      "objective": "Minimizar a taxa de falhas ao não encontrar o cliente para evitar interrupções desnecessárias no fluxo de pagamento.",
+      "sliType": "error_rate",
+      "target": "0.5%",
+      "rationale": "Uma alta taxa de falha ao não encontrar o cliente pode indicar problemas no sistema de busca de clientes, levando a interrupções no fluxo de pagamento.",
+      "sourceEventKeys": [
+        "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+      ],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-alternativo:step:2:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"
+      ],
+      "queryHint": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure env:dev)"
+    },
+    {
+      "id": "pagamento_pendente_availability",
+      "name": "Pagamentos Pendentes com Sucesso",
+      "objective": "Garantir que os pagamentos sejam marcados como pendentes com sucesso para que o processamento possa continuar.",
+      "sliType": "availability",
+      "target": "99.8%",
+      "rationale": "A marcação bem-sucedida de um pagamento como pendente é um passo crucial antes da criação da fatura. Um alto número de falhas nesse estágio pode indicar problemas no processamento de pagamentos.",
+      "sourceEventKeys": [
+        "pagamento.processamento.pagamentos.pagamento.pendente"
+      ],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.pagamento.pendente",
+        "flow:caminho-alternativo:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"
+      ],
+      "queryHint": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)"
+    },
+    {
+      "id": "fatura_criada_availability",
+      "name": "Faturas Criadas com Sucesso",
+      "objective": "Assegurar que as faturas sejam criadas com sucesso após a confirmação do pagamento para que os clientes recebam a confirmação final.",
+      "sliType": "availability",
+      "target": "99.7%",
+      "rationale": "A criação bem-sucedida da fatura é o resultado final do fluxo de pagamento. Um alto número de falhas nesse estágio pode indicar problemas no sistema de faturamento.",
+      "sourceEventKeys": [
+        "pagamento.processamento.pagamentos.fatura.criada"
+      ],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.fatura.criada",
+        "flow:caminho-alternativo:step:5:event:pagamento.processamento.pagamentos.fatura.criada"
+      ],
+      "queryHint": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)"
+    }
+  ],
+  "assumptions": [
+    "Plano gerado com fallback determinístico após falha ou invalidação da resposta LLM."
+  ]
+}

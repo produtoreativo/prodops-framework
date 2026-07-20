@@ -1,0 +1,6 @@
+interface:
+  display_name: "Payments API Guardrails"
+  short_description: "Keep payment changes aligned with this repo"
+  default_prompt: "Use $payments-api-local-testing to inspect the payments-api repository standards, then validate or modify the local payment flow without inventing endpoints, payload fields, providers, or runtime assumptions."
+policy:
+  allow_implicit_invocation: true

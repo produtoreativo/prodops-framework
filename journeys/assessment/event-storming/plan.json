@@ -1,0 +1,1529 @@
+{
+  "dashboardTitle": "ODD - Payments - Codex 20260703",
+  "bands": [
+    {
+      "id": "caminho_feliz_negative_kpis",
+      "title": "Caminho Feliz | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_feliz_negative_kpis_1_flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado_exception env:dev)",
+          "stage": "token_validado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_2_flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento Salva - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view_exception env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.cliente.encontrado.view_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.pendente_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_5_flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.fatura.criada_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_6_flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado_exception env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_kpis_7_flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+          "title": "Webhook Confirmacao Entregue - Exceções | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue_exception env:dev)",
+          "stage": "webhook_entregue",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.confirmado.entregue_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_feliz_negative_trends",
+      "title": "Caminho Feliz | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_feliz_negative_trends_1_flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado_exception env:dev)",
+          "stage": "token_validado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_2_flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento Salva - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view_exception env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.cliente.encontrado.view_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.pendente_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_5_flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.fatura.criada_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_6_flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado_exception env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_feliz_negative_trends_7_flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+          "title": "Webhook Confirmacao Entregue - Exceções | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue_exception env:dev)",
+          "stage": "webhook_entregue",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.confirmado.entregue_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_feliz_positive_kpis",
+      "title": "Caminho Feliz | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_feliz_positive_kpis_1_flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado env:dev)",
+          "stage": "token_validado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_2_flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento Salva | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.cliente.encontrado.view"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.pendente"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_5_flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.fatura.criada"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_6_flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_kpis_7_flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+          "title": "Webhook Confirmacao Entregue | Caminho Feliz",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue env:dev)",
+          "stage": "webhook_entregue",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_feliz_positive_trends",
+      "title": "Caminho Feliz | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_feliz_positive_trends_1_flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado env:dev)",
+          "stage": "token_validado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_2_flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento Salva | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_3_flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view",
+          "title": "Cliente Encontrado | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.cliente.encontrado.view env:dev)",
+          "stage": "cliente_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.cliente.encontrado.view"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:3:event:pagamento.processamento.pagamentos.cliente.encontrado.view"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_4_flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.pendente"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_5_flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.fatura.criada"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_6_flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_feliz_positive_trends_7_flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+          "title": "Webhook Confirmacao Entregue | Caminho Feliz",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue env:dev)",
+          "stage": "webhook_entregue",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "sourceOccurrenceKeys": ["flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_cliente_novo_negative_kpis",
+      "title": "Alternativo | Cliente Novo | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_1_flow:caminho-alternativo-cliente-novo:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado_exception env:dev)",
+          "stage": "token_validado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_2_flow:caminho-alternativo-cliente-novo:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+          "title": "Intencao de Pagamento Salva - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception env:dev)",
+          "stage": "pagamento_salva",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_3_flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_4_flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado_exception env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.cadastrado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_5_flow:caminho-alternativo-cliente-novo:step:5:event:pagamento.processamento.pagamentos.pagamento.pendente",
+          "title": "Pagamento Pendente - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception env:dev)",
+          "stage": "pagamento_pendente",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.pendente_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:5:event:pagamento.processamento.pagamentos.pagamento.pendente"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_6_flow:caminho-alternativo-cliente-novo:step:6:event:pagamento.processamento.pagamentos.fatura.criada",
+          "title": "Fatura Criada - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada_exception env:dev)",
+          "stage": "fatura_criada",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.fatura.criada_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:6:event:pagamento.processamento.pagamentos.fatura.criada"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_7_flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado_exception env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_kpis_8_flow:caminho-alternativo-cliente-novo:step:8:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+          "title": "Webhook Confirmacao Entregue - Exceções | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue_exception env:dev)",
+          "stage": "webhook_entregue",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.confirmado.entregue_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:8:event:pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_cliente_novo_negative_trends",
+      "title": "Alternativo | Cliente Novo | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_trends_1_flow:caminho-alternativo-cliente-novo:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado_exception env:dev)",
+          "stage": "token_validado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_trends_3_flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_trends_4_flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado_exception env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.cadastrado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_negative_trends_7_flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado - Exceções | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado_exception env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_cliente_novo_positive_kpis",
+      "title": "Alternativo | Cliente Novo | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_kpis_3_flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_kpis_4_flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.cadastrado"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_kpis_7_flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_kpis_8_flow:caminho-alternativo-cliente-novo:step:8:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+          "title": "Webhook Confirmacao Entregue | Alternativo Cliente Novo",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue env:dev)",
+          "stage": "webhook_entregue",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:8:event:pagamento.webhook.entrega.pagamento.confirmado.entregue"],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_alternativo_cliente_novo_positive_trends",
+      "title": "Alternativo | Cliente Novo | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_trends_3_flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+          "title": "Cliente Nao Encontrado | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure env:dev)",
+          "stage": "cliente_nao_encontrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:3:event:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_trends_4_flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado",
+          "title": "Cliente Cadastrado | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.cobranca.cadastrada.cliente.cadastrado env:dev)",
+          "stage": "cliente_cadastrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.cobranca.cadastrada.cliente.cadastrado"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:4:event:pagamento.cobranca.cadastrada.cliente.cadastrado"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_alternativo_cliente_novo_positive_trends_7_flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+          "title": "Pagamento Confirmado | Alternativo Cliente Novo",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado env:dev)",
+          "stage": "pagamento_confirmado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "sourceOccurrenceKeys": ["flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado"],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_cancelamento_negative_kpis",
+      "title": "Cancelamento | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_cancelamento_negative_kpis_1_flow:caminho-cancelamento:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado - Exceções | Cancelamento",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado_exception env:dev)",
+          "stage": "token_validado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_cancelamento_negative_kpis_5_flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado",
+          "title": "Pagamento Cancelado - Exceções | Cancelamento",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.cancelado_exception env:dev)",
+          "stage": "pagamento_cancelado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.cancelado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_cancelamento_negative_kpis_6_flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue",
+          "title": "Webhook Cancelamento Entregue - Exceções | Cancelamento",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.cancelado.entregue_exception env:dev)",
+          "stage": "webhook_entregue_cancelamento",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.cancelado.entregue_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_cancelamento_negative_trends",
+      "title": "Cancelamento | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_cancelamento_negative_trends_5_flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado",
+          "title": "Pagamento Cancelado - Exceções | Cancelamento",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.cancelado_exception env:dev)",
+          "stage": "pagamento_cancelado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.cancelado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_cancelamento_negative_trends_6_flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue",
+          "title": "Webhook Cancelamento Entregue - Exceções | Cancelamento",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.cancelado.entregue_exception env:dev)",
+          "stage": "webhook_entregue_cancelamento",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.cancelado.entregue_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue"],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_cancelamento_positive_kpis",
+      "title": "Cancelamento | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_cancelamento_positive_kpis_5_flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado",
+          "title": "Pagamento Cancelado | Cancelamento",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.cancelado env:dev)",
+          "stage": "pagamento_cancelado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.cancelado"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_cancelamento_positive_kpis_6_flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue",
+          "title": "Webhook Cancelamento Entregue | Cancelamento",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.cancelado.entregue env:dev)",
+          "stage": "webhook_entregue_cancelamento",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.cancelado.entregue"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue"],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_cancelamento_positive_trends",
+      "title": "Cancelamento | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_cancelamento_positive_trends_5_flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado",
+          "title": "Pagamento Cancelado | Cancelamento",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.cancelado env:dev)",
+          "stage": "pagamento_cancelado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.cancelado"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:5:event:pagamento.processamento.pagamentos.pagamento.cancelado"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_cancelamento_positive_trends_6_flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue",
+          "title": "Webhook Cancelamento Entregue | Cancelamento",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.webhook.entrega.pagamento.cancelado.entregue env:dev)",
+          "stage": "webhook_entregue_cancelamento",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.entrega.pagamento.cancelado.entregue"],
+          "sourceOccurrenceKeys": ["flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue"],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_token_rejeitado_negative_kpis",
+      "title": "Token Rejeitado | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_token_rejeitado_negative_kpis_1_flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado",
+          "title": "Token Rejeitado - Exceções | Token Rejeitado",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.rejeitado_exception env:dev)",
+          "stage": "token_rejeitado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.rejeitado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_token_rejeitado_negative_trends",
+      "title": "Token Rejeitado | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_token_rejeitado_negative_trends_1_flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado",
+          "title": "Token Rejeitado - Exceções | Token Rejeitado",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.rejeitado_exception env:dev)",
+          "stage": "token_rejeitado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.rejeitado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_token_rejeitado_positive_kpis",
+      "title": "Token Rejeitado | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_token_rejeitado_positive_kpis_1_flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado",
+          "title": "Token Rejeitado | Token Rejeitado",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.rejeitado env:dev)",
+          "stage": "token_rejeitado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.rejeitado"],
+          "sourceOccurrenceKeys": ["flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_token_rejeitado_positive_trends",
+      "title": "Token Rejeitado | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_token_rejeitado_positive_trends_1_flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado",
+          "title": "Token Rejeitado | Token Rejeitado",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.rejeitado env:dev)",
+          "stage": "token_rejeitado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.rejeitado"],
+          "sourceOccurrenceKeys": ["flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado"],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_webhook_configuracao_negative_kpis",
+      "title": "Webhook | Configuracao | Negativos | Contadores",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_webhook_configuracao_negative_kpis_1_flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado - Exceções | Webhook Configuracao",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado_exception env:dev)",
+          "stage": "token_validado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        },
+        {
+          "id": "caminho_webhook_configuracao_negative_kpis_2_flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado",
+          "title": "Webhook Registrado - Exceções | Webhook Configuracao",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.configuracao.webhook.registrado_exception env:dev)",
+          "stage": "webhook_registrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.configuracao.webhook.registrado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado"],
+          "visualRole": "kpi",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_webhook_configuracao_negative_trends",
+      "title": "Webhook | Configuracao | Negativos | Tendência",
+      "sectionType": "problems",
+      "widgets": [
+        {
+          "id": "caminho_webhook_configuracao_negative_trends_2_flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado",
+          "title": "Webhook Registrado - Exceções | Webhook Configuracao",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.webhook.configuracao.webhook.registrado_exception env:dev)",
+          "stage": "webhook_registrado",
+          "sectionType": "problems",
+          "sourceEventKeys": ["pagamento.webhook.configuracao.webhook.registrado_exception"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado"],
+          "visualRole": "trend",
+          "palette": "alert"
+        }
+      ]
+    },
+    {
+      "id": "caminho_webhook_configuracao_positive_kpis",
+      "title": "Webhook | Configuracao | Positivos | Contadores",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_webhook_configuracao_positive_kpis_1_flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado | Webhook Configuracao",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado env:dev)",
+          "stage": "token_validado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_webhook_configuracao_positive_kpis_2_flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado",
+          "title": "Webhook Registrado | Webhook Configuracao",
+          "widgetType": "query_value",
+          "query": "tags:(event_key:pagamento.webhook.configuracao.webhook.registrado env:dev)",
+          "stage": "webhook_registrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.configuracao.webhook.registrado"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado"],
+          "visualRole": "kpi",
+          "palette": "success"
+        }
+      ]
+    },
+    {
+      "id": "caminho_webhook_configuracao_positive_trends",
+      "title": "Webhook | Configuracao | Positivos | Tendência",
+      "sectionType": "normal",
+      "widgets": [
+        {
+          "id": "caminho_webhook_configuracao_positive_trends_1_flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado",
+          "title": "Token Validado | Webhook Configuracao",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.autenticacao.api.token.validado env:dev)",
+          "stage": "token_validado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.autenticacao.api.token.validado"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado"],
+          "visualRole": "trend",
+          "palette": "success"
+        },
+        {
+          "id": "caminho_webhook_configuracao_positive_trends_2_flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado",
+          "title": "Webhook Registrado | Webhook Configuracao",
+          "widgetType": "timeseries",
+          "query": "tags:(event_key:pagamento.webhook.configuracao.webhook.registrado env:dev)",
+          "stage": "webhook_registrado",
+          "sectionType": "normal",
+          "sourceEventKeys": ["pagamento.webhook.configuracao.webhook.registrado"],
+          "sourceOccurrenceKeys": ["flow:caminho-webhook-configuracao:step:2:event:pagamento.webhook.configuracao.webhook.registrado"],
+          "visualRole": "trend",
+          "palette": "success"
+        }
+      ]
+    }
+  ],
+  "customEvents": [
+    {
+      "title": "pagamento.autenticacao.api.token.validado",
+      "text": "API token successfully validated for a request",
+      "tags": [
+        "event_key:pagamento.autenticacao.api.token.validado",
+        "env:dev",
+        "stage:token_validado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:autenticacao_via_api",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "token_validado"
+    },
+    {
+      "title": "pagamento.autenticacao.api.token.validado_exception",
+      "text": "Exception occurred during API token validation",
+      "tags": [
+        "event_key:pagamento.autenticacao.api.token.validado_exception",
+        "env:dev",
+        "stage:token_validado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:autenticacao_via_api",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "token_validado"
+    },
+    {
+      "title": "pagamento.autenticacao.api.token.rejeitado",
+      "text": "API token rejected — missing, invalid, or revoked",
+      "tags": [
+        "event_key:pagamento.autenticacao.api.token.rejeitado",
+        "env:dev",
+        "stage:token_rejeitado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:autenticacao_via_api",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "token_rejeitado"
+    },
+    {
+      "title": "pagamento.autenticacao.api.token.rejeitado_exception",
+      "text": "Exception occurred while recording token rejection",
+      "tags": [
+        "event_key:pagamento.autenticacao.api.token.rejeitado_exception",
+        "env:dev",
+        "stage:token_rejeitado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:autenticacao_via_api",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "token_rejeitado"
+    },
+    {
+      "title": "pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+      "text": "Payment intent saved via checkout",
+      "tags": [
+        "event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+        "env:dev",
+        "stage:pagamento_salva",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_via_checkout",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "pagamento_salva"
+    },
+    {
+      "title": "pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception",
+      "text": "Exception while saving payment intent",
+      "tags": [
+        "event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva_exception",
+        "env:dev",
+        "stage:pagamento_salva",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_via_checkout",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "pagamento_salva"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.cliente.encontrado.view",
+      "text": "Existing customer found during payment processing",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.cliente.encontrado.view",
+        "env:dev",
+        "stage:cliente_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "cliente_encontrado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.cliente.encontrado.view_exception",
+      "text": "Exception during customer lookup",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.cliente.encontrado.view_exception",
+        "env:dev",
+        "stage:cliente_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_encontrado"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+      "text": "Customer not found; will be registered in provider",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure",
+        "env:dev",
+        "stage:cliente_nao_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "cliente_nao_encontrado"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception",
+      "text": "Exception during customer-not-found handling",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.nao.encontrado.failure_exception",
+        "env:dev",
+        "stage:cliente_nao_encontrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_nao_encontrado"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.cadastrado",
+      "text": "New customer registered in payment provider",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.cadastrado",
+        "env:dev",
+        "stage:cliente_cadastrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "cliente_cadastrado"
+    },
+    {
+      "title": "pagamento.cobranca.cadastrada.cliente.cadastrado_exception",
+      "text": "Exception during new customer registration",
+      "tags": [
+        "event_key:pagamento.cobranca.cadastrada.cliente.cadastrado_exception",
+        "env:dev",
+        "stage:cliente_cadastrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cobranca_cadastrada",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "cliente_cadastrado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.pendente",
+      "text": "Invoice created and payment marked as pending with provider",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.pendente",
+        "env:dev",
+        "stage:pagamento_pendente",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "pagamento_pendente"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.pendente_exception",
+      "text": "Exception while marking payment as pending",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.pendente_exception",
+        "env:dev",
+        "stage:pagamento_pendente",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "pagamento_pendente"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.fatura.criada",
+      "text": "Invoice record created and persisted",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.fatura.criada",
+        "env:dev",
+        "stage:fatura_criada",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "fatura_criada"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.fatura.criada_exception",
+      "text": "Exception while persisting invoice record",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.fatura.criada_exception",
+        "env:dev",
+        "stage:fatura_criada",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:processamento_de_pagamentos",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "fatura_criada"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.confirmado",
+      "text": "Payment confirmed by provider webhook — invoice status updated",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.confirmado",
+        "env:dev",
+        "stage:pagamento_confirmado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:confirmacao_de_pagamento",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "pagamento_confirmado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.confirmado_exception",
+      "text": "Exception during payment confirmation processing",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.confirmado_exception",
+        "env:dev",
+        "stage:pagamento_confirmado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:confirmacao_de_pagamento",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "pagamento_confirmado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.cancelado",
+      "text": "Invoice cancelled — status updated and cancellation recorded",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.cancelado",
+        "env:dev",
+        "stage:pagamento_cancelado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cancelamento_de_pagamento",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "pagamento_cancelado"
+    },
+    {
+      "title": "pagamento.processamento.pagamentos.pagamento.cancelado_exception",
+      "text": "Exception during payment cancellation processing",
+      "tags": [
+        "event_key:pagamento.processamento.pagamentos.pagamento.cancelado_exception",
+        "env:dev",
+        "stage:pagamento_cancelado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:cancelamento_de_pagamento",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "pagamento_cancelado"
+    },
+    {
+      "title": "pagamento.webhook.entrega.pagamento.confirmado.entregue",
+      "text": "Confirmation webhook delivered successfully to registered consumer",
+      "tags": [
+        "event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+        "env:dev",
+        "stage:webhook_entregue",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:entrega_de_webhook",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "webhook_entregue"
+    },
+    {
+      "title": "pagamento.webhook.entrega.pagamento.confirmado.entregue_exception",
+      "text": "Webhook delivery failed for payment confirmation",
+      "tags": [
+        "event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue_exception",
+        "env:dev",
+        "stage:webhook_entregue",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:entrega_de_webhook",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "webhook_entregue"
+    },
+    {
+      "title": "pagamento.webhook.entrega.pagamento.cancelado.entregue",
+      "text": "Cancellation webhook delivered successfully to registered consumer",
+      "tags": [
+        "event_key:pagamento.webhook.entrega.pagamento.cancelado.entregue",
+        "env:dev",
+        "stage:webhook_entregue_cancelamento",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:entrega_de_webhook",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "webhook_entregue_cancelamento"
+    },
+    {
+      "title": "pagamento.webhook.entrega.pagamento.cancelado.entregue_exception",
+      "text": "Webhook delivery failed for payment cancellation",
+      "tags": [
+        "event_key:pagamento.webhook.entrega.pagamento.cancelado.entregue_exception",
+        "env:dev",
+        "stage:webhook_entregue_cancelamento",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:entrega_de_webhook",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "webhook_entregue_cancelamento"
+    },
+    {
+      "title": "pagamento.webhook.configuracao.webhook.registrado",
+      "text": "New webhook URL registered for an API token",
+      "tags": [
+        "event_key:pagamento.webhook.configuracao.webhook.registrado",
+        "env:dev",
+        "stage:webhook_registrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:configuracao_de_webhook",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "success",
+      "priority": "normal",
+      "source_type_name": "odd-business-event",
+      "aggregation_key": "webhook_registrado"
+    },
+    {
+      "title": "pagamento.webhook.configuracao.webhook.registrado_exception",
+      "text": "Exception during webhook registration",
+      "tags": [
+        "event_key:pagamento.webhook.configuracao.webhook.registrado_exception",
+        "env:dev",
+        "stage:webhook_registrado",
+        "actor:system",
+        "service:pagamento",
+        "touch_point:configuracao_de_webhook",
+        "business_domain:pagamento",
+        "source:odd"
+      ],
+      "alert_type": "error",
+      "priority": "normal",
+      "source_type_name": "odd-exception",
+      "aggregation_key": "webhook_registrado"
+    }
+  ],
+  "sloSuggestions": [
+    {
+      "id": "token_validado_availability",
+      "name": "Tokens Validados com Sucesso",
+      "objective": "Garantir que toda requisição autenticada seja validada com latência mínima e sem falha interna.",
+      "sliType": "availability",
+      "target": "99.9%",
+      "rationale": "A validação do token é o portão de entrada para todos os fluxos de negócio. Falhas internas nessa etapa bloqueiam completamente a API para o tenant.",
+      "sourceEventKeys": ["pagamento.autenticacao.api.token.validado"],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:1:event:pagamento.autenticacao.api.token.validado",
+        "flow:caminho-cancelamento:step:1:event:pagamento.autenticacao.api.token.validado",
+        "flow:caminho-webhook-configuracao:step:1:event:pagamento.autenticacao.api.token.validado"
+      ],
+      "queryHint": "tags:(event_key:pagamento.autenticacao.api.token.validado env:dev)"
+    },
+    {
+      "id": "pagamento_salva_availability",
+      "name": "Intenções de Pagamento Salvas com Sucesso",
+      "objective": "Garantir que as intenções de pagamento sejam salvas com sucesso para que os clientes possam prosseguir com o processo de pagamento.",
+      "sliType": "availability",
+      "target": "99.9%",
+      "rationale": "A salvaguarda bem-sucedida da intenção de pagamento é o primeiro passo crítico no fluxo de pagamentos. Sem isso, o cliente não pode continuar com o processo.",
+      "sourceEventKeys": ["pagamento.cobranca.checkout.intencao.de.pagamento.salva"],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva",
+        "flow:caminho-alternativo-cliente-novo:step:2:event:pagamento.cobranca.checkout.intencao.de.pagamento.salva"
+      ],
+      "queryHint": "tags:(event_key:pagamento.cobranca.checkout.intencao.de.pagamento.salva env:dev)"
+    },
+    {
+      "id": "pagamento_pendente_availability",
+      "name": "Pagamentos Pendentes com Sucesso",
+      "objective": "Garantir que os pagamentos sejam marcados como pendentes com sucesso para que o processamento possa continuar.",
+      "sliType": "availability",
+      "target": "99.8%",
+      "rationale": "A marcação bem-sucedida de um pagamento como pendente é um passo crucial antes da criação da fatura.",
+      "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.pendente"],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:4:event:pagamento.processamento.pagamentos.pagamento.pendente",
+        "flow:caminho-alternativo-cliente-novo:step:5:event:pagamento.processamento.pagamentos.pagamento.pendente"
+      ],
+      "queryHint": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.pendente env:dev)"
+    },
+    {
+      "id": "fatura_criada_availability",
+      "name": "Faturas Criadas com Sucesso",
+      "objective": "Assegurar que as faturas sejam criadas com sucesso após a confirmação do pagamento.",
+      "sliType": "availability",
+      "target": "99.7%",
+      "rationale": "A criação bem-sucedida da fatura é o resultado final do fluxo de criação de pagamento.",
+      "sourceEventKeys": ["pagamento.processamento.pagamentos.fatura.criada"],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:5:event:pagamento.processamento.pagamentos.fatura.criada",
+        "flow:caminho-alternativo-cliente-novo:step:6:event:pagamento.processamento.pagamentos.fatura.criada"
+      ],
+      "queryHint": "tags:(event_key:pagamento.processamento.pagamentos.fatura.criada env:dev)"
+    },
+    {
+      "id": "pagamento_confirmado_availability",
+      "name": "Pagamentos Confirmados com Sucesso",
+      "objective": "Garantir que os pagamentos confirmados pelo provider sejam processados corretamente e o status da fatura seja atualizado.",
+      "sliType": "availability",
+      "target": "99.5%",
+      "rationale": "A confirmação de pagamento é o evento que completa o ciclo financeiro para o tenant. Falha aqui significa perda de receita não registrada.",
+      "sourceEventKeys": ["pagamento.processamento.pagamentos.pagamento.confirmado"],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:6:event:pagamento.processamento.pagamentos.pagamento.confirmado",
+        "flow:caminho-alternativo-cliente-novo:step:7:event:pagamento.processamento.pagamentos.pagamento.confirmado"
+      ],
+      "queryHint": "tags:(event_key:pagamento.processamento.pagamentos.pagamento.confirmado env:dev)"
+    },
+    {
+      "id": "token_rejeitado_error_rate",
+      "name": "Taxa de Tokens Rejeitados",
+      "objective": "Monitorar a taxa de rejeição de tokens para detectar ataques ou configurações incorretas.",
+      "sliType": "error_rate",
+      "target": "5%",
+      "rationale": "Uma taxa de rejeição anormalmente alta pode indicar ataque de força bruta ou token expirado em produção que não foi renovado.",
+      "sourceEventKeys": ["pagamento.autenticacao.api.token.rejeitado"],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-token-rejeitado:step:1:event:pagamento.autenticacao.api.token.rejeitado"
+      ],
+      "queryHint": "tags:(event_key:pagamento.autenticacao.api.token.rejeitado env:dev)"
+    },
+    {
+      "id": "webhook_entregue_availability",
+      "name": "Webhooks Entregues com Sucesso",
+      "objective": "Monitorar a taxa de entrega bem-sucedida de webhooks para consumidores registrados.",
+      "sliType": "availability",
+      "target": "95%",
+      "rationale": "Entregas são fire-and-forget e não bloqueiam o fluxo principal, mas uma taxa de falha alta indica problemas nos endpoints dos consumidores ou na conectividade de saída.",
+      "sourceEventKeys": [
+        "pagamento.webhook.entrega.pagamento.confirmado.entregue",
+        "pagamento.webhook.entrega.pagamento.cancelado.entregue"
+      ],
+      "sourceOccurrenceKeys": [
+        "flow:caminho-feliz:step:7:event:pagamento.webhook.entrega.pagamento.confirmado.entregue",
+        "flow:caminho-cancelamento:step:6:event:pagamento.webhook.entrega.pagamento.cancelado.entregue"
+      ],
+      "queryHint": "tags:(event_key:pagamento.webhook.entrega.pagamento.confirmado.entregue env:dev)"
+    }
+  ],
+  "assumptions": [
+    "Gerado em 2026-07-03 com base no estado atual do sistema: AuthModule (ApiTokenGuard), InvoicesModule, WebhooksModule.",
+    "Eventos de domínio seguem a convenção: {dominio}.{subdominio}.{touchpoint}.{fato} em letras minúsculas separadas por ponto.",
+    "Todo evento de negócio possui um contraparte _exception para observabilidade de falhas internas.",
+    "Fluxos cobertos: caminho-feliz (confirmação + webhook), alternativo-cliente-novo, cancelamento, token-rejeitado, webhook-configuracao.",
+    "Atualizar este arquivo sempre que um novo emit() de domínio for adicionado ao código ou um flow existente mudar de sequência."
+  ]
+}

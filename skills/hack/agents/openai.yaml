@@ -1,0 +1,6 @@
+interface:
+  display_name: "HACK"
+  short_description: "Implement feature branches to commit"
+  default_prompt: "Use $hack to create a feature branch, implement the requested change, add tests, validate locally, and close with a commit."
+policy:
+  allow_implicit_invocation: true
