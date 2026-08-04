@@ -1,0 +1,24 @@
+# <type>(<scope>): <summary>
+# Types: feat fix docs test refactor perf build ci style chore revert
+# Scope: optional, e.g. invoices, auth, webhook
+# Summary: imperative mood, lowercase, no period, max 72 chars
+#
+# ─────────────────────────────────────────────────────────────────────────────
+
+## Contexto
+# O que mudou e por quê esta mudança foi necessária?
+
+## Motivação
+# Qual problema, critério de aceite ou OBC motivou esta mudança?
+
+## Implementação
+# Resumo técnico da abordagem adotada.
+
+## Impactos
+# Contratos alterados, rotas adicionadas/removidas, eventos novos.
+
+## Testes executados
+# Quais testes foram rodados e passaram? (lint, unit, acceptance)
+
+## Observações
+# Decisões não óbvias, débitos técnicos, pendências.
