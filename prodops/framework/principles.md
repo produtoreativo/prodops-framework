@@ -1,0 +1,25 @@
+# ProdOps Principles
+
+## 1. Product context first
+Nenhuma mudança de código começa sem contexto compatível com o modo de execução. Upstream é permissivo, experimental e sem compromisso de entrega. Downstream é completo: antes de executar Delivery, exige todos os artefatos e gates de readiness definidos pelo Framework. Agentes não devem inventar contexto de negócio ausente.
+
+## 2. Upstream before commitment
+Upstream não é uma jornada: é o modo sem compromisso de entrega, no qual qualquer jornada pode operar com rigor experimental e maturidade variável. Código é descartável até ser promovido para Downstream. Downstream também pode executar qualquer jornada, mas aplica todos os quality gates vigentes. Ver [AGENTS.md Upstream Path](../../AGENTS.md).
+
+## 3. Contracts before implementation
+Identificar ou criar um contrato verificável (OpenAPI, AsyncAPI, BDD Feature, schema) antes de escrever código de produção. O contrato é a linguagem compartilhada entre teste e implementação.
+
+## 4. Observability as a deliverable
+Logs, erros, métricas e rastreabilidade fazem parte da implementação, não são complementos adicionados depois. Uma feature não está pronta se seu comportamento não puder ser observado em produção.
+
+## 5. Evidence-based decisions
+Toda decisão de entrega — promover, reverter, aceitar risco — deve ser respaldada por evidência registrada. Ver [release-trail](../artifacts/trails/release-trail.md) e [operation/](journeys/operation/).
+
+## 6. Reliability is a first-class concern
+Objetivos de confiabilidade são definidos antes da implementação, acompanhados via OBCs e SLOs, e validados antes da promoção. Ver [reliability-plans](../artifacts/plans/reliability/).
+
+## 7. No shortcuts in production code
+Código de produção não deve conter branches exclusivos de teste, hacks específicos de ambiente ou overrides ocultos que alteram o comportamento em teste. Modos de comportamento projetados (ex: mock de provedor externo) são exceções válidas desde que declarados explicitamente como feature intencional do produto — não como atalho de teste.
+
+## 8. Automation First
+Um agente deve sempre tentar executar uma ação ele mesmo antes de instruir um humano a fazê-la. Intervenção manual é último recurso (uma **Manual Exception** documentada), nunca o caminho padrão. Ordem canônica de tentativas: API → MCP → CLI → SDK → Browser Automation → Manual Exception apenas quando tudo mais falhar. Frases como "faça manualmente", "acesse a UI" ou "configure manualmente" são proibidas a menos que todas as opções de automação tenham sido demonstravelmente esgotadas e registradas em um Issue de rastreamento. Ver [automation-first.md](automation-first.md) para o fluxo de decisão completo.
