@@ -7,6 +7,44 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [1.1.0] — 2026-08-05
+
+### Added
+
+- `prodops/runtime/` — Reference Implementation (RI) of the ProdOps delivery runtime,
+  validated with Datadog and GitHub integrations. Consumers copy `runtime.yaml.example`,
+  fill in their config, and extend in their own repo.
+  - `catalog/events.yaml` — 47-event canonical catalog covering Delivery and Diligence journeys
+  - `consumer/` — `derive-state.sh`, `derive-diligence-state.sh`
+  - `datadog/` — `send.sh` (metrics publisher), `runtime-dashboard.json`, `dashboards/v3.4.0.json`
+  - `dispatcher/` — `dispatch.sh` (subscription router), `trail.sh` (GitHub trail comments)
+  - `docs/contract.md` — CloudEvent contract reference
+  - `github/sync.sh` — idempotent GitHub Project v2 field sync
+  - `producer/emit.sh` — CloudEvent factory
+  - `subscriptions/delivery-diligence.yaml` — canonical subscription declarations
+  - `timeline/append.sh` — append-only CloudEvent timeline writer
+  - `tools/emit-event/` — complete 5-step CLI tool with JSON-in/JSON-out contract,
+    unit tests (01–10), chain tests, and cross-player conformance test suite
+  - `tools/restart-feature/` — non-destructive Delivery Journey restart tool
+  - `scripts/` — `validate-event.sh`, `runtime-doctor.sh`, `project-cleanup.sh`,
+    `create-github-views.sh`
+  - `runtime.yaml.example` — consumer configuration template
+
+### Changed (RI generalization)
+
+- `datadog/send.sh`: removed `../api/.env` credential fallback; `DD_API_KEY` must
+  be set as an environment variable
+- `scripts/runtime-doctor.sh`: same credential change; removed `EXP-013` experiment
+  label from banner
+- `dispatcher/trail.sh`: translated all 13 event message templates from Portuguese
+  to English; removed hardcoded branch name from sync message
+- `tools/emit-event/scripts/emit-event`: removed hardcoded `"experiment":"EXP-015"`
+  from evidence `_meta` block
+- `tools/restart-feature/scripts/restart-feature`: added `--iteration-id` parameter;
+  removed three hardcoded `"IP-EXP016-F03-RESTART"` iteration ID values
+
+---
+
 ## [1.0.0] — 2026-08-05
 
 ### Breaking changes
