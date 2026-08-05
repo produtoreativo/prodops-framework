@@ -464,9 +464,23 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 ---
 
+## Framework Capability
+
+**Definição:** Mecanismo reutilizável do processo ProdOps — pode ser consumido por qualquer Journey ou Phase que o necessite. Não está associada a um produto específico; é infraestrutura do processo, não funcionalidade de produto.
+
+**Grupos por área de origem** (não de propriedade exclusiva):
+- *Área Delivery:* Commit Workflow, Contract Management, Evidence Management, Observability, Reliability
+- *Área Diligence:* Backlog Synchronization, Work Item Management, Readiness Verification, Divergence Detection, Artifact Evolution, Workspace Reconciliation
+
+**Distinção:** _Framework Capability_ é o conceito canônico. "Delivery Capability" e "Diligence Capability" são qualificadores de área — continuam sendo Framework Capabilities. "Product Capability" é o conceito oposto: o objeto do trabalho, não o mecanismo.
+
+→ Definição completa: [`ontology.md — Capability`](ontology.md)
+
+---
+
 ## Delivery Capability
 
-**Definição:** Competência técnica reutilizável consumida pelas fases da jornada Delivery. Exemplos: Commit Workflow, Contract Management, Evidence Management, Observability, Reliability.
+**Definição:** **Framework Capability** da área Delivery — mecanismo reutilizável consumido pelas Phases da jornada Delivery. Exemplos: Commit Workflow, Contract Management, Evidence Management, Observability, Reliability.
 
 **Propósito:** Encapsular práticas técnicas transversais que podem ser invocadas por múltiplas fases sem duplicação.
 
@@ -474,7 +488,7 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 **Quando não usar:** Não confundir com "Product Capability". Uma Delivery Capability é um mecanismo do Framework, não uma funcionalidade do produto.
 
-**Relação com outros conceitos:** Usada pelas Phases da jornada Delivery. Ver [`journeys/delivery/capabilities/`](journeys/delivery/capabilities/).
+**Relação com outros conceitos:** É uma Framework Capability especializada para a área Delivery. Ver [`journeys/delivery/capabilities/`](journeys/delivery/capabilities/).
 
 ---
 
@@ -489,6 +503,70 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 **Quando não usar:** Não confundir com "Delivery Capability". Uma Product Capability é o objeto do trabalho; uma Delivery Capability é um mecanismo do processo.
 
 **Nota:** Em contextos onde a ambiguidade for possível, preferir o termo completo "Product Capability" ou "Delivery Capability" em vez de apenas "capability".
+
+---
+
+## Product Topology
+
+**Definição:** A organização estrutural permanente de um produto. Descreve as quatro dimensões que coexistem em qualquer produto e sobre as quais os OBCs produzem mudanças via Delivery.
+
+**Propósito:** Identificar quais partes da estrutura do produto são afetadas por um OBC — independente de onde a intenção nasceu (Origin Stream) e independente do processo de entrega.
+
+**As quatro Product Dimensions:** Team · Flow · Data · Components
+
+**Separação ontológica obrigatória:**
+- **Origin Streams** respondem: "De onde surgiu esta necessidade?" (origem da intenção)
+- **Product Topology** responde: "Quais partes do produto serão impactadas?" (estrutura permanente)
+
+**Não representa:** Backlog, jornada, pipeline, fluxo de trabalho ou ciclo de vida do processo. Product Topology descreve a estrutura do produto — não o processo de construção.
+
+**Nunca usar como substituto:** Layers, Domains, Views, Perspectives, Streams.
+
+→ **Definição completa com diagrama e exemplos:** [`product-topology.md`](product-topology.md)
+
+---
+
+## Team (Product Dimension)
+
+**Definição:** A dimensão organizacional da Product Topology. Descreve o ownership, as responsabilidades, as capacidades, os papéis, a colaboração, a governança e o modelo operacional do time que constrói e opera o produto.
+
+**Quando um OBC impacta esta dimensão:** Quando a entrega cria novas responsabilidades operacionais, redefine papéis entre times ou altera o modelo de governança do produto.
+
+**Distinção crítica:** Não confundir com o Origin Stream "Team" — que classifica a *origem* de uma necessidade (o time identificou o problema). A Product Dimension "Team" descreve o *impacto* sobre a organização do produto.
+
+**Relação com outros conceitos:** Uma das quatro Product Dimensions. Ver [`product-topology.md`](product-topology.md).
+
+---
+
+## Flow (Product Dimension)
+
+**Definição:** O eixo temporal da Product Topology. Representa como as demais Product Dimensions (Team, Data, Components) evoluem ao longo das jornadas do Framework — Discovery, Delivery, Operation, Diligence e futuras jornadas. Flow não executa nada: registra a evolução, a transformação e o histórico das mudanças ao longo do tempo.
+
+**Quando um OBC impacta esta dimensão:** Sempre — todo OBC, ao percorrer as jornadas do Framework, sempre deixa um rastro temporal. Flow registra esse trânsito: quando o OBC nasceu (Discovery), foi implementado (Delivery), entrou em produção (Operation) e foi validado (Diligence).
+
+**Distinção crítica:** Flow não é comportamento funcional do produto. Processos de negócio, regras de negócio, máquinas de estado, automações e funcionalidades pertencem à dimensão **Components** — que implementa o comportamento do produto. Flow é exclusivamente o eixo temporal: responde *quando* e *como* as dimensões evoluem, nunca *o que* o produto faz.
+
+**Relação com outros conceitos:** Uma das quatro Product Dimensions; transversal às demais. Ver [`product-topology.md`](product-topology.md).
+
+---
+
+## Data (Product Dimension)
+
+**Definição:** A dimensão informacional da Product Topology. Descreve as entidades de negócio, os contratos de dados, os schemas, a persistência, as integrações, os eventos de domínio e as APIs que compõem o modelo informacional do produto.
+
+**Quando um OBC impacta esta dimensão:** Quando a entrega cria novos schemas, novos eventos de domínio, novos contratos de API ou altera o modelo de persistência existente.
+
+**Relação com outros conceitos:** Uma das quatro Product Dimensions. Ver [`product-topology.md`](product-topology.md).
+
+---
+
+## Components (Product Dimension)
+
+**Definição:** A dimensão física e comportamental da Product Topology. Descreve as aplicações, os serviços, os microsserviços, os bancos de dados, as filas, os pipelines de dados, a infraestrutura e os repositórios que compõem a plataforma técnica do produto. **Os Components implementam o comportamento funcional do produto** — são eles que executam regras de negócio, funcionalidades, integrações, APIs e processos automatizados. O comportamento do produto emerge da colaboração entre seus Components.
+
+**Quando um OBC impacta esta dimensão:** Quando a entrega cria novos serviços, novas APIs, novos workers, novas filas de mensagens, novos bancos de dados ou altera a infraestrutura existente do produto.
+
+**Relação com outros conceitos:** Uma das quatro Product Dimensions. Ver [`product-topology.md`](product-topology.md).
 
 ---
 
@@ -612,23 +690,33 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 ## CI Sync
 
-**Definição:** O agrupamento síncrono do ProdOps Delivery. Representa o trabalho local, colaborativo e conduzido pelo engenheiro. Inclui Bootstrap, Hack, Sync e Finish. Produz: task fechada, PR com narrativa, evidências, commits organizados, validações locais executadas. Ver [`journeys/delivery/README.md`](journeys/delivery/README.md).
+**Definição:** O Cycle síncrono do ProdOps Delivery. Representa o trabalho local, colaborativo e conduzido pelo engenheiro. Inclui Bootstrap, Hack, Sync e Finish. Produz: task fechada, PR com narrativa, evidências, commits organizados, validações locais executadas. Ver [`journeys/delivery/README.md`](journeys/delivery/README.md).
 
 ---
 
 ## CI Async
 
-**Definição:** O agrupamento assíncrono do ProdOps Delivery. Representa o trabalho conduzido pela plataforma, pipelines e ambientes. Inclui Ship, Validate e Promote. Produz: artefato publicado, deploy realizado, validação em runtime, promoção controlada. Ver [`journeys/delivery/README.md`](journeys/delivery/README.md).
+**Definição:** O Cycle assíncrono do ProdOps Delivery. Representa o trabalho conduzido pela plataforma, pipelines e ambientes. Inclui Ship, Validate e Promote. Produz: artefato publicado, deploy realizado, validação em runtime, promoção controlada. Ver [`journeys/delivery/README.md`](journeys/delivery/README.md).
 
 ---
 
 ## Execution Model
 
-**Definição:** O par de modos de execução que define o nível de compromisso, quality gates e critérios de qualidade aplicados quando qualquer Journey é executada — Upstream (exploração) e Downstream (compromisso). Não é uma Journey, não é uma Phase.
+**Definição:** O framework transversal que define o nível de compromisso, quality gates e critérios de qualidade aplicados quando qualquer Journey é executada. Composto por dois Execution Modes: Upstream (exploração) e Downstream (compromisso). Não é uma Journey, não é uma Phase.
 
 **Regra fundamental:** O Execution Model define *como* as Journeys executam — não *o que* elas são. Qualquer Journey pode operar em qualquer modo.
 
+**Distinção:** _Execution Model_ é o framework; _Execution Mode_ é um dos dois modos individuais (Upstream ou Downstream). "Modo de execução" é a tradução de Execution Mode — não de Execution Model.
+
 → Definição completa: [`ontology.md — Execution Model`](ontology.md#modificador-transversal-execution-model) · [`execution-model/README.md`](execution-model/README.md)
+
+---
+
+## Execution Mode
+
+**Definição:** Um dos dois modos individuais do Execution Model — Upstream ou Downstream. Define o nível de compromisso e os quality gates aplicados a um item durante sua execução em qualquer Journey.
+
+**Distinção:** _Execution Mode_ é o modo individual; _Execution Model_ é o framework que os define e governa. Ver: Upstream, Downstream.
 
 ---
 
@@ -700,9 +788,11 @@ Ver [`prodops/framework/execution-model/downstream.md`](execution-model/downstre
 
 ---
 
-## Hack Flow
+## Hack
 
 **Definição:** A fase de codificação em Upstream e Downstream. Segundo estágio do CI Sync, sucede o Bootstrap. Definido em [`journeys/delivery/phases/hack/README.md`](journeys/delivery/phases/hack/README.md). Mecânica de execução em [`skills/hack/`](../skills/hack/).
+
+**Alias informal:** "Hack Flow" — não usar em documentação canônica; o termo correto é "Hack" (Phase).
 
 ---
 
@@ -784,6 +874,20 @@ Ver [`prodops/framework/execution-model/downstream.md`](execution-model/downstre
 
 ---
 
+## Assessment
+
+**Definição:** Jornada do Framework ProdOps responsável por avaliar o modelo operacional ao longo do tempo. Consome evidências produzidas pela Delivery e pela Diligence para avaliar maturidade, identificar tendências e produzir recomendações de evolução.
+
+**Propósito:** Fechar o ciclo de melhoria contínua do Framework. Enquanto a Delivery executa e a Diligence organiza, o Assessment avalia — respondendo à pergunta central: "Estamos melhorando continuamente o nosso modelo operacional?"
+
+**Cycles:** Assessment Sync (Collect → Analyze → Synthesize → Report — estruturado, por demanda) e Assessment Async (Monitor → Alert — contínuo, proativo).
+
+**O que não faz:** Não executa Delivery. Não executa Diligence. Não escreve nas Timelines de outras Journeys. Não prioriza o backlog — informa, não decide.
+
+**Relação com outros conceitos:** Consome saídas da Delivery e da Diligence; suas recomendações alimentam o Discovery e a Diligence. Ver [`journeys/assessment/README.md`](journeys/assessment/README.md).
+
+---
+
 ## Diligence
 
 **Definição:** Jornada transversal do Framework ProdOps responsável por manter o sistema de trabalho sincronizado e consistente ao longo do ciclo de vida do produto.
@@ -796,7 +900,7 @@ Ver [`prodops/framework/execution-model/downstream.md`](execution-model/downstre
 
 **O que não faz:** Não implementa software. Não cria Pull Requests de implementação. Não modifica código do produto. Não toma decisões de produto que competem ao Assessment.
 
-**Relação com outros conceitos:** Jornada transversal. Consome artefatos do Assessment e alimenta a Delivery com trabalho organizado e rastreável. Ver [`journeys/diligence/README.md`](journeys/diligence/README.md) e [`backlogs.md`](backlogs.md).
+**Relação com outros conceitos:** Jornada transversal. Consome recomendações do Assessment e alimenta a Delivery com trabalho organizado e rastreável. Por sua vez, produz evidências de execução e sincronização que o Assessment consome para avaliar maturidade operacional — a relação é bidirecional. Ver [`journeys/diligence/README.md`](journeys/diligence/README.md) e [`backlogs.md`](backlogs.md).
 
 ---
 

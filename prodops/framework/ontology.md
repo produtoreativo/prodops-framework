@@ -106,8 +106,10 @@ flowchart TD
 | Delivery | CI Async | Assíncrono — trabalho conduzido pela plataforma |
 | Diligence | diligence-sync | Reativo — acionado por evento externo |
 | Diligence | diligence-async | Proativo — iniciado por varredura periódica |
+| Assessment | Assessment Sync | Estruturado — coleta, análise e síntese por demanda |
+| Assessment | Assessment Async | Contínuo — monitoramento e alerta proativo |
 
-**Nota:** Discovery, Operation e Assessment não têm Cycles formais — operam como sequências fluidas de Phases ou de atividades sem agrupamento explícito. Workspace Reconciliation é uma **Capability** do Diligence — não é um Cycle. É invocada por Bootstrap, Diligence Async e Diligence Sync como sub-rotina. Ver seção Capability abaixo.
+**Nota:** Discovery e Operation não têm Cycles formais — operam como sequências fluidas de Phases ou de atividades sem agrupamento explícito. Workspace Reconciliation é uma **Capability** do Diligence — não é um Cycle. É invocada por Bootstrap, Diligence Async e Diligence Sync como sub-rotina. Ver seção Capability abaixo.
 
 **Nunca representa:** A Journey que o contém, uma Phase individual, uma Capability.
 
@@ -127,6 +129,8 @@ flowchart TD
 | CI Async | Ship → Validate → Promote |
 | diligence-sync | Capture → Attach → Promote → Close |
 | diligence-async | Scan → Flag → Repair |
+| Assessment Sync | Collect → Analyze → Synthesize → Report |
+| Assessment Async | Monitor → Alert |
 
 **Nível de abstração:** A menor unidade estrutural do modelo conceitual. A implementação de uma Phase pertence à camada de agentes (Skill e Steps).
 
@@ -221,6 +225,38 @@ Esses grupos são organizados por onde as Capabilities foram originalmente defin
 
 ---
 
+## Conceito de produto: Product Topology
+
+### Product Topology
+
+**O que é:** A organização estrutural permanente de um produto. Descreve as quatro dimensões que coexistem em qualquer produto e sobre as quais os OBCs produzem mudanças via Delivery.
+
+**Responsabilidade:** Identificar quais partes da estrutura do produto são afetadas por um OBC — independente de onde a intenção nasceu (Origin Stream) e independente do processo de entrega (Journeys, Cycles, Phases).
+
+**As quatro Product Dimensions:**
+
+| Dimensão | O que descreve |
+|---|---|
+| **Team** | Dimensão organizacional: ownership, responsabilidades, capacidades, papéis, governança e modelo operacional |
+| **Flow** | Eixo temporal: registra como Team, Data e Components evoluem pelas jornadas do Framework (Discovery, Delivery, Operation, Diligence) — não executa, apenas representa a evolução |
+| **Data** | Dimensão informacional: entidades, contratos de dados, schemas, persistência, eventos de domínio e APIs |
+| **Components** | Dimensão física e comportamental: serviços, APIs, bancos de dados, filas, infraestrutura — implementam o comportamento funcional do produto |
+
+**Separação ontológica obrigatória:**
+
+| Conceito | Pergunta que responde |
+|---|---|
+| **Origin Streams** | De onde surgiu esta necessidade? (origem da intenção) |
+| **Product Topology** | Quais partes do produto serão impactadas? (estrutura permanente) |
+
+Origin Streams e Product Topology são conceitos completamente distintos. Um OBC com origem em qualquer Origin Stream pode impactar qualquer combinação de Product Dimensions. A origem não determina o impacto.
+
+**Nunca representa:** Backlog, jornada, pipeline, fluxo de trabalho, ciclo de vida do processo. Product Topology descreve a estrutura do produto — não o processo de construção do produto.
+
+→ [product-topology.md](product-topology.md)
+
+---
+
 ## Relações entre todos os conceitos
 
 | Relação | Enunciado |
@@ -241,7 +277,7 @@ Esses grupos são organizados por onde as Capabilities foram originalmente defin
 
 ### Ciclos formais vs. jornadas fluidas
 
-Nem toda Journey tem Cycles formais. Delivery e Diligence têm Cycles explícitos com names e responsabilidades distintas. Discovery, Operation e Assessment operam de forma mais fluida — têm atividades e práticas, mas sem agrupamento formal em Cycles nomeados.
+Nem toda Journey tem Cycles formais. Delivery, Diligence e Assessment têm Cycles explícitos com nomes e responsabilidades distintas. Discovery e Operation operam de forma mais fluida — têm atividades e práticas, mas sem agrupamento formal em Cycles nomeados.
 
 ### "Agrupamento" vs. "Cycle"
 
@@ -264,3 +300,4 @@ Este documento é a fonte única de verdade da hierarquia de conceitos ProdOps.
 | [execution-model/README.md](execution-model/README.md) | Detalha Upstream e Downstream — é uma especialização desta ontologia |
 | [journeys/README.md](journeys/README.md) | Detalha cada Journey — referencia Cycle e Phase desta ontologia |
 | [skills/README.md](../skills/README.md) | Catálogo de Skills — referencia esta ontologia para o posicionamento de Skill e Step |
+| [product-topology.md](product-topology.md) | Detalha as quatro Product Dimensions e o relacionamento OBC → Product Topology |

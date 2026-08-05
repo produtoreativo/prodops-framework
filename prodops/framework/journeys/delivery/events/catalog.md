@@ -23,14 +23,15 @@
 | 7 | Promote.Completed | Phase Lifecycle | true | DONE | System | Active |
 | 8 | Gate.Passed | Gate | false | — | System, Agent | **Deprecated** → Shared.Gate.Passed |
 | 9 | Gate.Failed | Gate | false | — | System, Agent | **Deprecated** → Shared.Gate.Failed |
-| 10 | Review.Approved | Human Decision | false | — | Human | Active |
-| 11 | Review.ChangesRequested | Human Decision | false | — | Human | Active |
+| 10 | Validate.Started | Phase Lifecycle | false | — | System, Agent | Active |
+| 11 | Validate.Completed | Phase Lifecycle | false | — | System, Agent | Active |
 | 12 | Promote.Approved | Human Decision | true | PROMOTING | Human | Active |
 | 13 | Promote.Rejected | Human Decision | true | VALIDATING | Human | Active |
 | 14 | Impediment.Declared | Blocking | true | BLOCKED | Human, Agent | **Deprecated** → Shared.Impediment.Declared |
 | 15 | Impediment.Resolved | Blocking | false | — (Lookback) | Human | Active — convergido v2 |
 | 16 | Rework.Declared | Rework | true | HACKING | Human, Agent | Active |
-| 17 | Rework.Completed | Rework | true | SYNCING | Human, Agent | Active |
+| 17 | Rework.Completed | Rework | true | SYNCING | Human, Agent | **Deprecated** → Rework.Resolved |
+| 18 | Rework.Resolved | Rework | true | SYNCING | Human, Agent | Active |
 
 ---
 
@@ -91,7 +92,7 @@ desenvolvimento ativo.
 **preconditions:**
 - O Work Item está no estado BOOTSTRAPPING
 - O branch de trabalho foi criado com sucesso
-- O smoke gate inicial passou (Gate.Passed foi registrado na Timeline antes deste evento)
+- O smoke gate inicial passou (Shared.Gate.Passed foi registrado na Timeline antes deste evento)
 
 **postconditions:**
 - O Work Item transita para o estado HACKING
@@ -143,7 +144,7 @@ revisão de código. O Work Item aguarda revisão pelos peers.
 
 ---
 
-## CI Sync — Sync (Code Review)
+## CI Sync — Sync
 
 ---
 
@@ -230,73 +231,6 @@ v2.0.0 do catálogo. Timelines históricas continuam válidas. Novas emissões d
 
 ---
 
-### Review.Approved
-
-| Campo | Valor |
-|---|---|
-| **name** | `Review.Approved` |
-| **category** | Human Decision |
-| **alters_state** | `false` |
-| **producer_subtypes** | `[Human]` |
-| **lifecycle_status** | Active |
-| **introduced_in** | 1.0.0 |
-
-**description:**
-Um revisor humano aprovou o Pull Request após análise do código. A aprovação é um pré-requisito
-para o merge do PR, mas não altera o estado do Work Item — o estado transita para FINISHING
-somente quando o merge ocorre (Sync.Completed).
-
-**preconditions:**
-- O Work Item está no estado SYNCING
-- Um Pull Request está aberto e foi analisado pelo revisor
-
-**postconditions:**
-- A aprovação do revisor está registrada na Timeline
-- O Derived State permanece SYNCING
-- O PR pode ser mergeado quando os critérios de merge estiverem satisfeitos
-
-**payload_shape:**
-- `reviewer` (string, obrigatório): identidade do revisor que aprovou
-- `pr_number` (integer, obrigatório): número do Pull Request aprovado
-
-**owner_journey:** Delivery
-
----
-
-### Review.ChangesRequested
-
-| Campo | Valor |
-|---|---|
-| **name** | `Review.ChangesRequested` |
-| **category** | Human Decision |
-| **alters_state** | `false` |
-| **producer_subtypes** | `[Human]` |
-| **lifecycle_status** | Active |
-| **introduced_in** | 1.0.0 |
-
-**description:**
-Um revisor humano solicitou alterações no Pull Request após análise do código. A solicitação
-de mudanças indica que o PR não está pronto para merge. O Derived State permanece SYNCING
-— o Producer deve declarar Rework.Declared se as mudanças exigirem retorno ao desenvolvimento.
-
-**preconditions:**
-- O Work Item está no estado SYNCING
-- Um Pull Request está aberto e foi analisado pelo revisor
-
-**postconditions:**
-- A solicitação de mudanças está registrada na Timeline
-- O Derived State permanece SYNCING
-- O PR não pode ser mergeado até que as mudanças sejam implementadas e uma nova aprovação seja obtida
-
-**payload_shape:**
-- `reviewer` (string, obrigatório): identidade do revisor que solicitou mudanças
-- `pr_number` (integer, obrigatório): número do Pull Request
-- `reason` (string, obrigatório): descrição das mudanças solicitadas
-
-**owner_journey:** Delivery
-
----
-
 ### Sync.Completed
 
 | Campo | Valor |
@@ -310,23 +244,26 @@ de mudanças indica que o PR não está pronto para merge. O Derived State perma
 | **introduced_in** | 1.0.0 |
 
 **description:**
-O Pull Request foi mergeado com sucesso no branch base. A Phase de Sync foi concluída.
-O Work Item está pronto para as checagens finais antes de entrar no ciclo CI Async.
+A Phase de Sync foi concluída. A feature branch incorporou as mudanças mais recentes da
+origin (fetch + rebase) e os artefatos ProdOps foram alinhados com o estado atual da
+implementação (BDD Features, Event Storming, arquitetura, Release Trail). Sync não publica
+nem atualiza a origin — apenas sincroniza o estado local com o que já existe nela.
 
 **preconditions:**
 - O Work Item está no estado SYNCING
-- O Pull Request foi aprovado por pelo menos um revisor (Review.Approved na Timeline)
-- O merge foi executado com sucesso pelo sistema
+- O fetch + rebase da feature branch sobre a origin foi executado sem conflitos não resolvidos
+- Os artefatos ProdOps foram verificados e estão alinhados com o estado atual da implementação
 
 **postconditions:**
 - O Work Item transita para o estado FINISHING
-- O branch de trabalho foi mergeado ao branch base
-- A Timeline contém Review.Approved antes de Sync.Completed
+- A feature branch está atualizada com a origin
+- Os artefatos ProdOps refletem o estado atual da implementação
+- Nenhuma alteração foi publicada na origin
 
 **payload_shape:**
-- `pr_number` (integer, obrigatório): número do Pull Request mergeado
-- `merge_commit` (string, obrigatório): hash do commit de merge gerado
-- `approvals_count` (integer, obrigatório): número de aprovações obtidas antes do merge
+- `rebase_commit` (string, obrigatório): hash do commit de HEAD após o rebase
+- `base_branch` (string, obrigatório): branch base usado no rebase (ex.: `master`)
+- `aligned_artifacts` (array, opcional): lista de artefatos ProdOps verificados (ex.: `["bdd", "event-storming", "release-trail"]`)
 
 **owner_journey:** Delivery
 
@@ -383,19 +320,19 @@ o Work Item entra no CI Async.
 | **introduced_in** | 1.0.0 |
 
 **description:**
-O Work Item foi implantado com sucesso em ambiente de homologação. A Phase de Ship foi
-concluída. O Work Item está disponível para validação no ambiente de homologação.
+O Work Item foi implantado com sucesso em Staging. A Phase de Ship foi concluída. O Work
+Item está disponível para validação em Staging.
 
 **preconditions:**
 - O Work Item está no estado SHIPPING
-- O pipeline de implantação em homologação foi executado com sucesso
+- O pipeline de implantação em Staging foi executado com sucesso
 
 **postconditions:**
 - O Work Item transita para o estado VALIDATING
-- O Work Item está acessível em ambiente de homologação para validação
+- O Work Item está acessível em Staging para validação
 
 **payload_shape:**
-- `environment` (string, obrigatório): identificador do ambiente de homologação em que foi implantado
+- `environment` (string, obrigatório): identificador do ambiente de Staging em que foi implantado
 - `deploy_version` (string, obrigatório): versão ou tag implantada
 
 **owner_journey:** Delivery
@@ -406,9 +343,69 @@ concluída. O Work Item está disponível para validação no ambiente de homolo
 
 ---
 
-*A Phase Validate é representada neste MVP por eventos Gate.Passed e Gate.Failed (já definidos
-acima) e pela decisão humana de promover ou rejeitar (abaixo). Eventos específicos de
-validação automatizada são candidatos ao catálogo v2.*
+### Validate.Started
+
+| Campo | Valor |
+|---|---|
+| **name** | `Validate.Started` |
+| **category** | Phase Lifecycle |
+| **alters_state** | `false` |
+| **producer_subtypes** | `[System, Agent]` |
+| **lifecycle_status** | Active |
+| **introduced_in** | 2.1.0 |
+
+**description:**
+A Phase de Validate foi iniciada. Os testes automatizados de validação em Staging estão
+em execução. O Derived State permanece VALIDATING — definido pelo Ship.Completed anterior.
+
+**preconditions:**
+- O Work Item está no estado VALIDATING
+- Ship.Completed foi registrado na Timeline
+
+**postconditions:**
+- O início da validação está registrado na Timeline
+- O Derived State permanece VALIDATING
+
+**payload_shape:**
+- `validation_suite` (string, obrigatório): identificador da suite de testes executada (ex.: `e2e`, `smoke`, `contract`)
+- `environment` (string, obrigatório): ambiente em que a validação está sendo executada (ex.: `staging`)
+
+**owner_journey:** Delivery
+
+---
+
+### Validate.Completed
+
+| Campo | Valor |
+|---|---|
+| **name** | `Validate.Completed` |
+| **category** | Phase Lifecycle |
+| **alters_state** | `false` |
+| **producer_subtypes** | `[System, Agent]` |
+| **lifecycle_status** | Active |
+| **introduced_in** | 2.1.0 |
+
+**description:**
+A Phase de Validate foi concluída com sucesso. Todos os gates de validação automatizada
+passaram em Staging. O Work Item está pronto para a decisão humana de promoção
+(Promote.Approved ou Promote.Rejected). O Derived State permanece VALIDATING até que
+a decisão humana seja registrada.
+
+**preconditions:**
+- O Work Item está no estado VALIDATING
+- Validate.Started foi registrado na Timeline
+- Todos os Shared.Gate.Passed necessários foram registrados
+
+**postconditions:**
+- A conclusão da validação está registrada na Timeline
+- O Derived State permanece VALIDATING — aguarda Promote.Approved ou Promote.Rejected
+
+**payload_shape:**
+- `validation_suite` (string, obrigatório): identificador da suite executada
+- `gates_passed` (integer, obrigatório): número de gates que passaram
+- `duration_ms` (integer, obrigatório): duração total da suite de validação
+
+**owner_journey:** Delivery
 
 ---
 
@@ -429,21 +426,22 @@ validação automatizada são candidatos ao catálogo v2.*
 | **introduced_in** | 1.0.0 |
 
 **description:**
-Um responsável humano aprovou a promoção do Work Item para produção após validação em
-homologação. A aprovação é a decisão formal de que o Work Item está pronto para entrar
-em produção.
+Um responsável humano aprovou a promoção do Work Item para Sandbox após validação em
+Staging. A aprovação é a decisão formal de que o Work Item está pronto para entrar no
+Sandbox (Release Candidate). Production está fora da Delivery Journey — o deploy em
+Production é acionado manualmente via GitHub Actions.
 
 **preconditions:**
 - O Work Item está no estado VALIDATING
-- A validação em homologação foi concluída satisfatoriamente
+- A validação em Staging foi concluída satisfatoriamente
 
 **postconditions:**
 - O Work Item transita para o estado PROMOTING
-- O pipeline de implantação em produção pode ser iniciado
+- O pipeline de implantação em Sandbox pode ser iniciado
 
 **payload_shape:**
 - `approver` (string, obrigatório): identidade de quem aprovou a promoção
-- `environment_validated` (string, obrigatório): ambiente em que a validação foi realizada
+- `environment_validated` (string, obrigatório): ambiente em que a validação foi realizada (Staging)
 
 **owner_journey:** Delivery
 
@@ -462,18 +460,18 @@ em produção.
 | **introduced_in** | 1.0.0 |
 
 **description:**
-Um responsável humano rejeitou a promoção do Work Item para produção. O Work Item retorna
-ao estado VALIDATING — novas validações devem ser realizadas antes de uma nova decisão
-de promoção.
+Um responsável humano rejeitou a promoção do Work Item para Sandbox. O Work Item retorna
+ao estado VALIDATING — novas validações em Staging devem ser realizadas antes de uma
+nova decisão de promoção.
 
 **preconditions:**
 - O Work Item está no estado VALIDATING
-- Uma avaliação do Work Item em homologação foi realizada
+- Uma avaliação do Work Item em Staging foi realizada
 
 **postconditions:**
 - O Work Item retorna ao estado VALIDATING
 - O motivo da rejeição está registrado na Timeline
-- Uma nova aprovação será necessária para promover
+- Uma nova aprovação será necessária para promover para Sandbox
 
 **payload_shape:**
 - `rejector` (string, obrigatório): identidade de quem rejeitou a promoção
@@ -496,22 +494,24 @@ de promoção.
 | **introduced_in** | 1.0.0 |
 
 **description:**
-O Work Item foi implantado com sucesso em produção. O ciclo CI Async está encerrado. O
-Work Item atingiu seu estado final — está entregue.
+O Work Item foi implantado com sucesso no Sandbox (Release Candidate). O ciclo CI Async
+está encerrado. O Work Item atingiu seu estado final na Delivery Journey — está entregue
+e disponível no Sandbox para validação de release. O deploy em Production é um passo
+separado, acionado manualmente via GitHub Actions, fora da Delivery Journey.
 
 **preconditions:**
 - O Work Item está no estado PROMOTING
 - O Promote.Approved foi registrado na Timeline
-- O pipeline de implantação em produção foi executado com sucesso
+- O pipeline de implantação em Sandbox foi executado com sucesso
 
 **postconditions:**
 - O Work Item transita para o estado DONE
-- O Work Item está disponível em produção
+- O Work Item está disponível no Sandbox
 - Nenhum novo evento de state é esperado para este Work Item (exceto Correction)
 
 **payload_shape:**
-- `environment` (string, obrigatório): identificador do ambiente de produção
-- `deploy_version` (string, obrigatório): versão ou tag implantada em produção
+- `environment` (string, obrigatório): identificador do ambiente de destino (`sandbox`)
+- `deploy_version` (string, obrigatório): versão ou tag implantada
 - `deploy_commit` (string, obrigatório): hash do commit implantado
 
 **owner_journey:** Delivery
@@ -652,7 +652,7 @@ revisão e entrega.
 
 **notes:**
 Candidato a Shared Type — a semântica de retorno ao desenvolvimento por qualidade
-insuficiente é genérica. Par complementar: Rework.Completed.
+insuficiente é genérica. Par complementar: Rework.Resolved.
 
 **owner_journey:** Delivery
 
@@ -667,30 +667,53 @@ insuficiente é genérica. Par complementar: Rework.Completed.
 | **alters_state** | `true` |
 | **new_state** | `SYNCING` |
 | **producer_subtypes** | `[Human, Agent]` |
-| **lifecycle_status** | Active |
+| **lifecycle_status** | Deprecated |
 | **introduced_in** | 1.0.0 |
+| **deprecated_in** | 2.1.0 |
+| **deprecation_reason** | Nome não segue REG-09 da Taxonomia (par complementar deve usar `.Resolved`, não `.Completed`). Usar Rework.Resolved. |
+| **replacement_type** | `Rework.Resolved` |
 
 **description:**
-O ciclo de rework foi concluído. O Work Item está pronto para uma nova tentativa de revisão
-de código. Um novo Pull Request foi aberto (ou o PR existente foi atualizado com as
-correções).
+Deprecated. Ver Rework.Resolved.
+
+**notes:**
+Timelines históricas que referenciam este tipo continuam válidas — interpretadas como
+`alters_state=true, new_state=SYNCING`. Novas emissões devem usar `Rework.Resolved`.
+
+**owner_journey:** Delivery
+
+---
+
+### Rework.Resolved
+
+| Campo | Valor |
+|---|---|
+| **name** | `Rework.Resolved` |
+| **category** | Rework |
+| **alters_state** | `true` |
+| **new_state** | `SYNCING` |
+| **producer_subtypes** | `[Human, Agent]` |
+| **lifecycle_status** | Active |
+| **introduced_in** | 2.1.0 |
+
+**description:**
+O ciclo de rework foi resolvido. As correções necessárias foram implementadas e o Work
+Item retoma o fluxo normal a partir do Sync — rebase + align antes de seguir para Finish.
 
 **preconditions:**
 - O Work Item está no estado HACKING após um Rework.Declared
-- As correções necessárias foram implementadas
-- Um Pull Request está disponível para revisão
+- As correções necessárias foram implementadas e commitadas
 
 **postconditions:**
 - O Work Item transita para o estado SYNCING
-- Um novo ciclo de revisão de código começa
-- A Timeline contém Rework.Declared antes de Rework.Completed
+- A Timeline contém Rework.Declared antes de Rework.Resolved
 
 **payload_shape:**
-- `pr_number` (integer, obrigatório): número do Pull Request disponível para revisão após o rework
 - `changes_description` (string, obrigatório): descrição das mudanças realizadas durante o rework
+- `origin_event_id` (string, opcional): id do Rework.Declared que iniciou este ciclo
 
 **notes:**
-Candidato a Shared Type — par complementar de Rework.Declared.
+Substitui Rework.Completed (Deprecated em v2.1.0). Par complementar canônico: Rework.Declared / Rework.Resolved.
 
 **owner_journey:** Delivery
 
@@ -710,19 +733,20 @@ CI Sync
   4. Hack.Completed       → SYNCING
   5. Gate.Passed          (lint)
   6. Gate.Passed          (unit-tests)
-  7. Review.Approved
-  8. Sync.Completed       → FINISHING
-  9. Gate.Passed          (integration-tests)
- 10. Finish.Completed     → SHIPPING
+  7. Sync.Completed       → FINISHING
+  8. Gate.Passed          (integration-tests)
+  9. Finish.Completed     → SHIPPING
 CI Async
- 11. Ship.Completed       → VALIDATING
- 12. Gate.Passed          (e2e-tests)
- 13. Promote.Approved     → PROMOTING
- 14. Promote.Completed    → DONE
+ 10. Ship.Completed       → VALIDATING
+ 11. Validate.Started
+ 12. Shared.Gate.Passed   (e2e-tests)
+ 13. Validate.Completed
+ 14. Promote.Approved     → PROMOTING
+ 15. Promote.Completed    → DONE
 ────────────────────────────────────────────────────────────────
 Derived State final: DONE
 Events com alters_state = true: 7
-Events com alters_state = false: 7
+Events com alters_state = false: 8
 ```
 
 ### Fluxo com rework
@@ -736,16 +760,10 @@ Timeline: WI-099
   4. Hack.Completed       → SYNCING
   5. Gate.Failed          (lint)
   6. Rework.Declared      → HACKING   [retorno por lint failure]
-  7. Rework.Completed     → SYNCING   [correções aplicadas]
+  7. Rework.Resolved      → SYNCING   [correções aplicadas]
   8. Gate.Passed          (lint)
   9. Gate.Passed          (unit-tests)
- 10. Review.ChangesRequested
- 11. Rework.Declared      → HACKING   [retorno por review]
- 12. Rework.Completed     → SYNCING   [mudanças implementadas]
- 13. Gate.Passed          (lint)
- 14. Gate.Passed          (unit-tests)
- 15. Review.Approved
- 16. Sync.Completed       → FINISHING
+ 10. Sync.Completed       → FINISHING
  ...continua...
 ────────────────────────────────────────────────────────────────
 Ciclos de rework: 2

@@ -122,13 +122,20 @@ Fila Downstream — Iteration Plan ativo
    ```bash
    gh issue list --search "[Iteration <iteration-id>]" --state all --json number,title | jq '.[0].number // empty'
    ```
-   - Se **não existir**: criar:
+   - Se **não existir**: criar. Antes da criação, obter o login do usuário autenticado:
+     ```bash
+     CE_LOGIN=$(gh api user --jq '.login')
+     ```
+     Criar a issue incluindo o assignee (falha não-fatal — se o GitHub rejeitar o assignee, criar sem ele e registrar aviso no trail):
      ```bash
      gh issue create \
        --title "[Iteration <iteration-id>]: <scope-summary>" \
        --label "prodops,artifact-type:iteration-plan" \
+       --assignee "$CE_LOGIN" \
        --body "Iteration Plan: prodops/artifacts/iterations/<iteration-id>/plan.md\n\nCapabilities: <DS-IDs>\nIssues: <issue-numbers>"
      ```
+     Se o comando falhar apenas por causa do `--assignee`, repetir sem `--assignee` e registrar aviso:
+     `⚠️ Assignee não pôde ser adicionado à tracking issue — issue criada sem assignee`.
    - Se já existir: anotar o número e continuar.
    Emitir `Delivery.Plan.Bootstrap.Issue.Registered` com o número registrado no payload.
 
@@ -150,13 +157,14 @@ Fila Downstream — Iteration Plan ativo
 
    O dispatcher reage a cada `Plan.Bootstrap.Issue.Entered` e dispara `Diligence.Capture` automaticamente para esta issue.
 
-   **Etapa 4 — Adicionar issues ao Project:** para cada issue do Iteration Plan (todas as issues com status `Entrou`), adicionar ao GitHub Project:
+   **Etapa 4 — Adicionar issues ao Project:** adicionar ao GitHub Project a tracking issue da iteração **e** todas as feature issues do Iteration Plan com status `Entrou`:
    ```bash
-   for ISSUE_NUMBER in <lista-de-issues>; do
+   # TRACKING_ISSUE foi obtida na Etapa 2 (número da issue de acompanhamento)
+   for ISSUE_NUMBER in "$TRACKING_ISSUE" <lista-de-feature-issues>; do
      gh project item-add "$PROJECT_NUMBER" --owner "$PROJECT_OWNER" --url "https://github.com/$PROJECT_OWNER/payments-api/issues/$ISSUE_NUMBER"
    done
    ```
-   Após adicionar todas, emitir `Delivery.Plan.Bootstrap.Issues.Added`.
+   A tracking issue deve ser a **primeira** a ser adicionada. Após adicionar todas, emitir `Delivery.Plan.Bootstrap.Issues.Added`.
 
    **Etapa 5 — Instalar dependências:** instalar dependências com o gerenciador de pacotes declarado. Se falhar: parar toda a fila. Após instalar, emitir `Delivery.Plan.Bootstrap.Dependencies.Installed`.
 
@@ -164,8 +172,7 @@ Fila Downstream — Iteration Plan ativo
 
    **Etapa 7 — Smoke gate:** executar o gate `smoke` definido em `prodops/exec/manifest.yaml`. Se falhar: parar toda a fila. Após passar, emitir `Delivery.Plan.Bootstrap.Smoke.Passed`.
 
-   c. Emitir `Delivery.Plan.Bootstrap.Completed` com `subject: <iteration-id>` e `--iteration-id <iteration-id>`. Verificar `"datadog-sync"` e `"github-sync"` na saída — exibir aviso se erro.
-   d. Escrever `ITERATION_DIR/runtime/plan-bootstrap.json`:
+   c. Escrever `ITERATION_DIR/runtime/plan-bootstrap.json` **antes** de emitir `Plan.Bootstrap.Completed` — o dispatcher reage ao evento e `trail.sh` precisa do arquivo para construir o comentário na issue:
    ```json
    {
      "iteration-id": "<iteration-id>",
@@ -176,32 +183,61 @@ Fila Downstream — Iteration Plan ativo
      "issues": ["<issue-1>", "<issue-2>", "..."]
    }
    ```
+   d. Emitir `Delivery.Plan.Bootstrap.Completed` com `subject: <iteration-id>` e `--iteration-id <iteration-id>`. Verificar `"datadog-sync"`, `"github-sync"` e `"dispatch.status"` na saída — exibir aviso se qualquer campo retornar `"error"` ou `"failed"`.
    e. Commitar o arquivo no repositório antes de iniciar o loop.
 
 6. Para cada item na fila, em ordem, sem pedir confirmação entre eles:
    a. Executar `/readiness <capability>` — se falhar: gravar `readiness-gate.json` com `"result": "blocked"` (ver seção **Readiness Cache**) e **parar toda a fila**.
    b. Executar CI Sync: Bootstrap → Hack → Sync → Finish — **em sequência estrita e síncrona**. Cada fase é um sub-agente invocado com `run_in_background: false`. Nunca spawnar uma fase em background. Nunca iniciar a fase seguinte antes de receber o resultado da fase anterior. Após **cada fase concluída**:
 
-      **6b-i — Verificar saída de cada emit-event:** o emit-event retorna JSON com campos `"datadog-sync"` e `"github-sync"`. Após **cada chamada** de emit-event (em qualquer fase), capturar o JSON e verificar:
+      **6b-i — Verificar saída de cada emit-event:** o emit-event retorna JSON com campos `"datadog-sync"`, `"github-sync"` e `"dispatch.status"`. Após **cada chamada** de emit-event (em qualquer fase), capturar o JSON e verificar os três campos:
       ```bash
       RESULT=$(bash prodops/runtime/tools/emit-event/scripts/emit-event --input <event.json>)
-      echo "$RESULT" | jq -r '"datadog-sync: \(."datadog-sync") | github-sync: \(."github-sync")"'
+      echo "$RESULT" | jq -r '"datadog-sync: \(."datadog-sync") | github-sync: \(."github-sync") | dispatch: \(.dispatch.status)"'
       ```
       Se `"datadog-sync": "error"` → exibir: `⚠️ Datadog sync falhou — evento registrado na timeline local mas não enviado ao Datadog`.
       Se `"github-sync": "error"` → exibir: `⚠️ GitHub sync falhou — oem-state NÃO foi atualizado no Project`. Neste caso **não avançar** para a próxima fase sem resolver, pois o estado do Project ficará inconsistente.
+      Se `"dispatch.status": "failed"` → exibir: `⚠️ Dispatch falhou — subscribers não notificados (trail e diligence podem estar incompletos)`. Não-fatal: continuar execução mas registrar no trail da issue.
 
-      **6b-ii — Postar comentário obrigatório na issue:**
+      **6b-ii — Registrar trail entry obrigatória na issue (por phase):**
+
+      Este passo é composto por duas entradas de trail por phase: uma ao **iniciar** a phase e outra ao **concluir** (ou falhar). Ambas devem ser postadas antes de avançar qualquer estado.
+
+      **Campos obrigatórios em toda entry de trail:** `phase-name`, `work-item-id`, `status`, `timestamp`. A ausência de qualquer campo invalida a entry como evidência auditável.
+
+      **Entry de início de phase** — postar imediatamente antes de invocar o sub-agente da phase:
       ```bash
-      gh issue comment <work-item-id> --body "## <Fase> — <YYYY-MM-DD HH:MM UTC>
+      gh issue comment <work-item-id> --body "## Trail — <Fase> Iniciada — <YYYY-MM-DDTHH:MM:SSZ>
 
-      **Status:** <Concluído | Bloqueado | Falhou>
+      **phase:** <Fase>
+      **work-item-id:** <work-item-id>
+      **status:** started
+      **timestamp:** <YYYY-MM-DDTHH:MM:SSZ>
+
+      ---
+      *correlation-id: <uuid> · iteration: <iteration-id> · actor: <player>*"
+      ```
+
+      **Entry de conclusão de phase** — postar após receber o resultado do sub-agente e **antes de avançar para a próxima phase**:
+      ```bash
+      gh issue comment <work-item-id> --body "## Trail — <Fase> — <YYYY-MM-DDTHH:MM:SSZ>
+
+      **phase:** <Fase>
+      **work-item-id:** <work-item-id>
+      **status:** <completed | failed | blocked>
+      **timestamp:** <YYYY-MM-DDTHH:MM:SSZ>
 
       <resumo em até 5 linhas: o que foi feito, evidências principais, próximo passo>
 
       ---
       *correlation-id: <uuid> · iteration: <iteration-id> · actor: <player>*"
       ```
-      **Este passo é obrigatório e não pode ser omitido.** Postar mesmo em caso de falha ou bloqueio — o comentário deve descrever o motivo e a ação necessária.
+
+      **Regras de trail:**
+      - A entry de conclusão deve ser postada **antes de avançar à próxima phase ou issue** — nunca após.
+      - Postar mesmo em caso de falha ou bloqueio — o comentário deve descrever o motivo e a ação necessária.
+      - **Falha ao postar trail é não-fatal:** se `gh issue comment` retornar erro, registrar aviso interno (`⚠️ Trail entry falhou — <motivo>`) e continuar a execução normalmente. A incapacidade de registrar trail não deve bloquear nem interromper o loop de execução.
+      - O trail parcial (entries de início sem entries de conclusão) é suficiente para diagnosticar a última phase executada em caso de interrupção mid-flight.
    c. Reportar evidências do item concluído e avançar automaticamente para o próximo.
 
 Parar apenas quando: (1) um readiness falhar, (2) um gate de qualidade não passar, (3) a fila se esgotar.
@@ -273,12 +309,17 @@ Para evitar consumo de tokens em invocações repetidas com gates bloqueados, o 
 
 Se o item estiver no Iteration Plan com status `Entrou` mas sem Issue mapeada:
 
-1. Criar Issue via `gh issue create`:
+1. Obter o login do usuário autenticado (reutilizar `CE_LOGIN` se já capturado no Plan Bootstrap, ou capturar agora):
+   ```bash
+   CE_LOGIN=$(gh api user --jq '.login')
+   ```
+2. Criar Issue via `gh issue create` incluindo o assignee (falha não-fatal — se o GitHub rejeitar o `--assignee`, criar sem ele e registrar aviso no trail: `⚠️ Assignee não pôde ser adicionado à issue DS-<n> — issue criada sem assignee`):
    - **Título:** `[DS-<n>]: <capability-description>`
    - **Body:** incluir DS-ID, iteration-id, OBC path, BDD path e link para o plan.md
    - **Labels:** `journey:delivery`, `artifact-type:local-obc`, `operation:implement`
-2. Atualizar a coluna `Issue` do `plan.md` com o número criado.
-3. Commitar `plan.md` antes de continuar.
+   - **Assignee:** `--assignee "$CE_LOGIN"`
+3. Atualizar a coluna `Issue` do `plan.md` com o número criado.
+4. Commitar `plan.md` antes de continuar.
 
 Não associar ao Project aqui — a adição de todas as issues ao Project ocorre de forma centralizada na Etapa 3 do Plan Bootstrap (`Plan.Bootstrap.Issues.Added`).
 
@@ -363,7 +404,41 @@ Todas as condições abaixo devem ser verdadeiras:
 2. Todas as issues do plano estão `CLOSED` no GitHub (`gh issue view <n> --json state`).
 3. Todos os PRs correspondentes estão `MERGED`.
 
+Se **qualquer** issue do plano ainda não atingiu `Promote.Completed`, o step de Iteration Closure **não** fecha a tracking issue. Registrar aviso listando as issues pendentes:
+```
+⚠️ Iteration Closure bloqueado — issues ainda pendentes de Promote.Completed: <lista de issue-numbers>
+Tracking issue NÃO fechada. Re-invocar após todos os Promotes.
+```
+
 ### Ações de fechamento (em ordem)
+
+0. **Fechar tracking issue da iteração (auto-close):**
+   Resolver o número da tracking issue a partir de `ITERATION_DIR/runtime/plan-bootstrap.json` (campo `plan-issue`).
+   Verificar se a tracking issue já está fechada (idempotência):
+   ```bash
+   TRACKING_STATE=$(gh issue view <plan-issue> --json state --jq '.state')
+   ```
+   - Se `TRACKING_STATE == "CLOSED"`: nenhuma ação — não reabrir, não postar comment duplicado. Registrar no trail: `ℹ️ Tracking issue #<plan-issue> já estava fechada — nenhuma ação executada.` e continuar.
+   - Se `TRACKING_STATE == "OPEN"`:
+     a. Postar comment de encerramento:
+        ```bash
+        gh issue comment <plan-issue> --body "## Iteração <iteration-id> — Encerramento Automático
+
+        **Data:** <YYYY-MM-DD>
+
+        **DS-IDs entregues:** <lista DS-IDs, ex: DS-57, DS-58, DS-59, DS-60>
+
+        **PRs mergeados:** <lista de PRs, ex: #148, #149, #150, #151>
+
+        Todos os Promotes concluídos. Iteração encerrada pelo downstream-agent.
+
+        ---
+        *iteration: <iteration-id> · actor: <player>*"
+        ```
+     b. Fechar a tracking issue:
+        ```bash
+        gh issue close <plan-issue>
+        ```
 
 1. **Atualizar `ITERATION_DIR/plan.md`:**
    - Header: `# Iteration Plan — <iteration-id>` (remover sufixo `(Ativo)`)
