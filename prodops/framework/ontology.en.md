@@ -106,9 +106,10 @@ flowchart TD
 | Delivery | CI Async | Asynchronous — platform-driven work |
 | Diligence | diligence-sync | Reactive — triggered by external event |
 | Diligence | diligence-async | Proactive — initiated by periodic scan |
-| Diligence | workspace-reconciliation | On-demand — Inspect → Reconcile → Verify |
+| Assessment | Assessment Sync | Structured — collect, analyze and synthesize on demand |
+| Assessment | Assessment Async | Continuous — proactive monitoring and alerting |
 
-**Note:** Discovery, Operation, and Assessment have no formal Cycles — they operate as fluid sequences of Phases or activities without explicit grouping.
+**Note:** Discovery and Operation have no formal Cycles — they operate as fluid sequences of Phases or activities without explicit grouping. Workspace Reconciliation is a **Capability** of Diligence — not a Cycle. It is invoked by Bootstrap, Diligence Async, and Diligence Sync as a sub-routine.
 
 **Never represents:** The Journey that contains it, an individual Phase, or a Capability.
 
@@ -128,7 +129,8 @@ flowchart TD
 | CI Async | Ship → Validate → Promote |
 | diligence-sync | Capture → Attach → Promote → Close |
 | diligence-async | Scan → Flag → Repair |
-| workspace-reconciliation | Inspect → Reconcile → Verify |
+| Assessment Sync | Collect → Analyze → Synthesize → Report |
+| Assessment Async | Monitor → Alert |
 
 **Abstraction level:** The smallest structural unit of the conceptual model. The implementation of a Phase belongs to the agent layer (Skill and Steps).
 
@@ -179,7 +181,7 @@ flowchart TD
 **Framework Capability groups by area of origin** (not of exclusive ownership):
 
 - *Delivery area:* Commit Workflow, Contract Management, Evidence Management, Observability, Reliability
-- *Diligence area:* Backlog Synchronization, Work Item Management, Divergence Detection, Artifact Evolution, Workspace Reconciliation
+- *Diligence area:* Backlog Synchronization, Work Item Management, Readiness Verification, Divergence Detection, Artifact Evolution, Workspace Reconciliation
 
 These groups are organized by where Capabilities were originally defined, not by a usage restriction. A Delivery Capability can be consumed by another Journey if relevant.
 
@@ -223,6 +225,38 @@ These groups are organized by where Capabilities were originally defined, not by
 
 ---
 
+## Product concept: Product Topology
+
+### Product Topology
+
+**What it is:** The permanent structural organization of a product. Describes the four dimensions that coexist in any product and over which OBCs produce changes via Delivery.
+
+**Responsibility:** Identify which parts of the product structure are affected by an OBC — independent of where the intent originated (Origin Stream) and independent of the delivery process (Journeys, Cycles, Phases).
+
+**The four Product Dimensions:**
+
+| Dimension | What it describes |
+|---|---|
+| **Team** | Organizational dimension: ownership, responsibilities, capabilities, roles, governance, and operational model |
+| **Flow** | Temporal axis: records how Team, Data, and Components evolve across the Framework journeys (Discovery, Delivery, Operation, Diligence) — does not execute, only represents evolution |
+| **Data** | Informational dimension: entities, data contracts, schemas, persistence, domain events, and APIs |
+| **Components** | Physical and behavioral dimension: services, APIs, databases, queues, infrastructure — implement the product's functional behavior |
+
+**Required ontological separation:**
+
+| Concept | Question it answers |
+|---|---|
+| **Origin Streams** | Where did this need come from? (origin of the intent) |
+| **Product Topology** | Which parts of the product will be impacted? (permanent structure) |
+
+Origin Streams and Product Topology are entirely distinct concepts. An OBC originating from any Origin Stream can impact any combination of Product Dimensions. The origin does not determine the impact.
+
+**Never represents:** Backlog, journey, pipeline, work flow, or process lifecycle. Product Topology describes the structure of the product — not the process of building the product.
+
+→ [product-topology.en.md](product-topology.en.md)
+
+---
+
 ## Relationships between all concepts
 
 | Relationship | Statement |
@@ -243,7 +277,7 @@ These groups are organized by where Capabilities were originally defined, not by
 
 ### Formal cycles vs. fluid journeys
 
-Not every Journey has formal Cycles. Delivery and Diligence have explicit Cycles with names and distinct responsibilities. Discovery, Operation, and Assessment operate more fluidly — they have activities and practices, but without formal grouping into named Cycles.
+Not every Journey has formal Cycles. Delivery, Diligence, and Assessment have explicit Cycles with names and distinct responsibilities. Discovery and Operation operate more fluidly — they have activities and practices, but without formal grouping into named Cycles.
 
 ### "Grouping" vs. "Cycle"
 
@@ -266,3 +300,4 @@ This document is the single source of truth for the ProdOps concept hierarchy.
 | [execution-model/README.en.md](execution-model/README.en.md) | Details Upstream and Downstream — is a specialization of this ontology |
 | [journeys/README.en.md](journeys/README.en.md) | Details each Journey — references Cycle and Phase from this ontology |
 | [skills/README.en.md](../skills/README.en.md) | Skills catalog — references this ontology for Skill and Step positioning |
+| [product-topology.en.md](product-topology.en.md) | Details the four Product Dimensions and the OBC → Product Topology relationship |

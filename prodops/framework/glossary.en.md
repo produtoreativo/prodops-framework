@@ -2,6 +2,7 @@
 
 Canonical terms of the ProdOps Framework. One concept = one name. One name = one concept.
 
+For the **canonical hierarchy of structural concepts** (Framework, Execution Model, Journey, Cycle, Phase, Capability, Skill, Step), see [`ontology.en.md`](ontology.en.md).
 For the full Framework flow, see [`flow.md`](flow.en.md).
 For the four Origin Streams, see [`origin-streams.md`](origin-streams.en.md).
 For the backlog hierarchy, see [`backlogs.md`](backlogs.en.md).
@@ -501,9 +502,23 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 
 ---
 
+## Framework Capability
+
+**Definition:** Reusable ProdOps process mechanism — can be consumed by any Journey or Phase that needs it. Not associated with a specific product; it is process infrastructure, not a product feature.
+
+**Groups by area of origin** (not exclusive ownership):
+- *Delivery area:* Commit Workflow, Contract Management, Evidence Management, Observability, Reliability
+- *Diligence area:* Backlog Synchronization, Work Item Management, Readiness Verification, Divergence Detection, Artifact Evolution, Workspace Reconciliation
+
+**Distinction:** _Framework Capability_ is the canonical concept. "Delivery Capability" and "Diligence Capability" are area qualifiers — they remain Framework Capabilities. "Product Capability" is the opposite concept: the object of work, not the mechanism.
+
+→ Full definition: [`ontology.md — Capability`](ontology.md)
+
+---
+
 ## Delivery Capability
 
-**Definition:** Reusable technical competency consumed by the phases of the Delivery journey. Examples: Commit Workflow, Contract Management, Evidence Management, Observability, Reliability.
+**Definition:** **Framework Capability** of the Delivery area — reusable mechanism consumed by the Phases of the Delivery journey. Examples: Commit Workflow, Contract Management, Evidence Management, Observability, Reliability.
 
 **Purpose:** Encapsulate cross-cutting technical practices that can be invoked by multiple phases without duplication.
 
@@ -511,7 +526,7 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 
 **When not to use:** Do not confuse with "Product Capability". A Delivery Capability is a Framework mechanism, not a product feature.
 
-**Relationship with other concepts:** Used by the Phases of the Delivery journey. See [`journeys/delivery/capabilities/`](journeys/delivery/capabilities/).
+**Relationship with other concepts:** It is a Framework Capability specialized for the Delivery area. See [`journeys/delivery/capabilities/`](journeys/delivery/capabilities/).
 
 ---
 
@@ -526,6 +541,70 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 **When not to use:** Do not confuse with "Delivery Capability". A Product Capability is the object of work; a Delivery Capability is a process mechanism.
 
 **Note:** In contexts where ambiguity is possible, prefer the full term "Product Capability" or "Delivery Capability" instead of just "capability".
+
+---
+
+## Product Topology
+
+**Definition:** The permanent structural organization of a product. Describes the four dimensions that coexist in any product and over which OBCs produce changes via Delivery.
+
+**Purpose:** Identify which parts of the product structure are affected by an OBC — independent of where the intent originated (Origin Stream) and independent of the delivery process.
+
+**The four Product Dimensions:** Team · Flow · Data · Components
+
+**Required ontological separation:**
+- **Origin Streams** answer: "Where did this need come from?" (origin of the intent)
+- **Product Topology** answers: "Which parts of the product will be impacted?" (permanent structure)
+
+**Does not represent:** Backlog, journey, pipeline, work flow, or process lifecycle. Product Topology describes the structure of the product — not the process of building it.
+
+**Never use as a substitute:** Layers, Domains, Views, Perspectives, Streams.
+
+→ **Full definition with diagram and examples:** [`product-topology.en.md`](product-topology.en.md)
+
+---
+
+## Team (Product Dimension)
+
+**Definition:** The organizational dimension of Product Topology. Describes the ownership, responsibilities, capabilities, roles, collaboration, governance, and operational model of the team that builds and operates the product.
+
+**When an OBC impacts this dimension:** When delivery creates new operational responsibilities, redefines roles between teams, or changes the product's governance model.
+
+**Critical distinction:** Do not confuse with the "Team" Origin Stream — which classifies the *origin* of a need (the team identified the problem). The "Team" Product Dimension describes the *impact* on the product's organizational structure.
+
+**Relation to other concepts:** One of the four Product Dimensions. See [`product-topology.en.md`](product-topology.en.md).
+
+---
+
+## Flow (Product Dimension)
+
+**Definition:** The temporal axis of Product Topology. Represents how the other Product Dimensions (Team, Data, Components) evolve across the Framework journeys — Discovery, Delivery, Operation, Diligence, and future journeys. Flow does not execute anything: it records the evolution, transformation, and history of changes over time.
+
+**When an OBC impacts this dimension:** Always — every OBC, as it traverses the Framework journeys, always leaves a temporal trace. Flow records that traversal: when the OBC was born (Discovery), implemented (Delivery), entered production (Operation), and validated (Diligence).
+
+**Critical distinction:** Flow is not product functional behavior. Business processes, business rules, state machines, automations, and features belong to the **Components** dimension — which implements the product's behavior. Flow is exclusively the temporal axis: it answers *when* and *how* dimensions evolve, never *what* the product does.
+
+**Relation to other concepts:** One of the four Product Dimensions; transversal to the others. See [`product-topology.en.md`](product-topology.en.md).
+
+---
+
+## Data (Product Dimension)
+
+**Definition:** The informational dimension of Product Topology. Describes the business entities, data contracts, schemas, persistence, integrations, domain events, and APIs that compose the product's informational model.
+
+**When an OBC impacts this dimension:** When delivery creates new schemas, new domain events, new API contracts, or modifies the existing persistence model.
+
+**Relation to other concepts:** One of the four Product Dimensions. See [`product-topology.en.md`](product-topology.en.md).
+
+---
+
+## Components (Product Dimension)
+
+**Definition:** The physical and behavioral dimension of Product Topology. Describes the applications, services, microservices, databases, queues, data pipelines, infrastructure, and repositories that compose the product's technical platform. **Components implement the product's functional behavior** — they are what execute business rules, features, integrations, APIs, and automated processes. The product's behavior emerges from the collaboration between its Components.
+
+**When an OBC impacts this dimension:** When delivery creates new services, new APIs, new workers, new message queues, new databases, or modifies the existing product infrastructure.
+
+**Relation to other concepts:** One of the four Product Dimensions. See [`product-topology.en.md`](product-topology.en.md).
 
 ---
 
@@ -656,13 +735,77 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 
 ## CI Sync
 
-**Definition:** The synchronous grouping of ProdOps Delivery. Represents local, collaborative work driven by the engineer. Includes Bootstrap, Hack, Sync, and Finish. Produces: closed task, PR with narrative, evidence, organized commits, local validations executed. See [`journeys/delivery/README.md`](journeys/delivery/README.en.md).
+**Definition:** The synchronous Cycle of ProdOps Delivery. Represents local, collaborative work driven by the engineer. Includes Bootstrap, Hack, Sync, and Finish. Produces: closed task, PR with narrative, evidence, organized commits, local validations executed. See [`journeys/delivery/README.md`](journeys/delivery/README.en.md).
 
 ---
 
 ## CI Async
 
-**Definition:** The asynchronous grouping of ProdOps Delivery. Represents work driven by the platform, pipelines, and environments. Includes Ship, Validate, and Promote. Produces: published artifact, deploy completed, runtime validation, controlled promotion. See [`journeys/delivery/README.md`](journeys/delivery/README.en.md).
+**Definition:** The asynchronous Cycle of ProdOps Delivery. Represents work driven by the platform, pipelines, and environments. Includes Ship, Validate, and Promote. Produces: published artifact, deploy completed, runtime validation, controlled promotion. See [`journeys/delivery/README.md`](journeys/delivery/README.en.md).
+
+---
+
+## Execution Model
+
+**Definition:** The transversal framework that defines the commitment level, quality gates, and quality criteria applied when any Journey is executed. Composed of two Execution Modes: Upstream (exploration) and Downstream (commitment). Not a Journey, not a Phase.
+
+**Fundamental rule:** The Execution Model defines *how* Journeys execute — not *what* they are. Any Journey can operate in either mode.
+
+**Distinction:** _Execution Model_ is the framework; _Execution Mode_ is one of the two individual modes (Upstream or Downstream). "Execution mode" translates Execution Mode — not Execution Model.
+
+→ Full definition: [`ontology.md — Execution Model`](ontology.md#cross-cutting-modifier-execution-model) · [`execution-model/README.en.md`](execution-model/README.en.md)
+
+---
+
+## Execution Mode
+
+**Definition:** One of the two individual modes of the Execution Model — Upstream or Downstream. Defines the commitment level and quality gates applied to an item during its execution in any Journey.
+
+**Distinction:** _Execution Mode_ is the individual mode; _Execution Model_ is the framework that defines and governs them. See: Upstream, Downstream.
+
+---
+
+## Journey
+
+**Definition:** A work path with a single responsibility, its own lifecycle, and defined entry and exit criteria. The 5 journeys are: Discovery, Delivery, Operation, Assessment, and Diligence.
+
+**Fundamental rule:** Journeys are not execution modes. Upstream and Downstream are not journeys — they are modes of the Execution Model that apply over journeys.
+
+→ Full definition: [`ontology.en.md — Journey`](ontology.en.md#journey) · [`journeys/README.en.md`](journeys/README.en.md)
+
+---
+
+## Cycle
+
+**Definition:** An ordered grouping of Phases within a Journey, with distinct purpose, trigger, and nature. Delivery has CI Sync and CI Async; Diligence has diligence-sync and diligence-async. Workspace Reconciliation is a **Capability** of Diligence — not a Cycle. Discovery, Operation, and Assessment have no formal Cycles.
+
+→ Full definition: [`ontology.en.md — Cycle`](ontology.en.md#cycle)
+
+---
+
+## Phase
+
+**Definition:** An individual, ordered stage within a Cycle, with entry preconditions, single responsibility, and verifiable exit postconditions. Examples: Bootstrap, Hack, Ship, Capture, Inspect.
+
+**Distinction:** [`phases.en.md`](phases.en.md) describes **Conception** and **Inception** — these are **Lifecycle Stages** (stages of the Business Intent lifecycle before Delivery), conceptually distinct from the Phases in this ontology. When ambiguity exists, use the explicit qualifier: "Lifecycle Stage", "Delivery Phase", or "Diligence Phase".
+
+→ Full definition: [`ontology.en.md — Phase`](ontology.en.md#phase)
+
+---
+
+## Skill
+
+**Definition:** A specification of executable behavior intended for agents. A Skill implements a Journey, Cycle, Phase, or Capability, describing what the agent must do, when to enter, what to read, and what to produce. Skill is NOT a structural concept of the Framework — it is a technology-independent implementation.
+
+→ Full definition: [`ontology.en.md — Skill`](ontology.en.md#skill) · [`skills/README.en.md`](../skills/README.en.md)
+
+---
+
+## Step
+
+**Definition:** An ordered sub-unit within a Skill, with its own input and output. Can be invoked individually. Step is an internal structure of Skill — it has no direct relationship with the structural axis (Journey, Cycle, Phase, Capability).
+
+→ Full definition: [`ontology.en.md — Step`](ontology.en.md#step)
 
 ---
 
@@ -692,9 +835,11 @@ See [`prodops/framework/execution-model/downstream.en.md`](execution-model/downs
 
 ---
 
-## Hack Flow
+## Hack
 
 **Definition:** The coding phase in Upstream and Downstream. Second stage of CI Sync, follows Bootstrap. Defined in [`journeys/delivery/phases/hack/README.md`](journeys/delivery/phases/hack/README.en.md). Execution mechanics in [`skills/hack/`](../skills/hack/).
+
+**Informal alias:** "Hack Flow" — do not use in canonical documentation; the correct term is "Hack" (Phase).
 
 ---
 
@@ -776,6 +921,20 @@ See [`prodops/framework/execution-model/downstream.en.md`](execution-model/downs
 
 ---
 
+## Assessment
+
+**Definition:** Journey of the ProdOps Framework responsible for evaluating the operational model over time. Consumes evidence produced by Delivery and Diligence to assess maturity, identify trends, and produce evolution recommendations.
+
+**Purpose:** Close the continuous improvement cycle of the Framework. While Delivery executes and Diligence organizes, Assessment evaluates — answering the central question: "Are we continuously improving our operational model?"
+
+**Cycles:** Assessment Sync (Collect → Analyze → Synthesize → Report — structured, on demand) and Assessment Async (Monitor → Alert — continuous, proactive).
+
+**What it does not do:** Does not execute Delivery. Does not execute Diligence. Does not write to other Journeys' Timelines. Does not prioritize the backlog — it informs, it does not decide.
+
+**Relationship with other concepts:** Consumes outputs from Delivery and Diligence; its recommendations feed Discovery and Diligence. See [`journeys/assessment/README.en.md`](journeys/assessment/README.en.md).
+
+---
+
 ## Diligence
 
 **Definition:** Cross-cutting journey of the ProdOps Framework responsible for keeping the work system synchronized and consistent throughout the product lifecycle.
@@ -788,7 +947,96 @@ See [`prodops/framework/execution-model/downstream.en.md`](execution-model/downs
 
 **What it does not do:** Does not implement software. Does not create implementation Pull Requests. Does not modify product code. Does not make product decisions that belong to Assessment.
 
-**Relationship with other concepts:** Cross-cutting journey. Consumes Assessment artifacts and feeds Delivery with organized, traceable work. See [`journeys/diligence/README.md`](journeys/diligence/README.en.md) and [`backlogs.md`](backlogs.en.md).
+**Relationship with other concepts:** Cross-cutting journey. Consumes Assessment recommendations and feeds Delivery with organized, traceable work. In turn, it produces execution and synchronization evidence that Assessment consumes to evaluate operational maturity — the relationship is bidirectional. See [`journeys/diligence/README.md`](journeys/diligence/README.en.md) and [`backlogs.md`](backlogs.en.md).
+
+---
+
+## Canonical Operational Representation
+
+**Definition:** The operational materialization of the ProdOps conceptual model.
+
+In the current stage of the Framework, the Canonical Operational Representation is realized through **GitHub Projects** (scoped by Journey or operational domain) and **GitHub Issues** (individual Work Items).
+
+**What it is NOT:** The Canonical Operational Representation is not the conceptual model itself. OBCs, Business Intents, Business Signals, and other artifacts continue to live as Markdown files in `prodops/`. GitHub is the operational expression of that knowledge — not the knowledge itself.
+
+**Maintenance responsibility:** The **Diligence** journey is the guardian of synchronization between the conceptual model (`prodops/`) and the Canonical Operational Representation (GitHub Projects and Issues).
+
+**Relationship with other concepts:** See [GitHub Project](#github-project), [GitHub Issue](#github-issue), [knowledge-vs-execution.en.md](knowledge-vs-execution.en.md).
+
+---
+
+## GitHub Project
+
+**Definition:** The canonical operational representation of a Journey or operational domain of ProdOps. Organizes and projects Work Items (GitHub Issues) of a specific scope (by Journey, Phase, and Operation). Does not represent the Framework as a whole — the Framework can have multiple canonical Projects, each covering the scope of its Journey. Does not replace Knowledge Space artifacts.
+
+**Purpose:** Make visible the work in progress on ProdOps artifacts, grouped and filtered by operational dimensions (Journey, Artifact Type, Operation, Phase).
+
+**What it represents:** A work management domain. Each GitHub Project tracks Work Items of a scope (Portfolio or Product Repository). Does not contain artifacts — contains operations over artifacts.
+
+**What it does NOT represent:** Artifact backlogs. The GitHub Project is not a substitute for OBCs, Business Intents, Business Signals, or any Knowledge Space artifact. Views within a Project are filters over Work Items — never over artifacts.
+
+**Canonical status:** GitHub Projects constitute the Canonical Operational Representation of ProdOps — each Project operationally represents a specific Journey or operational domain. There is no abstraction to other tools (Jira, Azure DevOps, Linear). External tools are optional synchronizations — never equivalents.
+
+→ See [Canonical Operational Representation](#canonical-operational-representation)
+
+**Relationship with other concepts:** Contains Work Items (GitHub Issues). Organized by Views. State represented by Fields. Classified by Labels. See [knowledge-vs-execution.en.md](knowledge-vs-execution.en.md).
+
+---
+
+## View (GitHub Project)
+
+**Definition:** Canonical projection of the state of Work Items (GitHub Issues) within a GitHub Project, filtered and organized by a specific operational dimension — Journey, Phase, Operation, Artifact Type, or a combination of them.
+
+**Purpose:** Make visible the relevant operational slices of work in progress — e.g., "all Work Items of the Delivery journey in Hack phase" or "Work Items blocked by Findings".
+
+**What it represents:** A persistent, named filter over Work Items. The View does not alter Work Item state — it only projects them. Different Views can show the same Work Items from different perspectives.
+
+**What it does NOT represent:** A list of artifacts. "The Icebox View" shows Work Items about artifacts in Refining state — not the artifacts themselves. The absence of an artifact in a View does not mean the artifact is absent from the system.
+
+**Distinction:** View in the sense of this entry is the GitHub Projects interface construct. Do not confuse with conceptual backlog views (Icebox, Iteration Backlog, Release) — those are ProdOps model constructs that can be *implemented* as GitHub Project Views.
+
+**Relationship with other concepts:** Derived from Fields. Part of a GitHub Project. See [knowledge-vs-execution.en.md](knowledge-vs-execution.en.md).
+
+---
+
+## Field (GitHub Project)
+
+**Definition:** Operational state of a Work Item (GitHub Issue) within a GitHub Project. Fields represent the operational state dimensions needed to correctly project each Work Item in Views.
+
+**Canonical required fields:** `Artifact Type`, `Artifact ID`, `Operation`, `Journey`. See full schema at [`execution-mapping/work-item-schema.md`](execution-mapping/work-item-schema.md).
+
+**Two types of fields:**
+- **Fields owned by the Execution Space** (GitHub): `Status`, `Assignee`, `Priority` — can be edited directly in the Project.
+- **Fields owned by the Knowledge Space** (Markdown artifacts): `Artifact ID`, `Artifact Type`, `Finding Severity`, `Waiver Expiration` — must not be edited manually in the Project; manual edits create drift.
+
+**What they are NOT:** Source of truth for artifacts. The canonical state of an artifact lives in its Markdown file. Fields that derive from the Knowledge Space are reflections — not sources of truth.
+
+**Relationship with other concepts:** Filled by the Work Item creator (identity fields) or by GitHub (operational fields). Read by Views. Audited by Diligence (Capability: Workspace Reconciliation). See [execution-mapping/work-item-schema.md](execution-mapping/work-item-schema.md).
+
+---
+
+## Label (GitHub)
+
+**Definition:** Auxiliary classification mechanism for Work Items (GitHub Issues) — **never** a source of truth for the state of any ProdOps artifact or entity.
+
+**Purpose:** Facilitate search, filtering, and operational categorization of Work Items by `operation:<value>` and `artifact-type:<value>`.
+
+**Canonical usage in ProdOps:**
+- `operation:<value>` — operation being executed (e.g.: `operation:refine`, `operation:promote`)
+- `artifact-type:<value>` — type of the affected artifact (e.g.: `artifact-type:local-obc`, `artifact-type:finding`)
+- `journey:<value>` — ProdOps journey (recommended)
+
+**What Labels CANNOT represent:**
+- Canonical ID of any entity (Finding, Remediation, Waiver, OBC, etc.)
+- Canonical status of a Finding or any artifact
+- Finding severity
+- Waiver approval
+- Waiver expiration state
+- Any state that requires persistence and auditability
+
+**Rule:** If the information needs to be permanent, auditable, or authoritative, it belongs in the entity's Markdown file — not in a Label. Labels are ephemeral and mutable; canonical states are not.
+
+**Relationship with other concepts:** Used in GitHub Issues. Naming convention defined in [execution-mapping/work-item-schema.md](execution-mapping/work-item-schema.md). See [knowledge-vs-execution.en.md](knowledge-vs-execution.en.md).
 
 ---
 

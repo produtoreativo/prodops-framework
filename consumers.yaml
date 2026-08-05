@@ -1,0 +1,14 @@
+# consumers.yaml — repositories that consume the ProdOps Framework
+#
+# Each entry receives a workflow_dispatch when a new framework release is published
+# via the notify-consumers.yml workflow.
+#
+# Fields:
+#   repo:    full GitHub repository slug (org/repo)
+#   status:  active | inactive
+#   since:   version when this repo adopted the framework
+
+consumers:
+  - repo: produtoreativo/payments-api
+    status: active
+    since: "1.0.0"
