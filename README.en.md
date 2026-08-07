@@ -69,26 +69,49 @@ Origin Stream → Business Signal → Global or Local Flow
 
 ---
 
-## How to adopt in a product
+## How to install in a new repository
 
-1. Clone or fork [`prodops-framework`](https://github.com/produtoreativo/prodops-framework)
-2. Copy `framework/` to `prodops/framework/` in the product repository
-3. Create the product directories: `artifacts/`, `journeys/`, `skills/`, `exec/`
-4. Configure `exec/manifest.yaml` with product data
-5. Follow the official flow starting from the first Business Signal
+From the root directory of the target repository:
+
+```bash
+bash <(curl -fsSL \
+  https://raw.githubusercontent.com/produtoreativo/prodops-framework/master/prodops/scripts/install-prodops.sh) \
+  --version v1.2.0
+```
+
+Or, if you prefer to clone first:
+
+```bash
+gh repo clone produtoreativo/prodops-framework /tmp/prodops-framework
+bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.2.0 --target /path/to/repo
+```
+
+**After installation:**
+
+1. Create `prodops/exec/manifest.yaml` — product operational configuration (paths, gates, skills, github, diligence)
+2. Create artifact directories: `prodops/artifacts/obcs/`, `prodops/artifacts/bdd/`, `prodops/artifacts/plans/`, etc.
+3. Enable commit hooks:
+   ```bash
+   git config core.hooksPath prodops/framework/journeys/delivery/capabilities/commit-workflow/hooks
+   ```
+4. Verify the installation:
+   ```bash
+   bash prodops/scripts/doctor.sh
+   ```
+
+→ Philosophy and extension rules: [prodops/framework/contributor-philosophy.en.md](prodops/framework/contributor-philosophy.en.md)
 
 ---
 
 ## How to keep in sync
 
-Framework improvements are made in the product repository and propagated via PR:
-
 ```bash
-./scripts/sync-framework-docs.sh           # sync + open PR
-./scripts/sync-framework-docs.sh --dry-run # preview without push
-```
+# Update to a new version (opens PR)
+bash prodops/scripts/sync-from-framework.sh --version v1.2.0
 
-The script syncs all framework documentation (`framework/`, `journeys/`, `skills/`, `templates/`, `execution-model/`). Only `artifacts/` and `exec/` stay in the product.
+# Check for drift without changes
+bash prodops/scripts/sync-from-framework.sh --check
+```
 
 ---
 
