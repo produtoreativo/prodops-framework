@@ -4,6 +4,11 @@
 
 > **Origin:** The Framework was created and validated in production in the [`payments-api`](https://github.com/produtoreativo/payments-api) product. The canonical documentation lives in [`prodops-framework`](https://github.com/produtoreativo/prodops-framework). Product artifacts stay in the product repository.
 
+> **Current status:** Framework and Runtime are being co-developed in this repo and in the RI [`payments-api`](https://github.com/produtoreativo/payments-api) in parallel — synchronized at every change — while the content matures toward Release Candidate. Once RC is declared, `payments-api` becomes a pure consumer and this repository becomes the sole source of authority.
+>
+> → Latest release: [v1.4.0](https://github.com/produtoreativo/prodops-framework/releases/tag/v1.4.0)
+> → RI (payments-api): [produtoreativo/payments-api](https://github.com/produtoreativo/payments-api)
+
 > **Language note:** This framework is authored in Portuguese. See [why this project is in Portuguese](language.md).
 
 ---
@@ -76,14 +81,14 @@ From the root directory of the target repository:
 ```bash
 bash <(curl -fsSL \
   https://raw.githubusercontent.com/produtoreativo/prodops-framework/master/prodops/scripts/install-prodops.sh) \
-  --version v1.2.0
+  --version v1.4.0
 ```
 
 Or, if you prefer to clone first:
 
 ```bash
 gh repo clone produtoreativo/prodops-framework /tmp/prodops-framework
-bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.2.0 --target /path/to/repo
+bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.4.0 --target /path/to/repo
 ```
 
 **After installation:**
@@ -107,7 +112,7 @@ bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.2.0 
 
 ```bash
 # Update to a new version (opens PR)
-bash prodops/scripts/sync-from-framework.sh --version v1.2.0
+bash prodops/scripts/sync-from-framework.sh --version v1.4.0
 
 # Check for drift without changes
 bash prodops/scripts/sync-from-framework.sh --check

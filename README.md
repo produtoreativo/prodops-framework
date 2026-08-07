@@ -6,6 +6,11 @@ O **ProdOps** é um modelo operacional para times de produto que separa artefato
 
 > **Origem:** O Framework foi criado e validado em produção no produto [`payments-api`](https://github.com/produtoreativo/payments-api). A documentação canônica vive em [`prodops-framework`](https://github.com/produtoreativo/prodops-framework). Artefatos de produto ficam no repositório do produto.
 
+> **Status atual:** Framework e Runtime estão sendo co-desenvolvidos neste repo e na RI [`payments-api`](https://github.com/produtoreativo/payments-api) em paralelo — sincronizados a cada alteração — enquanto o conteúdo amadurece para Release Candidate. Quando o RC for declarado, a `payments-api` passa a ser consumidora pura e este repositório vira a única fonte de autoridade.
+>
+> → Última release: [v1.4.0](https://github.com/produtoreativo/prodops-framework/releases/tag/v1.4.0)
+> → RI (payments-api): [produtoreativo/payments-api](https://github.com/produtoreativo/payments-api)
+
 ---
 
 ## Arquitetura
@@ -76,14 +81,14 @@ No diretório raiz do repositório destino:
 ```bash
 bash <(curl -fsSL \
   https://raw.githubusercontent.com/produtoreativo/prodops-framework/master/prodops/scripts/install-prodops.sh) \
-  --version v1.2.0
+  --version v1.4.0
 ```
 
 Ou, se preferir clonar primeiro:
 
 ```bash
 gh repo clone produtoreativo/prodops-framework /tmp/prodops-framework
-bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.2.0 --target /caminho/do/repo
+bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.4.0 --target /caminho/do/repo
 ```
 
 **Após a instalação:**
@@ -107,7 +112,7 @@ bash /tmp/prodops-framework/prodops/scripts/install-prodops.sh --version v1.2.0 
 
 ```bash
 # Atualizar para uma nova versão (abre PR)
-bash prodops/scripts/sync-from-framework.sh --version v1.2.0
+bash prodops/scripts/sync-from-framework.sh --version v1.4.0
 
 # Verificar drift sem alterar
 bash prodops/scripts/sync-from-framework.sh --check
