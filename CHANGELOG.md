@@ -7,6 +7,76 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [1.5.0] — 2026-08-11
+
+### Added
+
+- `prodops/framework/product-deck.md` + `.en.md` — canonical Product Deck artifact
+  definition distributed as a framework file. Previously referenced in glossary and
+  artifact-types (v1.4.0) but not distributed to consumers.
+- `prodops/framework/service-deck.md` + `.en.md` — canonical Service Deck artifact
+  definition distributed as a framework file. Same promotion path as product-deck.
+
+### Changed
+
+- `prodops/scripts/install-prodops.sh` — complete rewrite. Now runs all installation
+  steps autonomously in a single command:
+  - Step 9: configures `git config core.hooksPath` automatically; detects non-git repos
+  - Step 10: calls `install-claude.sh` to set up `.claude/` structure
+  - Step 11: generates `CLAUDE.md` with canonical agent instruction template
+  - Step 12: generates `AGENTS.md` with full work-reception protocol, journey table,
+    and pre-authorized permissions for subagents
+  - Step 13: runs `doctor.sh` and surfaces only `FAIL:` lines
+  - Step 14: runs `validate-manifest.sh` (skips automatically when placeholders remain)
+  - Adds colored terminal output: section headers, per-step `[OK]` / `[SKIP]` / `[WARN]`
+  - Collects warnings and pending manual steps; prints actionable summary at the end
+  - New flags: `--skip-hooks`, `--skip-claude`
+
+---
+
+## [1.4.0] — 2026-08-07
+
+### Added
+
+- `prodops/framework/artifact-types.md` / `.en.md` — sections for Product Deck and
+  Service Deck artifacts (canonical path, relations, journeys)
+- `prodops/framework/glossary.md` / `.en.md` — definitions for Product Deck and
+  Service Deck (when to use, relations, location)
+- `prodops/framework/README.md` / `.en.md` — artifact table updated with Product Deck
+  and Service Deck entries
+
+### Changed
+
+- `prodops/runtime/tools/emit-event/scripts/emit-event` — auto-loads `DD_API_KEY`
+  from `api/.env` if not set in the environment, eliminating silent metric emission
+  failures in local development
+
+---
+
+## [1.3.0] — 2026-08-06
+
+### Changed
+
+- `prodops/scripts/install-prodops.sh` — generalized install flow; removed
+  product-specific references from generated templates
+- `prodops/scripts/doctor.sh` — fixed false positives on optional paths
+
+---
+
+## [1.2.0] — 2026-08-06
+
+### Added
+
+- `prodops/scripts/install-prodops.sh` — new installation script: clones framework at
+  a specified version, creates directory structure, generates `manifest.yaml` and
+  `framework-lock.yaml` templates, creates `.prodopsignore`, seeds `artifacts/` tree
+- `prodops/scripts/install-claude.sh` — installs `.claude/` structure (skills, agents,
+  `settings.json`) into any consumer repository
+- `prodops/scripts/sync-from-framework.sh` — manual sync script for consumers to pull
+  framework updates as a PR
+
+---
+
 ## [1.1.0] — 2026-08-05
 
 ### Added
