@@ -544,7 +544,11 @@ if [[ ! -f "${CLAUDE_MD}" ]]; then
 elif [[ "$(cat "${CLAUDE_MD}")" == "${CLAUDE_MD_CONTENT}" ]]; then
   skip "CLAUDE.md is up to date"
 else
-  CLAUDE_BAK="${CLAUDE_MD}.bak.$(date +%Y%m%d-%H%M%S)"
+  if [[ "${IS_UPDATE}" == "true" && -n "${PREVIOUS_VERSION:-}" && "${PREVIOUS_VERSION}" != "unknown" ]]; then
+    CLAUDE_BAK="${CLAUDE_MD}.${PREVIOUS_VERSION}.bak"
+  else
+    CLAUDE_BAK="${CLAUDE_MD}.bak.$(date +%Y%m%d-%H%M%S)"
+  fi
   cp "${CLAUDE_MD}" "${CLAUDE_BAK}"
   printf '%s\n' "${CLAUDE_MD_CONTENT}" >"${CLAUDE_MD}"
   ok "Updated CLAUDE.md (backup: $(basename "${CLAUDE_BAK}"))"
@@ -762,7 +766,11 @@ EOF
     skip "AGENTS.md is up to date"
     rm -f "${AGENTS_TMP}"
   else
-    AGENTS_BAK="${AGENTS_MD}.bak.$(date +%Y%m%d-%H%M%S)"
+    if [[ "${IS_UPDATE}" == "true" && -n "${PREVIOUS_VERSION:-}" && "${PREVIOUS_VERSION}" != "unknown" ]]; then
+      AGENTS_BAK="${AGENTS_MD}.${PREVIOUS_VERSION}.bak"
+    else
+      AGENTS_BAK="${AGENTS_MD}.bak.$(date +%Y%m%d-%H%M%S)"
+    fi
     cp "${AGENTS_MD}" "${AGENTS_BAK}"
     mv "${AGENTS_TMP}" "${AGENTS_MD}"
     ok "Updated AGENTS.md (backup: $(basename "${AGENTS_BAK}"))"
