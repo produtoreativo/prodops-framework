@@ -7,6 +7,19 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [1.12.0] — 2026-08-16
+
+### Changed
+
+- `prodops/scripts/setup-wsl.sh` — integração WSL2 do Docker Desktop agora é habilitada automaticamente após a instalação:
+  - Inicia o Docker Desktop via PowerShell para gerar o arquivo de settings (`settings-store.json` / `settings.json`)
+  - Aguarda até 30 s pela criação do arquivo (primeira execução)
+  - Usa `jq` para habilitar `wslEngineEnabled`, `enableIntegrationWithDefaultWslDistro` e adicionar a distro atual a `integratedWslDistros`
+  - Reinicia o Docker Desktop via PowerShell e aguarda até 60 s pelo daemon
+  - Fallback com instrução manual caso o arquivo de settings não seja encontrado ou a atualização falhe
+
+---
+
 ## [1.11.0] — 2026-08-16
 
 ### Added
