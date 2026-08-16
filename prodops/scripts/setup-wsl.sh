@@ -36,6 +36,14 @@ note()  { echo -e "  ${YELLOW}!${RESET}  $*"; }
 err()   { echo -e "  ${RED}✘${RESET}  $*" >&2; }
 already() { command -v "$1" >/dev/null 2>&1; }
 
+# ── Report ─────────────────────────────────────────────────────────────────────
+# Cada entrada: "NOME|DESCRIÇÃO|STATUS|DETALHE"
+declare -a REPORT=()
+report_ok()   { REPORT+=("$1|$2|OK|$3"); }
+report_skip() { REPORT+=("$1|$2|JÁ INSTALADO|$3"); }
+report_warn() { REPORT+=("$1|$2|ATENÇÃO|$3"); }
+report_fail() { REPORT+=("$1|$2|FALHOU|$3"); }
+
 header() {
   echo -e "${BOLD}"
   echo "╔══════════════════════════════════════════════════════╗"
@@ -131,6 +139,59 @@ if is_windows; then
     ok "${UBUNTU_DISTRO} instalado."
   fi
 
+  step "Verificando Docker Desktop"
+
+  DOCKER_INSTALLED=false
+  # Verifica se dockerd ou Docker Desktop já está acessível
+  if wsl.exe -d "${FOUND_DISTRO}" -- bash -c "command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1" 2>/dev/null; then
+    skip "Docker já acessível dentro do ${FOUND_DISTRO}"
+    DOCKER_INSTALLED=true
+  elif powershell.exe -Command "Get-Command docker -ErrorAction SilentlyContinue" 2>/dev/null | grep -q "docker"; then
+    ok "Docker Desktop detectado no Windows (integração WSL2 pode precisar ser habilitada)"
+    DOCKER_INSTALLED=true
+  fi
+
+  if [[ "$DOCKER_INSTALLED" == false ]]; then
+    note "Docker Desktop não encontrado — instalando via winget..."
+
+    # Detecta arquitetura do Windows
+    WIN_ARCH=$(powershell.exe -Command '$env:PROCESSOR_ARCHITECTURE' 2>/dev/null | tr -d '\r\n' || echo "AMD64")
+    case "${WIN_ARCH}" in
+      ARM64) DOCKER_ARCH="arm64" ;;
+      *)     DOCKER_ARCH="amd64" ;;
+    esac
+
+    # Tenta winget (disponível no Windows 10 1709+ e Windows 11)
+    if powershell.exe -Command "Get-Command winget -ErrorAction SilentlyContinue" 2>/dev/null | grep -q "winget"; then
+      note "Instalando Docker Desktop via winget (${DOCKER_ARCH})..."
+      if powershell.exe -Command "winget install --id Docker.DockerDesktop --architecture ${WIN_ARCH} --silent --accept-package-agreements --accept-source-agreements" 2>/dev/null; then
+        ok "Docker Desktop instalado via winget."
+      else
+        note "winget falhou — tentando download direto..."
+        DOCKER_INSTALLED=false
+      fi
+    fi
+
+    # Fallback: download direto do instalador
+    if [[ "$DOCKER_INSTALLED" == false ]]; then
+      DOCKER_URL="https://desktop.docker.com/win/main/${DOCKER_ARCH}/Docker%20Desktop%20Installer.exe"
+      INSTALLER_PATH=$(powershell.exe -Command '$env:TEMP' 2>/dev/null | tr -d '\r\n' || echo "C:\\Windows\\Temp")
+      INSTALLER_PATH="${INSTALLER_PATH}\\DockerDesktopInstaller.exe"
+      note "Baixando Docker Desktop (${DOCKER_ARCH}) — pode demorar alguns minutos..."
+      if powershell.exe -Command "Invoke-WebRequest -Uri '${DOCKER_URL}' -OutFile '${INSTALLER_PATH}' -UseBasicParsing" 2>/dev/null && \
+         powershell.exe -Command "Start-Process '${INSTALLER_PATH}' -Wait -ArgumentList 'install','--quiet','--accept-license'" 2>/dev/null; then
+        ok "Docker Desktop instalado via download direto."
+      else
+        err "Não foi possível instalar o Docker Desktop automaticamente."
+        note "Instale manualmente: https://docs.docker.com/desktop/install/windows-install/"
+        note "Depois habilite: Settings → Resources → WSL Integration → ${FOUND_DISTRO}"
+      fi
+    fi
+
+    note "Reinicie o Docker Desktop antes de continuar."
+    note "Habilite a integração WSL2: Settings → Resources → WSL Integration → ${FOUND_DISTRO}"
+  fi
+
   step "Reinvocando setup-wsl.sh dentro de ${FOUND_DISTRO}"
   note "Qualquer prompt sudo pedirá a senha do usuário Ubuntu, não do Windows."
   echo ""
@@ -188,15 +249,19 @@ done
 if [[ ${#MISSING[@]} -gt 0 ]]; then
   sudo apt-get install -y -qq "${MISSING[@]}"
   ok "Instalados: ${MISSING[*]}"
+  report_ok "Pacotes base" "git, curl, jq, awk, diff, sed, python3, pip, unzip" "Instalados: ${MISSING[*]}"
 else
   skip "Pacotes base"
+  report_skip "Pacotes base" "git, curl, jq, awk, diff, sed, python3, pip, unzip" "Todos já presentes"
 fi
 
 if python3 -c "import yaml" 2>/dev/null; then
   skip "PyYAML"
+  report_skip "PyYAML" "Parsing de YAML em scripts ProdOps" "Já disponível"
 else
   pip3 install --quiet pyyaml
   ok "PyYAML"
+  report_ok "PyYAML" "Parsing de YAML em scripts ProdOps" "Instalado via pip3"
 fi
 
 # ── 2. Node.js 20 via nvm ─────────────────────────────────────────────────────
@@ -210,8 +275,10 @@ if [[ ! -d "$NVM_DIR" ]]; then
     || echo "v0.40.1")
   curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VER}/install.sh" | bash
   ok "nvm ${NVM_VER} instalado"
+  report_ok "nvm" "Gerenciador de versões do Node.js" "${NVM_VER} instalado"
 else
   skip "nvm"
+  report_skip "nvm" "Gerenciador de versões do Node.js" "Já presente em ${NVM_DIR}"
 fi
 
 # shellcheck disable=SC1091
@@ -220,19 +287,26 @@ fi
 NODE_OK=false
 if already node; then
   MAJ=$(node --version | sed 's/v//' | cut -d. -f1)
-  if [[ "$MAJ" -ge 20 ]]; then skip "Node.js $(node --version)"; NODE_OK=true; fi
+  if [[ "$MAJ" -ge 20 ]]; then
+    skip "Node.js $(node --version)"
+    report_skip "Node.js" "Runtime JavaScript do projeto (mín. v20)" "$(node --version) já instalado"
+    NODE_OK=true
+  fi
 fi
 if [[ "$NODE_OK" == false ]]; then
   nvm install 20 --silent
   nvm use 20; nvm alias default 20
   ok "Node.js $(node --version)"
+  report_ok "Node.js" "Runtime JavaScript do projeto (mín. v20)" "$(node --version) instalado via nvm"
 fi
 
 # ── 3. GitHub CLI ─────────────────────────────────────────────────────────────
 
 step "Instalando GitHub CLI"
 if already gh; then
-  skip "gh $(gh --version | head -1 | awk '{print $3}')"
+  GH_V=$(gh --version | head -1 | awk '{print $3}')
+  skip "gh ${GH_V}"
+  report_skip "gh (GitHub CLI)" "PRs, issues, clone e autenticação GitHub" "${GH_V} já instalado"
 else
   sudo mkdir -p /etc/apt/keyrings
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
@@ -242,14 +316,18 @@ https://cli.github.com/packages stable main" \
     | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
   sudo apt-get update -qq
   sudo apt-get install -y -qq gh
-  ok "gh $(gh --version | head -1 | awk '{print $3}')"
+  GH_V=$(gh --version | head -1 | awk '{print $3}')
+  ok "gh ${GH_V}"
+  report_ok "gh (GitHub CLI)" "PRs, issues, clone e autenticação GitHub" "${GH_V} instalado via apt"
 fi
 
 # ── 4. Docker ─────────────────────────────────────────────────────────────────
 
 step "Verificando Docker"
 if already docker && docker info >/dev/null 2>&1; then
-  skip "Docker $(docker --version | awk '{print $3}' | tr -d ',') — daemon acessível"
+  DOCK_V=$(docker --version | awk '{print $3}' | tr -d ',')
+  skip "Docker ${DOCK_V} — daemon acessível"
+  report_skip "Docker" "Containers para LocalStack (DynamoDB local)" "${DOCK_V} — daemon ativo"
 elif is_wsl; then
   note "Docker não acessível via WSL."
   note "Instale Docker Desktop no Windows e habilite a integração WSL2:"
@@ -257,8 +335,10 @@ elif is_wsl; then
   note "Alternativa (Docker Engine direto no WSL):"
   note "  curl -fsSL https://get.docker.com | sh"
   note "  sudo usermod -aG docker \$USER && newgrp docker"
+  report_warn "Docker" "Containers para LocalStack (DynamoDB local)" "Não acessível no WSL — habilite integração WSL2 no Docker Desktop"
 else
   note "Docker não encontrado. Instale via: curl -fsSL https://get.docker.com | sh"
+  report_warn "Docker" "Containers para LocalStack (DynamoDB local)" "Não encontrado — instale manualmente"
 fi
 
 # ── 5. Ferramentas opcionais ───────────────────────────────────────────────────
@@ -266,7 +346,9 @@ fi
 if [[ "$OPTIONAL" == true ]]; then
   step "AWS CLI v2"
   if already aws; then
-    skip "aws-cli $(aws --version 2>&1 | awk '{print $1}' | cut -d/ -f2)"
+    AWS_V=$(aws --version 2>&1 | awk '{print $1}' | cut -d/ -f2)
+    skip "aws-cli ${AWS_V}"
+    report_skip "aws-cli v2" "Interface de linha de comando para AWS" "${AWS_V} já instalado"
   else
     TMP=$(mktemp -d)
     ARCH=$(uname -m)
@@ -275,25 +357,51 @@ if [[ "$OPTIONAL" == true ]]; then
     unzip -q "${TMP}/awscliv2.zip" -d "${TMP}"
     sudo "${TMP}/aws/install"
     rm -rf "${TMP}"
-    ok "aws-cli $(aws --version 2>&1 | awk '{print $1}' | cut -d/ -f2)"
+    AWS_V=$(aws --version 2>&1 | awk '{print $1}' | cut -d/ -f2)
+    ok "aws-cli ${AWS_V}"
+    report_ok "aws-cli v2" "Interface de linha de comando para AWS" "${AWS_V} instalado (${AWS_ARCH})"
   fi
 
   step "aws-cdk e cdklocal"
-  already cdk      && skip "cdk $(cdk --version 2>/dev/null | awk '{print $1}')" \
-                   || { npm install -g aws-cdk --silent; ok "aws-cdk $(cdk --version 2>/dev/null | awk '{print $1}')"; }
-  already cdklocal && skip "cdklocal" \
-                   || { npm install -g aws-cdk-local --silent; ok "cdklocal"; }
+  if already cdk; then
+    CDK_V=$(cdk --version 2>/dev/null | awk '{print $1}')
+    skip "cdk ${CDK_V}"
+    report_skip "aws-cdk" "Infraestrutura como código para AWS" "${CDK_V} já instalado"
+  else
+    npm install -g aws-cdk --silent
+    CDK_V=$(cdk --version 2>/dev/null | awk '{print $1}')
+    ok "aws-cdk ${CDK_V}"
+    report_ok "aws-cdk" "Infraestrutura como código para AWS" "${CDK_V} instalado via npm"
+  fi
+  if already cdklocal; then
+    skip "cdklocal"
+    report_skip "cdklocal" "Wrapper do CDK para LocalStack" "Já instalado"
+  else
+    npm install -g aws-cdk-local --silent
+    ok "cdklocal"
+    report_ok "cdklocal" "Wrapper do CDK para LocalStack" "Instalado via npm"
+  fi
 
   step "awslocal"
-  already awslocal && skip "awslocal" \
-                   || { pip3 install --quiet awscli-local; ok "awslocal"; }
+  if already awslocal; then
+    skip "awslocal"
+    report_skip "awslocal" "Wrapper do aws-cli para LocalStack" "Já instalado"
+  else
+    pip3 install --quiet awscli-local
+    ok "awslocal"
+    report_ok "awslocal" "Wrapper do aws-cli para LocalStack" "Instalado via pip3"
+  fi
 
   step "ripgrep"
   if already rg; then
-    skip "rg $(rg --version | head -1 | awk '{print $2}')"
+    RG_V=$(rg --version | head -1 | awk '{print $2}')
+    skip "rg ${RG_V}"
+    report_skip "ripgrep" "Busca de texto rápida (doctor.sh)" "${RG_V} já instalado"
   else
     sudo apt-get install -y -qq ripgrep
-    ok "rg $(rg --version | head -1 | awk '{print $2}')"
+    RG_V=$(rg --version | head -1 | awk '{print $2}')
+    ok "rg ${RG_V}"
+    report_ok "ripgrep" "Busca de texto rápida (doctor.sh)" "${RG_V} instalado via apt"
   fi
 fi
 
