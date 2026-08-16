@@ -427,10 +427,12 @@ step "Autenticação GitHub CLI"
 if gh auth status >/dev/null 2>&1; then
   GH_USER=$(gh api user --jq '.login' 2>/dev/null || echo "desconhecido")
   skip "gh autenticado como @${GH_USER}"
+  report_skip "GitHub Auth" "Autenticação para clone e operações de repo" "@${GH_USER} já autenticado"
 elif [[ -n "${GITHUB_TOKEN:-}" ]]; then
   gh auth login --with-token <<< "${GITHUB_TOKEN}"
   GH_USER=$(gh api user --jq '.login' 2>/dev/null || echo "desconhecido")
   ok "gh autenticado via GITHUB_TOKEN como @${GH_USER}"
+  report_ok "GitHub Auth" "Autenticação para clone e operações de repo" "Via GITHUB_TOKEN como @${GH_USER}"
 else
   note "Nenhuma autenticação encontrada."
   note "Para evitar o fluxo interativo de browser, defina GITHUB_TOKEN antes de rodar:"
@@ -441,6 +443,8 @@ else
   note "Escopo necessário: repo"
   note ""
   gh auth login
+  GH_USER=$(gh api user --jq '.login' 2>/dev/null || echo "desconhecido")
+  report_ok "GitHub Auth" "Autenticação para clone e operações de repo" "Via device flow como @${GH_USER}"
 fi
 
 # ── 8. Clone do repositório ───────────────────────────────────────────────────
@@ -449,10 +453,12 @@ step "Clonando repositório payments-api"
 if [[ -d "${CLONE_DIR}/.git" ]]; then
   skip "Repositório já existe em ${CLONE_DIR}"
   git -C "${CLONE_DIR}" pull --ff-only 2>/dev/null && ok "git pull executado" || true
+  report_skip "payments-api" "Repositório do projeto" "Já clonado em ${CLONE_DIR}"
 else
   gh repo clone "${REPO_GH}" "${CLONE_DIR}" -- --quiet \
     || git clone "${REPO_HTTPS}" "${CLONE_DIR}" --quiet
   ok "Repositório clonado em ${CLONE_DIR}"
+  report_ok "payments-api" "Repositório do projeto" "Clonado em ${CLONE_DIR}"
 fi
 
 # ── 9. Dependências do projeto ────────────────────────────────────────────────
@@ -460,9 +466,11 @@ fi
 step "Instalando dependências do projeto (npm install)"
 if [[ -d "${CLONE_DIR}/node_modules" ]]; then
   skip "node_modules já presente"
+  report_skip "npm install" "Dependências do projeto (node_modules)" "Já presentes"
 else
   npm --prefix "${CLONE_DIR}" install --silent
   ok "node_modules instalado"
+  report_ok "npm install" "Dependências do projeto (node_modules)" "Instaladas em ${CLONE_DIR}/node_modules"
 fi
 
 # ── 10. Validação final ───────────────────────────────────────────────────────
@@ -471,11 +479,46 @@ step "Validando ambiente com check-env.sh"
 echo ""
 bash "${CLONE_DIR}/prodops/scripts/check-env.sh" || true
 
-# ── Resumo ────────────────────────────────────────────────────────────────────
+# ── Report final ───────────────────────────────────────────────────────────────
 
 echo ""
-echo -e "${BOLD}══════════════════════════════════════════════════════${RESET}"
-echo -e "${BOLD}  Ambiente ProdOps pronto.${RESET}"
+echo -e "${BOLD}══════════════════════════════════════════════════════════════════${RESET}"
+echo -e "${BOLD}  RELATÓRIO DE INSTALAÇÃO — ProdOps Setup${RESET}"
+echo -e "${BOLD}══════════════════════════════════════════════════════════════════${RESET}"
+echo ""
+
+# Cabeçalho da tabela
+printf "  %-18s %-36s %-14s %s\n" "TECNOLOGIA" "DESCRIÇÃO" "STATUS" "DETALHE"
+printf "  %-18s %-36s %-14s %s\n" "------------------" "------------------------------------" "--------------" "-------"
+
+OK_COUNT=0; WARN_COUNT=0; FAIL_COUNT=0; SKIP_COUNT=0
+
+for entry in "${REPORT[@]}"; do
+  IFS='|' read -r name desc status detail <<< "$entry"
+  case "$status" in
+    OK)
+      printf "  ${GREEN}%-18s${RESET} %-36s ${GREEN}%-14s${RESET} %s\n" "$name" "$desc" "✔ $status" "$detail"
+      OK_COUNT=$((OK_COUNT+1))
+      ;;
+    "JÁ INSTALADO")
+      printf "  ${YELLOW}%-18s${RESET} %-36s ${YELLOW}%-14s${RESET} %s\n" "$name" "$desc" "– $status" "$detail"
+      SKIP_COUNT=$((SKIP_COUNT+1))
+      ;;
+    ATENÇÃO)
+      printf "  ${YELLOW}%-18s${RESET} %-36s ${YELLOW}%-14s${RESET} %s\n" "$name" "$desc" "! $status" "$detail"
+      WARN_COUNT=$((WARN_COUNT+1))
+      ;;
+    FALHOU)
+      printf "  ${RED}%-18s${RESET} %-36s ${RED}%-14s${RESET} %s\n" "$name" "$desc" "✘ $status" "$detail"
+      FAIL_COUNT=$((FAIL_COUNT+1))
+      ;;
+  esac
+done
+
+echo ""
+echo -e "  Instalados: ${GREEN}${OK_COUNT}${RESET}  |  Já presentes: ${YELLOW}${SKIP_COUNT}${RESET}  |  Atenção: ${YELLOW}${WARN_COUNT}${RESET}  |  Falhas: ${RED}${FAIL_COUNT}${RESET}"
+echo ""
+echo -e "${BOLD}══════════════════════════════════════════════════════════════════${RESET}"
 echo ""
 echo "  Repositório : ${CLONE_DIR}"
 echo ""
@@ -483,10 +526,11 @@ echo "  Próximos passos:"
 echo "    cd ${CLONE_DIR}"
 if ! already docker || ! docker info >/dev/null 2>&1; then
   echo "    # Configure Docker Desktop com integração WSL2 antes de rodar:"
+  echo "    #   Settings → Resources → WSL Integration → Enable for this distro"
 fi
 echo "    npm run local:start   # sobe LocalStack"
 echo "    npm test              # roda os testes"
 echo ""
-echo "  Para rediagnosticar o ambiente:"
+echo "  Para rediagnosticar:"
 echo "    bash prodops/scripts/check-env.sh --fix-hints"
-echo -e "${BOLD}══════════════════════════════════════════════════════${RESET}"
+echo -e "${BOLD}══════════════════════════════════════════════════════════════════${RESET}"
