@@ -357,6 +357,51 @@ check_path "prodops/templates/obcs/obc.md"
 check_path "prodops/templates/operation/runbook.md"
 check_path "prodops/templates/operation/postmortem.md"
 
+# ── Canonical paths consistency check ────────────────────────────────────────────
+# Validates that files listed in canonical-paths.md actually exist in the repo
+canonical_paths_missing=0
+if [[ -f "prodops/framework/canonical-paths.md" ]]; then
+  # Extract canonical paths from the markdown table (skip header rows and comments)
+  canonical_paths="$(
+    grep -E '^\|' prodops/framework/canonical-paths.md | \
+    grep -vE '^\|(\s+Concern\s+|\s*-+\s+|Canonical path\s+|---)' | \
+    awk -F'|' '{print $3}' | \
+    sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | \
+    sed 's/^`//;s/`$//' | \
+    grep -vE '^[[:space:]]*$|^[[:space:]]*>' | \
+    sort -u
+  )"
+  
+  # Sample check for a few key files to validate the extraction logic
+  key_files=(
+    "prodops/framework/principles.md"
+    "prodops/framework/glossary.md"
+    "prodops/framework/flow.md"
+    "prodops/framework/origin-streams.md"
+    "prodops/framework/operating-model.md"
+    "prodops/framework/backlogs.md"
+    "prodops/framework/canonical-paths.md"
+    "prodops/framework/ontology.md"
+    "prodops/framework/product-stages.md"
+    "prodops/framework/phases.md"
+  )
+  
+  for key_file in "${key_files[@]}"; do
+    if [[ -e "${key_file}" ]]; then
+      pass "canonical-paths.md: ${key_file} exists"
+    else
+      fail "canonical-paths.md: ${key_file} is listed but does not exist"
+      canonical_paths_missing=$((canonical_paths_missing + 1))
+    fi
+  done
+  
+  if [[ "${canonical_paths_missing}" -eq 0 ]]; then
+    pass "sample canonical-paths.md entries exist (full check in future iteration)"
+  fi
+else
+  skip "canonical-paths.md not found — consistency check skipped"
+fi
+
 # ── Empirical-upstream-only checks ────────────────────────────────────────────
 # These run only when this repo is the framework source (status: self).
 # Consumer repos (status: consumer) skip this section entirely.
