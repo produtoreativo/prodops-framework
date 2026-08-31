@@ -772,9 +772,14 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 ## Upstream
 
-**Definição:** **Modo de execução** permissivo, experimental e sem compromisso de entrega. Pode usar todas as jornadas com maturidade variável; código é descartável até ser promovido. Não é sinônimo de Discovery. Não é uma fase — é um modo que pode iniciar em **qualquer estágio** do ciclo de vida. Quando concluído, o item retorna ao estágio original.
+**Definição:** **Modo de execução** permissivo, experimental e sem compromisso de entrega. Pode usar todas as 5 jornadas com rigor advisory. Não é sinônimo de Discovery. Não é uma fase — é um modo que pode iniciar em **qualquer estágio** do ciclo de vida.
 
-**Importante:** Upstream não muda o estágio do item. Um item em Discovery que inicia Upstream continua em Discovery; quando o Upstream termina, retorna ao estágio em que estava.
+**Importante:** Upstream não muda o estágio do item. Um item em Discovery que opera em modo Upstream continua em Discovery. O que muda quando o Upstream encerra é o destino da capability, não o estágio:
+
+- CommitmentGate outcome **Promover** ou **Promover com restrição**: a capability avança para Downstream.
+- Demais outcomes (Requer outro experimento, Aguardar, Descartar): a capability permanece no estágio em que estava.
+
+O código produzido no Upstream não é descartável por definição — pode ter qualidade de produção e chegar a ambientes produtivos por decisão do time, sem que isso constitua promoção de capability.
 
 Ver [`prodops/framework/journeys/discovery/README.md`](journeys/discovery/README.md).
 

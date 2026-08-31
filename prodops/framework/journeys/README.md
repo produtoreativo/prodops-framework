@@ -16,7 +16,7 @@ O Framework ProdOps possui cinco jornadas organizadas em dois grupos.
 | **Backlog** | Organiza o trabalho antes e durante a execução | Product Backlog, Icebox, Iteration Backlog |
 | **Plano** | Registra a execução de uma iteração | Iteration Plan |
 
-Upstream e Downstream são modos, não jornadas. A Discovery é a jornada — ela existe em ambos os modos com responsabilidades diferentes.
+Upstream e Downstream são modos, não jornadas. **Cada uma das 5 jornadas existe em ambos os modos** — com rigor advisory no Upstream e rigor bloqueante no Downstream. Nenhuma jornada é exclusiva de um modo.
 
 ---
 
@@ -110,18 +110,41 @@ flowchart TD
 
 ---
 
+## Jornadas por modo
+
+As 3 jornadas de produto e as 2 jornadas transversais existem **nos dois modos**. O modo determina o rigor — não quais jornadas estão disponíveis.
+
+> **Atenção:** a leitura de mercado — "upstream = discovery, downstream = delivery" — não se aplica aqui. Upstream e Downstream são modos de execução, não fases de um processo linear.
+
+```
+                UPSTREAM                        DOWNSTREAM
+            (rigor advisory)                (rigor bloqueante)
+                   │                               │
+   Discovery   exploratória                  preparatória (Icebox)
+   Delivery    advisory/sandbox              obrigatória/produção
+   Operation   experimental/sandbox          produção real
+   Assessment  informa, não bloqueia         pode bloquear gates
+   Diligence   leve                          bloqueante
+                   │                               │
+              CommitmentGate ─────────────────────►│
+              (gate de transição de modo)
+```
+
 ## Fluxo Upstream
 
 ```
 Intent
   ↓
-Upstream
+Upstream (rigor advisory — o engenheiro decide o que aplicar)
+  ├─ Discovery (exploratória): experimentos, protótipos, spikes
+  ├─ Delivery  (advisory):     Bootstrap/Hack/Finish/Ship disponíveis
+  ├─ Operation (experimental): sandbox observável
+  ├─ Assessment (opcional):    análise de riscos quando útil
+  └─ Diligence (leve):        consistência de artefatos conforme necessário
   ↓
-Discovery (exploratório)
+CommitmentGate (quando Decision Package estiver pronto)
   ↓
-Aprendizados / Protótipos / Experimentos
-  ↓
-(Eventualmente) → Downstream
+Downstream (se outcome = Promover)
 ```
 
 Não existe compromisso de entrega. O objetivo é reduzir incerteza. Uma Intent pode permanecer indefinidamente no Upstream, ser descartada, retornar ao Portfolio ou seguir para Downstream.
@@ -133,20 +156,26 @@ Não existe compromisso de entrega. O objetivo é reduzir incerteza. Uma Intent 
 ```
 Intent
   ↓
-Product Backlog
+Downstream (rigor bloqueante — todas as fases e gates obrigatórios)
+  ├─ Discovery (preparatória): Icebox → OBC Committed → BDD committed
+  ├─ Delivery:  Bootstrap → Hack → Sync → Finish → Ship → Validate → Promote
+  ├─ Operation: produção real, SLOs, runbooks, incidentes
+  ├─ Assessment: gates formais, Reliability Plan obrigatório quando aplicável
+  └─ Diligence: sincronização obrigatória, findings bloqueantes
   ↓
-Icebox (Discovery preparatória)
-  ↓
-Iteration Backlog
-  ↓
-Iteration Plan
-  ↓
-Delivery (CI Sync → CI Async)
-  ↓
-Operation
+Operation contínua (gera novos Business Signals)
 ```
 
 Existe compromisso de entrega, validação, governança e confiabilidade.
+
+---
+
+## Frase canônica — para qualquer síntese ou resumo
+
+> **O modo define o rigor — não as jornadas.**
+> **As mesmas 5 jornadas existem nos dois modos; o que muda é o compromisso.**
+
+Qualquer síntese que mapeie Upstream para uma jornada específica ("Upstream aprende", "Upstream é discovery", "Upstream é exploração") ou Downstream para outra ("Downstream entrega", "Downstream é delivery") está incorreta — reproduz a interpretação de mercado, não o modelo ProdOps.
 
 ---
 

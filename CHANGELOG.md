@@ -7,6 +7,74 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.0.0] — 2026-08-31
+
+### Breaking — Modelo de execução: Upstream e Downstream são modos, não jornadas
+
+Esta versão formaliza uma distinção conceitual crítica que altera a leitura canônica
+do Framework. Qualquer documentação, tooling ou agente que mapeasse Upstream = Discovery
+ou Downstream = Delivery precisa ser revisado.
+
+**A distinção correta:**
+
+> Upstream e Downstream são **modos de execução** — definem o nível de compromisso e
+> rigor aplicado ao trabalho, não qual jornada está sendo executada.
+>
+> As **5 jornadas** (Discovery, Delivery, Operation, Assessment, Diligence) existem
+> **nos dois modos**. O modo determina o rigor; a jornada determina o que está sendo feito.
+
+A leitura de mercado — "upstream = fase de discovery, downstream = fase de delivery" —
+não se aplica ao ProdOps. Esta versão documenta explicitamente essa distinção em múltiplos
+pontos do framework para eliminar ambiguidade.
+
+### Changed
+
+- `prodops/framework/execution-model/README.md` — reescrito com seção "Distinção crítica —
+  o erro mais comum", tabela expandida de terminologia canônica (agora inclui Assessment e
+  Diligence), diagrama ASCII de comportamento por jornada/modo, e "Frase canônica" ao final.
+  Fluxo de decisão da Business Intent refatorado: antes era um esboço de dois caminhos;
+  agora é um diagrama preciso com CommitmentGate como gate explícito de transição de modo.
+
+- `prodops/framework/execution-model/upstream.md` — adicionadas seções "Jornadas no Upstream"
+  (tabela das 5 jornadas com comportamento por jornada), "Três atos de implantação no Upstream"
+  (Sandbox Deploy, Produção Controlada, Promoção de Capability — com distinções de autorização
+  e reversão) e "Encerramento do Upstream — CommitmentGate" (expandido de 4 para 6 outcomes
+  canônicos: Promover, Promover com restrição, Requer outro experimento, Aguardar decisão de
+  negócio, Arquivar, Descartar). Frase de propósito do modo atualizada: "código descartável"
+  substituído por "rigor é uma escolha do engenheiro, não uma imposição do modo".
+
+- `prodops/framework/flow.md` — descrição do Upstream atualizada: adicionadas todas as 5
+  jornadas com rigor advisory; CommitmentGate nomeado explicitamente no fluxo de transição.
+  Downstream também atualizado: todas as 5 jornadas com rigor bloqueante. Adicionada nota
+  anti-confusão com a leitura de mercado (upstream/downstream como fases sequenciais).
+
+- `prodops/framework/glossary.md` — definições de Upstream e Downstream expandidas com
+  comportamento pós-CommitmentGate por outcome. Clarificado que "código descartável" é uma
+  simplificação imprecisa: o código produzido no Upstream pode ter qualidade de produção e
+  ser implantado por decisão do time sem constituir promoção de capability.
+
+- `prodops/framework/journeys/README.md` — adicionada seção "Jornadas por modo" com diagrama
+  ASCII mostrando as 5 jornadas em ambos os modos e CommitmentGate como gate de transição.
+  Nota explícita contra a leitura de mercado.
+
+- `prodops/framework/journeys/discovery/README.md` — seção "Relationship with Assessment"
+  renomeada para "CommitmentGate — Transição Upstream → Downstream". Pré-condições, trio e
+  outcomes do CommitmentGate documentados com detalhamento de protocolo. Fluxo Mermaid
+  atualizado: "aprendizados suficientes promovem" → "CommitmentGate → Promover".
+
+- `prodops/framework/positioning.md` — atualizado para refletir a distinção modo/jornada.
+
+- `prodops/scripts/setup-mac.sh` — `PRODOPS_VERSION` atualizado para `v2.0.0`.
+- `prodops/scripts/setup-wsl.sh` — `PRODOPS_VERSION` atualizado para `v2.0.0`.
+- `prodops/runtime/runtime.yaml.example` — `framework-version` atualizado para `v2.0.0`.
+
+### Source
+
+Exportado de `procurare` (contributor) — commit `664fbde`.
+Branch: `upstream-book`.
+
+---
+
 ## [1.14.1] — 2026-08-20
 
 ### Fixed

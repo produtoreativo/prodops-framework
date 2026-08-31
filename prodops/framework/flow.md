@@ -277,18 +277,20 @@ Esta etapa pertence somente ao **Fluxo Global**. No **Fluxo Local**, o Business 
 
 Upstream e Downstream descrevem o **modo de execução** — o compromisso e o rigor aplicados. Não são fases do fluxo.
 
-- **Upstream:** modo permissivo; código descartável; sem gates obrigatórios. Pode iniciar em qualquer estágio. Quando concluído, retorna ao estágio original.
-- **Downstream:** modo com compromisso de entrega; aplica todos os quality gates vigentes.
+- **Upstream:** modo permissivo; sem gates obrigatórios; todas as 5 jornadas disponíveis com rigor advisory. Pode iniciar em qualquer estágio. Quando encerrado com CommitmentGate outcome **Promover**, a capability avança para Downstream. Nos demais outcomes (Descartar, Requer outro experimento, Aguardar…), a capability permanece no estágio em que estava antes do Upstream.
+- **Downstream:** modo com compromisso de entrega; aplica todos os quality gates vigentes; todas as 5 jornadas com rigor bloqueante.
 
 Um item pode transicionar entre modos ao longo do mesmo estágio. O modo nunca determina o estágio.
+
+> **Não confundir com a leitura de mercado:** no mercado, "upstream" costuma significar a fase de discovery e "downstream" a fase de delivery — como etapas sequenciais. No ProdOps, ambos os modos têm Discovery, Delivery e Operation. O modo determina o rigor, não a jornada.
 
 **Exploration vs Discovery vs Upstream**
 
 | Termo | Nível | Significado |
 |---|---|---|
 | **Exploration** | Etapa do fluxo | O que acontece entre Business Intent e OBC Committed: redução de incerteza |
-| **Discovery** | Jornada | O nome da jornada do Framework que implementa Exploration |
-| **Upstream** | Execution Mode | O modo permissivo e sem compromisso que pode modular qualquer jornada |
+| **Discovery** | Jornada | O nome da jornada do Framework que implementa Exploration — existe nos **dois modos** |
+| **Upstream** | Execution Mode | O modo permissivo e sem compromisso que modula **todas as jornadas** |
 
 Ao descrever o fluxo macro, use **Exploration**. Ao referenciar a jornada específica, use **Discovery**. Ao referenciar o modo de execução, use **Upstream**.
 

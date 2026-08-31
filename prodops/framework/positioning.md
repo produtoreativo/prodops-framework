@@ -47,7 +47,7 @@ O framework opera em dois **modos de execução**:
 valida hipóteses, descobre o que não sabe. Pode parar, pivotar ou descartar sem custo.
 Isso inclui escrever código, prototipar integrações e, quando o ambiente local não é suficiente,
 fazer deploy em um ambiente de sandbox real na nuvem — tudo sem gates, sem Release Trail,
-sem OBC committed. O objetivo é aprender, não entregar.
+sem OBC committed. O objetivo é aprender sem comprometer — o time pode implantar código e até ir a produção, mas sem o gate formal de capability que define o modo Downstream.
 
 **Downstream** — modo de compromisso. Gates obrigatórios, fases sequenciais, evidência em cada
 passo. O time só entra aqui quando tem clareza suficiente para assumir a entrega.

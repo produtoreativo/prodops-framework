@@ -20,7 +20,7 @@
 #   0  sucesso
 #   1  macOS não detectado ou erro fatal
 
-PRODOPS_VERSION="v1.14.1"
+PRODOPS_VERSION="v2.0.0"
 
 set -euo pipefail
 
