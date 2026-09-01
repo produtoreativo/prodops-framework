@@ -15,7 +15,7 @@ Define and verify reliability requirements before, during, and after implementat
 
 | Flow | Moment of use |
 |---|---|
-| Bootstrap | Read risks and reliability requirements from the OBC |
+| Downstream readiness | Read risks and reliability requirements from the OBC |
 | Hack | Implement timeout, retry, idempotency, exceptions |
 | Finish | Definition of Done — reliability items |
 | Promote | Rollback Readiness, formally accepted risks |

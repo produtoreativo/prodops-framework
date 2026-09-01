@@ -16,7 +16,7 @@ The ProdOps Framework has five journeys organized in two groups.
 | **Backlog** | Organizes work before and during execution | Product Backlog, Icebox, Iteration Backlog |
 | **Plan** | Records the execution of an iteration | Iteration Plan |
 
-Upstream and Downstream are modes, not journeys. Discovery is the journey — it exists in both modes with different responsibilities.
+Upstream and Downstream are modes, not journeys. **Each of the 5 journeys exists in both modes** — with advisory rigor in Upstream and blocking rigor in Downstream. No journey is exclusive to one mode.
 
 ---
 
@@ -32,21 +32,122 @@ Upstream and Downstream are modes, not journeys. Discovery is the journey — it
 
 ---
 
+## Relationship between journeys
+
+```mermaid
+flowchart TD
+    subgraph MODES["Execution modes — determine commitment and gates"]
+        UP["Upstream\nexploration without commitment"]
+        DOWN["Downstream\ncommitment with delivery"]
+    end
+
+    subgraph PRODUCT["Product journeys"]
+        DIS["Discovery\nReduces uncertainty and\nprepares the work"]
+        DEL["Delivery\nCI Sync → CI Async\nBootstrap → Promote"]
+        OP["Operation\nObservability, incidents,\npostmortems, DORA"]
+    end
+
+    subgraph TRANSVERSAL["Cross-cutting journeys"]
+        ASS["Assessment\nAnalyzes and informs"]
+        DIL["Diligence\nVerifies and corrects"]
+    end
+
+    %% Modes determine how Discovery operates — they are not journeys
+    UP -."Discovery operates\nwithout commitment".-> DIS
+    DOWN -."Discovery prepares\nCommitted OBC".-> DIS
+
+    %% Main flow of product journeys
+    DIS -->|"OBC Committed\n→ Iteration Plan"| DEL
+    DEL -->|"Promote.Completed"| OP
+    OP -."operational signals\nfeed new intents".-> DIS
+
+    %% Assessment — cross-cutting to the 3 product journeys
+    ASS -."analyses and recommendations".-> DIS
+    ASS -."analyses and recommendations".-> DEL
+    ASS -."analyses and recommendations".-> OP
+    DIS -."hypotheses and risks\npre-commitment".-> ASS
+    DEL -."timelines + metrics".-> ASS
+    OP -."postmortems + DORA".-> ASS
+
+    %% Diligence — cross-cutting to the 3 product journeys
+    DIL -."verifies consistency".-> DIS
+    DIL -."verifies consistency".-> DEL
+    DIL -."verifies consistency".-> OP
+    DEL -->|"events trigger\nDiligence Sync"| DIL
+    DIL -."Findings feed".-> ASS
+
+    %% Palette — subgraphs
+    style MODES      fill:#dbeafe,stroke:#2563eb,color:#1e3a5f
+    style PRODUCT    fill:#dcfce7,stroke:#16a34a,color:#14532d
+    style TRANSVERSAL fill:#f5f3ff,stroke:#7c3aed,color:#4c1d95
+
+    %% Palette — individual nodes
+    style UP   fill:#bfdbfe,stroke:#1d4ed8,color:#1e3a5f
+    style DOWN fill:#bfdbfe,stroke:#1d4ed8,color:#1e3a5f
+    style DIS  fill:#bbf7d0,stroke:#15803d,color:#14532d
+    style DEL  fill:#bbf7d0,stroke:#15803d,color:#14532d
+    style OP   fill:#bbf7d0,stroke:#15803d,color:#14532d
+    style ASS  fill:#fef3c7,stroke:#d97706,color:#78350f
+    style DIL  fill:#ede9fe,stroke:#7c3aed,color:#3b0764
+
+    %% Arrows — mode → discovery (blue, medium)
+    linkStyle 0,1 stroke:#2563eb,stroke-width:2px,stroke-dasharray:6
+
+    %% Arrows — main product flow (green, thick)
+    linkStyle 2,3 stroke:#15803d,stroke-width:3px
+
+    %% Arrow — operational cycle back (green, medium dashed)
+    linkStyle 4 stroke:#15803d,stroke-width:2px,stroke-dasharray:6
+
+    %% Arrows — Assessment ↔ journeys (amber)
+    linkStyle 5,6,7,8,9,10 stroke:#d97706,stroke-width:2px,stroke-dasharray:4
+
+    %% Arrows — Diligence ↔ journeys (violet)
+    linkStyle 11,12,13 stroke:#7c3aed,stroke-width:2px,stroke-dasharray:4
+    linkStyle 14 stroke:#7c3aed,stroke-width:3px
+    linkStyle 15 stroke:#7c3aed,stroke-width:2px,stroke-dasharray:4
+```
+
+---
+
+## Journeys by mode
+
+The 3 product journeys and the 2 cross-cutting journeys exist **in both modes**. The mode determines the rigor — not which journeys are available.
+
+> **Attention:** the market reading — "upstream = discovery, downstream = delivery" — does not apply here. Upstream and Downstream are execution modes, not phases of a linear process.
+
+```
+                UPSTREAM                        DOWNSTREAM
+            (advisory rigor)                (blocking rigor)
+                   │                               │
+   Discovery   exploratory                   preparatory (Icebox)
+   Delivery    advisory/sandbox              mandatory/production
+   Operation   experimental/sandbox          real production
+   Assessment  informs, does not block       can block gates
+   Diligence   light                         blocking
+                   │                               │
+              CommitmentGate ─────────────────────►│
+              (mode transition gate)
+```
+
 ## Upstream flow
 
 ```
 Intent
   ↓
-Upstream
+Upstream (advisory rigor — the engineer decides what to apply)
+  ├─ Discovery (exploratory): experiments, prototypes, spikes
+  ├─ Delivery  (advisory):    Bootstrap/Hack/Finish/Ship available
+  ├─ Operation (experimental): observable sandbox
+  ├─ Assessment (optional):   risk analysis when useful
+  └─ Diligence (light):       artifact consistency as needed
   ↓
-Discovery (exploratory)
+CommitmentGate (when Decision Package is ready)
   ↓
-Learnings / Prototypes / Experiments
-  ↓
-(Eventually) → Downstream
+Downstream (if outcome = Promote)
 ```
 
-No delivery commitment. The goal is to reduce uncertainty. An Intent may remain indefinitely in Upstream, be discarded, return to the Portfolio, or proceed to Downstream.
+There is no delivery commitment. The goal is to reduce uncertainty. An Intent may remain indefinitely in Upstream, be discarded, return to Portfolio, or proceed to Downstream.
 
 ---
 
@@ -55,20 +156,26 @@ No delivery commitment. The goal is to reduce uncertainty. An Intent may remain 
 ```
 Intent
   ↓
-Product Backlog
+Downstream (blocking rigor — all phases and gates mandatory)
+  ├─ Discovery (preparatory): Icebox → Committed OBC → committed BDD
+  ├─ Delivery:  Bootstrap → Hack → Sync → Finish → Ship → Validate → Promote
+  ├─ Operation: real production, SLOs, runbooks, incidents
+  ├─ Assessment: formal gates, Reliability Plan mandatory when applicable
+  └─ Diligence: mandatory synchronization, blocking findings
   ↓
-Icebox (preparatory Discovery)
-  ↓
-Iteration Backlog
-  ↓
-Iteration Plan
-  ↓
-Delivery (CI Sync → CI Async)
-  ↓
-Operation
+Continuous Operation (generates new Business Signals)
 ```
 
 There is a delivery commitment, validation, governance, and reliability.
+
+---
+
+## Canonical phrase — for any synthesis or summary
+
+> **The mode defines the rigor — not the journeys.**
+> **The same 5 journeys exist in both modes; what changes is the commitment.**
+
+Any synthesis that maps Upstream to a specific journey ("Upstream learns", "Upstream is discovery", "Upstream is exploration") or Downstream to another ("Downstream delivers", "Downstream is delivery") is incorrect — it reproduces the market interpretation, not the ProdOps model.
 
 ---
 
@@ -140,5 +247,5 @@ Capabilities such as Workspace Reconciliation are subroutines consumed by the Cy
 
 ---
 
-→ [Execution Model](../execution-model/README.md)
+→ [Execution Model](../execution-model/README.en.md)
 → [Backlog hierarchy](../backlogs.en.md)

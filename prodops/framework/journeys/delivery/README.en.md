@@ -1,5 +1,36 @@
 # Delivery Journey
 
+```mermaid
+flowchart TD
+    ENTRY(["Iteration Plan\nOBC + BDD + Risks committed"])
+
+    subgraph CISYNC["CI Sync — local, synchronous work"]
+        direction TB
+        B["Bootstrap\ndependencies · infra · smoke gate"]
+        H["Hack\nRed → Green → Refactor\nProdOps TDD"]
+        S["Sync\nrebase + artifact alignment"]
+        F["Finish\nQuality Gates + PR"]
+        B --> H --> S --> F
+        S -->|"Review.ChangesRequested\n→ Rework"| H
+    end
+
+    subgraph CIASYNC["CI Async — platform, pipelines, environments"]
+        direction TB
+        SH["Ship\nBuild → Package → Deploy"]
+        V["Validate\nBDD · OBC · SLOs · observability"]
+        P["Promote\nformal approval + Release Trail"]
+        SH --> V --> P
+        V -->|"Promote.Rejected"| V
+    end
+
+    ENTRY --> B
+    F -->|"PR merged"| SH
+    P --> EXIT(["→ Operation\nProduct in production"])
+
+    style CISYNC fill:#1a2d4a,stroke:#4a90d9,color:#e8f4fd
+    style CIASYNC fill:#1a3a2a,stroke:#4ad990,color:#e8fdf4
+```
+
 Delivery is the implementation journey of the ProdOps Framework.
 
 ## Responsibility
@@ -15,7 +46,7 @@ The entry point of Delivery is **not**:
 - Icebox
 - Iteration Backlog
 
-An item only enters the Iteration Plan when it has a committed OBC + committed BDD Feature + documented risks + Reliability Plan.
+An item only enters the Iteration Plan when it has a committed OBC + committed BDD Feature + documented risks. The Reliability Plan is an additional gate **when** there is financial movement, external integration, SLO change, high/critical risk, or persistence/security change. Outside these triggers, the Reliability Plan is optional.
 
 ## Flow
 

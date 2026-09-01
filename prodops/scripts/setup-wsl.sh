@@ -22,7 +22,7 @@
 #   0  sucesso (ou Ubuntu instalado e aguardando re-execução)
 #   1  erro fatal ou SO não suportado
 
-PRODOPS_VERSION="v2.0.0"
+PRODOPS_VERSION="v2.1.0"
 
 # ── Cores e helpers ────────────────────────────────────────────────────────────
 

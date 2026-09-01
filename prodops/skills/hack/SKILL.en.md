@@ -42,7 +42,7 @@ criteria.
 
 ## Preconditions
 
-1. `prodops/skills/prodops-emit-event/SKILL.en.md` has been read and the agent
+1. `prodops/skills/prodops-emit-event/SKILL.md` has been read and the agent
    understands how to invoke the tool.
 2. The tool is available at `prodops/runtime/tools/emit-event/scripts/emit-event`.
 

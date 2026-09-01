@@ -8,6 +8,27 @@ This document establishes the most fundamental architectural principle of the Pr
 
 All other documentation must be read and written in light of this principle.
 
+---
+
+## Canonical Operational Representation
+
+> **GitHub (Projects and Issues) is the Canonical Operational Representation of the ProdOps Framework.**
+> There is no abstraction layer for other tools. Jira, Azure DevOps, Linear, and similar tools are optional syncs — never equivalents or substitutes.
+
+**Canonical Operational Representation** is the operational materialization of the ProdOps conceptual model. At the current stage of the Framework, this representation is implemented through GitHub Projects and GitHub Issues.
+
+Each **GitHub Project** operationally represents a **Journey or specific operational domain** — not the Framework as a whole. The Framework may have multiple canonical Projects (e.g.: Diligence, Product Lifecycle, Operations), each covering the scope of its Journey.
+
+| GitHub Element | Role within ProdOps |
+|---|---|
+| **GitHub Project** | Canonical operational representation of a Journey or operational domain — each Project organizes and projects Work Items within a specific scope |
+| **GitHub Issue** | Work Item — represents an active operation on artifacts in the Knowledge Space |
+| **View** | Canonical projection of Issue state within a Project, by Journey, Phase, or Operation |
+| **Field** | Operational state required to correctly project each Work Item |
+| **Label** | Auxiliary classification — **never** the source of truth for state |
+
+Documentation in `prodops/` represents the **conceptual model**. GitHub represents the **operational model** (Canonical Operational Representation). The **Diligence** journey is the guardian that keeps both synchronized and consistent.
+
 → [Operating Model](operating-model.en.md)
 → [Backlog Hierarchy](backlogs.en.md)
 → [Framework Flow](flow.en.md)

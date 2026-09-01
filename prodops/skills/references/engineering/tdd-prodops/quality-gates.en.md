@@ -52,6 +52,6 @@ This file is the engineering reference; that file is the enforcement definition.
 ## Definition of Done
 
 The per-cycle exit checklist (Red → Green → Yellow) is canonical in
-[`../../../../framework/journeys/delivery/phases/hack/quality-gates.en.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.en.md).
+[`../../../../framework/journeys/delivery/phases/hack/quality-gates.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.md).
 This engineering reference does not duplicate it — consult that file for the gates
 that a TDD iteration must satisfy before commit.

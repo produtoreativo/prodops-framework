@@ -7,6 +7,54 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.1.0] — 2026-09-01
+
+### Added — Cobertura completa de traduções EN para todos os documentos do framework
+
+Esta versão adiciona a versão em inglês (`.en.md`) de todos os documentos do framework
+que não possuíam tradução, e sincroniza as traduções existentes que haviam divergido do
+conteúdo canônico em português.
+
+**Novos arquivos `.en.md` criados (71 arquivos):**
+
+- `prodops/agents/` — 7 agent files (diligence, downstream, finish, hack, hack-commit, hack-start, hack-tdd)
+- `prodops/framework/events/` — 8 arquivos (README, event-instance-schema, event-type-schema, lifecycle, ontology, shared-types, taxonomy, timeline)
+- `prodops/framework/` — 4 arquivos (automation-first, framework-gaps, github-workspace, positioning)
+- `prodops/framework/journeys/assessment/events/` — README, catalog
+- `prodops/framework/journeys/delivery/events/` — README, catalog
+- `prodops/framework/journeys/diligence/` — 17 arquivos (capabilities, checks, diligence-async, diligence-sync, events, github-workspace*, model/*, workspace-reconciliation)
+- `prodops/runtime/` — 4 arquivos (datadog/README, docs/contract, tools/emit-event/README, tools/emit-event/tests/conformance/README)
+- `prodops/scripts/framework-repo/` — AGENTS, CLAUDE
+- `prodops/skills/delivery/` — SKILL
+- `prodops/skills/diligence/` — 16 arquivos (SKILL, diligence-async/SKILL + steps, diligence-sync/SKILL + steps, workspace-reconciliation/SKILL + steps)
+- `prodops/skills/prodops-emit-event/` — SKILL
+- `prodops/skills/restart/` — SKILL
+- `prodops/templates/diligence/` — evidence, finding, remediation, waiver
+
+**Traduções existentes atualizadas (sincronizadas com o canônico PT):**
+
+- `principles.en.md` — 3 princípios ausentes restaurados (#1 Business intent, #2 Flow over friction, #3 Engineering before implementation)
+- `execution-model/README.en.md` — reescrita completa com seção "Critical distinction — the most common mistake"
+- `execution-model/upstream.en.md` — reescrita completa com CommitmentGate e tabela de journeys
+- `journeys/README.en.md` — diagrama mermaid e tabela Upstream/Downstream ausentes restaurados
+- `journeys/assessment/README.en.md` — stub de 43 linhas substituído por tradução completa
+- `journeys/discovery/spikes.en.md` — stub de 5 linhas substituído por documento completo
+- `execution-mapping/matrix.en.md` — seção Diligence ausente adicionada
+- `execution-mapping/work-item-schema.en.md` — entidades Diligence, operação Reconcile e exemplos YAML adicionados
+- `journeys/delivery/README.en.md` — diagrama mermaid e gate condicional do Reliability Plan corrigidos
+- `journeys/diligence/README.en.md` — diagrama mermaid, nota sobre Output classes e princípios fundamentais restaurados
+- `journeys/delivery/capabilities/reliability-policy.en.md` — triggers de Reliability Plan marcados como obrigatórios (não "recomendados")
+- `journeys/delivery/capabilities/reliability.en.md` — tabela Consuming flows corrigida (Bootstrap → Downstream readiness)
+- `journeys/delivery/phases/hack/README.en.md` — pré-condição ausente corrigida ("readiness, not Bootstrap")
+- `knowledge-vs-execution.en.md` — seção "Canonical Operational Representation" ausente adicionada
+- `operating-model.en.md` — diagrama de Delivery Capability corrigido
+- `phases.en.md` — nota terminológica sobre Lifecycle Stages vs. Phases adicionada
+- `discovery/README.en.md`, `experiments.en.md`, `learnings.en.md`, `upstream-trail.en.md` — entradas faltantes adicionadas
+- `operation/README.en.md` — diagrama mermaid ausente restaurado
+- Múltiplos SKILL.en.md com links e status de sistema incorretos corrigidos
+
+---
+
 ## [2.0.0] — 2026-08-31
 
 ### Breaking — Modelo de execução: Upstream e Downstream são modos, não jornadas

@@ -3,7 +3,7 @@
 This document defines the canonical artifact types of the ProdOps Framework: what each type represents, when it is born, which journey it belongs to, and how it relates to others.
 
 For governance (owners, approvals, lifecycle), see [artifact-governance.en.md](artifact-governance.en.md).
-For GitHub labels and fields, see [github-workspace.md](github-workspace.md).
+For GitHub labels and fields, see [github-workspace.en.md](github-workspace.en.md).
 
 ---
 
@@ -121,7 +121,7 @@ Execution artifacts (`Iteration Plan`, `Context Capsule`, `Release Trail`) are p
 
 ### `iteration-plan`
 
-**What it is:** the active iteration plan — lists capabilities with `Entrou` status, maps DS-IDs to GitHub Issues, and records the history of completed iterations.
+**What it is:** the active iteration plan — lists capabilities with `Entered` status, maps DS-IDs to GitHub Issues, and records the history of completed iterations.
 
 **Born when:** the team decides which capabilities will enter the next Delivery iteration.
 
@@ -270,6 +270,6 @@ Findings feed Assessment when they indicate a systemic pattern — they are not 
 
 → [Artifact governance](artifact-governance.en.md) — owners, approvals, lifecycle
 → [Glossary](glossary.en.md) — canonical definitions of each concept
-→ [GitHub Workspace](github-workspace.md) — labels and fields by type
+→ [GitHub Workspace](github-workspace.en.md) — labels and fields by type
 → [OBC: full specification](obc.en.md)
 → [Journeys](journeys/README.en.md)

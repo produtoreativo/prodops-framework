@@ -7,7 +7,7 @@ The OBC model has evolved to two levels. This file exists for historical referen
 | If you are creating... | Use this template |
 |---|---|
 | A **Global OBC** — strategic business contract, born in the BIB, covers the entire business intent | [`global-obc.en.md`](global-obc.en.md) |
-| A **Local OBC** — product implementation contract, born in the PIB, covers the responsibility of one product | [`local-obc.en.md`](local-obc.en.md) |
+| A **Local OBC** — product implementation contract, born in the Product Backlog, covers the responsibility of one product | [`local-obc.en.md`](local-obc.en.md) |
 
 ## When to use each one
 
@@ -18,7 +18,7 @@ The OBC model has evolved to two levels. This file exists for historical referen
 
 **Use `local-obc.en.md` when:**
 - A Global OBC was decomposed via OBC Partitioning
-- The Intent entered directly into the PIB (local flow)
+- The Intent entered directly into the Product Backlog (local flow)
 - You are documenting the responsibility of a specific product
 
 → [Full OBC definition](../../framework/obc.en.md)

@@ -67,3 +67,35 @@ Reusable learning:
 - Lambda Function URL is sufficient for this lab API and avoids API Gateway cost.
 - DynamoDB provisioned capacity mode can keep the current table/index model within the classic Free Tier envelope of 25 RCU / 25 WCU, assigning 1 RCU and 1 WCU to each table and GSI.
 - Removing CloudWatch Logs permissions avoids log ingestion/storage charges, at the cost of losing application logs on the AWS side for troubleshooting.
+
+## ProdOps Add-on Model — Open/Closed Principle (EXP-017)
+
+The ProdOps Framework can be extended with external methods without modifying its core ontology.
+
+Key learnings:
+
+- **Extension Points as stable interfaces:** declaring EP-001 to EP-005 (discovery.methods, inception.pre-icebox, backlog.prioritization, artifacts.obc.sections, bdd.story-generation) allows any external method to plug into the Framework with an explicit contract — without touching existing Journey, Cycle, Phase, Capability, Skill or Step.
+- **addon.yaml as a declarative contract:** each Add-on declares what it consumes (ProdOps artifacts), what it produces (new artifacts), which Extension Points it acts on, and which entry/exit gates it satisfies. This contract is sufficient for an agent to invoke the Add-on at the right point in the lifecycle.
+- **PBB maps cleanly to ProdOps:** Personas → OBC stakeholders, Features → OBC capabilities, Steps Map (ARO) → BDD Feature steps, COORG → Iteration Backlog prioritization. No PBB concept conflicts with the existing ontology.
+- **The natural PBB hook point is EP-002 (inception.pre-icebox):** the PBB session occurs after the OBC Draft enters the Product Backlog and before refinement in the Icebox. It enriches the OBC with Personas and Features and produces the initial BDD Features.
+- **PBB Enablers → Upstream ProdOps:** a PBB exploratory Enabler is exactly an Upstream Spike; a technical Enabler is a non-functional PBI or Reliability Plan item. No new concept is needed.
+- **Add-on is an implementation layer, not a structural one:** like Skill and Step, Add-on is an implementation convention — it does not alter the Journey → Cycle → Phase axis. The ontology.md receives only a minimal descriptive section.
+- **Implementation belongs in prodops-portfolio:** the payments-api repository is a future consumer of the PBB Add-on, not the implementation location. Distribution happens via the prodops-framework mechanism (POPS-ICE-001).
+
+Ready for Downstream in prodops-portfolio immediately — no blockers.
+
+### 6 Industry Invariants — Mature Extension Systems (EXP-017 research)
+
+Comparative research of 10 systems (VS Code, Eclipse, Backstage, Babel, ESLint, Terraform, GitHub Actions, Gradle, Jenkins, Webpack) identified 6 invariants present in all successful systems:
+
+1. **Separation between Contract and Implementation:** the Framework declares only the interface (Extension Point); the Add-on provides the implementation. Never mix — an Extension Point without coupled implementation is the correct pattern.
+
+2. **Declarative Registration + Lazy Activation:** Add-ons register metadata at discovery time (addon.yaml parsing); code only executes when the hook point is reached in the lifecycle. Two problems solved: slow startup and initialization coupling.
+
+3. **Inversion of Control:** the Framework always calls the Add-on; the Add-on never calls the Framework directly nor modifies core artifacts. The Add-on receives what it declared in `artifacts.consumes` and writes only to `artifacts.produces`.
+
+4. **Unique Identity with Hierarchical Namespace:** Extension Point IDs use hierarchical dot notation (`prodops.inception.pre-icebox`), not simple IDs (`EP-002`). Avoids collisions between Add-ons and makes the origin readable without consulting additional documentation.
+
+5. **Isolation by API Surface:** the Add-on does not access the Framework's file system beyond what it declared. For the ProdOps context (LLM agents + Markdown files), isolation by API surface is sufficient — process-level isolation (Terraform/Backstage) is only necessary for Add-ons that execute external side effects.
+
+6. **Versioning as a First-Class Contract:** compatibility uses range constraints (`">=1.14.0"`), not exact versions. An exact version is an anti-pattern: it automatically breaks on every Framework patch. A range constraint allows the Add-on to keep working across minor/patch versions without changes.

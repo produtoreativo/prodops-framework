@@ -24,6 +24,7 @@ Product Repository     ←  the consumer product repository
 Each **Product Repository** implements and operates a specific product within the ProdOps architecture. The Portfolio and Workspace levels exist in the architecture and are referenced in this documentation — their physical implementation is defined by the organization adopting the Framework.
 
 → See [glossary.en.md](glossary.en.md) for canonical definitions of each level.
+→ See [ontology.en.md](ontology.en.md) for the hierarchy of structural concepts (Journey, Cycle, Phase, Skill, etc.).
 
 ---
 
@@ -123,14 +124,12 @@ Phase
 Practice
 └── ProdOps TDD
   ↓
-Capability
+Delivery Capability
 ├── Commit Workflow
 ├── Contract Management
 ├── Evidence Management
 ├── Observability
-├── Reliability
-├── Backlog Synchronization
-└── … (transversal — consumed at any level)
+└── Reliability
   ↓
 Artifacts
 ├── OBCs

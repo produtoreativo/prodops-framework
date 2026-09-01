@@ -26,7 +26,7 @@ Generic and reusable scripts. They contain no product knowledge. They work in an
 | `doctor.sh` | Validates the canonical ProdOps structure in the repository: required paths, markdown links, absence of legacy paths, `framework-lock.yaml` integrity, and `.prodopsignore` protections. | Used as a gate in all phases |
 | `validate-manifest.sh` | Validates the declarative consistency of `prodops/exec/manifest.yaml`: declared paths exist, `commit_types` matches the `commit-msg.sh` hook, `commit_summary_max` is aligned. | Any phase — manifest maintenance |
 
-These scripts are protected for Framework sync. They are listed in `prodops/framework/canonical-paths.en.md`.
+These scripts are protected for Framework sync. They are listed in `prodops/framework/canonical-paths.md`.
 
 ---
 
@@ -36,7 +36,7 @@ Scripts specific to the payments-api product. They may depend on directory struc
 
 Location: `prodops/scripts/local/`
 
-Protected from sync by `.prodopsignore` — see `prodops/scripts/local/README.en.md`.
+Protected from sync by `.prodopsignore` — see `prodops/scripts/local/README.md`.
 
 ---
 

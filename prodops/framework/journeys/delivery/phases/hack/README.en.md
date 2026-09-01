@@ -17,10 +17,11 @@ Red (test fails for the right reason) → Green (minimum that passes)
 → Yellow (refactor + transversal validations) → Commit → Evidence
 ```
 
-**When to use:** after Bootstrap has delivered a clean branch, a ready
-environment, and a verified contract — and before Sync. Applies to Upstream
-and Downstream. Hack starts directly in TDD; if the contract or acceptance
-criterion is missing, return to Bootstrap.
+**When to use:** after Bootstrap has delivered a ready environment and the mode's
+readiness gate has confirmed the necessary context — and before Sync. Applies to
+Upstream and Downstream. The `start` step establishes the Git flow; the `tdd` step
+begins at Red Bar. If a contract or criterion is missing in Downstream, go back to
+readiness, not Bootstrap.
 
 **Position in the flow:**
 
@@ -46,7 +47,7 @@ second copy:
 The steps are sequential. **Security, Quality, and Documentation validations
 are not steps** — they are transversal and run in each cycle's Yellow Bar.
 The canonical cycle-exit checklist (the minimum gates to commit) lives in
-[quality-gates.en.md](quality-gates.en.md).
+[quality-gates.md](quality-gates.md).
 
 Repository quality gates (`lint`, `acceptance`, `no_mocks`), commit types, and
 canonical paths: [`prodops/exec/manifest.yaml`](../../../../../exec/manifest.yaml).

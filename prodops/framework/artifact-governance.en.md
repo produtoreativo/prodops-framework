@@ -193,7 +193,7 @@ Operation
 | **Who approves** | Product Owner + Tech Lead (for exit from Icebox) |
 | **Consumers** | Iteration Backlog |
 | **OBC** | Refining (Discovery); reaches Committed upon exit |
-| **Entry criteria** | Item in Product Backlog with Local OBC in Draft state |
+| **Entry criteria** | Local OBC transitioning from Draft to **Refining** — start of active Discovery |
 | **Exit criteria** | OBC Committed → Iteration Backlog |
 | **Journeys** | Discovery (Downstream), Assessment |
 

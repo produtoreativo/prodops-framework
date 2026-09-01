@@ -1,5 +1,33 @@
 # Discovery
 
+```mermaid
+flowchart TD
+    subgraph UP["Upstream — no delivery commitment"]
+        direction TB
+        INT["Business Intent\nor hypothesis"]
+        EXP["Exploration\ninterviews · benchmarks · spikes\nEvent Storming · experiments"]
+        LEARN["Learnings\nprototypes · evidence"]
+        DISC["Decision"]
+        INT --> EXP --> LEARN --> DISC
+        DISC -->|"uncertainty\npersists"| EXP
+        DISC -->|"discarded"| DISCARD(["❌ Discarded"])
+    end
+
+    subgraph DOWN["Downstream — committed preparation"]
+        direction TB
+        ICE["Icebox\n(item accepted in the Product Backlog)"]
+        REF["Refinement\nfunctional · technical · operational"]
+        OBC["OBC Committed\n+ BDD Feature\n+ Documented Risks"]
+        ICE --> REF --> OBC
+    end
+
+    DISC -->|"CommitmentGate\n→ Promote"| DOWN
+    OBC -->|"enters the\nIteration Backlog"| NEXT(["→ Delivery"])
+
+    style UP fill:#1a2a3a,stroke:#4a90d9,color:#e8f4fd
+    style DOWN fill:#1a3a1a,stroke:#5aad2a,color:#eaf7e4
+```
+
 ## Purpose
 
 Discovery is the ProdOps exploration and preparation journey. It exists in both Upstream and Downstream with different responsibilities; it is not synonymous with Upstream.
@@ -20,7 +48,7 @@ Can include:
 - experiments and vibecoding
 - research
 
-An Upstream experiment may produce production-quality code, but that code is considered exploratory until the capability is promoted to Downstream.
+An Upstream experiment may produce production-quality code. The exploratory label describes the commitment model — no mandatory gates, no Committed OBC, no Release Trail — not the deployment limit. By explicit team and leadership decision, this code may be deployed to production or controlled productive environments without requiring formal promotion to Downstream. The CommitmentGate formalizes the mode transition; it is not a precondition for deployment.
 
 ---
 
@@ -142,11 +170,11 @@ Decision
 
 ↓
 
-Assessment
+CommitmentGate
 
 ↓
 
-Downstream (if approved)
+Downstream (if Promote)
 
 ---
 
@@ -168,6 +196,8 @@ Examples:
 - What are the operational risks?
 
 Experiments should be small and focused.
+
+An experiment may be cross-product (involve multiple products), as long as one primary product is declared as responsible for the experiment.
 
 ## Experiment File Layout
 
@@ -209,63 +239,59 @@ The Validation Workbench is part of Upstream.
 
 ---
 
-# Relationship with Assessment
+# CommitmentGate — Upstream → Downstream Transition
 
-Every completed experiment must produce a Decision Package.
+The CommitmentGate is the formal transition gate between Upstream and Downstream.
+It does not occur automatically at the end of an experiment — the trio must be explicitly convened.
 
-The Decision Package feeds the Continuous Assessment.
+## Preconditions for convening the CommitmentGate
 
-The Assessment decides whether a capability should:
+Before convening, confirm that:
 
-- advance to Downstream;
-- require another experiment;
-- wait for business decisions;
-- be discarded.
+1. The experiment reached its Exit Criteria (hypothesis answered, Decision Package complete).
+2. The OBC Draft exists — at least the file, with the capability name and reference to the experiment.
+3. The BDD draft is readable — a draft of the behavior scenarios (does not need to be in `prodops/artifacts/bdd/`).
 
-## Decision Package Review
+Any member of the trio (PM, Tech Lead, Author) may convene the CommitmentGate.
 
-The Decision Package is not reviewed automatically — it requires an explicit decision from those who have authority over the product and architecture.
+## CommitmentGate Trio
 
-### When to review
-
-After the experiment reaches its Exit Criteria (hypothesis answered, recommendation produced, artifacts updated). Do not review incomplete experiments.
-
-### Who participates
-
-| Role | Responsibility in the review |
+| Role | Responsibility |
 |---|---|
 | Product Manager | Validates business value and decides whether the capability enters the Iteration Plan |
 | Tech Lead | Validates technical feasibility, architectural risks and OBC |
 | Experiment author | Presents the findings and defends the recommendation |
 
-### What is reviewed
+Approval is collective. Any member may block with a recorded justification.
+
+## What is evaluated
 
 The complete Decision Package (sections of `experiment.md`):
 - **Executive Summary** — shared understanding of what was discovered
-- **Recommended Decision** — the author's recommendation (see options below)
+- **Recommended Decision** — the author's recommendation (see outcomes below)
 - **Updated Risks** — new or mitigated risks
 - **Updated Opportunities** — identified opportunities
 - **Updated Tracking Items** — items that need to enter the Product Tracking Lists or Portfolio Tracking Lists
 - **Updated OBCs** — proposed success criteria
 - **Recommended Downstream Scope** — what enters the next iteration, if approved
 
-### Possible review outcomes
+## Canonical Outcomes
 
-| Recommendation | What happens |
+| Outcome | What happens |
 |---|---|
 | **Promote** | Start the promotion process (see "Promotion to Downstream Process" section). BDD Feature + OBC moved. Capability enters the Iteration Plan. |
 | **Promote with restriction** | A subset of the capability is promoted. Restricted parts remain in Upstream for another experiment. |
 | **Requires another experiment** | Create a new experiment with a more specific hypothesis. Record the decision in the current experiment's `upstream-trail.md`. |
-| **Wait for business decision** | Block the experiment in the Product Tracking List with the decision-maker and expected date. Do not open a new experiment until the decision arrives. |
-| **Wait for external dependency** | Record the dependency in the Reliability Plan and Product Tracking List. Monitor in Continuous Assessment. |
+| **Await business decision** | Block the experiment in the Product Tracking List with the decision-maker and expected date. Do not open a new experiment until the decision arrives. |
+| **Await external dependency** | Record the dependency in the Reliability Plan and Product Tracking List. Monitor in Continuous Assessment. |
 | **Discard** | Record the learning in `prodops/framework/journeys/discovery/learnings.md`. Close the experiment with justification in the `upstream-trail.md`. |
 
-### Recording the decision
+## CommitmentGate record
 
 Regardless of the outcome, record in the experiment's `upstream-trail.md`:
-- Review date
-- Participants
-- Decision made
+- CommitmentGate date
+- Participants (trio)
+- Canonical outcome
 - Next steps
 
 If the outcome generates a change in the Reliability Plan, update `prodops/artifacts/risks/risks.md` or `opportunities.md` before closing the cycle.
@@ -274,9 +300,9 @@ If the outcome generates a change in the Reliability Plan, update `prodops/artif
 
 # Relationship with Downstream
 
-Upstream prepares knowledge.
+Upstream operates without capability commitment: the team learns, experiments and deploys without a Committed OBC, without a Release Trail, without mandatory gates.
 
-Downstream delivers software.
+Downstream operates with formal commitment: delivery, quality, reliability and traceability are mandatory at each phase.
 
 A capability should advance to Downstream only when:
 
@@ -294,14 +320,14 @@ Promotion is an explicit decision, not an automatic consequence of a completed e
 
 The promotion decision belongs to the Product Manager + Tech Lead responsible for the capability, based on the Decision Package produced by the experiment.
 
-### Promotion criteria
+### Promotion criteria (CommitmentGate)
 
-Before promoting, confirm that:
+For the CommitmentGate to issue a **Promote** outcome, confirm that:
 
 1. The experiment's Decision Package has a clear recommendation (`Promote` or `Promote with restriction`).
-2. The expected behavior is described in a BDD Feature in `prodops/artifacts/experiments/<NNN-slug>/features/` ready to be moved to `prodops/artifacts/bdd/`.
-3. The OBC draft in `prodops/artifacts/experiments/<NNN-slug>/obcs/` has measurable criteria and can be moved to `prodops/artifacts/obcs/`.
-4. The Reliability Plan has been updated with the risks and mitigation actions identified in the experiment.
+2. The BDD draft is readable in `prodops/artifacts/experiments/<NNN-slug>/features/` (draft of the scenarios — does not need to be complete).
+3. The OBC Draft exists in `prodops/artifacts/experiments/<NNN-slug>/obcs/` (at least a file with the name and reference to the experiment — detailed fields are filled in the Icebox).
+4. The Reliability Plan was updated with the risks identified in the experiment.
 5. The remaining uncertainty is acceptable to enter Downstream with a delivery commitment.
 
 ### Promotion steps
@@ -334,24 +360,26 @@ Before promoting, confirm that:
    (high-level entry: what was promoted and when)
 ```
 
-### What is NOT promotion
+### What is NOT capability promotion
 
-- Moving code to production without moving ProdOps artifacts.
+- **Moving code to production without moving the ProdOps artifacts** — this is "Controlled Production" (an act permitted in Upstream, without CommitmentGate), not capability promotion. The code reaches production; the capability remains in Upstream mode.
 - Creating a committed OBC without a corresponding BDD Feature.
 - Starting Downstream implementation before the OBC is in `prodops/artifacts/obcs/`.
 - Promoting with a `Do not promote` or `Requires another experiment` recommendation in the Decision Package.
+
+> **Critical distinction:** "code in production" and "promoted capability" are two different objects. The CommitmentGate decides on the *capability* (formal delivery commitment). The decision to deploy code belongs to the team/leadership and may happen before, after, or independently of the CommitmentGate.
 
 ---
 
 # Golden Rules
 
 - Keep experiments focused.
-- Answer one question at a time.
+- Formulate one central hypothesis per experiment; multiple investigation questions are allowed.
 - Produce executable evidence whenever possible.
 - Stop when the hypothesis has been answered.
 - Update the affected ProdOps artifacts.
 - Document learnings.
-- Produce a clear recommendation.
+- Produce a clear recommendation with a canonical outcome.
 - Avoid implementing unrelated capabilities.
 
 The learning is the primary outcome.

@@ -21,7 +21,7 @@ Read before starting:
 
 ### Red — write the failing test
 
-*References: [DDD](../../../references/local/engineering/ddd/README.en.md) (ubiquitous language, domain events) _(product-local)_ · [ProdOps TDD](../../../references/engineering/tdd-prodops/README.en.md) (integration-first, mocking policy).*
+*References: [DDD](../../../references/local/engineering/ddd/README.md) (ubiquitous language, domain events) _(product-local)_ · [ProdOps TDD](../../../references/engineering/tdd-prodops/README.md) (integration-first, mocking policy).*
 
 1. Derive the test scenario from the BDD Feature or OBC. Do not invent criteria.
 2. Write the narrowest test that would fail because the behavior does not exist yet.
@@ -31,7 +31,7 @@ Read before starting:
 
 ### Green — implement the minimum
 
-*References: [Clean Code](../../../references/local/engineering/clean-code/README.en.md) (naming, functions) _(product-local)_.*
+*References: [Clean Code](../../../references/local/engineering/clean-code/README.md) (naming, functions) _(product-local)_.*
 
 1. Write the smallest change that makes the failing test pass.
 2. Do not refactor yet. Do not add behavior beyond what the test requires.
@@ -41,12 +41,12 @@ Read before starting:
 
 ### Yellow — quality and artifact closure
 
-*References: [Clean Code — refactoring](../../../references/local/engineering/clean-code/refactoring.en.md) _(product-local)_ · [DDD](../../../references/local/engineering/ddd/README.en.md) (aggregates, repositories) _(product-local)_ · [observability](../../../references/engineering/tdd-prodops/observability.en.md).*
+*References: [Clean Code — refactoring](../../../references/local/engineering/clean-code/refactoring.md) _(product-local)_ · [DDD](../../../references/local/engineering/ddd/README.md) (aggregates, repositories) _(product-local)_ · [observability](../../../references/engineering/tdd-prodops/observability.md).*
 
 The Yellow Bar is where refactoring **and** the transversal Security, Quality, and
 Documentation validations run. These are not extra steps — they are the cycle's
 exit gates. The full checklist is in
-[`../../../../framework/journeys/delivery/phases/hack/quality-gates.en.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.en.md).
+[`../../../../framework/journeys/delivery/phases/hack/quality-gates.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.md).
 
 1. **Refactor** — improve names, reduce duplication, apply Clean Code rules.
    Do not change behavior. Re-run tests after each refactor step to stay green.
@@ -59,7 +59,7 @@ exit gates. The full checklist is in
 4. **Quality gate** — confirm the diff contains no forbidden test double
    (`jest.fn()` as a service replacement, `.overrideProvider()`) and no `.only`
    left in a spec. See
-   [`../../../../framework/journeys/delivery/phases/finish/quality-gates.en.md`](../../../../framework/journeys/delivery/phases/finish/quality-gates.en.md).
+   [`../../../../framework/journeys/delivery/phases/finish/quality-gates.md`](../../../../framework/journeys/delivery/phases/finish/quality-gates.md).
 5. **Event Storming** — if the change adds, removes, or renames a domain event
    (`eventEmitter.emit()` or `@OnEvent()`), update
    `prodops/artifacts/event-storming/plan.json`:
@@ -89,7 +89,7 @@ exit gates. The full checklist is in
 - No secrets or PII in the diff; no forbidden mock (`jest.fn()`, `.overrideProvider()`) or `.only` left behind.
 - Impacted ProdOps artifacts updated (Event Storming, architecture, BDD if needed).
 - Release Trail has the full TDD evidence entry.
-- Every gate in [`quality-gates.en.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.en.md) is satisfied.
+- Every gate in [`quality-gates.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.md) is satisfied.
 
 ## Guardrails
 

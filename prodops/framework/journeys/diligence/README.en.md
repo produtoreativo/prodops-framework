@@ -8,6 +8,50 @@
 
 ---
 
+```mermaid
+flowchart TD
+    subgraph SYNC["Diligence Sync — reactive, contextual"]
+        direction TB
+        CAP["Capture\nWork Item identified"]
+        ATT["Attach\nassociated with GitHub Project"]
+        PROM["Promote\napproval in managed project"]
+        CLOSE["Close\ncycle closed"]
+        CAP --> ATT --> PROM --> CLOSE
+    end
+
+    subgraph ASYNC["Diligence Async — proactive, drift scan"]
+        direction TB
+        SCAN["Scan\nscan of all OBCs and Issues"]
+        FLAG["Flag\nitems with divergence marked"]
+        REPAIR["Repair\ncorrection of divergence"]
+        WAIVER{"Waiver?"}
+        SCAN --> FLAG --> REPAIR --> WAIVER
+        WAIVER -->|"Waiver.Granted"| CLOSE2(["WAIVED"])
+        WAIVER -->|"Waiver.Rejected"| SCAN
+    end
+
+    subgraph WR["Workspace Reconciliation — sub-routine"]
+        direction LR
+        INS["Inspect"] --> REC["Reconcile"] --> VER["Verify"]
+    end
+
+    %% Triggers
+    EV(["Journey events\nBootstrap · Block · Promote"]) -->|"trigger\nautomatically"| CAP
+    TIMER(["Periodic cadence\nor detected drift"]) --> SCAN
+
+    %% Workspace Reconciliation is called by the cycles
+    SYNC -."invokes WR\nas sub-routine".-> WR
+    ASYNC -."invokes WR\nif drift detected".-> WR
+
+    %% Outputs
+    CLOSE --> ASS(["→ Assessment\nFindings"])
+    REPAIR --> ASS
+
+    style SYNC fill:#1a3a1e,stroke:#5aad2a,color:#eaf7e4
+    style ASYNC fill:#1a2a3a,stroke:#4a90d9,color:#e8f4fd
+    style WR fill:#2a2a1a,stroke:#d9c03a,color:#fdf8e4
+```
+
 ## Purpose
 
 Diligence ensures that what was decided, produced, and executed across every journey remains coherent, traceable, and conformant throughout the entire product lifecycle. It does not evaluate, does not decide, does not implement — it verifies, synchronizes, reconciles, and preserves.
@@ -166,7 +210,7 @@ Output classes that Diligence can produce (without formal schema implementation 
 - Need for new operation identified
 - Impossibility of automatic reconciliation
 
-> **Note:** The formal classes Check, Finding, Evidence, Remediation, and Waiver are implemented. See section "Operational entity model" for canonical model references and instance storage location.
+> **Note:** The formal classes Check, Finding, Evidence, Remediation, and Waiver are concepts planned for future versions. See section "Planned future concepts".
 
 ---
 
@@ -290,19 +334,22 @@ Diligence receives signals of incidents, risks, and operational evidence; verifi
 ## Knowledge Space ↔ Execution Space
 
 ```
-Knowledge Space
+Knowledge Space (prodops/)
     ↓ provides intention, contract, decision and context
-Diligence
+Diligence — guardian of synchronization between the two models
     ↓ verifies, relates, synchronizes and reconciles
-Execution Space
+Execution Space (GitHub Projects / Issues)
     ↓ executes operations and produces evidence
 Diligence
     ↓ verifies results and returns traceable learning
-Knowledge Space
+Knowledge Space (prodops/)
 ```
+
+> **Diligence is the guardian of synchronization between the conceptual representation (prodops/) and the canonical operational representation (GitHub Projects and Issues).**
 
 ### Fundamental principles
 
+- **GitHub Projects and Issues are the canonical operational representation of ProdOps.** There is no abstraction to other tools.
 - **Synchronization is not necessarily bidirectional field-by-field.** Each data point has a single source of truth — synchronization moves data from the source to the derived representation.
 - **Each data point has a single source of truth.** The canonical state of an OBC lives in the Markdown file. The operational state of a Work Item lives in the GitHub Issue.
 - **GitHub Project CAN:** display, group, filter, derive, and organize work.

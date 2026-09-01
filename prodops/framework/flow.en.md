@@ -277,18 +277,20 @@ This step belongs only to the **Global Flow**. In the **Local Flow**, the Busine
 
 Upstream and Downstream describe the **execution mode** — the commitment and rigor applied. They are not flow phases.
 
-- **Upstream:** permissive mode; disposable code; no mandatory gates. Can start at any stage. When finished, returns to the original stage.
-- **Downstream:** delivery-committed mode; all current quality gates apply.
+- **Upstream:** permissive mode; no mandatory gates; all 5 journeys available with advisory rigor. Can start at any stage. When closed with CommitmentGate outcome **Promote**, the capability advances to Downstream. For other outcomes (Discard, Requires another experiment, Wait…), the capability remains at the stage it was in before Upstream.
+- **Downstream:** delivery-committed mode; all current quality gates apply; all 5 journeys with blocking rigor.
 
 An item can transition between modes within the same stage. The mode never determines the stage.
+
+> **Do not confuse with the market meaning:** in common industry usage, "upstream" often means the discovery phase and "downstream" means delivery — as sequential stages. In ProdOps, both modes have Discovery, Delivery, and Operation. The mode determines rigor, not the journey.
 
 **Exploration vs Discovery vs Upstream**
 
 | Term | Level | Meaning |
 |---|---|---|
 | **Exploration** | Flow step | What happens between Business Intent and Committed OBC: uncertainty reduction |
-| **Discovery** | Journey | The name of the Framework journey that implements Exploration |
-| **Upstream** | Execution Mode | The execution mode (low commitment) used during Discovery |
+| **Discovery** | Journey | The name of the Framework journey that implements Exploration — exists in **both modes** |
+| **Upstream** | Execution Mode | The permissive, no-commitment mode that modulates **all journeys** |
 
 When describing the macro flow, use **Exploration**. When referencing the specific journey, use **Discovery**. When referencing the execution mode, use **Upstream**.
 

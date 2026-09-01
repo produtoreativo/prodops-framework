@@ -1,6 +1,8 @@
-# Business Intent Phases: Conception and Inception
+# Business Intent Lifecycle Stages: Conception and Inception
 
-The lifecycle of a Business Intent before Delivery is organized into two distinct phases: **Conception** and **Inception**. They differ in commitment, governance, OBC state, and what can happen to the work.
+> **Terminological note:** Conception and Inception are **Lifecycle Stages** — stages of the Business Intent lifecycle before the Delivery journey. They are conceptually distinct from the **Delivery Phases** (Bootstrap, Hack, Sync, Finish, Ship, Validate, Promote) and from the **Diligence Phases** (Capture, Attach, Inspect, etc.). When ambiguity exists, use the explicit qualifier: "Lifecycle Stage" rather than just "phase". See [ontology.en.md](ontology.en.md).
+
+The lifecycle of a Business Intent before Delivery is organized into two distinct stages: **Conception** and **Inception**. They differ in commitment, governance, OBC state, and what can happen to the work.
 
 ---
 

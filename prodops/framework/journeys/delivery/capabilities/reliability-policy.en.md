@@ -4,7 +4,7 @@ Reliability is planned before implementation and validated before promotion.
 
 ## Reliability Plan
 
-A Reliability Plan is **recommended** for every Downstream capability, but is not mandatory. It is strongly recommended for items with relevant operational risk (high complexity, financial impact, new integrations). When it exists, the plan defines:
+The Reliability Plan is **mandatory** when any of the following canonical triggers is present: financial movement, external integration, SLO change, high or critical risk, or persistence/security change. Outside these triggers, the Reliability Plan is optional. When present, the plan defines:
 - Risks and mitigations
 - OBCs (Observable Business Contracts) with measurable success thresholds
 - SLO suggestions for events on the critical path
@@ -19,7 +19,7 @@ OBC files: `prodops/artifacts/obcs/`
 
 ## Definition of Done
 
-A capability is not complete until the [Definition of Done](../../../../templates/engineering/definition-of-done.en.md) is satisfied, including the reliability criteria.
+A capability is not complete until the [Definition of Done](../../../../templates/engineering/definition-of-done.md) is satisfied, including the reliability criteria.
 
 ## Failure modes
 
@@ -42,9 +42,9 @@ For each behavior implemented in the Hack Flow, verify the following requirement
 | **HTTP codes** | Status codes match semantics: 201 (created), 400 (invalid input), 404 (not found), 409 (conflict/invalid state), 422 (business rule). |
 | **Controlled degradation** | External dependency failure (provider, SQS, DynamoDB) does not bring down independent flows. |
 
-These requirements are verified in the [Definition of Done](../../../../templates/engineering/definition-of-done.en.md) — Reliability section.
+These requirements are verified in the [Definition of Done](../../../../templates/engineering/definition-of-done.md) — Reliability section.
 
-For details on how to apply during the TDD cycle: [ProdOps TDD — Reliability in the cycle](../practices/prodops-tdd.en.md).
+For details on how to apply during the TDD cycle: [ProdOps TDD — Reliability in the cycle](../practices/prodops-tdd.md).
 
 ## Post-deploy validation
 
