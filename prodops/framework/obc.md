@@ -145,6 +145,21 @@ Os estados representam **maturidade do contrato**, não estado do software.
 | **Operational** | Operation | Em produção; atualizado com evidências operacionais |
 | **Archived** | — | Intenção encerrada; histórico preservado |
 
+### Transições de estado canônicas
+
+```
+[*] → Draft              (Business Signal → Business Intent)
+Draft → Refining         (CommitmentGate outcome Promover — Momento 2)
+Refining → Committed     (Readiness Gate aprovado — Momento 3)
+Committed → In Delivery  (Bootstrap.Started)
+In Delivery → Operational (Promote concluído)
+Operational → Archived   (Deprecação ou substituição)
+Refining → Archived      (CommitmentGate outcome Descartar)
+In Delivery → Refining   (Regressão Downstream → Upstream: hipótese invalidada durante Delivery)
+```
+
+A transição `In Delivery → Refining` é uma suspensão formal de compromisso — não um retorno a uma etapa anterior. Requer dois registros obrigatórios: entrada no Release Trail e abertura de novo experimento Upstream referenciando o OBC original. Ver [Protocolo de Regressão](execution-model/downstream.md#protocolo-de-regressão-downstream--upstream).
+
 ---
 
 ## Ciclo de vida

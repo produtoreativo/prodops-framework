@@ -199,6 +199,17 @@ Experimentos devem ser pequenos e focados.
 
 Um experimento pode ser transversal (envolver múltiplos produtos), desde que um produto primário seja declarado como responsável pelo experimento.
 
+## Condições para abrir um experimento formal
+
+Todas as quatro condições devem ser verdadeiras:
+
+1. **Hipótese falsificável** — é possível definir o que invalidaria a hipótese
+2. **Hipótese não respondida** — a resposta não existe nas evidências já disponíveis
+3. **Resposta tem valor de decisão** — afeta o que será construído ou como será construído
+4. **Custo de ignorar > custo de experimentar** — o custo de assumir a hipótese como verdadeira sem testar é maior que o custo do experimento
+
+Se qualquer condição falhar, o experimento pode não ser o instrumento correto: pode ser uma pesquisa rápida, uma decisão de negócio direta, ou trabalho que já cabe em Downstream.
+
 ## Experiment File Layout
 
 Novos experimentos devem usar um diretório por experimento:
@@ -246,11 +257,14 @@ Ele não ocorre automaticamente ao final de um experimento — o trio deve ser c
 
 ## Pré-condições para convocar o CommitmentGate
 
-Antes de convocar, confirmar que:
+Antes de convocar, confirmar que todas as quatro condições são verdadeiras:
 
-1. O experimento atingiu seus Exit Criteria (hipótese respondida, Decision Package completo).
-2. O OBC Draft existe — ao menos o arquivo, com nome da capability e referência ao experimento.
-3. O BDD draft está legível — rascunho dos cenários de comportamento (não precisa estar em `prodops/artifacts/bdd/`).
+1. **Hipótese respondida** — os Exit Criteria do experimento foram satisfeitos; o Decision Package está completo.
+2. **Evidence Threshold satisfeito** (se declarado) — o critério de suficiência de evidência registrado no `experiment.md` foi atingido.
+3. **OBC Draft existe** — ao menos o arquivo, com nome da capability e referência ao experimento.
+4. **BDD draft legível** — rascunho dos cenários de comportamento esperado (não precisa estar em `prodops/artifacts/bdd/`).
+
+**Critério de verificabilidade:** um membro do trio que não participou do experimento deve conseguir ler o Decision Package e chegar às mesmas conclusões sem contexto verbal adicional. Se o Decision Package requer explicação oral para ser compreendido, ele não está pronto para o CommitmentGate.
 
 Qualquer membro do trio (PM, Tech Lead, Autor) pode convocar o CommitmentGate.
 

@@ -139,6 +139,48 @@ Cada produto pode adotar um perfil que repondera as métricas conforme seu foco 
 
 ---
 
+## Métricas de Fluxo Upstream
+
+As métricas DORA e extensões acima medem o modo Downstream (compromisso de entrega). O modo Upstream requer métricas de fluxo próprias, que medem a saúde do processo de redução de incerteza antes do compromisso.
+
+> **Status:** instrumentação automatizada proposta — coleta manual disponível a partir dos `upstream-trail.md` dos experimentos.
+
+### TTE — Time to Evidence
+
+**O que mede:** tempo entre a abertura formal de um experimento e a primeira evidência executável produzida.
+
+**Por que importa:** TTE alto indica que o experimento está em planejamento prolongado ou encontrou impedimento de infraestrutura antes de produzir aprendizado real. É o análogo do Lead Time for Change para o modo Upstream.
+
+**Como medir:** `timestamp(primeira entrada de evidência no upstream-trail)` − `timestamp(experimento aberto)`.
+
+**Sinal de alerta:** TTE > 5 dias úteis sem evidência registrada pode indicar bloqueio não declarado (correlaciona com S1 e S2 do Perpetual Discovery).
+
+---
+
+### Decision Latency
+
+**O que mede:** tempo entre o Evidence Threshold ser declarado como atingido e o CommitmentGate ser convocado.
+
+**Por que importa:** Decision Latency alta indica que o time coletou evidência suficiente mas adiou a decisão de compromisso. É o intervalo entre "sabemos o suficiente" e "decidimos o que fazer com isso".
+
+**Como medir:** `timestamp(CommitmentGate convocado)` − `timestamp(Evidence Threshold declarado como atingido no upstream-trail)`.
+
+**Sinal de alerta:** Decision Latency > 10 dias úteis correlaciona com S4 do Perpetual Discovery — stakeholder bloqueado esperando uma decisão que o time já tem condição de tomar.
+
+---
+
+### Discovery WIP — Work in Progress
+
+**O que mede:** número de experimentos Upstream ativos simultaneamente no repositório.
+
+**Por que importa:** WIP alto no Upstream é análogo ao WIP alto no Downstream — cada experimento paralelo divide a atenção do time e aumenta o custo de alternância de contexto. WIP = 1 por time é o ideal; WIP > 3 requer justificativa explícita.
+
+**Como medir:** contagem de experimentos com status `em andamento` em `prodops/artifacts/experiments/`.
+
+**Referência:** ver [Little's Law](https://en.wikipedia.org/wiki/Little%27s_law) — throughput = WIP / Lead Time. Reduzir WIP aumenta velocidade de conclusão dos experimentos ativos.
+
+---
+
 ## Métricas complementares
 
 Usadas em perfis específicos (especialmente `quality` e `ai_readiness`):

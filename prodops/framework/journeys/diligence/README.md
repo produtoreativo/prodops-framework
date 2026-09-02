@@ -399,6 +399,29 @@ A Diligence deve escalar para decisão humana quando:
 
 ---
 
+## Waiver — exceção explícita e registrada
+
+Um **Waiver** é o reconhecimento formal de que um critério de gate não está satisfeito, com:
+- Justificativa documentada para avançar mesmo assim
+- Compromisso de resolução dentro de prazo definido
+- Responsável identificado pela resolução
+
+**Waiver não é erro de processo — é governança consciente.** A diferença crítica:
+
+| | Waiver | Forced Readiness (AP-D3) |
+|-|--------|--------------------------|
+| **Reconhecimento** | Explícito e registrado | Silencioso |
+| **Justificativa** | Documentada no artefato | Ausente |
+| **Prazo de resolução** | Definido e comprometido | Não existe |
+| **Rastreabilidade** | Verificável por qualquer membro do trio | Não verificável |
+| **Natureza** | Governança consciente | Evasão de governança |
+
+O Forced Readiness (AP-D3) é o avanço silencioso — o gap existe mas não é reconhecido. O Waiver é o avanço explícito — o gap é reconhecido, justificado e comprometido a ser resolvido.
+
+A Diligence pode detectar AP-D3 quando encontra itens promovidos sem critérios satisfeitos e sem registro de Waiver correspondente.
+
+---
+
 ## Anti-padrões
 
 | Anti-padrão | Por que é errado |

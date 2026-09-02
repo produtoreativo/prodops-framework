@@ -21,6 +21,13 @@ Identificar ou criar um contrato verificável (OpenAPI, AsyncAPI, BDD Feature, s
 ## 7. Observability as a deliverable
 Logs, erros, métricas e rastreabilidade fazem parte da implementação, não são complementos adicionados depois. Uma feature não está pronta se seu comportamento não puder ser observado em produção.
 
+A observabilidade cumpre papéis distintos nos dois modos de execução:
+
+- **No Downstream:** observabilidade *verifica o compromisso* — SLOs, DORA, Release Trail respondem à pergunta "o compromisso está sendo honrado?"
+- **No Upstream:** observabilidade *torna a incerteza explícita* — Evidence Package, Upstream Trail e Decision Package respondem à pergunta "o que sabemos, o que não sabemos e com que grau de confiança?"
+
+Em Downstream, a ausência de observabilidade é uma violação do compromisso. Em Upstream, a ausência de observabilidade é ausência de evidência — o experimento não pode produzir aprendizado verificável.
+
 ## 8. Evidence-based decisions
 Toda decisão de entrega — promover, reverter, aceitar risco — deve ser respaldada por evidência registrada. Ver [release-trail](../artifacts/trails/release-trail.md) e [operation/](journeys/operation/).
 

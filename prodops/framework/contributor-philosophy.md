@@ -166,3 +166,41 @@ internacionais (Codex, Copilot, GPT) leiam o mesmo contrato sem dependência de 
 → [canonical-paths.md](canonical-paths.md) — onde cada artefato vive
 → [framework-gaps.md](framework-gaps.md) — lacunas conhecidas e decisões pendentes
 → [runtime/docs/contract.md](../runtime/docs/contract.md) — contrato do Runtime com o Framework
+
+---
+
+## Genealogia intelectual
+
+O ProdOps não surgiu do zero. As distinções centrais do framework têm predecessores identificáveis na literatura. Conhecer essa genealogia ajuda o contribuidor a entender onde o framework inova genuinamente e onde apenas formaliza o que outros já intuíam.
+
+### A origem dos termos Upstream e Downstream
+
+Os termos percorreram 8 camadas de uso antes de chegarem ao ProdOps — de geografia física (posição em fluxo de água), passando pela indústria do petróleo (posição na cadeia de valor), biologia molecular (direção de transcrição), marketing estratégico (Ram Charan, 2004), Kanban (David J. Anderson, ~2010s), até Dan Heath (2020) e Eric Evans em DDD.
+
+**O ProdOps é a primeira formulação a tratar Upstream e Downstream como modos de execução transversais** — não fases sequenciais, não posições em uma cadeia, não domínios do problema. Todas as camadas anteriores mantêm sequencialidade; o ProdOps a quebra.
+
+### Predecessores diretos e onde o framework diverge
+
+| Predecessor | O que contribuiu | Onde o ProdOps diverge |
+|-------------|------------------|------------------------|
+| **David J. Anderson (Upstream Kanban)** | Commitment point como fronteira nomeada — precursor direto do CommitmentGate | Kanban mantém sequencialidade; saída do Upstream é sempre item de backlog, nunca código de produção |
+| **Dan Heath (Upstream, 2020)** | Viés organizacional downstream por urgência/visibilidade — incorporado nos anti-padrões | Heath não operacionaliza a distinção — sem artefatos, jornadas, gate outcomes |
+| **Dave Snowden (Cynefin)** | A mesma atividade pode exigir abordagens fundamentalmente diferentes conforme atributo transversal | Em Cynefin: domínio determinado pela natureza do problema (independente de decisão humana); no ProdOps: modo determinado por decisão explícita de governança |
+| **Basecamp / Singer (Shape Up)** | Betting table, appetite, circuit breaker, modos R&D/Production/Cleanup — evidência empírica da tese | Mecanismos formulados dentro de metodologia específica (ciclos de 6 semanas) — não como princípio geral independente de metodologia |
+| **Marty Cagan (Inspired)** | 4 dimensões de risco antes do compromisso (valor, usabilidade, viabilidade, viabilidade técnica) | O tipo de compromisso como variável operacional primária não é articulado como princípio transversal |
+
+### Contribuições sem precedente identificado na literatura
+
+Cinco conceitos do ProdOps não têm precedente rastreável nas 18 obras consultadas no corpus de pesquisa:
+
+1. **Upstream e Downstream como modos transversais** aplicáveis a qualquer jornada de produto com configurações de rigor distintas
+2. **A possibilidade de conduzir a jornada de Discovery em modo Downstream** — discovery dentro do compromisso, com rigor bloqueante
+3. **Upstream como produtor legítimo de código de produção** — o rótulo exploratório descreve o modelo de compromisso, não o limite de implantação
+4. **Rigor como variável primária de distinção entre os modos** — não sequência, não artefatos, não maturidade
+5. **Gate de transição com múltiplos outcomes canônicos** — 6 outcomes vs. go/no-go binário de todos os predecessores
+
+### Implicação para contribuidores
+
+Uma proposta de mudança ao Framework que reduz a distinção Upstream/Downstream a uma questão de sequência, maturidade de artefato, ou ambiente de deploy está regredindo a uma das camadas anteriores da genealogia. A distinção central é **tipo de compromisso → tipo de rigor** — qualquer mudança que obscureça isso precisa de justificativa explícita.
+
+> **Referência canônica:** Apêndice de Pesquisa do livro [From Intent to Outcome](https://github.com/produtoreativo/from-intent-to-outcome/tree/master) — genealogia completa com 18 obras em 5 clusters temáticos.

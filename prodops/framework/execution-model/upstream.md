@@ -48,6 +48,28 @@ O OBC funciona como memória do aprendizado — não como mecanismo de validaç�
 - Validar fluxo de negócio antes de comprometer
 - Explorar abordagem técnica antes de decidir
 
+## Condições para abrir um experimento formal
+
+Todas as quatro condições devem ser verdadeiras para justificar a abertura de um experimento formal:
+
+1. **Hipótese falsificável** — é possível definir o que invalidaria a hipótese
+2. **Hipótese não respondida** — a resposta não existe nas evidências já disponíveis
+3. **Resposta tem valor de decisão** — afeta o que será construído ou como será construído
+4. **Custo de ignorar > custo de experimentar** — o custo de assumir a hipótese como verdadeira sem testar é maior do que o custo do experimento
+
+Se qualquer condição falhar, o experimento não é o instrumento correto: pode ser uma pesquisa interna, uma decisão de negócio, ou trabalho que já cabe diretamente em Downstream.
+
+## Evidence Threshold
+
+O Evidence Threshold é o critério que define quando a evidência coletada é suficiente para levar o Decision Package ao CommitmentGate.
+
+**É opcional, mas recomendado.** Quando declarado:
+- Deve ser registrado no `experiment.md` no início do experimento
+- Revisões ao critério (afrouxar ou endurecer) devem ser registradas no `upstream-trail.md` com justificativa
+- Atingir o threshold não convoca automaticamente o CommitmentGate — convoca o trio
+
+Sem Evidence Threshold declarado, o critério de parada é o julgamento do autor do experimento. Nesse caso, o autor é o responsável por documentar no Decision Package por que a evidência acumulada é suficiente.
+
 ## Jornadas no Upstream
 
 **Upstream não é sinônimo de Discovery.** Todas as 5 jornadas do ProdOps estão disponíveis no Upstream — com rigor advisory. O engenheiro decide quais aplicar e com qual profundidade.
@@ -79,6 +101,21 @@ No Upstream, o código pode chegar a diferentes ambientes. Existem três atos di
 → [Jornada Discovery no Upstream](../journeys/discovery/README.md) — exploração, experimentos, Decision Package
 → [Delivery no Upstream](../journeys/delivery/README.md) — fases disponíveis com rigor advisory
 → [Sandbox Deploy](../journeys/discovery/README.md#sandbox-deploy-upstream) — deploy em ambiente controlado sem rigor Downstream
+
+## Perpetual Discovery — Anti-padrão
+
+O Perpetual Discovery ocorre quando um experimento continua acumulando evidências indefinidamente sem avançar para uma decisão de compromisso. O experimento não falhou — ele nunca terminou.
+
+**Quatro sinais diagnósticos objetivos:**
+
+| Sinal | Critério | Ação |
+|-------|----------|------|
+| **S1** | Sem progressão no `upstream-trail` por 3 ou mais sessões consecutivas | Identificar bloqueio; escalar ao trio |
+| **S2** | Questões marcadas como "não respondíveis com evidências disponíveis" por 5 ou mais dias | Revisar hipótese; considerar CommitmentGate com outcome Descartar ou Aguardar |
+| **S3** | Evidence Threshold declarado identificado como não atingível sem nova hipótese, após 3 ou mais sessões de coleta | Reformular hipótese ou revisar threshold; registrar decisão no trail |
+| **S4** | Stakeholder com decisão bloqueada há 10 ou mais dias úteis por causa deste experimento | CommitmentGate imediato — a decisão de esperar mais também é uma decisão válida (outcome Aguardar) |
+
+A presença de qualquer sinal não exige encerramento imediato — exige **convocação do trio para decidir conscientemente** se o experimento deve continuar, ser suspenso ou encerrado.
 
 ## Encerramento do Upstream — CommitmentGate
 
@@ -131,8 +168,11 @@ A transição Upstream → Downstream é mediada pelo **CommitmentGate** — gat
 
 Pré-condições mínimas para convocar o CommitmentGate:
 - Decision Package completo
+- Hipótese respondida com Evidence Threshold satisfeito (se declarado)
 - OBC Draft existe (ao menos o arquivo com nome e referência ao experimento)
 - BDD draft legível
+
+**Critério de verificabilidade do Decision Package:** um membro do trio que não participou do experimento deve conseguir ler o Decision Package e chegar às mesmas conclusões sem contexto verbal adicional. Se o Decision Package requer explicação oral para ser compreendido, ele não está pronto.
 
 Após o CommitmentGate com outcome **Promover**:
 
