@@ -480,7 +480,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 |---|---|---|
 | **Exploration** | Flow step | What happens: uncertainty reduction between Intent and OBC |
 | **Discovery** | Journey | The name of the Framework journey that implements Exploration |
-| **Upstream / Downstream** | Execution Mode | The commitment level and rigor applied during Discovery |
+| **Upstream / Downstream** | Execution Mode | The execution mode that modulates all 5 journeys — defines the type of commitment and corresponding rigor |
 
 Exploration operates on OBC Drafts that were born at the Business Intent Backlog (global flow) or Product Backlog (local flow) and are being refined in the Icebox.
 

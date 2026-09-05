@@ -444,7 +444,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 |---|---|---|
 | **Exploration** | Etapa do fluxo | O que acontece: redução de incerteza entre Intent e OBC |
 | **Discovery** | Jornada | O nome da jornada do Framework que implementa Exploration |
-| **Upstream / Downstream** | Execution Mode | O compromisso e o rigor aplicados durante Discovery |
+| **Upstream / Downstream** | Execution Mode | O modo de execução que modula todas as 5 jornadas — define o tipo de compromisso e o rigor correspondente |
 
 Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/README.md) e [`execution-model/upstream.md`](execution-model/upstream.md).
 

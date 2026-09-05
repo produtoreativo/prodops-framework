@@ -122,7 +122,9 @@ Upstream can document the dependency, but must not make it appear executable in 
 
 # Typical Outputs
 
-An Upstream activity may produce:
+## In Upstream mode
+
+An exploratory activity (Upstream mode) can produce:
 
 - executable code;
 - Validation Workbench improvements;
@@ -136,9 +138,21 @@ An Upstream activity may produce:
 - Product Tracking List updates;
 - architecture decisions.
 
+## In Downstream mode
+
+A refinement activity (Discovery in Downstream mode) typically produces:
+
+- OBC in Committed state;
+- BDD Feature refined and moved to `prodops/artifacts/bdd/`;
+- Risks documented in `prodops/artifacts/risks/risks.md`;
+- Reliability Plan updated (when applicable);
+- Iteration Plan entry with status `Entered`.
+
 ---
 
 # Workflow
+
+## Upstream Flow
 
 A typical Upstream flow is:
 
@@ -175,6 +189,28 @@ CommitmentGate
 ↓
 
 Downstream (if Promote)
+
+## Downstream Flow
+
+When the Discovery journey operates in Downstream mode (refinement of a committed item):
+
+Item accepted in Product Backlog
+
+↓
+
+Icebox (functional, technical, operational refinement)
+
+↓
+
+OBC Committed + BDD Feature + Risks documented
+
+↓
+
+Readiness Gate approved
+
+↓
+
+Iteration Backlog → Delivery
 
 ---
 
@@ -229,7 +265,7 @@ Use `evidence/` only for supporting material too detailed for the experiment doc
 
 Flat experiment files restored from legacy paths are historical artifacts. Do not create new flat experiment files. If a flat file is restored from history or another branch, migrate it to the canonical directory standard before making further changes.
 
-The global `prodops/framework/journeys/discovery/upstream-trail.md` is not the primary location for experiment execution history. Keep it as a high-level chronological index for cross-experiment milestones, migrations, promotions and Discovery/Upstream process changes at the repository level.
+The global `prodops/framework/journeys/discovery/upstream-trail.md` is not the primary location for experiment execution history. Keep it as a high-level chronological index for cross-experiment milestones, migrations, promotions and process changes in the Discovery journey or in the Upstream mode at the repository level.
 
 ---
 
@@ -246,7 +282,7 @@ It is used to:
 - validate UX;
 - reduce implementation uncertainty.
 
-The Validation Workbench is part of Upstream.
+The Validation Workbench is used in the Discovery journey operating in Upstream mode.
 
 ---
 

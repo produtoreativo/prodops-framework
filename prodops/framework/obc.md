@@ -139,7 +139,7 @@ Os estados representam **maturidade do contrato**, não estado do software.
 | Estado | Quando | Descrição |
 |---|---|---|
 | **Draft** | BIB / Product Backlog — entrada | Criado; pode estar incompleto; registra intenção inicial e hipóteses |
-| **Refining** | Product Backlog — view Icebox | Em refinamento ativo; Discovery/Upstream podem estar ocorrendo |
+| **Refining** | Product Backlog — view Icebox | Em refinamento ativo; a jornada Discovery pode estar em andamento (no modo Upstream ou Downstream) |
 | **Committed** | Product Backlog — view Iteration Backlog | Informações mínimas validadas; pronto para Delivery |
 | **In Delivery** | Iteration Plan → Delivery | Em execução; implementação em andamento |
 | **Operational** | Operation | Em produção; atualizado com evidências operacionais |

@@ -122,7 +122,9 @@ O Upstream pode documentar a dependência, mas não deve fazê-la parecer execut
 
 # Saídas Típicas
 
-Uma atividade Upstream pode produzir:
+## No modo Upstream
+
+Uma atividade exploratória (modo Upstream) pode produzir:
 
 - código executável;
 - melhorias no Validation Workbench;
@@ -136,9 +138,21 @@ Uma atividade Upstream pode produzir:
 - atualizações da Product Tracking List;
 - decisões de arquitetura.
 
+## No modo Downstream
+
+Uma atividade de refinamento (Discovery em modo Downstream) tipicamente produz:
+
+- OBC em estado Committed;
+- BDD Feature refinada e movida para `prodops/artifacts/bdd/`;
+- Riscos documentados em `prodops/artifacts/risks/risks.md`;
+- Reliability Plan atualizado (quando aplicável);
+- entrada no Iteration Plan com status `Entrou`.
+
 ---
 
 # Workflow
+
+## Fluxo Upstream
 
 Um fluxo Upstream típico é:
 
@@ -175,6 +189,28 @@ CommitmentGate
 ↓
 
 Downstream (se Promover)
+
+## Fluxo Downstream
+
+Quando a jornada Discovery opera em modo Downstream (refinamento de item comprometido):
+
+Item aceito no Product Backlog
+
+↓
+
+Icebox (refinamento funcional, técnico, operacional)
+
+↓
+
+OBC Committed + BDD Feature + Riscos documentados
+
+↓
+
+Readiness Gate aprovado
+
+↓
+
+Iteration Backlog → Delivery
 
 ---
 
@@ -229,7 +265,7 @@ Use `evidence/` apenas para material de suporte muito detalhado para o documento
 
 Arquivos planos de experimento restaurados de caminhos legados são artefatos históricos. Não criar novos arquivos planos de experimento. Se um arquivo plano for restaurado do histórico ou de outra branch, migrá-lo para o padrão de diretório canônico antes de fazer outras alterações.
 
-O `prodops/framework/journeys/discovery/upstream-trail.md` global não é o lugar primário para o histórico de execução de experimentos. Mantê-lo como índice cronológico de alto nível para marcos entre experimentos, migrações, promoções e mudanças de processo Discovery/Upstream em nível de repositório.
+O `prodops/framework/journeys/discovery/upstream-trail.md` global não é o lugar primário para o histórico de execução de experimentos. Mantê-lo como índice cronológico de alto nível para marcos entre experimentos, migrações, promoções e mudanças de processo na jornada Discovery ou no modo Upstream em nível de repositório.
 
 ---
 
@@ -246,7 +282,7 @@ O Validation Workbench é o ambiente preferencial para validação funcional.
 - validar UX;
 - reduzir incerteza de implementação.
 
-O Validation Workbench faz parte do Upstream.
+O Validation Workbench é usado na jornada Discovery operando em modo Upstream.
 
 ---
 

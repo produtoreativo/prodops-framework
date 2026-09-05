@@ -27,7 +27,7 @@ Use esta tabela como fonte primária de navegação antes de ler ou escrever qua
 | Concern | Canonical path |
 |---|---|
 | Visão geral dos modos | `prodops/framework/execution-model/README.md` |
-| Modo Upstream (discovery) | `prodops/framework/execution-model/upstream.md` |
+| Modo Upstream | `prodops/framework/execution-model/upstream.md` |
 | Modo Downstream (delivery) | `prodops/framework/execution-model/downstream.md` |
 
 ---
@@ -56,7 +56,7 @@ Use esta tabela como fonte primária de navegação antes de ler ou escrever qua
 | Evidências de um experimento | `prodops/artifacts/experiments/<NNN-slug>/evidence/` |
 | OBCs exploratórias (em experimento) | `prodops/artifacts/experiments/<NNN-slug>/obcs/` |
 | BDD Features exploratórias (em experimento) | `prodops/artifacts/experiments/<NNN-slug>/features/` |
-| Trail global de discovery | `prodops/framework/journeys/discovery/upstream-trail.md` |
+| Trail global de atividade exploratória (modo Upstream) | `prodops/framework/journeys/discovery/upstream-trail.md` |
 | Learnings consolidados | `prodops/framework/journeys/discovery/learnings.md` |
 | Spikes | `prodops/framework/journeys/discovery/spikes.md` |
 | Protótipos | `prodops/framework/journeys/discovery/prototypes.md` |
@@ -183,7 +183,7 @@ Use esta tabela como fonte primária de navegação antes de ler ou escrever qua
 |---|---|
 | Visão geral das skills | `prodops/skills/README.md` |
 | Downstream (orquestra o fluxo completo) | `prodops/skills/downstream/SKILL.md` |
-| Upstream (discovery e exploração) | `prodops/skills/upstream/SKILL.md` |
+| Upstream (modo de exploração — todas as jornadas) | `prodops/skills/upstream/SKILL.md` |
 | Upstream → Deploy to sandbox | `prodops/skills/upstream/steps/deploy-to-sandbox/SKILL.md` |
 | Upstream → Move to downstream | `prodops/skills/upstream/steps/move-to-downstream/SKILL.md` |
 | Bootstrap | `prodops/skills/bootstrap/SKILL.md` |
@@ -290,7 +290,7 @@ Estes caminhos podem aparecer em entradas históricas migradas. **Não usar para
 
 | Legacy path | Replacement |
 |---|---|
-| `prodops/upstream/` | `prodops/framework/journeys/discovery/` |
+| `prodops/upstream/` | `prodops/framework/journeys/discovery/` *(reorganização de estrutura de arquivos — o modo Upstream não é sinônimo da jornada Discovery)* |
 | `prodops/product/` | `prodops/artifacts/product/` |
 | `prodops/assessment/` | `prodops/framework/journeys/assessment/` ou `prodops/artifacts/plans/` dependendo do artefato |
 | `prodops/assessment/reliability-plan/` | `prodops/artifacts/plans/reliability/` |

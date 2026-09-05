@@ -64,7 +64,7 @@
 |---|---|---|
 | **Exploration** | Etapa do fluxo | O que acontece: redução de incerteza entre Intent e OBC |
 | **Discovery** | Jornada | O nome da jornada do Framework que implementa Exploration |
-| **Upstream** | Execution Mode | O modo de execução (baixo compromisso) usado durante Discovery |
+| **Upstream** | Execution Mode | O modo de execução (baixo compromisso) que modula todas as jornadas — não exclusivo de Discovery |
 
 ---
 

@@ -27,7 +27,7 @@ Use this table as the primary navigation source before reading or writing any ar
 | Concern | Canonical path |
 |---|---|
 | Modes overview | `prodops/framework/execution-model/README.md` |
-| Upstream mode (discovery) | `prodops/framework/execution-model/upstream.md` |
+| Upstream mode | `prodops/framework/execution-model/upstream.md` |
 | Downstream mode (delivery) | `prodops/framework/execution-model/downstream.md` |
 
 ---
@@ -56,7 +56,7 @@ Use this table as the primary navigation source before reading or writing any ar
 | Experiment evidence | `prodops/artifacts/experiments/<NNN-slug>/evidence/` |
 | Exploratory OBCs (in experiment) | `prodops/artifacts/experiments/<NNN-slug>/obcs/` |
 | Exploratory BDD Features (in experiment) | `prodops/artifacts/experiments/<NNN-slug>/features/` |
-| Global discovery trail | `prodops/framework/journeys/discovery/upstream-trail.md` |
+| Global exploratory activity trail (Upstream mode) | `prodops/framework/journeys/discovery/upstream-trail.md` |
 | Consolidated learnings | `prodops/framework/journeys/discovery/learnings.md` |
 | Spikes | `prodops/framework/journeys/discovery/spikes.md` |
 | Prototypes | `prodops/framework/journeys/discovery/prototypes.md` |
@@ -183,7 +183,7 @@ Use this table as the primary navigation source before reading or writing any ar
 |---|---|
 | Skills overview | `prodops/skills/README.md` |
 | Downstream (orchestrates full flow) | `prodops/skills/downstream/SKILL.md` |
-| Upstream (discovery and exploration) | `prodops/skills/upstream/SKILL.md` |
+| Upstream (exploration mode — all journeys) | `prodops/skills/upstream/SKILL.md` |
 | Upstream → Deploy to sandbox | `prodops/skills/upstream/steps/deploy-to-sandbox/SKILL.md` |
 | Upstream → Move to downstream | `prodops/skills/upstream/steps/move-to-downstream/SKILL.md` |
 | Bootstrap | `prodops/skills/bootstrap/SKILL.md` |
@@ -289,7 +289,7 @@ These paths may appear in migrated historical entries. **Do not use for new arti
 
 | Legacy path | Replacement |
 |---|---|
-| `prodops/upstream/` | `prodops/framework/journeys/discovery/` |
+| `prodops/upstream/` | `prodops/framework/journeys/discovery/` *(file structure reorganization — Upstream mode is not a synonym for the Discovery journey)* |
 | `prodops/product/` | `prodops/artifacts/product/` |
 | `prodops/assessment/` | `prodops/framework/journeys/assessment/` or `prodops/artifacts/plans/` depending on the artifact |
 | `prodops/assessment/reliability-plan/` | `prodops/artifacts/plans/reliability/` |

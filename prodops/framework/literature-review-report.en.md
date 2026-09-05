@@ -64,7 +64,7 @@
 |---|---|---|
 | **Exploration** | Flow step | What happens: uncertainty reduction between Intent and OBC |
 | **Discovery** | Journey | The name of the Framework journey that implements Exploration |
-| **Upstream** | Execution Mode | The execution mode (low commitment) used during Discovery |
+| **Upstream** | Execution Mode | The execution mode (low commitment) that modulates all journeys — not exclusive to Discovery |
 
 ---
 
