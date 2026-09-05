@@ -399,6 +399,29 @@ Diligence must escalate for human decision when:
 
 ---
 
+## Waiver — Explicit and Recorded Exception
+
+A **Waiver** is the formal acknowledgment that a gate criterion is not satisfied, accompanied by:
+- Documented justification for advancing nonetheless
+- Resolution commitment within a defined timeframe
+- Identified responsible party for the resolution
+
+**A Waiver is not a process error — it is conscious governance.** The critical difference:
+
+| | Waiver | Forced Readiness (AP-D3) |
+|-|--------|--------------------------|
+| **Recognition** | Explicit and recorded | Silent |
+| **Justification** | Documented in the artifact | Absent |
+| **Resolution timeframe** | Defined and committed | Does not exist |
+| **Traceability** | Verifiable by any member of the trio | Not verifiable |
+| **Nature** | Conscious governance | Governance evasion |
+
+Forced Readiness (AP-D3) is silent advancement — the gap exists but is not acknowledged. A Waiver is explicit advancement — the gap is acknowledged, justified, and committed to resolution.
+
+The Diligence can detect AP-D3 when it finds items promoted without satisfied criteria and no corresponding Waiver record.
+
+---
+
 ## Anti-patterns
 
 | Anti-pattern | Why it is wrong |

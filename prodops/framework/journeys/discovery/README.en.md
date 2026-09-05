@@ -199,6 +199,17 @@ Experiments should be small and focused.
 
 An experiment may be cross-product (involve multiple products), as long as one primary product is declared as responsible for the experiment.
 
+## Conditions for Opening a Formal Experiment
+
+All four conditions must be true:
+
+1. **Falsifiable hypothesis** — it is possible to define what would invalidate the hypothesis
+2. **Unanswered hypothesis** — the answer does not exist in already available evidence
+3. **Answer has decision value** — it affects what will be built or how it will be built
+4. **Cost of ignoring > cost of experimenting** — the cost of assuming the hypothesis is true without testing is greater than the cost of the experiment
+
+If any condition fails, an experiment may not be the right instrument: it may be a quick research task, a direct business decision, or work that already fits in Downstream.
+
 ## Experiment File Layout
 
 New experiments should use a directory per experiment:
@@ -246,11 +257,14 @@ It does not occur automatically at the end of an experiment — the trio must be
 
 ## Preconditions for convening the CommitmentGate
 
-Before convening, confirm that:
+Before convening, confirm that all four conditions are true:
 
-1. The experiment reached its Exit Criteria (hypothesis answered, Decision Package complete).
-2. The OBC Draft exists — at least the file, with the capability name and reference to the experiment.
-3. The BDD draft is readable — a draft of the behavior scenarios (does not need to be in `prodops/artifacts/bdd/`).
+1. **Hypothesis answered** — the experiment Exit Criteria were satisfied; the Decision Package is complete.
+2. **Evidence Threshold satisfied** (if declared) — the sufficiency criterion recorded in `experiment.md` was met.
+3. **OBC Draft exists** — at least the file, with the capability name and reference to the experiment.
+4. **BDD draft readable** — draft behavior scenarios (need not be in `prodops/artifacts/bdd/`).
+
+**Verifiability criterion:** a trio member who did not participate in the experiment must be able to read the Decision Package and reach the same conclusions without additional verbal context. If the Decision Package requires oral explanation to be understood, it is not ready for the CommitmentGate.
 
 Any member of the trio (PM, Tech Lead, Author) may convene the CommitmentGate.
 
@@ -385,3 +399,8 @@ For the CommitmentGate to issue a **Promote** outcome, confirm that:
 The learning is the primary outcome.
 
 The implementation is a means to achieve the learning.
+
+
+---
+
+→ **Next:** [Delivery Journey](../delivery/README.en.md)

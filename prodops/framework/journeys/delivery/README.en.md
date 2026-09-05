@@ -89,3 +89,8 @@ Operation
 ## Shared Capabilities
 
 → [capabilities/](capabilities/)
+
+
+---
+
+→ **Next:** [Operation Journey](../operation/README.en.md)

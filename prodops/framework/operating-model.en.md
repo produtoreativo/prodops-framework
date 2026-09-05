@@ -253,3 +253,8 @@ Operation
 ## Origin Streams
 
 → [origin-streams.md](origin-streams.en.md)
+
+
+---
+
+→ **Next:** [Flow](flow.en.md)

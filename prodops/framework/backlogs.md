@@ -387,3 +387,8 @@ A Diligence é a jornada responsável por manter os backlogs sincronizados em to
 - `prodops/artifacts/plans/iteration-plan.md` — Iteration Plan
 - `prodops/framework/glossary.md` — definições canônicas
 - `prodops/framework/journeys/diligence/README.md` — Jornada Diligence
+
+
+---
+
+→ **Próximo:** [Fases — Concepção e Inception](phases.md)

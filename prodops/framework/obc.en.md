@@ -145,6 +145,21 @@ States represent **contract maturity**, not software state.
 | **Operational** | Operation | In production; updated with operational evidence |
 | **Archived** | — | Intent closed; history preserved |
 
+### Canonical State Transitions
+
+```
+[*] → Draft               (Business Signal → Business Intent)
+Draft → Refining          (CommitmentGate Promote outcome — Moment 2)
+Refining → Committed      (Readiness Gate approved — Moment 3)
+Committed → In Delivery   (Bootstrap.Started)
+In Delivery → Operational (Promote completed)
+Operational → Archived    (Deprecation or replacement)
+Refining → Archived       (CommitmentGate Discard outcome)
+In Delivery → Refining    (Downstream → Upstream regression: hypothesis invalidated during Delivery)
+```
+
+The `In Delivery → Refining` transition is a formal commitment suspension — not a return to a prior step. It requires two mandatory records: an entry in the Release Trail and the opening of a new Upstream experiment referencing the original OBC. See [Regression Protocol](execution-model/downstream.en.md#downstream--upstream-regression-protocol).
+
 ---
 
 ## Lifecycle
@@ -300,3 +315,8 @@ Do not use OBC as a substitute for an isolated technical task or bug ticket with
 → [Phases: Conception and Inception](phases.en.md)
 → [Discovery Journey](journeys/discovery/README.en.md)
 → [Reliability Plans](../artifacts/plans/reliability/README.en.md)
+
+
+---
+
+→ **Next:** [Artifact Types](artifact-types.en.md)

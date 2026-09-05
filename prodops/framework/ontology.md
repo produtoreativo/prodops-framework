@@ -301,3 +301,8 @@ Este documento é a fonte única de verdade da hierarquia de conceitos ProdOps.
 | [journeys/README.md](journeys/README.md) | Detalha cada Journey — referencia Cycle e Phase desta ontologia |
 | [skills/README.md](../skills/README.md) | Catálogo de Skills — referencia esta ontologia para o posicionamento de Skill e Step |
 | [product-topology.md](product-topology.md) | Detalha as quatro Product Dimensions e o relacionamento OBC → Product Topology |
+
+
+---
+
+→ **Próximo:** [Glossário Canônico](glossary.md)

@@ -503,3 +503,8 @@ pode ter sua própria Timeline para registrar ciclos formalmente via OEM.
 - [Delivery Journey](../delivery/README.md)
 - [Diligence Journey](../diligence/README.md)
 - Cross-Journey Event Analysis
+
+
+---
+
+→ **Próximo:** [Jornada Diligence](../diligence/README.md)

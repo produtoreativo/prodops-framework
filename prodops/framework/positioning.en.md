@@ -130,3 +130,8 @@ or that "it would need to go to Downstream" to validate against a real provider.
 → [Principles](principles.en.md) — Principle 5 (Upstream before commitment)
 → [OBC](obc.en.md) — section "OBC in Upstream" and "OBC in Downstream"
 → [Flow](flow.en.md) — overview of the complete cycle
+
+
+---
+
+→ **Next:** [Contributor Philosophy](contributor-philosophy.en.md)

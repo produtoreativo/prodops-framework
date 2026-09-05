@@ -235,3 +235,8 @@ Product Deck
 - Geoffrey Moore — *Crossing the Chasm* (Product Vision format)
 - Toyota A3 Problem Solving (canvas format inspiration)
 - Shopify Resilience Matrix (Reliability Matrix inspiration)
+
+
+---
+
+→ **Next:** [Service Deck](service-deck.en.md)

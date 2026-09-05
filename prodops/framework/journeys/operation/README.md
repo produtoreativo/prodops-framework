@@ -91,3 +91,8 @@ Premortem + Owner Approval → Product Backlog (Inception)
 - **Assessment** recebe sinais de operation para atualizar riscos e Reliability Plan.
 - **Diligence** observa a operação e dispara verificações quando anomalias são detectadas.
 - **Product Tracking List** recebe novos itens originados de aprendizados operacionais.
+
+
+---
+
+→ **Próximo:** [Jornada Assessment](../assessment/README.md)

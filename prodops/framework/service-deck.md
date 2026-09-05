@@ -190,3 +190,8 @@ Service Deck
 → [Reliability Plan](artifact-types.md#reliability-plan) — análise de risco e SLOs detalhados
 → [Product Topology](product-topology.md) — as dimensões estruturais (Components, Data, Team, Flow)
 → [Matriz de Confiabilidade — Produto Reativo](https://produtoreativo.com.br/matriz-de-confiabilidade/)
+
+
+---
+
+→ **Próximo:** [Governança de Artefatos](artifact-governance.md)

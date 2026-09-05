@@ -170,3 +170,8 @@ Um OBC **não pertence** a uma única Product Dimension. Um OBC pode modificar s
 → [Ontologia do Framework](ontology.md)
 → [Glossário](glossary.md)
 → [Fluxo do Framework](flow.md)
+
+
+---
+
+→ **Próximo:** [Estágios de Produto](product-stages.md)

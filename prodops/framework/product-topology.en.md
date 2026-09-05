@@ -170,3 +170,8 @@ An OBC does **not belong** to a single Product Dimension. An OBC can simultaneou
 → [Framework Ontology](ontology.en.md)
 → [Glossary](glossary.en.md)
 → [Framework Flow](flow.en.md)
+
+
+---
+
+→ **Next:** [Product Stages](product-stages.en.md)

@@ -1085,3 +1085,8 @@ Um mesmo Work Item pode afetar múltiplos artefatos.
 **Cardinalidade:** Uma Business Intent pode ter zero ou mais Work Items ao longo de sua vida. A ausência de Work Item não é uma divergência — só é divergência quando há operação ativa sem Work Item rastreável.
 
 **Não confundir com:** A Business Intent em si (artefato permanente). O OBC é um documento Markdown — não tem representação como Issue. Ver [knowledge-vs-execution.md](knowledge-vs-execution.md).
+
+
+---
+
+→ **Próximo:** [Princípios](principles.md)

@@ -273,3 +273,8 @@ Findings alimentam o Assessment quando indicam padrão sistêmico — não são 
 → [GitHub Workspace](github-workspace.md) — labels e campos por tipo
 → [OBC: especificação completa](obc.md)
 → [Jornadas](journeys/README.md)
+
+
+---
+
+→ **Próximo:** [Product Deck](product-deck.md)

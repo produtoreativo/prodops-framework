@@ -165,3 +165,47 @@ The `.en.md` pair is what allows the Runtime to be consumed by any team and lets
 → [canonical-paths.en.md](canonical-paths.en.md) — where each artifact lives
 → [framework-gaps.md](framework-gaps.md) — known gaps and pending decisions
 → [runtime/docs/contract.md](../runtime/docs/contract.md) — Runtime contract with the Framework
+
+
+---
+
+## Intellectual Genealogy
+
+ProdOps did not emerge from nothing. The central distinctions of the framework have identifiable predecessors in the literature. Knowing this genealogy helps contributors understand where the framework genuinely innovates and where it merely formalizes what others had already intuited.
+
+### The origin of the Upstream and Downstream terms
+
+The terms traversed 8 layers of usage before reaching ProdOps — from physical geography (position in water flow), through the oil industry (position in the value chain), molecular biology (transcription direction), strategic marketing (Ram Charan, 2004), Kanban (David J. Anderson, ~2010s), to Dan Heath (2020) and Eric Evans in DDD.
+
+**ProdOps is the first formulation to treat Upstream and Downstream as cross-cutting execution modes** — not sequential phases, not positions in a chain, not problem domains. All prior layers maintain sequentiality; ProdOps breaks it.
+
+### Direct predecessors and where the framework diverges
+
+| Predecessor | What it contributed | Where ProdOps diverges |
+|-------------|---------------------|------------------------|
+| **David J. Anderson (Upstream Kanban)** | Commitment point as a named boundary — direct precursor of the CommitmentGate | Kanban maintains sequentiality; Upstream output is always a backlog item, never production code |
+| **Dan Heath (Upstream, 2020)** | Organizational downstream bias from urgency/visibility — incorporated into anti-patterns | Heath does not operationalize the distinction — no artifacts, journeys, gate outcomes |
+| **Dave Snowden (Cynefin)** | The same activity may require fundamentally different approaches according to a cross-cutting attribute | In Cynefin: domain determined by the nature of the problem (independent of human decision); in ProdOps: mode determined by explicit governance decision |
+| **Basecamp / Singer (Shape Up)** | Betting table, appetite, circuit breaker, R&D/Production/Cleanup modes — empirical evidence for the thesis | Mechanisms formulated within a specific methodology (6-week cycles) — not as a general principle independent of methodology |
+| **Marty Cagan (Inspired)** | 4 risk dimensions before commitment (value, usability, feasibility, technical viability) | The type of commitment as the primary operational variable is not articulated as a cross-cutting principle |
+
+### Contributions with no precedent identified in the literature
+
+Five ProdOps concepts have no traceable precedent in the 18 works consulted in the research corpus:
+
+1. **Upstream and Downstream as cross-cutting modes** applicable to any product journey with distinct rigor configurations
+2. **The possibility of conducting the Discovery journey in Downstream mode** — discovery within commitment, with blocking rigor
+3. **Upstream as a legitimate producer of production code** — the exploratory label describes the commitment model, not the deployment limit
+4. **Rigor as the primary distinguishing variable between modes** — not sequence, not artifacts, not maturity
+5. **Transition gate with multiple canonical outcomes** — 6 outcomes vs. binary go/no-go of all predecessors
+
+### Implication for contributors
+
+A proposed change to the Framework that reduces the Upstream/Downstream distinction to a question of sequence, artifact maturity, or deployment environment is regressing to one of the earlier layers of the genealogy. The central distinction is **type of commitment → type of rigor** — any change that obscures this requires explicit justification.
+
+> **Canonical reference:** Research Appendix of the book [From Intent to Outcome](https://github.com/produtoreativo/from-intent-to-outcome/tree/master) — complete genealogy with 18 works in 5 thematic clusters.
+
+
+---
+
+→ **Next:** [Upstream Mode](execution-model/upstream.en.md)

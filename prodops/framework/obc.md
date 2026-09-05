@@ -315,3 +315,8 @@ Não usar OBC como substituto de tarefa técnica isolada ou ticket de bug sem Bu
 → [Fases: Concepção e Inception](phases.md)
 → [Jornada Discovery](journeys/discovery/README.md)
 → [Reliability Plans](../artifacts/plans/reliability/README.md)
+
+
+---
+
+→ **Próximo:** [Tipos de Artefatos](artifact-types.md)

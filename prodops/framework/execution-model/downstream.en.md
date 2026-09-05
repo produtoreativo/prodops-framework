@@ -37,22 +37,43 @@ During Discovery (in the Icebox), it will be refined until reaching the Committe
 - Deliver feature with formal commitment
 - Execute item from the Reliability Plan
 
-## Mandatory preconditions
+## Three Transition Moments
 
-Downstream has three explicit moments:
+Downstream has three explicit moments, each with verifiable entry conditions:
 
-1. **Downstream Declared** — commitment exists; the mode guides the item toward readiness.
-2. **Downstream Ready** — every applicable gate is satisfied.
-3. **Delivery Started** — Bootstrap has started for a Ready item.
+### Moment 1 — CommitmentGate → Downstream Declared
 
-Before executing any Delivery phase, all requirements below must be satisfied:
+The commitment has been assumed. The CommitmentGate with outcome **Promote** is the only event that opens Downstream.
 
-1. OBC in `prodops/artifacts/obcs/`
+**Mandatory entry conditions for CommitmentGate to emit Promote:**
+1. Hypothesis answered with Evidence Threshold satisfied (if declared)
+2. Decision Package with real substance — readable by a trio member who did not participate in the experiment
+3. OBC Draft existing as a file (at minimum the file with name and reference to the experiment)
+4. Readable BDD draft — draft of expected behavior scenarios
+
+**Resulting state:** `Downstream Declared` — item enters the Icebox for refinement.
+
+---
+
+### Moment 2 — Artifact promotion + Icebox entry
+
+Occurs immediately after the CommitmentGate. These are distinct actions from Moment 1:
+- OBC transitions `Draft → Refining`
+- Work Item created in Icebox referencing the experiment and the OBC
+- Experiment upstream-trail updated with promotion record
+
+---
+
+### Moment 3 — Readiness Gate → Downstream Ready
+
+**Mandatory conditions before starting any Delivery phase:**
+1. OBC in `prodops/artifacts/obcs/` with state **Committed**
 2. BDD Feature in `prodops/artifacts/bdd/`
 3. Risks documented in `prodops/artifacts/risks/risks.md`
 4. Iteration Plan entry with status `In` in `prodops/artifacts/plans/iteration-plan.md`
-
 5. Reliability Plan when there is money movement, an external integration, an SLO change, high/critical risk, or a persistence or security change
+
+**Resulting state:** `Downstream Ready` → `Delivery Started` (after Bootstrap.Started).
 
 When a mandatory requirement is missing, Downstream stops before Delivery, identifies the owner, and guides the next action.
 
@@ -85,6 +106,55 @@ CI Async: Ship → Validate → Promote            (platform, pipelines, environ
 
 Record significant delivery evidence in the active session trail at `prodops/artifacts/trails/sessions/YYYY-MM-DD-<session-id>.md`.
 
+## Direct Downstream (without prior Upstream)
+
+A Business Signal can enter Downstream directly without going through Upstream exploration when:
+
+- The demand is confirmed by independent channels (no experiment needed)
+- The scope is clearly delimited enough to commit
+- Open questions are classified as **refinement** — they do not block the start; they are resolved in the Icebox
+- The remaining uncertainty is acceptable with the commitment being explicitly assumed
+
+**This is a correct mode calibration** — not an absence of discovery. Discovery happens within the commitment, with the Discovery journey running in Downstream mode with blocking rigor and a Readiness Gate before Delivery.
+
+The PM must explicitly document the justification for direct Downstream entry (e.g.: "sufficient clarity about what to build; timeline does not allow Upstream exploration"). Open questions classified as refinement must be listed and marked as non-blocking.
+
+---
+
+## Downstream Anti-patterns
+
+| ID | Name | Description |
+|----|------|-------------|
+| **AP-D1** | Gate Theater | Gates executed formally without the artifacts satisfying the criteria. The ritual exists; the substance does not. |
+| **AP-D2** | Proxy Commitment | OBC marked as Committed without measurable success criteria. The commitment is named but not verifiable. |
+| **AP-D3** | Forced Readiness | Readiness Gate approved with known gaps due to deadline pressure. Unlike a Waiver (which is explicit and recorded), Forced Readiness is silent. |
+| **AP-D4** | Phantom BDD | BDD Feature written after the code, describing what was implemented instead of the expected behavior. The test passes because the code already exists — not because the behavior was specified. |
+| **AP-D5** | Empty Release Trail | Promote executed without a filled Release Trail. The commitment was honored but is not verifiable by those who did not participate. |
+
+**AP-D3 vs. Waiver distinction:** a Waiver is the *explicit and recorded* acknowledgment that a criterion is not satisfied, with justification and a commitment to resolution within a defined deadline. AP-D3 is *silent* advancement without the gap being acknowledged. The Waiver is governance; AP-D3 is governance evasion.
+
+---
+
+## Downstream → Upstream Regression Protocol
+
+Triggered when a hypothesis is invalidated during Delivery — what was committed cannot be honored as committed.
+
+**This is a formal commitment suspension** — not a return to a previous step. The mandatory sequence:
+
+1. **Record in Release Trail:** entry documenting the reason for suspension, the invalidated hypothesis, and the regression decision
+2. **Open new Upstream experiment:** referencing the original OBC and the suspended Downstream; the experiment investigates what invalidated the hypothesis
+3. **Transition the OBC:** `Committed → Refining` (the transition is recorded in the OBC with date and justification)
+4. **Update the Work Item:** status returns to Icebox; Downstream Declared remains recorded as history
+
+The team and leadership must be notified. Regression is not a process failure — it is the correct protocol when evidence changes during execution.
+
+---
+
 ## Downstream must preserve
 
 Traceability from the current state and assessment through implementation, validation, and promotion.
+
+
+---
+
+→ **Next:** [Discovery Journey](../journeys/discovery/README.en.md)

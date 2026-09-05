@@ -48,6 +48,28 @@ The OBC works as memory of learning — not as a validation mechanism.
 - Validate a business flow before committing
 - Explore a technical approach before deciding
 
+## Conditions for Opening a Formal Experiment
+
+All four conditions must be true to justify opening a formal experiment:
+
+1. **Falsifiable hypothesis** — it is possible to define what would invalidate the hypothesis
+2. **Unanswered hypothesis** — the answer does not exist in already available evidence
+3. **Answer has decision value** — it affects what will be built or how it will be built
+4. **Cost of ignoring > cost of experimenting** — the cost of assuming the hypothesis as true without testing is greater than the cost of the experiment
+
+If any condition fails, an experiment is not the right instrument: it may be internal research, a business decision, or work that already fits directly in Downstream.
+
+## Evidence Threshold
+
+The Evidence Threshold is the criterion that defines when the evidence collected is sufficient to bring the Decision Package to the CommitmentGate.
+
+**It is optional, but recommended.** When declared:
+- Must be recorded in `experiment.md` at the start of the experiment
+- Revisions to the criterion (loosening or tightening) must be recorded in `upstream-trail.md` with justification
+- Reaching the threshold does not automatically convene the CommitmentGate — it convenes the trio
+
+Without a declared Evidence Threshold, the stopping criterion is the judgment of the experiment author. In that case, the author is responsible for documenting in the Decision Package why the accumulated evidence is sufficient.
+
 ## Journeys in Upstream
 
 **Upstream is not a synonym for Discovery.** All 5 ProdOps journeys are available in Upstream — with advisory rigor. The engineer decides which to apply and with what depth.
@@ -79,6 +101,21 @@ In Upstream, code can reach different environments. There are three distinct act
 → [Discovery Journey in Upstream](../journeys/discovery/README.md) — exploration, experiments, Decision Package
 → [Delivery in Upstream](../journeys/delivery/README.md) — available phases with advisory rigor
 → [Sandbox Deploy](../journeys/discovery/README.md#sandbox-deploy-upstream) — deploy in a controlled environment without Downstream rigor
+
+## Perpetual Discovery — Anti-pattern
+
+Perpetual Discovery occurs when an experiment continues accumulating evidence indefinitely without advancing toward a commitment decision. The experiment did not fail — it never ended.
+
+**Four objective diagnostic signals:**
+
+| Signal | Criterion | Action |
+|--------|-----------|--------|
+| **S1** | No progression in `upstream-trail` for 3 or more consecutive sessions | Identify blocker; escalate to trio |
+| **S2** | Questions marked as "unanswerable with available evidence" for 5 or more days | Revisit hypothesis; consider CommitmentGate with Discard or Await outcome |
+| **S3** | Declared Evidence Threshold identified as unachievable without a new hypothesis, after 3 or more collection sessions | Reformulate hypothesis or revise threshold; record decision in trail |
+| **S4** | Stakeholder with blocked decision for 10 or more business days due to this experiment | Immediate CommitmentGate — the decision to wait longer is also a valid decision (Await outcome) |
+
+The presence of any signal does not require immediate closure — it requires **convening the trio to consciously decide** whether the experiment should continue, be suspended, or closed.
 
 ## Upstream closure — CommitmentGate
 
@@ -131,8 +168,11 @@ The Upstream → Downstream transition is mediated by the **CommitmentGate** —
 
 Minimum preconditions for convening the CommitmentGate:
 - Complete Decision Package
+- Evidence Threshold satisfied (if declared)
 - OBC Draft exists (at minimum the file with name and reference to the experiment)
 - Readable BDD draft
+
+**Decision Package verifiability criterion:** A trio member who did not participate in the experiment must be able to read the Decision Package and reach the same conclusions without additional verbal context. If the Decision Package requires oral explanation to be understood, it is not ready for the CommitmentGate.
 
 After the CommitmentGate with **Promote** outcome:
 
@@ -142,3 +182,8 @@ After the CommitmentGate with **Promote** outcome:
 4. Reliability Plan updated in `prodops/framework/journeys/assessment/reliability-plans/`
 
 → [Full process and Canonical Outcomes](../journeys/discovery/README.md#commitmentgate--transição-upstream--downstream)
+
+
+---
+
+→ **Next:** [Downstream Mode](downstream.en.md)

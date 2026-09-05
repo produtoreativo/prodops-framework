@@ -273,3 +273,8 @@ Findings feed Assessment when they indicate a systemic pattern — they are not 
 → [GitHub Workspace](github-workspace.en.md) — labels and fields by type
 → [OBC: full specification](obc.en.md)
 → [Journeys](journeys/README.en.md)
+
+
+---
+
+→ **Next:** [Product Deck](product-deck.en.md)

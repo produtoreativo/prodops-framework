@@ -125,3 +125,8 @@ Cada estágio define o peso relativo das métricas DORA estendidas. Nos estágio
 → [Fluxo do Framework](flow.md)
 → [Jornada Discovery](journeys/discovery/README.md)
 → [Spikes](journeys/discovery/spikes.md)
+
+
+---
+
+→ **Próximo:** [DORA Metrics](dora-metrics.md)

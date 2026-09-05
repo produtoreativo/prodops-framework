@@ -39,3 +39,8 @@ Código de produção não deve conter branches exclusivos de teste, hacks espec
 
 ## 11. Automation First
 Um agente deve sempre tentar executar uma ação ele mesmo antes de instruir um humano a fazê-la. Intervenção manual é último recurso (uma **Manual Exception** documentada), nunca o caminho padrão. Ordem canônica de tentativas: API → MCP → CLI → SDK → Browser Automation → Manual Exception apenas quando tudo mais falhar. Frases como "faça manualmente", "acesse a UI" ou "configure manualmente" são proibidas a menos que todas as opções de automação tenham sido demonstravelmente esgotadas e registradas em um Issue de rastreamento. Ver [automation-first.md](automation-first.md) para o fluxo de decisão completo.
+
+
+---
+
+→ **Próximo:** [Modelo Operacional](operating-model.md)

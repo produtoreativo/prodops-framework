@@ -139,6 +139,48 @@ Each product can adopt a profile that reweights the metrics according to its cur
 
 ---
 
+## Upstream Flow Metrics
+
+The DORA metrics and extensions above measure Downstream mode (delivery commitment). Upstream mode requires its own flow metrics, which measure the health of the uncertainty-reduction process before commitment.
+
+> **Status:** automated instrumentation proposed — manual collection available from experiment `upstream-trail.md` files.
+
+### TTE — Time to Evidence
+
+**What it measures:** time between the formal opening of an experiment and the first executable evidence produced.
+
+**Why it matters:** high TTE indicates the experiment is in prolonged planning or encountered an infrastructure impediment before producing real learning. It is the Upstream-mode analog of Lead Time for Change.
+
+**How to measure:** `timestamp(first evidence entry in upstream-trail)` − `timestamp(experiment opened)`.
+
+**Alert signal:** TTE > 5 business days without recorded evidence may indicate an undeclared blocker (correlates with S1 and S2 of Perpetual Discovery).
+
+---
+
+### Decision Latency
+
+**What it measures:** time between the Evidence Threshold being declared reached and the CommitmentGate being convened.
+
+**Why it matters:** high Decision Latency indicates the team has collected sufficient evidence but postponed the commitment decision. It is the interval between "we know enough" and "we decided what to do with it."
+
+**How to measure:** `timestamp(CommitmentGate convened)` − `timestamp(Evidence Threshold declared reached in upstream-trail)`.
+
+**Alert signal:** Decision Latency > 10 business days correlates with S4 of Perpetual Discovery — a stakeholder blocked waiting for a decision the team is already capable of making.
+
+---
+
+### Discovery WIP — Work in Progress
+
+**What it measures:** number of active Upstream experiments running simultaneously in the repository.
+
+**Why it matters:** high WIP in Upstream is analogous to high WIP in Downstream — each parallel experiment divides the team's attention and increases context-switching cost. WIP = 1 per team is the ideal; WIP > 3 requires explicit justification.
+
+**How to measure:** count of experiments with status `in progress` in `prodops/artifacts/experiments/`.
+
+**Reference:** see [Little's Law](https://en.wikipedia.org/wiki/Little%27s_law) — throughput = WIP / Lead Time. Reducing WIP increases completion speed of active experiments.
+
+---
+
 ## Supplementary metrics
 
 Used in specific profiles (especially `quality` and `ai_readiness`):
@@ -184,3 +226,8 @@ Used in specific profiles (especially `quality` and `ai_readiness`):
 → OBC → DORA Mapping: `prodops/artifacts/experiments/<slug>/evidence/obc-dora-mapping.md` (created by the product)
 → [Operation Journey](journeys/operation/README.en.md)
 → [Reliability Plans](../artifacts/plans/reliability/README.en.md)
+
+
+---
+
+→ **Next:** [Positioning — How to Explain ProdOps](positioning.en.md)

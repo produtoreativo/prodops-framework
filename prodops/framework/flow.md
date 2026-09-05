@@ -304,3 +304,8 @@ Ao descrever o fluxo macro, use **Exploration**. Ao referenciar a jornada espec�
 → [Modelo operacional](operating-model.md)
 → [Execution Model](execution-model/README.md)
 → [Jornadas](journeys/README.md)
+
+
+---
+
+→ **Próximo:** [Hierarquia de Backlogs](backlogs.md)

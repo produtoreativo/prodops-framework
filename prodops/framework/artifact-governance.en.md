@@ -282,3 +282,8 @@ Operation
 → [OBC: full lifecycle](glossary.en.md#obc-observable-business-contract)
 → [Operating model](operating-model.en.md)
 → [Official flow](flow.en.md)
+
+
+---
+
+→ **Next:** [Origin Streams](origin-streams.en.md)

@@ -125,3 +125,8 @@ Each stage defines the relative weight of the extended DORA metrics. In early st
 → [Framework Flow](flow.en.md)
 → [Discovery Journey](journeys/discovery/README.md)
 → [Spikes](journeys/discovery/spikes.md)
+
+
+---
+
+→ **Next:** [DORA Metrics](dora-metrics.en.md)

@@ -387,3 +387,8 @@ Diligence is the journey responsible for keeping backlogs synchronized at all le
 - `prodops/artifacts/plans/iteration-plan.md` — Iteration Plan
 - `prodops/framework/glossary.en.md` — canonical definitions
 - `prodops/framework/journeys/diligence/README.en.md` — Diligence Journey
+
+
+---
+
+→ **Next:** [Phases — Conception and Inception](phases.en.md)

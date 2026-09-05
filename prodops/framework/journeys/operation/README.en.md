@@ -91,3 +91,8 @@ Premortem + Owner Approval → Product Backlog (Inception)
 - **Assessment** receives signals from Operation to update risks and the Reliability Plan.
 - **Diligence** observes the operation and triggers verifications when anomalies are detected.
 - **Product Tracking List** receives new items originating from operational learnings.
+
+
+---
+
+→ **Next:** [Assessment Journey](../assessment/README.en.md)

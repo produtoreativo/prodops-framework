@@ -182,3 +182,8 @@ Após o CommitmentGate com outcome **Promover**:
 4. Reliability Plan atualizado em `prodops/framework/journeys/assessment/reliability-plans/`
 
 → [Processo completo e Outcomes Canônicos](../journeys/discovery/README.md#commitmentgate--transição-upstream--downstream)
+
+
+---
+
+→ **Próximo:** [Modo Downstream](downstream.md)

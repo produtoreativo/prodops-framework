@@ -399,3 +399,8 @@ Para o CommitmentGate emitir outcome **Promover**, confirmar que:
 O aprendizado é o resultado primário.
 
 A implementação é um meio para alcançar o aprendizado.
+
+
+---
+
+→ **Próximo:** [Jornada Delivery](../delivery/README.md)

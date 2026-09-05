@@ -129,3 +129,8 @@ ou que "precisaria ir para Downstream" para validar contra um provedor real.
 → [Principles](principles.md) — Princípio 2 (Upstream before commitment)
 → [OBC](obc.md) — seção "OBC no Upstream" e "OBC no Downstream"
 → [Flow](flow.md) — visão geral do ciclo completo
+
+
+---
+
+→ **Próximo:** [Filosofia do Contribuidor](contributor-philosophy.md)

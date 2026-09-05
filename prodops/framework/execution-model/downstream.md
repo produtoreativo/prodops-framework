@@ -153,3 +153,8 @@ O time e a liderança devem ser notificados. A regressão não é falha de proce
 ## O Downstream deve preservar
 
 Rastreabilidade desde o estado atual e o assessment até a implementação, validação e promoção.
+
+
+---
+
+→ **Próximo:** [Jornada Discovery](../journeys/discovery/README.md)

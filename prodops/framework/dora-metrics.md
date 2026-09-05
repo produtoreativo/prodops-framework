@@ -226,3 +226,8 @@ Usadas em perfis específicos (especialmente `quality` e `ai_readiness`):
 → Mapeamento OBC → DORA: `prodops/artifacts/experiments/<slug>/evidence/obc-dora-mapping.md` (criado pelo produto)
 → [Jornada Operation](journeys/operation/README.md)
 → [Reliability Plans](../artifacts/plans/reliability/README.md)
+
+
+---
+
+→ **Próximo:** [Posicionamento — Como Explicar o ProdOps](positioning.md)

@@ -21,6 +21,13 @@ Identify or create a verifiable contract (OpenAPI, AsyncAPI, BDD Feature, schema
 ## 7. Observability as a deliverable
 Logs, errors, metrics, and traceability are part of the implementation, not add-ons added afterward. A feature is not done if its behavior cannot be observed in production.
 
+Observability serves distinct roles in each execution mode:
+
+- **In Downstream:** observability *verifies the commitment* — SLOs, DORA metrics, and the Release Trail answer "is the commitment being honored?"
+- **In Upstream:** observability *makes uncertainty explicit* — the Evidence Package, Upstream Trail, and Decision Package answer "what do we know, what don't we know, and with what degree of confidence?"
+
+In Downstream, the absence of observability is a commitment violation. In Upstream, the absence of observability is the absence of evidence — the experiment cannot produce verifiable learning.
+
 ## 8. Evidence-based decisions
 Every delivery decision — promote, revert, accept risk — must be backed by recorded evidence. See [release-trail](../artifacts/trails/release-trail.md) and [operation/](journeys/operation/).
 
@@ -32,3 +39,8 @@ Production code must not contain test-only branches, environment-specific hacks,
 
 ## 11. Automation First
 An agent must always attempt to execute an action itself before instructing a human to do it. Manual intervention is a last resort (a documented **Manual Exception**), never the default path. Canonical order of attempts: API → MCP → CLI → SDK → Browser Automation → Manual Exception only when all else fails. Phrases like "do it manually", "access the UI", or "configure manually" are prohibited unless all automation options have been demonstrably exhausted and recorded in a tracking Issue. See [automation-first.md](automation-first.en.md) for the full decision tree.
+
+
+---
+
+→ **Next:** [Operating Model](operating-model.en.md)

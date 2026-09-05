@@ -204,3 +204,8 @@ Cinco conceitos do ProdOps não têm precedente rastreável nas 18 obras consult
 Uma proposta de mudança ao Framework que reduz a distinção Upstream/Downstream a uma questão de sequência, maturidade de artefato, ou ambiente de deploy está regredindo a uma das camadas anteriores da genealogia. A distinção central é **tipo de compromisso → tipo de rigor** — qualquer mudança que obscureça isso precisa de justificativa explícita.
 
 > **Referência canônica:** Apêndice de Pesquisa do livro [From Intent to Outcome](https://github.com/produtoreativo/from-intent-to-outcome/tree/master) — genealogia completa com 18 obras em 5 clusters temáticos.
+
+
+---
+
+→ **Próximo:** [Modo Upstream](execution-model/upstream.md)
