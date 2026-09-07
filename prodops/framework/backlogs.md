@@ -34,11 +34,12 @@ Business Intent Backlog    ← Business Intents (O que merece Discovery?)
           ↓
 OBC Partitioning           ← Business Intent → Local OBCs (um por produto)
           ↓
-Product Backlog            ← OBCs do produto (fonte de verdade)
+Product Intent Backlog (PIB) ← OBCs do produto (fonte de verdade)
     │         │
-    │         ├─ Icebox           [VIEW sobre Product Backlog: estado Refining]
-    │         ├─ Iteration Backlog [VIEW sobre Product Backlog: estado Committed]
-    │         └─ Release          [VIEW sobre Product Backlog: agrupado por versão]
+    │         ├─ Icebox           [VIEW sobre PIB: OBC ≠ Committed (Draft ou Refining)]
+    │         │    └─ Plano de Experimento [VIEW sobre experimentos Upstream ativos]
+    │         ├─ Iteration Backlog [VIEW sobre PIB: OBC = Committed]
+    │         └─ Release          [VIEW sobre PIB: agrupado por versão]
     │
     │   (item com Local OBC Committed + BDD + critérios satisfeitos)
           ↓
@@ -50,7 +51,8 @@ Operation                  ← Refinamento Contínuo do OBC
 ```
 
 > **Roadmap e Platform Release são VIEWs sobre o BIB** — não são backlogs separados.
-> **Icebox, Iteration Backlog e Release são VIEWs sobre o Product Backlog** — não são filas separadas. Um item não sai do Product Backlog ao entrar em uma dessas views; ele permanece no Product Backlog e recebe um estado que determina qual view o representa.
+> **Icebox, Iteration Backlog e Release são VIEWs sobre o PIB** — não são filas separadas. Um item não sai do PIB ao entrar em uma dessas views; ele permanece no PIB e o estado do Local OBC determina qual view o representa.
+> **Plano de Experimento é uma VIEW sobre o Icebox** — lista os experimentos Upstream ativos neste momento.
 
 ---
 
@@ -205,9 +207,11 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 
 ---
 
-### Product Backlog
+### Product Intent Backlog (PIB)
 
 **Natureza:** Backlog — fonte de verdade de todo trabalho aceito pelo produto. Os itens vivem aqui do aceite até a entrega. Icebox, Iteration Backlog e Release são VIEWs sobre estes itens, não destinos separados.
+
+> **Simetria com o BIB:** O Business Intent Backlog (BIB) opera na plataforma; o Product Intent Backlog (PIB) opera no produto. Ambos contêm Business Intents com seus OBCs associados. O que os distingue é o escopo: o BIB governa intenções de plataforma com Global OBCs; o PIB governa intenções de produto com Local OBCs.
 
 **Pergunta:** O que foi oficialmente aceito pelo Product Owner?
 
@@ -226,7 +230,7 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 - O item inicia seu ciclo de vida rastreável no produto.
 - O item recebe o estado inicial **Draft**. Quando o Discovery ativo começa, transiciona para **Refining** e passa a ser representado na VIEW Icebox.
 
-**Após a entrada, a origem deixa de importar.** O item evolui de estado no Product Backlog: Draft → Refining (VIEW Icebox) → Committed (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Operational.
+**Após a entrada, a origem deixa de importar.** O item evolui de estado no PIB: Draft (VIEW Icebox) → Refining (VIEW Icebox) → Committed (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Released.
 
 > **Promoção de Upstream:** Um item promovido de Upstream que satisfaz os critérios do estado Committed pula o refinamento no Icebox e aparece na VIEW Iteration Backlog. O Product Owner ainda precisa selecioná-lo explicitamente para o Iteration Plan.
 
@@ -236,11 +240,11 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 
 ### Icebox
 
-**Natureza:** VIEW sobre o Product Backlog — não é uma fila separada. Representa os itens do Product Backlog que ainda estão em refinamento: Local OBC incompleto, decisões em aberto, Discovery em andamento.
+**Natureza:** VIEW sobre o PIB — não é uma fila separada. Representa todos os itens do PIB cujo Local OBC ainda não atingiu o estado Committed: inclui itens recém-criados (Draft) e itens em refinamento ativo (Refining).
 
-**Pergunta:** Quais itens do Product Backlog ainda estão sendo refinados para Delivery?
+**Pergunta:** Quais itens do PIB ainda não estão prontos para Delivery?
 
-**O que representa:** Um item está na VIEW Icebox enquanto o Local OBC ainda não atingiu o estado Committed. O Discovery necessário ocorre neste estado. O estado do Local OBC é **Refining**.
+**O que representa:** Um item está na VIEW Icebox enquanto o Local OBC está em **Draft ou Refining** — ou seja, enquanto o CommitmentGate ainda não foi executado com outcome Promover. O CommitmentGate é o que move um item do Icebox para o Iteration Backlog, independentemente de o item ter passado por experimentos Upstream ou ter entrado diretamente no PIB a partir de um Business Signal.
 
 **O Discovery no estado Icebox pode ser:**
 - **Funcional** — entender o que deve ser construído
@@ -250,6 +254,24 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 **Transição de estado:** O item sai da VIEW Icebox quando o Local OBC atinge o estado Committed — passa a ser representado na VIEW Iteration Backlog.
 
 **Artefato canônico:** `prodops/artifacts/product/backlogs/icebox-backlog.md`
+
+---
+
+### Plano de Experimento
+
+**Natureza:** VIEW sobre o Icebox — não é uma fila separada. Representa os itens do Icebox que possuem um experimento Upstream ativo no momento.
+
+**Pergunta:** Quais hipóteses estão sendo investigadas agora?
+
+**O que representa:** Um item aparece nesta VIEW quando possui `experiment.md` e `upstream-trail.md` em andamento. Itens do Icebox sem experimento ativo — por exemplo, aguardando uma decisão de negócio externa — não aparecem aqui.
+
+**Não é:** Uma lista de tarefas ou um plano de sprint. Não define sequência nem impõe prazo. É um instrumento de visibilidade do trabalho Upstream e controle de Discovery WIP.
+
+**Discovery WIP:** O número de experimentos Upstream ativos simultaneamente é o limite de WIP do Plano de Experimento. Cada time define seu próprio limite; o Plano de Experimento torna esse limite visível e controlável.
+
+**Artefato canônico:** `prodops/artifacts/product/backlogs/experiment-plan.md`
+
+→ Definição completa: [`upstream-plan.md`](upstream-plan.md)
 
 ---
 
@@ -371,7 +393,8 @@ A Diligence é a jornada responsável por manter os backlogs sincronizados em to
 | OBC Partitioning | — | Como decompor o Global OBC em Local OBCs? | Portfolio PM + Tech Leads |
 | Product Tracking List | Business Signals | Quais Business Signals merecem atenção neste produto? | Product Repository |
 | Product Backlog | Business Intents | O que foi oficialmente aceito pelo Product Owner? | Product Owner |
-| Icebox (VIEW sobre Product Backlog) | Business Intents | O que ainda está sendo preparado para Delivery? (Refining) | Product Owner + Tech Lead |
+| Icebox (VIEW sobre PIB) | Business Intents | O que ainda não passou pelo CommitmentGate? (Draft ou Refining) | Product Owner + Tech Lead |
+| Plano de Experimento (VIEW sobre Icebox) | Business Intents | Quais hipóteses Upstream estão ativas agora? | PM + Autor do experimento |
 | Iteration Backlog (VIEW sobre Product Backlog) | Business Intents | O que está pronto para ser desenvolvido? (Committed) | Product Owner |
 | Release (VIEW sobre Product Backlog) | Business Intents | O que compõe esta versão do produto? | Product Owner |
 | Iteration Plan | Business Intents | O que está sendo executado nesta iteração? | Time de Delivery |
@@ -382,9 +405,11 @@ A Diligence é a jornada responsável por manter os backlogs sincronizados em to
 
 - `prodops/artifacts/product/backlogs/tracking-list.md` — Product Tracking List
 - `prodops/artifacts/product/backlogs/icebox-backlog.md` — Icebox
+- `prodops/artifacts/product/backlogs/experiment-plan.md` — Plano de Experimento
 - `prodops/artifacts/obcs/` — OBCs committed
 - `prodops/artifacts/product/backlogs/iteration-backlog.md` — Iteration Backlog
 - `prodops/artifacts/plans/iteration-plan.md` — Iteration Plan
+- `prodops/framework/upstream-plan.md` — Plano de Experimento (definição canônica)
 - `prodops/framework/glossary.md` — definições canônicas
 - `prodops/framework/journeys/diligence/README.md` — Jornada Diligence
 

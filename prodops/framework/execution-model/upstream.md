@@ -117,9 +117,21 @@ O Perpetual Discovery ocorre quando um experimento continua acumulando evidênci
 
 A presença de qualquer sinal não exige encerramento imediato — exige **convocação do trio para decidir conscientemente** se o experimento deve continuar, ser suspenso ou encerrado.
 
+## Coordenação do Upstream — Plano de Experimento
+
+O **Plano de Experimento** é o artefato de coordenação do modo Upstream: uma VIEW sobre o Icebox listando os experimentos com hipótese ativa. É o equivalente Upstream do Iteration Plan — governa exploração como o Iteration Plan governa entrega.
+
+O Plano de Experimento não define sequência nem impõe prazo. É um instrumento de visibilidade e controle de Discovery WIP — o número de experimentos Upstream ativos simultaneamente.
+
+→ [Definição completa do Plano de Experimento](../upstream-plan.md)
+
+---
+
 ## Encerramento do Upstream — CommitmentGate
 
 O Upstream não termina automaticamente. O trio (PM + Tech Lead + Autor) é convocado explicitamente quando o Decision Package estiver pronto. Esse gate é o **CommitmentGate** — ele decide o destino da *capability*, não do código.
+
+**O CommitmentGate pode ocorrer em qualquer momento do Upstream** — não apenas ao final de um experimento completo. Pode acontecer logo após a abertura do experimento (se o trio decidir que a hipótese é suficientemente clara para comprometer), no meio da exploração (quando evidências parciais já satisfazem o Evidence Threshold), ou ao final (quando o Decision Package está completo). O CommitmentGate também pode ocorrer **na entrada do PIB diretamente a partir de um Business Signal** — quando o contexto de negócio é suficientemente claro e nenhum experimento Upstream é necessário antes de comprometer.
 
 Existem **6 outcomes canônicos**. Cada um tem protocolo de ação distinto:
 

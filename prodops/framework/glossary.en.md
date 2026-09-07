@@ -362,7 +362,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 - **Global OBC** — strategic, belongs to BIB/Portfolio, covers the entire business intent.
 - **Local OBC** — product-specific, belongs to one Product Backlog, specializes/partitions the Global OBC.
 
-**States (contract maturity):** Draft → Refining → Committed → In Delivery → Operational → Archived.
+**States (contract maturity):** Draft → Refining → Committed → In Delivery → Released → Archived.
 
 **Creation:** Born when a Business Intent is accepted. There is no OBC for Business Signals — the OBC is only born from Business Intents. In the global flow, a **Global OBC Draft** is born upon entry into the Business Intent Backlog. In the local flow, a **Local OBC Draft** is born upon entry into the Product Backlog (either via OBC Partitioning or direct local approval).
 
@@ -392,7 +392,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 **Location:** Platform portfolio repository (external to product repositories).
 
-**Lifecycle:** Draft → Refining (during Discovery in BIB) → Operational (after all derived Local OBCs are in production) → Archived
+**Lifecycle:** Draft → Refining (during Discovery in BIB) → Released (after all derived Local OBCs are in production) → Archived
 
 **Owner:** Portfolio PM
 
@@ -421,7 +421,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 **Location:** `prodops/artifacts/obcs/<slug>.md` (when committed)
 
-**Lifecycle:** Draft → Refining (Icebox) → Committed (Iteration Backlog) → In Delivery → Operational (Operation) → Archived
+**Lifecycle:** Draft → Refining (Icebox) → Committed (Iteration Backlog) → In Delivery → Released (Operation) → Archived
 
 **Owner:** Product Manager + Tech Lead of the product
 

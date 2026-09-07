@@ -142,7 +142,7 @@ Os estados representam **maturidade do contrato**, não estado do software.
 | **Refining** | Product Backlog — view Icebox | Em refinamento ativo; a jornada Discovery pode estar em andamento (no modo Upstream ou Downstream) |
 | **Committed** | Product Backlog — view Iteration Backlog | Informações mínimas validadas; pronto para Delivery |
 | **In Delivery** | Iteration Plan → Delivery | Em execução; implementação em andamento |
-| **Operational** | Operation | Em produção; atualizado com evidências operacionais |
+| **Released** | Operation | Em produção; atualizado com evidências operacionais |
 | **Archived** | — | Intenção encerrada; histórico preservado |
 
 ### Transições de estado canônicas
@@ -152,8 +152,8 @@ Os estados representam **maturidade do contrato**, não estado do software.
 Draft → Refining         (CommitmentGate outcome Promover — Momento 2)
 Refining → Committed     (Readiness Gate aprovado — Momento 3)
 Committed → In Delivery  (Bootstrap.Started)
-In Delivery → Operational (Promote concluído)
-Operational → Archived   (Deprecação ou substituição)
+In Delivery → Released (Promote concluído)
+Released → Archived   (Deprecação ou substituição)
 Refining → Archived      (CommitmentGate outcome Descartar)
 In Delivery → Refining   (Regressão Downstream → Upstream: hipótese invalidada durante Delivery)
 ```
@@ -174,7 +174,7 @@ A transição `In Delivery → Refining` é uma suspensão formal de compromisso
 | BIB — view Platform Release | Draft | Item agrupado em versão de plataforma |
 | Discovery (BIB) | Refining | Exploração refina o Global OBC; hipóteses testadas |
 | Particionamento do OBC | Refining | Local OBCs criados; rastreabilidade estabelecida |
-| Operation | Operational | Atualizado com evidências consolidadas de todos os produtos |
+| Operation | Released | Atualizado com evidências consolidadas de todos os produtos |
 | — | Archived | Intenção encerrada |
 
 ### Local OBC
@@ -186,7 +186,7 @@ A transição `In Delivery → Refining` é uma suspensão formal de compromisso
 | Assessment Review | Candidato a Committed | OBC revisado por PM + Tech Lead; seções obrigatórias validadas |
 | Product Backlog — view Iteration Backlog | Committed | Critérios mínimos validados; Downstream pode iniciar |
 | Iteration Plan / Delivery | In Delivery | Guia a implementação; BDD Feature o operacionaliza |
-| Operation | Operational | Em produção; complementado com métricas, SLOs, incidentes |
+| Operation | Released | Em produção; complementado com métricas, SLOs, incidentes |
 | — | Archived | Intenção encerrada |
 
 O OBC registra o **histórico vivo do trabalho**: por quais estados passou, quando, decisões tomadas, como os critérios evoluíram, referências a experimentos e riscos.
@@ -270,7 +270,7 @@ Todas as Skills do Downstream utilizam o Local OBC como principal fonte de conte
 | **Quem modifica** | Portfolio PM, Tech Leads (com registro de mudanças) |
 | **Quem aprova** | Portfolio PM |
 | **Consumidores** | Local OBCs, Particionamento do OBC, Roadmap, Platform Release |
-| **Ciclo de vida** | Draft → Refining → Operational → Archived |
+| **Ciclo de vida** | Draft → Refining → Released → Archived |
 | **Jornadas** | Discovery (BIB), Operation |
 
 ### Local OBC
@@ -283,7 +283,7 @@ Todas as Skills do Downstream utilizam o Local OBC como principal fonte de conte
 | **Quem modifica** | Product Manager, Tech Lead, engenheiros (com registro de mudanças) |
 | **Quem aprova** | Product Manager + Tech Lead (Assessment Review) |
 | **Consumidores** | Delivery, Reliability Plan, BDD Feature, Release Trail, Iteration Plan |
-| **Ciclo de vida** | Draft → Refining → Committed → In Delivery → Operational → Archived |
+| **Ciclo de vida** | Draft → Refining → Committed → In Delivery → Released → Archived |
 | **Jornadas** | Discovery, Delivery, Operation, Assessment, Diligence |
 
 ---

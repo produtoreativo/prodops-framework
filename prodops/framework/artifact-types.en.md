@@ -83,7 +83,7 @@ Execution artifacts (`Iteration Plan`, `Context Capsule`, `Release Trail`) are p
 
 **Canonical path:** `prodops/artifacts/obcs/<slug>.md`
 
-**Possible statuses:** `Draft` → `Refining` → `Committed` → `In Delivery` → `Operational` → `Archived`
+**Possible statuses:** `Draft` → `Refining` → `Committed` → `In Delivery` → `Released` → `Archived`
 
 **Relations:** presupposed by `bdd-feature`, `reliability-plan`, `context-capsule`, and `release-trail`. Without OBC Committed, there is no entry into the Iteration Plan.
 
@@ -181,7 +181,7 @@ Execution artifacts (`Iteration Plan`, `Context Capsule`, `Release Trail`) are p
 
 **What it is:** a single-page canvas that aggregates the essential information about a product — vision, services with SLOs, team, execution architecture, reliability matrix, analytics, and stakeholders. Inspired by Toyota's A3 Report.
 
-**Born when:** the product exists as a recognized entity and the team needs a consolidated operational reference artifact — typically after the first service enters Operational.
+**Born when:** the product exists as a recognized entity and the team needs a consolidated operational reference artifact — typically after the first service enters Released.
 
 **Journey:** cross-cutting — consumed by Assessment (premortems, maturity evaluation), Discovery (scope alignment), Delivery (Bootstrap context), and Operation (continuous metrics update).
 

@@ -354,7 +354,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 **Definição:** O contrato vivo que representa uma Business Intent durante todo o seu ciclo de vida. Existe em dois níveis: **Global OBC** (contrato de negócio estratégico, pertence ao BIB/Portfolio) e **Local OBC** (contrato de produto, pertence ao Product Backlog/Product Owner). Ver entradas separadas abaixo.
 
-**Estados (maturidade do contrato):** Draft → Refining → Committed → In Delivery → Operational → Archived.
+**Estados (maturidade do contrato):** Draft → Refining → Committed → In Delivery → Released → Archived.
 
 **Criação:** Um OBC nasce APENAS quando uma Business Intent é aceita. O Global OBC nasce ao entrar no Business Intent Backlog. O Local OBC nasce após o Particionamento do OBC (fluxo global) ou ao entrar no Product Backlog (fluxo local). Não existe OBC para Business Signals — o OBC só nasce de Business Intents.
 
@@ -374,7 +374,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 **Localização:** Repositório de portfólio da plataforma (externo a repositórios de produto).
 
-**Ciclo de vida:** Draft → Refining → Operational → Archived. Não desaparece após a decomposição — continua evoluindo.
+**Ciclo de vida:** Draft → Refining → Released → Archived. Não desaparece após a decomposição — continua evoluindo.
 
 **Relação com outros conceitos:** Decomposto em N Local OBCs pelo OBC Partitioning. Nunca use os termos "pai" ou "filho" — use decomposição/especialização/partição.
 
@@ -392,7 +392,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 **Localização:** `prodops/artifacts/obcs/<slug>.md`
 
-**Ciclo de vida:** Draft → Refining → Committed → In Delivery → Operational → Archived.
+**Ciclo de vida:** Draft → Refining → Committed → In Delivery → Released → Archived.
 
 **Não duplica:** quando houver Global OBC, seu conteúdo estratégico. Sempre referencia, nunca copia.
 
@@ -632,7 +632,7 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 **Dois caminhos de entrada:** (1) Local OBC via OBC Partitioning, direcionado pelo Portfolio após Discovery no BIB (fluxo global); (2) Business Signal promovido via Premortem + Análise de Risco Preliminar com Owner Approval (Local OBC Draft nasce aqui, fluxo local).
 
-**Após a entrada, a origem deixa de importar.** Todos os itens seguem a mesma jornada: Icebox (Refining) → Iteration Backlog (Committed) → Iteration Plan (In Delivery) → Operation (Operational).
+**Após a entrada, a origem deixa de importar.** Todos os itens seguem a mesma jornada: Icebox (Refining) → Iteration Backlog (Committed) → Iteration Plan (In Delivery) → Operation (Released).
 
 **Relação com outros conceitos:** Ponto de convergência dos fluxos global e local. Nunca recebe Business Signals diretamente — apenas OBCs. Ver [`backlogs.md`](backlogs.md).
 

@@ -34,11 +34,12 @@ Business Intent Backlog    ← Business Intents (What deserves Discovery?)
           ↓
 OBC Partitioning           ← Business Intent → Local OBCs (one per product)
           ↓
-Product Backlog            ← Product OBCs (source of truth)
+Product Intent Backlog (PIB) ← Product OBCs (source of truth)
     │         │
-    │         ├─ Icebox           [VIEW over Product Backlog: Refining state]
-    │         ├─ Iteration Backlog [VIEW over Product Backlog: Committed state]
-    │         └─ Release          [VIEW over Product Backlog: grouped by version]
+    │         ├─ Icebox           [VIEW over PIB: OBC ≠ Committed (Draft or Refining)]
+    │         │    └─ Experiment Plan [VIEW over active Upstream experiments]
+    │         ├─ Iteration Backlog [VIEW over PIB: OBC = Committed]
+    │         └─ Release          [VIEW over PIB: grouped by version]
     │
     │   (item with Committed Local OBC + BDD + criteria satisfied)
           ↓
@@ -50,7 +51,8 @@ Operation                  ← Continuous OBC Refinement
 ```
 
 > **Roadmap and Platform Release are VIEWs over the BIB** — not separate backlogs.
-> **Icebox, Iteration Backlog, and Release are VIEWs over the Product Backlog** — not separate queues. An item does not leave the Product Backlog when entering one of these views; it remains in the Product Backlog and receives a state that determines which view represents it.
+> **Icebox, Iteration Backlog, and Release are VIEWs over the PIB** — not separate queues. An item does not leave the PIB when entering one of these views; it remains in the PIB and the Local OBC state determines which view represents it.
+> **Experiment Plan is a VIEW over the Icebox** — lists the Upstream experiments with an active hypothesis at this moment.
 
 ---
 
@@ -205,13 +207,15 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 
 ---
 
-### Product Backlog
+### Product Intent Backlog (PIB)
 
 **Nature:** Backlog — source of truth for all work accepted by the product. Items live here from acceptance through delivery. Icebox, Iteration Backlog, and Release are VIEWs over these items, not separate destinations.
 
+> **Symmetry with the BIB:** The Business Intent Backlog (BIB) operates at the platform level; the Product Intent Backlog (PIB) operates at the product level. Both contain Business Intents with their associated OBCs. What distinguishes them is scope: the BIB governs platform intents with Global OBCs; the PIB governs product intents with Local OBCs.
+
 **Question:** What has been officially accepted by the Product Owner?
 
-**Contains exclusively:** Business Intents. Each Intent owns a Local OBC as its contract document. The Product Backlog never contains isolated Business Signals or Global OBCs.
+**Contains exclusively:** Business Intents. Each Intent owns a Local OBC as its contract document. The PIB never contains isolated Business Signals or Global OBCs.
 
 **Two entry paths:**
 
@@ -226,7 +230,7 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 - The item begins its traceable lifecycle in the product.
 - The item receives the initial state **Draft**. When active Discovery starts, it transitions to **Refining** and is represented in the Icebox VIEW.
 
-**After entry, the origin no longer matters.** The item evolves in state within the Product Backlog: Draft → Refining (VIEW Icebox) → Committed (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Operational.
+**After entry, the origin no longer matters.** The item evolves in state within the PIB: Draft (VIEW Icebox) → Refining (VIEW Icebox) → Committed (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Released.
 
 > **Upstream promotion:** An item promoted from Upstream that satisfies the Committed criteria skips Icebox refinement and appears in the Iteration Backlog VIEW. The Product Owner must still select it explicitly for the Iteration Plan.
 
@@ -236,20 +240,38 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 
 ### Icebox
 
-**Nature:** VIEW over the Product Backlog — not a separate queue. Represents Product Backlog items that are still in refinement: incomplete Local OBC, open decisions, Discovery in progress.
+**Nature:** VIEW over the PIB — not a separate queue. Represents all PIB items whose Local OBC has not yet reached Committed state: newly created items (Draft) and items in active refinement (Refining).
 
-**Question:** Which Product Backlog items are still being refined for Delivery?
+**Question:** Which PIB items have not yet passed through the CommitmentGate?
 
-**What it represents:** An item is in the Icebox VIEW while its Local OBC has not yet reached Committed state. The necessary Discovery happens in this state. The Local OBC state is **Refining**.
+**What it represents:** An item is in the Icebox VIEW while its Local OBC is in **Draft or Refining** state — that is, while the CommitmentGate has not yet been executed with a Promover outcome. The CommitmentGate is what moves an item from Icebox to the Iteration Backlog, regardless of whether the item went through Upstream experiments or entered the PIB directly from a Business Signal.
 
 **Discovery in the Icebox state can be:**
 - **Functional** — understand what must be built
 - **Technical** — understand how to build with confidence
 - **Operational** — understand how to operate and monitor
 
-**State transition:** The item leaves the Icebox VIEW when the Local OBC reaches the Committed state — it is then represented in the Iteration Backlog VIEW.
+**State transition:** The item leaves the Icebox VIEW when the Local OBC reaches Committed state — it is then represented in the Iteration Backlog VIEW.
 
 **Canonical artifact:** `prodops/artifacts/product/backlogs/icebox-backlog.md`
+
+---
+
+### Experiment Plan
+
+**Nature:** VIEW over the Icebox — not a separate queue. Represents Icebox items that have an active Upstream experiment at this moment.
+
+**Question:** Which hypotheses are being investigated right now?
+
+**What it represents:** An item appears in this VIEW when it has an `experiment.md` and `upstream-trail.md` in progress. Icebox items without an active experiment — for example, waiting for an external business decision — do not appear here.
+
+**Not a task list or sprint plan.** The Experiment Plan does not define sequence or impose deadlines. It is a visibility and Discovery WIP control instrument — not a sprint planning artifact.
+
+**Discovery WIP:** The number of simultaneously active Upstream experiments is the WIP limit of the Experiment Plan. Each team defines its own limit; the Experiment Plan makes that limit visible and controllable.
+
+**Canonical artifact:** `prodops/artifacts/product/backlogs/experiment-plan.md`
+
+→ Full definition: [`upstream-plan.md`](upstream-plan.md)
 
 ---
 
@@ -370,10 +392,11 @@ Diligence is the journey responsible for keeping backlogs synchronized at all le
 | Platform Release (VIEW over BIB) | Business Intents | What composes this platform version? | Portfolio |
 | OBC Partitioning | — | How to decompose the Global OBC into Local OBCs? | Portfolio PM + Tech Leads |
 | Product Tracking List | Business Signals | What Business Signals deserve attention in this product? | Product Repository |
-| Product Backlog | Business Intents | What has been officially accepted by the Product Owner? | Product Owner |
-| Icebox (VIEW over Product Backlog) | Business Intents | What is still being prepared for Delivery? (Refining) | Product Owner + Tech Lead |
-| Iteration Backlog (VIEW over Product Backlog) | Business Intents | What is ready to be developed? (Committed) | Product Owner |
-| Release (VIEW over Product Backlog) | Business Intents | What composes this product version? | Product Owner |
+| Product Intent Backlog (PIB) | Business Intents | What has been officially accepted by the Product Owner? | Product Owner |
+| Icebox (VIEW over PIB) | Business Intents | What has not yet passed through the CommitmentGate? (Draft or Refining) | Product Owner + Tech Lead |
+| Experiment Plan (VIEW over Icebox) | Business Intents | Which Upstream hypotheses are active right now? | PM + Experiment Author |
+| Iteration Backlog (VIEW over PIB) | Business Intents | What is ready to be developed? (Committed) | Product Owner |
+| Release (VIEW over PIB) | Business Intents | What composes this product version? | Product Owner |
 | Iteration Plan | Business Intents | What is being executed in this iteration? | Delivery Team |
 
 ---
@@ -382,9 +405,11 @@ Diligence is the journey responsible for keeping backlogs synchronized at all le
 
 - `prodops/artifacts/product/backlogs/tracking-list.md` — Product Tracking List
 - `prodops/artifacts/product/backlogs/icebox-backlog.md` — Icebox
+- `prodops/artifacts/product/backlogs/experiment-plan.md` — Experiment Plan
 - `prodops/artifacts/obcs/` — Committed OBCs
 - `prodops/artifacts/product/backlogs/iteration-backlog.md` — Iteration Backlog
 - `prodops/artifacts/plans/iteration-plan.md` — Iteration Plan
+- `prodops/framework/upstream-plan.md` — Experiment Plan (canonical definition)
 - `prodops/framework/glossary.en.md` — canonical definitions
 - `prodops/framework/journeys/diligence/README.en.md` — Diligence Journey
 
