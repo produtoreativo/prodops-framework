@@ -57,6 +57,7 @@ fi
 log "Creating .claude/ directory structure..."
 mkdir -p "${TARGET_DIR}/.claude/skills"
 mkdir -p "${TARGET_DIR}/.claude/agents"
+mkdir -p "${TARGET_DIR}/.claude/rules"
 
 # ── 2. Materialize skills → .claude/skills/ ──────────────────────────────────
 
@@ -110,7 +111,39 @@ else
   log "  agents: ${installed} installed, ${skipped} skipped"
 fi
 
-# ── 4. Create .claude/settings.json template ─────────────────────────────────
+# ── 4. Install .claude/rules/ from canonical templates ───────────────────────
+
+RULES_SRC="${REPO_ROOT}/prodops/templates/claude/rules"
+
+if [[ ! -d "${RULES_SRC}" ]]; then
+  RULES_SRC="${TARGET_DIR}/prodops/templates/claude/rules"
+fi
+
+if [[ -d "${RULES_SRC}" ]]; then
+  log "Installing canonical rules → .claude/rules/..."
+  rules_installed=0
+  rules_skipped=0
+
+  while IFS= read -r src_file; do
+    rule_name="$(basename "${src_file}")"
+    target_file="${TARGET_DIR}/.claude/rules/${rule_name}"
+
+    if [[ -f "${target_file}" && "${FORCE}" == "false" ]]; then
+      log "  SKIP (exists): .claude/rules/${rule_name}"
+      ((rules_skipped++))
+    else
+      cp "${src_file}" "${target_file}"
+      log "  created: .claude/rules/${rule_name}"
+      ((rules_installed++))
+    fi
+  done < <(find "${RULES_SRC}" -maxdepth 1 -name "*.md" | LC_ALL=C sort)
+
+  log "  rules: ${rules_installed} installed, ${rules_skipped} skipped"
+else
+  warn "prodops/templates/claude/rules/ not found — .claude/rules/ will be empty"
+fi
+
+# ── 5. Create .claude/settings.json template ─────────────────────────────────
 
 SETTINGS="${TARGET_DIR}/.claude/settings.json"
 
@@ -150,13 +183,14 @@ else
   log "SKIP (exists): .claude/settings.json"
 fi
 
-# ── 5. Summary ────────────────────────────────────────────────────────────────
+# ── 6. Summary ────────────────────────────────────────────────────────────────
 
 printf '\n'
 log ".claude/ installation complete at: ${TARGET_DIR}"
 printf '\n'
 log "Next steps:"
 log "  1. Review .claude/agents/ — adjust product-specific tool constraints"
-log "  2. Review .claude/settings.json — set correct permission allowlist"
-log "  3. Commit .claude/ to version control (exclude .claude/worktrees/ in .gitignore)"
-log "  4. Run: bash prodops/scripts/doctor.sh"
+log "  2. Review .claude/rules/ — customize lifecycle rules for this product"
+log "  3. Review .claude/settings.json — set correct permission allowlist"
+log "  4. Commit .claude/ to version control (exclude .claude/worktrees/ in .gitignore)"
+log "  5. Run: bash prodops/scripts/doctor.sh"
