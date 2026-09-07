@@ -14,8 +14,8 @@ Esta skill cobre dois gates sequenciais do lifecycle canônico:
 1. **CommitmentGate** — transição Upstream → Downstream Declared
 2. **Readiness Gate** — transição Downstream Declared → Downstream Ready
 
-→ Para exploração Upstream que antecede o CommitmentGate, use `/upstream`.
-→ Para execução da jornada Delivery após o Readiness Gate, use `/downstream`.
+→ Para trabalho no modo Upstream (sem compromisso de entrega), use `/upstream`.
+→ Para executar o ciclo comprometido de entrega no modo Downstream (CI Sync + CI Async), use `/downstream`.
 → Para manutenção de estado dos artefatos, use `/diligence`.
 
 ---
@@ -170,7 +170,7 @@ O Readiness Gate verifica que um item em Downstream Declared tem todos os pré-r
 
 **Readiness Gate (aprovado):**
 - Confirmação formal de Downstream Ready
-- Context capsule pronto para o Bootstrap da jornada Delivery
+- Context capsule pronto para o Bootstrap do CI Sync (modo Downstream)
 
 ---
 

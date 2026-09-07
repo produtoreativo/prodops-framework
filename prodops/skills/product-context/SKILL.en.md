@@ -16,9 +16,9 @@ Product Context is the mandatory starting point for any execution that needs con
 - I need to understand what lifecycle stage this OBC is at
 - I want to know which experiments were conducted for this capability
 
-→ To start Upstream exploration, use `/upstream`.
+→ For work in Upstream mode (without delivery commitment), use `/upstream`.
 → To execute the CommitmentGate, use `/commitment`.
-→ To start delivery, use `/downstream`.
+→ To execute committed delivery in Downstream mode, use `/downstream`.
 
 ---
 

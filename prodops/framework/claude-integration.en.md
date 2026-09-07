@@ -66,8 +66,8 @@ Skills are authoritative execution rules for each action in the lifecycle. Each 
 | `intent` | Business Signal → Product Intent | `/intent` |
 | `commitment` | CommitmentGate + Readiness Gate | `/commitment` |
 | `product-context` | Current state reading | `/product-context` |
-| `upstream` | Context Discovery (exploration) | `/upstream` |
-| `downstream` | Iteration + Delivery | `/downstream` |
+| `upstream` | Any work in Upstream mode (without delivery commitment) | `/upstream` |
+| `downstream` | Committed delivery cycle in Downstream mode (CI Sync + CI Async) | `/downstream` |
 | `evidence` | Evidence (Upstream + Downstream) | `/evidence` |
 | `outcome` | Business + Product Outcome | `/outcome` |
 | `diligence` | Cross-cutting synchronization | `/diligence` |

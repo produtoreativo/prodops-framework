@@ -11,7 +11,7 @@ Use esta skill para formalizar intenções — do sinal ao Product Backlog — s
 
 A Intent Skill opera exclusivamente sobre os dois primeiros estágios do lifecycle canônico: **Business Signal** e **Business Intent / Product Intent**. Não inclui exploração, CommitmentGate nem Delivery.
 
-→ Para exploração Upstream, use `/upstream`.
+→ Para trabalho no modo Upstream (sem compromisso de entrega), use `/upstream`.
 → Para CommitmentGate e transição Upstream → Downstream, use `/commitment`.
 → Para o contexto atual do produto, use `/product-context`.
 
@@ -87,7 +87,7 @@ O **Product Intent** é a formalização da Business Intent no nível do produto
 2. Adicionar o item ao Product Backlog (view Icebox) com estado Draft.
 3. Confirmar que a rastreabilidade está estabelecida: de qual Business Intent / Global OBC este Product Intent veio.
 
-**Condição de saída deste estágio:** Product Intent aceito no Product Backlog → pronto para Context Discovery (Upstream) ou para CommitmentGate direto (quando o contexto é suficiente).
+**Condição de saída deste estágio:** Product Intent aceito no Product Backlog → pronto para o estágio Context Discovery (em modo Upstream, sem compromisso de entrega) ou para CommitmentGate direto (quando o contexto é suficiente).
 
 ---
 

@@ -29,7 +29,7 @@ Toda intenção de trabalho passa pelo lifecycle canônico:
 
 ```
 Business Signal → Business Intent / Product Intent
-→ Context Discovery (Upstream) → CommitmentGate
+→ Context Discovery → CommitmentGate
 → Diligence & Readiness → Iteration → Delivery
 → Evidence → Outcome
 ```

@@ -18,7 +18,7 @@ Filled instances belong in `prodops/artifacts/`, never in `prodops/templates/`.
 
 ---
 
-## Discovery (Upstream)
+## Discovery Journey — Experiments in Upstream Mode
 
 | Template | Usage | Canonical location |
 |---|---|---|

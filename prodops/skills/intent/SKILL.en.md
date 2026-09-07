@@ -13,7 +13,7 @@ Use this skill to formalize intents — from signal to Product Backlog — witho
 
 The Intent Skill operates exclusively over the first two stages of the canonical lifecycle: **Business Signal** and **Business Intent / Product Intent**. It does not include exploration, CommitmentGate, or Delivery.
 
-→ For Upstream exploration, use `/upstream`.
+→ For work in Upstream mode (without delivery commitment), use `/upstream`.
 → For CommitmentGate and Upstream → Downstream transition, use `/commitment`.
 → For current product context, use `/product-context`.
 
@@ -89,7 +89,7 @@ When the Business Intent does not come from the Portfolio:
 2. Add the item to the Product Backlog (Icebox view) with Draft state.
 3. Confirm traceability is established: which Business Intent / Global OBC this Product Intent came from.
 
-**Stage exit condition:** Product Intent accepted in the Product Backlog → ready for Context Discovery (Upstream) or for direct CommitmentGate (when context is sufficient).
+**Stage exit condition:** Product Intent accepted in the Product Backlog → ready for the Context Discovery stage (in Upstream mode, without delivery commitment) or for direct CommitmentGate (when context is sufficient).
 
 ---
 

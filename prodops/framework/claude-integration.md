@@ -64,8 +64,8 @@ Skills são regras de execução autoritativas para cada ação no lifecycle. Ca
 | `intent` | Business Signal → Product Intent | `/intent` |
 | `commitment` | CommitmentGate + Readiness Gate | `/commitment` |
 | `product-context` | Leitura de estado atual | `/product-context` |
-| `upstream` | Context Discovery (exploração) | `/upstream` |
-| `downstream` | Iteration + Delivery | `/downstream` |
+| `upstream` | Qualquer trabalho no modo Upstream (sem compromisso de entrega) | `/upstream` |
+| `downstream` | Ciclo comprometido de entrega no modo Downstream (CI Sync + CI Async) | `/downstream` |
 | `evidence` | Evidence (Upstream + Downstream) | `/evidence` |
 | `outcome` | Business + Product Outcome | `/outcome` |
 | `diligence` | Sincronização transversal | `/diligence` |

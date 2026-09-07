@@ -6,7 +6,7 @@ Antes de iniciar qualquer trabalho sobre uma capability ou OBC, determine o est�
 
 1. Business Signal
 2. Business Intent / Product Intent
-3. Context Discovery (Exploração Upstream)
+3. Context Discovery
 4. Commitment (CommitmentGate)
 5. Diligence & Readiness
 6. Iteration
@@ -31,7 +31,7 @@ Nunca declare um item como "comprometido" sem o CommitmentGate registrado no `up
 
 ## Regra 4: Evidence é obrigatória, não opcional
 
-- Toda exploração Upstream deve produzir um Evidence Package antes do CommitmentGate.
+- Todo trabalho no modo Upstream deve produzir um Evidence Package antes do CommitmentGate.
 - Toda entrega Downstream deve atualizar o Release Trail a cada fase.
 - Todo OBC Released deve ter Observable Events verificados em produção.
 

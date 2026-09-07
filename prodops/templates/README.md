@@ -18,7 +18,7 @@ Instâncias preenchidas pertencem a `prodops/artifacts/`, nunca a `prodops/templ
 
 ---
 
-## Discovery (Upstream)
+## Jornada Discovery — Experimentos em modo Upstream
 
 | Template | Uso | Localização canônica |
 |---|---|---|

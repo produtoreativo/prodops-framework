@@ -34,10 +34,10 @@ Um skill não é uma sugestão — é a regra de execução autoritativa para aq
 | Estágio do lifecycle | Skill principal |
 |---|---|
 | Business Signal → Business Intent | `intent` |
-| Context Discovery (Upstream) | `upstream` |
+| Modo Upstream (qualquer jornada, sem compromisso de entrega) | `upstream` |
 | CommitmentGate / Readiness Gate | `commitment` |
 | Estado atual incerto | `product-context` |
-| Delivery (CI Sync / CI Async) | `downstream` |
+| Ciclo de entrega comprometida — CI Sync + CI Async (modo Downstream) | `downstream` |
 | Evidence (Upstream ou Downstream) | `evidence` |
 | Outcome (KPIs, SLOs, DORA) | `outcome` |
 | Sincronização de OBC / Backlogs | `diligence` |

@@ -14,9 +14,9 @@ O Product Context é o ponto de partida obrigatório para qualquer execução qu
 - Preciso entender em que estágio do lifecycle este OBC está
 - Quero saber quais experimentos foram conduzidos para esta capability
 
-→ Para começar exploração Upstream, use `/upstream`.
+→ Para trabalho no modo Upstream (sem compromisso de entrega), use `/upstream`.
 → Para executar o CommitmentGate, use `/commitment`.
-→ Para iniciar entrega, use `/downstream`.
+→ Para executar entrega comprometida no modo Downstream, use `/downstream`.
 
 ---
 
