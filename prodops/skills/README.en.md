@@ -24,6 +24,18 @@ Skills are **not** conceptual documentation, templates, or capabilities.
 | `hack/tdd` | Red → Green → Refactor cycle against BDD Feature | [hack/steps/tdd/SKILL.md](hack/steps/tdd/SKILL.md) |
 | `hack/commit` | Review diff, create Conventional Commits commit | [hack/steps/commit/SKILL.md](hack/steps/commit/SKILL.md) |
 
+## Lifecycle Skills
+
+Skills covering the stages of the canonical lifecycle — from Business Signal to verified Outcome.
+
+| Skill | Lifecycle stage(s) | Link |
+|---|---|---|
+| Intent | Business Signal → Business Intent / Product Intent | [intent/SKILL.en.md](intent/SKILL.en.md) |
+| Commitment | CommitmentGate + Readiness Gate (Upstream → Downstream) | [commitment/SKILL.en.md](commitment/SKILL.en.md) |
+| Product Context | Consolidated reading of the current state of a capability | [product-context/SKILL.en.md](product-context/SKILL.en.md) |
+| Evidence | Upstream Evidence + Downstream Evidence (Release Trail, Observable Events) | [evidence/SKILL.en.md](evidence/SKILL.en.md) |
+| Outcome | Business Outcome + Product Outcome (KPIs, SLOs, DORA) | [outcome/SKILL.en.md](outcome/SKILL.en.md) |
+
 ## Journey Skills
 
 | Skill | Journey | Link |

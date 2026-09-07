@@ -34,6 +34,12 @@ skills:
   ship:          prodops/skills/ship/SKILL.md
   validate:      prodops/skills/validate/SKILL.md
   promote:       prodops/skills/promote/SKILL.md
+  # Lifecycle
+  intent:          prodops/skills/intent/SKILL.md
+  commitment:      prodops/skills/commitment/SKILL.md
+  product-context: prodops/skills/product-context/SKILL.md
+  evidence:        prodops/skills/evidence/SKILL.md
+  outcome:         prodops/skills/outcome/SKILL.md
   # Discovery / Upstream
   upstream:      prodops/skills/upstream/SKILL.md
   upstream-deploy-to-sandbox:  prodops/skills/upstream/steps/deploy-to-sandbox/SKILL.md
