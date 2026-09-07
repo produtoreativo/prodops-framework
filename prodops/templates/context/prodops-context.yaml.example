@@ -1,0 +1,38 @@
+# prodops-context.yaml — Snapshot do lifecycle state do produto
+# Gerado por: bash prodops/runtime/tools/derive-context/scripts/derive-context.sh
+# NÃO edite manualmente — regenere sempre que houver mudança de estado de OBC ou experimento.
+
+derived_at: "YYYY-MM-DDTHH:MM:SSZ"
+framework_version: "v2.1.0"
+active_iteration: "v0.X.0"  # none se não houver iteração ativa
+
+# OBCs organizados por estado canônico do lifecycle
+obcs:
+
+  # OBCs em exploração — sem compromisso de entrega
+  draft:
+    - <capability-slug>
+
+  # OBCs em refinamento dentro do Downstream (Icebox)
+  refining:
+    - <capability-slug>
+
+  # OBCs prontos para Delivery (Readiness Gate aprovado)
+  committed:
+    - <capability-slug>
+
+  # OBCs com Bootstrap iniciado — em execução de Delivery
+  in_delivery:
+    - <capability-slug>
+
+  # OBCs com Promote concluído — em operação (Evidence + Outcome pendentes ou verificados)
+  released:
+    - <capability-slug>
+
+# Experimentos Upstream ativos (não-arquivados, não-descartados)
+active_experiments:
+  - slug: <NNN-experiment-slug>
+
+# Capabilities presentes no Iteration Plan da iteração ativa
+iteration_capabilities:
+  - <capability-slug>
