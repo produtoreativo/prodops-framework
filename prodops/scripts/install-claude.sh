@@ -58,6 +58,7 @@ log "Creating .claude/ directory structure..."
 mkdir -p "${TARGET_DIR}/.claude/skills"
 mkdir -p "${TARGET_DIR}/.claude/agents"
 mkdir -p "${TARGET_DIR}/.claude/rules"
+mkdir -p "${TARGET_DIR}/.claude/hooks"
 
 # ── 2. Materialize skills → .claude/skills/ ──────────────────────────────────
 
@@ -143,7 +144,40 @@ else
   warn "prodops/templates/claude/rules/ not found — .claude/rules/ will be empty"
 fi
 
-# ── 5. Create .claude/settings.json template ─────────────────────────────────
+# ── 5. Install .claude/hooks/ from canonical templates ───────────────────────
+
+HOOKS_SRC="${REPO_ROOT}/prodops/templates/claude/hooks"
+
+if [[ ! -d "${HOOKS_SRC}" ]]; then
+  HOOKS_SRC="${TARGET_DIR}/prodops/templates/claude/hooks"
+fi
+
+if [[ -d "${HOOKS_SRC}" ]]; then
+  log "Installing canonical hooks → .claude/hooks/..."
+  hooks_installed=0
+  hooks_skipped=0
+
+  while IFS= read -r src_file; do
+    hook_name="$(basename "${src_file}")"
+    target_file="${TARGET_DIR}/.claude/hooks/${hook_name}"
+
+    if [[ -f "${target_file}" && "${FORCE}" == "false" ]]; then
+      log "  SKIP (exists): .claude/hooks/${hook_name}"
+      ((hooks_skipped++))
+    else
+      cp "${src_file}" "${target_file}"
+      chmod +x "${target_file}"
+      log "  created: .claude/hooks/${hook_name}"
+      ((hooks_installed++))
+    fi
+  done < <(find "${HOOKS_SRC}" -maxdepth 1 -name "*.sh" | LC_ALL=C sort)
+
+  log "  hooks: ${hooks_installed} installed, ${hooks_skipped} skipped"
+else
+  warn "prodops/templates/claude/hooks/ not found — .claude/hooks/ will be empty"
+fi
+
+# ── 6. Create .claude/settings.json template ─────────────────────────────────
 
 SETTINGS="${TARGET_DIR}/.claude/settings.json"
 
@@ -166,6 +200,7 @@ if [[ ! -f "${SETTINGS}" ]]; then
       "Bash(gh pr*)",
       "Bash(gh issue*)",
       "Bash(gh release*)",
+      "Bash(bash .claude/hooks/*)",
       "Read",
       "WebSearch",
       "WebFetch"
@@ -173,6 +208,19 @@ if [[ ! -f "${SETTINGS}" ]]; then
     "deny": [
       "Bash(git push --force*)",
       "Bash(rm -rf /*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_TOOL_INPUT\" | grep -q 'gh issue create'; then bash .claude/hooks/check-work-item-schema.sh --hook <<< \"$CLAUDE_TOOL_INPUT\"; fi"
+          }
+        ]
+      }
     ]
   }
 }
@@ -183,7 +231,7 @@ else
   log "SKIP (exists): .claude/settings.json"
 fi
 
-# ── 6. Summary ────────────────────────────────────────────────────────────────
+# ── 7. Summary ────────────────────────────────────────────────────────────────
 
 printf '\n'
 log ".claude/ installation complete at: ${TARGET_DIR}"
