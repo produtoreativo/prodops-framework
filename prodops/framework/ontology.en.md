@@ -289,6 +289,21 @@ Some documents reference "OBC Partitioning" as a "capability". In the ProdOps on
 
 ---
 
+## Distinction: Lifecycle Stage vs. Phase
+
+**Lifecycle Stage** and **Phase** are distinct concepts and must not be confused:
+
+| Concept | What it describes | Examples |
+|---|---|---|
+| **Lifecycle Stage** | The moment at which an intent sits in the end-to-end lifecycle | Business Signal, Context Discovery, Commitment, Delivery, Outcome |
+| **Phase** | An execution step within a Cycle of a Journey | Bootstrap, Hack, Sync, Finish, Capture, Analyze |
+
+A Lifecycle Stage can span multiple Journeys, Cycles, and Phases. A Phase is always internal to a specific Cycle. The Lifecycle Stage answers "at what point in the lifecycle is this intent?"; the Phase answers "at what execution step are we now?".
+
+→ For the complete sequence of Lifecycle Stages, see [`lifecycle.en.md`](lifecycle.en.md).
+
+---
+
 ## Canonical source
 
 This document is the single source of truth for the ProdOps concept hierarchy.
@@ -296,6 +311,7 @@ This document is the single source of truth for the ProdOps concept hierarchy.
 | Document | Role relative to this ontology |
 |---|---|
 | [glossary.en.md](glossary.en.md) | Lexical definitions of all terms — references this ontology for hierarchy |
+| [lifecycle.en.md](lifecycle.en.md) | End-to-end lifecycle stages — distinguishes Lifecycle Stage from Phase |
 | [operating-model.en.md](operating-model.en.md) | Operating model and flow — references this ontology for structural concepts |
 | [execution-model/README.en.md](execution-model/README.en.md) | Details Upstream and Downstream — is a specialization of this ontology |
 | [journeys/README.en.md](journeys/README.en.md) | Details each Journey — references Cycle and Phase from this ontology |

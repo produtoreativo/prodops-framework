@@ -161,6 +161,71 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 ---
 
+## Product Intent
+
+**Definição:** Uma Business Intent aceita e atribuída a um produto específico para implementação. No fluxo local, é a formalização da intenção no nível do Product Repository — o equivalente produto da Business Intent de plataforma.
+
+**Propósito:** Rastrear uma intenção de produto com identidade própria quando a demanda nasce localmente (Product Tracking List → Owner Approval) ou quando um Global OBC é particionado e uma parcela da responsabilidade é atribuída a este produto.
+
+**Distinção de Business Intent:** A Business Intent é uma entidade de plataforma (vive no BIB, é propriedade do Portfolio). A Product Intent é uma entidade de produto (vive no Product Backlog, é propriedade do Product Owner). Quando o fluxo é local, a Product Intent pode existir sem uma Business Intent correspondente no BIB.
+
+**Relação com outros conceitos:** Pode ser originada de um OBC Partitioning (descendente de uma Business Intent) ou criada diretamente via Owner Approval (fluxo local). Possui um Local OBC como documento de contrato. Ver [`obc.md`](obc.md) e [`backlogs.md`](backlogs.md).
+
+---
+
+## Commitment
+
+**Definição:** O ato formal de assumir responsabilidade de entrega sobre uma Product Intent ou capability. O Commitment é produzido pelo CommitmentGate com outcome **Promover** — é o evento que transforma o modo de execução de Upstream (exploração) para Downstream (compromisso).
+
+**O que muda com o Commitment:** Antes do Commitment, o trabalho é de redução de incerteza — o custo de reversão é controlável. Após o Commitment, o trabalho é de honra do que foi prometido — quebrar o compromisso tem custo real. O rigor muda de advisory para bloqueante.
+
+**O Commitment não é:**
+- Uma reunião de aprovação (o CommitmentGate é o mecanismo; o Commitment é o resultado)
+- Um item de backlog priorizado
+- O início da Delivery (o Commitment declara Downstream; a Delivery começa no Bootstrap.Started)
+
+**Verificabilidade:** Um Commitment é verificável quando há registro do CommitmentGate no `upstream-trail.md` com data, participantes (trio PM + Tech Lead + Autor) e outcome documentado. Sem esse registro, o Commitment não existiu formalmente — mesmo que o trabalho de Downstream tenha começado.
+
+**Relação com outros conceitos:** Produzido pelo CommitmentGate. Transita o OBC de Draft para Refining (Momento 2). Abre o Downstream Declared. Ver [`execution-model/upstream.md`](execution-model/upstream.md) e [`execution-model/downstream.md`](execution-model/downstream.md).
+
+---
+
+## Evidence
+
+**Definição:** Artefato verificável que suporta uma afirmação sobre comportamento do sistema ou resultado de negócio. A evidência torna afirmações verificáveis por terceiros — sem ela, qualquer claim sobre entrega é apenas intenção declarada.
+
+**Dois contextos de evidência:**
+
+| Contexto | O que é | Onde vive |
+|---|---|---|
+| **Upstream Evidence** | Produzida por experimentos para responder hipóteses. Inclui: saídas executáveis de experimentos, resultados de spikes, benchmarks, dados de protótipos. Compõe o Evidence Package que fundamenta o Decision Package do CommitmentGate. | `prodops/artifacts/experiments/<NNN-slug>/evidence/` |
+| **Downstream Evidence** | Produzida pela jornada Delivery para verificar o compromisso assumido. Inclui: Release Trail (append-only), Observable Events emitidos em cada fase, resultados de quality gates, métricas DORA Extended. | `prodops/artifacts/trails/sessions/`, Observable Events no runtime |
+
+**Evidence Threshold:** Critério declarado no início de um experimento Upstream que define quando a evidência coletada é suficiente para levar o Decision Package ao CommitmentGate. Opcional, mas recomendado. Ver [`execution-model/upstream.md`](execution-model/upstream.md).
+
+**Evidence Package:** O conjunto de evidências Upstream que compõe a justificativa para o CommitmentGate. Parte obrigatória do Decision Package.
+
+**Relação com outros conceitos:** Upstream Evidence alimenta o CommitmentGate. Downstream Evidence verifica o OBC comprometido e alimenta o Assessment. Ver [`execution-model/upstream.md`](execution-model/upstream.md), [`dora-metrics.md`](dora-metrics.md) e [`journeys/assessment/README.md`](journeys/assessment/README.md).
+
+---
+
+## Outcome
+
+**Definição:** O resultado verificado de uma entrega após sua entrada em operação continuada. O Outcome não é a entrega em si — é a confirmação, com evidência operacional real, de que o resultado comprometido foi alcançado.
+
+**Dois planos de Outcome:**
+
+| Plano | O que é | Como verificar |
+|---|---|---|
+| **Business Outcome** | O resultado de negócio que o Global OBC comprometeu — KPIs, métricas de negócio, valor gerado para o usuário ou para a organização | Métricas de negócio medidas em produção após o OBC atingir Released; reportado via Assessment |
+| **Product Outcome** | O comportamento técnico verificável do produto após a entrega — Observable Events emitidos, SLOs satisfeitos, DORA Metrics dentro do target | Observable Events no runtime, dashboards de observabilidade, Release Trail |
+
+**Distinção de Delivery:** A Delivery produz software entregue. O Outcome verifica, em tempo operacional real, se esse software produziu o resultado comprometido. Um OBC pode atingir Released sem que o Business Outcome tenha sido confirmado — a verificação de Outcome requer tempo de operação e coleta de evidência.
+
+**Relação com outros conceitos:** O Outcome é verificado quando o OBC está em estado Released e há evidência operacional coletada. O Assessment é a jornada responsável por avaliar Outcomes ao longo do tempo. Ver [`obc.md`](obc.md), [`dora-metrics.md`](dora-metrics.md) e [`journeys/assessment/README.md`](journeys/assessment/README.md).
+
+---
+
 ## Estágio de Produto
 
 **Definição:** Classificação do momento de maturidade de um produto dentro do ciclo de vida ProdOps. Define quais métricas de delivery têm maior peso e qual é o foco do time naquele período.

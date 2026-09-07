@@ -165,6 +165,71 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 ---
 
+## Product Intent
+
+**Definition:** A Business Intent accepted and assigned to a specific product for implementation. In the local flow, it is the formalization of the intent at the Product Repository level — the product equivalent of a platform Business Intent.
+
+**Purpose:** Track a product intent with its own identity when the demand originates locally (Product Tracking List → Owner Approval) or when a Global OBC is partitioned and a share of the responsibility is assigned to this product.
+
+**Distinction from Business Intent:** The Business Intent is a platform entity (lives in the BIB, owned by the Portfolio). The Product Intent is a product entity (lives in the Product Backlog, owned by the Product Owner). When the flow is local, the Product Intent can exist without a corresponding Business Intent in the BIB.
+
+**Relationship with other concepts:** Can originate from an OBC Partitioning (descendant of a Business Intent) or be created directly via Owner Approval (local flow). Has a Local OBC as its contract document. See [`obc.md`](obc.md) and [`backlogs.md`](backlogs.md).
+
+---
+
+## Commitment
+
+**Definition:** The formal act of assuming delivery responsibility over a Product Intent or capability. The Commitment is produced by the CommitmentGate with outcome **Promote** — it is the event that transitions the execution mode from Upstream (exploration) to Downstream (commitment).
+
+**What changes with the Commitment:** Before the Commitment, the work is about reducing uncertainty — the cost of reversal is manageable. After the Commitment, the work is about honoring what was promised — breaking the commitment has a real cost. The rigor shifts from advisory to blocking.
+
+**The Commitment is NOT:**
+- An approval meeting (the CommitmentGate is the mechanism; the Commitment is the result)
+- A prioritized backlog item
+- The start of Delivery (the Commitment declares Downstream; Delivery begins at Bootstrap.Started)
+
+**Verifiability:** A Commitment is verifiable when there is a CommitmentGate record in `upstream-trail.md` with the date, participants (trio PM + Tech Lead + Author) and documented outcome. Without this record, the Commitment did not formally exist — even if Downstream work has already begun.
+
+**Relationship with other concepts:** Produced by the CommitmentGate. Transitions the OBC from Draft to Refining (Moment 2). Opens Downstream Declared. See [`execution-model/upstream.md`](execution-model/upstream.md) and [`execution-model/downstream.md`](execution-model/downstream.md).
+
+---
+
+## Evidence
+
+**Definition:** Verifiable artifact that supports a claim about system behavior or business result. Evidence makes claims verifiable by third parties — without it, any delivery claim is merely declared intent.
+
+**Two evidence contexts:**
+
+| Context | What it is | Where it lives |
+|---|---|---|
+| **Upstream Evidence** | Produced by experiments to answer hypotheses. Includes: executable outputs of experiments, spike results, benchmarks, prototype data. Composes the Evidence Package that grounds the Decision Package for the CommitmentGate. | `prodops/artifacts/experiments/<NNN-slug>/evidence/` |
+| **Downstream Evidence** | Produced by the Delivery journey to verify the assumed commitment. Includes: Release Trail (append-only), Observable Events emitted at each phase, quality gate results, extended DORA Metrics. | `prodops/artifacts/trails/sessions/`, Observable Events in runtime |
+
+**Evidence Threshold:** Criterion declared at the beginning of an Upstream experiment that defines when the collected evidence is sufficient to bring the Decision Package to the CommitmentGate. Optional, but recommended. See [`execution-model/upstream.md`](execution-model/upstream.md).
+
+**Evidence Package:** The set of Upstream evidence that composes the justification for the CommitmentGate. Mandatory part of the Decision Package.
+
+**Relationship with other concepts:** Upstream Evidence feeds the CommitmentGate. Downstream Evidence verifies the committed OBC and feeds the Assessment. See [`execution-model/upstream.md`](execution-model/upstream.md), [`dora-metrics.md`](dora-metrics.md) and [`journeys/assessment/README.md`](journeys/assessment/README.md).
+
+---
+
+## Outcome
+
+**Definition:** The verified result of a delivery after it enters sustained operation. The Outcome is not the delivery itself — it is the confirmation, with real operational evidence, that the committed result was achieved.
+
+**Two Outcome planes:**
+
+| Plane | What it is | How to verify |
+|---|---|---|
+| **Business Outcome** | The business result that the Global OBC committed to — KPIs, business metrics, value generated for the user or the organization | Business metrics measured in production after the OBC reaches Released; reported via Assessment |
+| **Product Outcome** | The verifiable technical behavior of the product after delivery — Observable Events emitted, SLOs satisfied, DORA Metrics within target | Observable Events in runtime, observability dashboards, Release Trail |
+
+**Distinction from Delivery:** Delivery produces delivered software. The Outcome verifies, in real operational time, whether that software produced the committed result. An OBC can reach Released without the Business Outcome being confirmed — Outcome verification requires operational time and evidence collection.
+
+**Relationship with other concepts:** The Outcome is verified when the OBC is in Released state and there is collected operational evidence. Assessment is the journey responsible for evaluating Outcomes over time. See [`obc.md`](obc.md), [`dora-metrics.md`](dora-metrics.md) and [`journeys/assessment/README.md`](journeys/assessment/README.md).
+
+---
+
 ## Product Stage
 
 **Definition:** Classification of a product's maturity moment within the ProdOps lifecycle. Defines which delivery metrics carry the most weight and what the team's focus should be at that point.
