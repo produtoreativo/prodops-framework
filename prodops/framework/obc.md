@@ -140,18 +140,35 @@ Os estados representam **maturidade do contrato**, não estado do software.
 |---|---|---|
 | **Draft** | BIB / Product Backlog — entrada | Criado; pode estar incompleto; registra intenção inicial e hipóteses |
 | **Refining** | Product Backlog — view Icebox | Em refinamento ativo; a jornada Discovery pode estar em andamento (no modo Upstream ou Downstream) |
-| **Committed** | Product Backlog — view Iteration Backlog | Informações mínimas validadas; pronto para Delivery |
+| **Readiness** | Product Backlog — view Iteration Backlog | Certifica que a Discovery Downstream produziu contrato completo e verificável por terceiros; pronto para Delivery |
 | **In Delivery** | Iteration Plan → Delivery | Em execução; implementação em andamento |
 | **Released** | Operation | Em produção; atualizado com evidências operacionais |
 | **Archived** | — | Intenção encerrada; histórico preservado |
+
+### Views e sub-estados operacionais
+
+Além dos estados permanentes, o OBC pode estar identificado por **views operacionais** que descrevem seu contexto no ciclo de exploração/entrega:
+
+| View / Sub-estado | Quando | Descrição |
+|---|---|---|
+| **Icebox** | OBC Draft ou Refining sem modo declarado | Item aceito no PIB mas ainda não teve Execution Mode definido pelo Product Owner |
+| **Upstream: In Hypothesis** | OBC Draft — hipótese em formação | Experimento ainda não aberto formalmente; hipótese sendo estruturada |
+| **Upstream: Evidence Running** | OBC Draft — código rodando sem compromisso | Sandbox Deploy ou Produção Controlada ativo; evidência sendo coletada |
+| **Downstream Declared** | OBC Refining — imediatamente após CommitmentGate Promover (Momento 1) | Compromisso declarado; item entra no Icebox para refinamento com rigor bloqueante |
+| **Downstream Ready** | OBC Readiness — após Readiness Gate (Momento 3) | Contrato completo e verificável; BDD em `prodops/artifacts/bdd/`; pronto para Bootstrap |
+| **Delivery Started** | OBC In Delivery — a partir de Bootstrap.Started | Implementação em execução no CI Sync |
+
+Essas views não substituem os estados permanentes — elas descrevem o ponto operacional dentro de um estado. Um OBC em `Downstream Declared` está no estado `Refining`; um OBC em `Downstream Ready` está no estado `Readiness`.
+
+---
 
 ### Transições de estado canônicas
 
 ```
 [*] → Draft              (Business Signal → Business Intent)
 Draft → Refining         (CommitmentGate outcome Promover — Momento 2)
-Refining → Committed     (Readiness Gate aprovado — Momento 3)
-Committed → In Delivery  (Bootstrap.Started)
+Refining → Readiness     (Readiness Gate aprovado — Momento 3)
+Readiness → In Delivery  (Bootstrap.Started)
 In Delivery → Released (Promote concluído)
 Released → Archived   (Deprecação ou substituição)
 Refining → Archived      (CommitmentGate outcome Descartar)
@@ -183,8 +200,8 @@ A transição `In Delivery → Refining` é uma suspensão formal de compromisso
 |---|---|---|
 | Particionamento do OBC | Draft | Local OBC criado com referência ao Global OBC |
 | Product Backlog — view Icebox | Refining | Discovery refina o Local OBC; critérios emergem |
-| Assessment Review | Candidato a Committed | OBC revisado por PM + Tech Lead; seções obrigatórias validadas |
-| Product Backlog — view Iteration Backlog | Committed | Critérios mínimos validados; Downstream pode iniciar |
+| Assessment Review | Candidato a Readiness | OBC revisado por PM + Tech Lead; seções obrigatórias validadas |
+| Product Backlog — view Iteration Backlog | Readiness | Critérios validados; contrato completo e verificável; Downstream pode iniciar |
 | Iteration Plan / Delivery | In Delivery | Guia a implementação; BDD Feature o operacionaliza |
 | Operation | Released | Em produção; complementado com métricas, SLOs, incidentes |
 | — | Archived | Intenção encerrada |
@@ -242,10 +259,10 @@ OBCs produzidos dentro de experimentos Upstream permanecem no diretório do expe
 
 ## OBC no Downstream
 
-Ao entrar no Downstream, o Local OBC deixa de ser apenas um registro — passa a ser o contrato operacional da entrega. É refinado no Icebox até atingir o estado Committed, então controla toda a evolução das jornadas seguintes.
+Ao entrar no Downstream, o Local OBC deixa de ser apenas um registro — passa a ser o contrato operacional da entrega. É refinado no Icebox até atingir o estado Readiness, então controla toda a evolução das jornadas seguintes.
 
 O compromisso pode ser declarado antes da prontidão. O conjunto mínimo exigido para atingir **Downstream Ready** e iniciar uma fase de Delivery é:
-- Local OBC committed em `prodops/artifacts/obcs/<slug>.md` com estado Committed
+- Local OBC em estado Readiness em `prodops/artifacts/obcs/<slug>.md`
 - BDD Feature committed em `prodops/artifacts/bdd/<slug>.feature`
 - Riscos documentados e item `Entrou` no Iteration Plan
 - Reliability Plan atualizado quando houver movimentação financeira, integração externa, mudança de SLO, risco alto/crítico ou alteração de persistência ou segurança
@@ -283,7 +300,7 @@ Todas as Skills do Downstream utilizam o Local OBC como principal fonte de conte
 | **Quem modifica** | Product Manager, Tech Lead, engenheiros (com registro de mudanças) |
 | **Quem aprova** | Product Manager + Tech Lead (Assessment Review) |
 | **Consumidores** | Delivery, Reliability Plan, BDD Feature, Release Trail, Iteration Plan |
-| **Ciclo de vida** | Draft → Refining → Committed → In Delivery → Released → Archived |
+| **Ciclo de vida** | Draft → Refining → Readiness → In Delivery → Released → Archived |
 | **Jornadas** | Discovery, Delivery, Operation, Assessment, Diligence |
 
 ---

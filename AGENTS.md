@@ -21,6 +21,11 @@ arquivos DEVEM ser atualizados para o mesmo valor — sem exceção:**
 O gate `prodops/scripts/validate-export-manifest.sh` falha automaticamente se
 `PRODOPS_VERSION` em qualquer script divergir da versão em `framework-lock.yaml`.
 
+> **Nota:** `framework-lock.yaml` é gerado pelo processo de export a partir de `payments-api`
+> e **não faz parte do estado commitado deste repositório**. A ausência do arquivo na árvore
+> de trabalho é comportamento esperado — não é uma inconsistência. O gate só é executado
+> durante o fluxo de export, quando o arquivo existe.
+
 **Cheque estes arquivos antes de aprovar qualquer PR de export.**
 
 ---

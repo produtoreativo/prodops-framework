@@ -43,4 +43,34 @@ Um agente deve sempre tentar executar uma ação ele mesmo antes de instruir um 
 
 ---
 
+---
+
+## Cadeia Fundamental
+
+O tipo de compromisso vigente determina o modo de execução; o modo determina o regime de rigor; o rigor determina o tipo de evidência exigida; a evidência viabiliza o controle. A seta não representa sequência temporal: representa a transformação progressiva do tipo de compromisso que governa o trabalho.
+
+```
+COMPROMISSO → MODO → RIGOR → EVIDÊNCIA → CONTROLE
+```
+
+Ver [`execution-model/README.md`](execution-model/README.md) para a distinção entre Upstream e Downstream, e [`glossary.md`](glossary.md#commitment) para a definição canônica de Commitment.
+
+---
+
+## Três Regimes de Ação
+
+Síntese dos três regimes que organizam o trabalho de produto no ProdOps. A seta não representa sequência temporal — representa o tipo de compromisso ativo em cada regime.
+
+```
+APRENDER → COMPROMETER → REALIZAR
+```
+
+- **APRENDER:** o trabalho é de redução de incerteza. Fracasso de hipótese é resultado legítimo — informa a próxima decisão. Modo Upstream.
+- **COMPROMETER:** transição formalizada pelo CommitmentGate. O tipo de rigor muda de advisory para bloqueante. O custo de ser errado aumenta.
+- **REALIZAR:** o trabalho é de honrar o prometido. Fracasso tem custo diferente do fracasso no regime de aprendizado. Modo Downstream.
+
+Ver [`execution-model/upstream.md`](execution-model/upstream.md) e [`execution-model/downstream.md`](execution-model/downstream.md).
+
+---
+
 → **Próximo:** [Modelo Operacional](operating-model.md)

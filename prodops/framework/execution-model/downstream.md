@@ -28,7 +28,7 @@ As Skills deixam de ser opcionais. Passam a fazer parte do processo de execuçã
 
 Ao entrar no Downstream, o OBC deixa de ser apenas um registro. Ele passa a ser o contrato operacional do trabalho.
 
-Durante o Discovery (no Icebox), será refinado até atingir o estado Committed. Esse OBC controla a evolução das jornadas seguintes: Iteration Backlog → Iteration Plan → Delivery.
+Durante o Discovery (no Icebox), será refinado até atingir o estado Readiness. Esse OBC controla a evolução das jornadas seguintes: Iteration Backlog → Iteration Plan → Delivery.
 
 ## Quando usar o modo Downstream
 
@@ -67,7 +67,7 @@ Ocorre logo após o CommitmentGate. São ações distintas do Momento 1:
 ### Momento 3 — Readiness Gate → Downstream Ready
 
 **Condições obrigatórias antes de iniciar qualquer fase de Delivery:**
-1. OBC em `prodops/artifacts/obcs/` com estado **Committed**
+1. OBC em `prodops/artifacts/obcs/` com estado **Readiness**
 2. BDD Feature em `prodops/artifacts/bdd/`
 3. Riscos documentados em `prodops/artifacts/risks/risks.md`
 4. Entrada no Iteration Plan com status `Entrou` em `prodops/artifacts/plans/iteration-plan.md`
@@ -123,15 +123,53 @@ O PM deve documentar explicitamente a justificativa para entrada direta em Downs
 
 ## Anti-padrões do Downstream
 
-| ID | Nome | Descrição |
-|----|------|-----------|
-| **AP-D1** | Gate Theater | Gates executados formalmente sem que os artefatos satisfaçam os critérios. O ritual existe; a substância, não. |
-| **AP-D2** | Proxy Commitment | OBC marcado como Committed sem critérios de sucesso mensuráveis. O compromisso é nomeado, mas não é verificável. |
-| **AP-D3** | Forced Readiness | Readiness Gate aprovado com lacunas conhecidas por pressão de prazo. Diferente do Waiver (que é explícito e registrado), o Forced Readiness é silencioso. |
-| **AP-D4** | Phantom BDD | BDD Feature escrito após o código, descrevendo o que foi implementado em vez do comportamento esperado. O teste passa porque o código já existe — não porque o comportamento foi especificado. |
-| **AP-D5** | Release Trail Vazio | Promote executado sem Release Trail preenchido. O compromisso foi honrado, mas não é verificável por quem não participou. |
+### AP-D1 — Gate Theater
 
-**Distinção AP-D3 vs. Waiver:** um Waiver é o reconhecimento *explícito e registrado* de que um critério não está satisfeito, com justificativa e compromisso de resolução dentro de prazo definido. AP-D3 é o avanço *silencioso* sem que o gap seja reconhecido. O Waiver é governança; AP-D3 é evasão de governança.
+Gates executados formalmente sem que os artefatos submetidos satisfaçam os critérios. O ritual existe; a substância, não.
+
+**Causa:** pressão de prazo ou conveniência social.
+
+**Exemplos:** OBC marcado como Readiness sem acceptance criteria verificáveis; Readiness Gate aprovado com Findings abertos sem waiver; CommitmentGate realizado sem que o Decision Package tenha sido lido pelo trio.
+
+**Critério diagnóstico:** ausência de registro de verificação item a item nos artefatos de pré-Gate.
+
+---
+
+### AP-D2 — Proxy Commitment
+
+OBC marcado como Readiness sem que os critérios de sucesso sejam mensuráveis. O compromisso é nomeado, mas não é verificável.
+
+**Exemplos:** `expected_outcome` vago; `acceptance_criteria` descrevendo o que o sistema faz (não quando é aceitável); `success_metrics` com targets relativos sem baseline declarado.
+
+**Critério diagnóstico:** "como saberei que este item foi entregue com sucesso 30 dias após o Promote?" — se a resposta requer interpretação subjetiva, o OBC não está em Readiness de verdade.
+
+---
+
+### AP-D3 — Forced Readiness
+
+Readiness Gate aprovado com lacunas conhecidas por pressão de prazo ou stakeholder.
+
+**Distinção de Gate Theater:** Gate Theater cobre qualquer Gate; Forced Readiness é especificamente o Readiness Gate.
+
+**Distinção de Waiver:** um Waiver é o reconhecimento *explícito e registrado* de que um critério não está satisfeito, com justificativa e compromisso de resolução dentro de prazo definido. AP-D3 é o avanço *silencioso* sem que o gap seja reconhecido. O Waiver é governança; AP-D3 é evasão de governança.
+
+---
+
+### AP-D4 — Phantom BDD
+
+BDD Feature escrita após o código, descrevendo o que foi implementado em vez do comportamento esperado.
+
+**Critério diagnóstico:** timestamp de criação do feature file vs. início da fase Hack. Se o feature file foi criado depois do primeiro commit de implementação, a BDD é phantom — o teste passa porque o código já existe, não porque o comportamento foi especificado antes.
+
+---
+
+### AP-D5 — Release Trail Vazio
+
+Promote executado sem Release Trail preenchido.
+
+**Causa:** Release Trail tratado como formalidade opcional.
+
+**Consequência:** rastreabilidade destruída desde o CommitmentGate até a evidência em produção. Não é possível verificar o compromisso por quem não participou da execução.
 
 ---
 
@@ -143,7 +181,7 @@ Triggered quando uma hipótese é invalidada durante a Delivery — o que foi co
 
 1. **Registrar no Release Trail:** entrada documentando o motivo da suspensão, a hipótese invalidada e a decisão de regressão
 2. **Abrir novo experimento Upstream:** referenciando o OBC original e o Downstream suspenso; o experimento investiga o que invalidou a hipótese
-3. **Transitar o OBC:** `Committed → Refining` (a transição é registrada no OBC com data e justificativa)
+3. **Transitar o OBC:** `In Delivery → Refining` (a transição é registrada no OBC com data e justificativa)
 4. **Atualizar o Work Item:** status volta para Icebox; Downstream Declared permanece registrado como histórico
 
 O time e a liderança devem ser notificados. A regressão não é falha de processo — é o protocolo correto quando a evidência muda durante a execução.

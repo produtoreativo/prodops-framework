@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # setup-wsl.sh — Bootstrap completo de ambiente de desenvolvimento ProdOps
-# ProdOps Framework v1.14.1
+# ProdOps Framework v2.1.0
 #
 # Contextos de execução detectados automaticamente:
 #

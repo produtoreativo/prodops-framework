@@ -337,13 +337,13 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 ## Inception
 
-**Definition:** Phase covering the period from entry into the Product Backlog until the Local OBC reaches the Committed state (Iteration Backlog). The Product Owner has made a formal commitment to investigate.
+**Definition:** Phase covering the period from entry into the Product Backlog until the Local OBC reaches the Readiness state (Iteration Backlog). The Product Owner has made a formal commitment to investigate.
 
 **Central question:** Is the Product Owner committing attention and capacity to investigate this now?
 
 **Backlogs:** Product Backlog → Icebox → Iteration Backlog.
 
-**Local OBC state:** Draft → Refining (Icebox) → Committed (Iteration Backlog).
+**Local OBC state:** Draft → Refining (Icebox) → Readiness (Iteration Backlog).
 
 **Commitment:** Formal. Any closure requires a traceable learning record in the OBC.
 
@@ -427,7 +427,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 - **Global OBC** — strategic, belongs to BIB/Portfolio, covers the entire business intent.
 - **Local OBC** — product-specific, belongs to one Product Backlog, specializes/partitions the Global OBC.
 
-**States (contract maturity):** Draft → Refining → Committed → In Delivery → Released → Archived.
+**States (contract maturity):** Draft → Refining → Readiness → In Delivery → Released → Archived.
 
 **Creation:** Born when a Business Intent is accepted. There is no OBC for Business Signals — the OBC is only born from Business Intents. In the global flow, a **Global OBC Draft** is born upon entry into the Business Intent Backlog. In the local flow, a **Local OBC Draft** is born upon entry into the Product Backlog (either via OBC Partitioning or direct local approval).
 
@@ -486,7 +486,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 **Location:** `prodops/artifacts/obcs/<slug>.md` (when committed)
 
-**Lifecycle:** Draft → Refining (Icebox) → Committed (Iteration Backlog) → In Delivery → Released (Operation) → Archived
+**Lifecycle:** Draft → Refining (Icebox) → Readiness (Iteration Backlog) → In Delivery → Released (Operation) → Archived
 
 **Owner:** Product Manager + Tech Lead of the product
 
@@ -739,7 +739,7 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 
 **Three views of the Product Backlog:**
 - **Icebox** — items in Discovery/Exploration (state: Refining)
-- **Iteration Backlog** — items ready for Delivery (state: Committed)
+- **Iteration Backlog** — items ready for Delivery (state: Readiness)
 - **Release** — items grouped by release version
 
 **After entry, the origin no longer matters.** All items follow the same journey: Icebox → Iteration Backlog → Iteration Plan → Delivery.
@@ -750,7 +750,7 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 
 ## Icebox
 
-**Definition:** A **view of the Product Backlog** representing items still being prepared for Delivery. The functional, technical, and operational Discovery needed occurs here. Goal: produce a Committed Local OBC ready for Delivery. Artifact: `prodops/artifacts/product/backlogs/icebox-backlog.md`.
+**Definition:** A **view of the Product Backlog** representing items still being prepared for Delivery. The functional, technical, and operational Discovery needed occurs here. Goal: produce a Local OBC in Readiness state ready for Delivery. Artifact: `prodops/artifacts/product/backlogs/icebox-backlog.md`.
 
 **Nature:** View — not a separate queue. Items do not leave the Product Backlog when in this view.
 
@@ -758,17 +758,17 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 
 **Question:** What is still being prepared for Delivery?
 
-**Relationship with other concepts:** View over the Product Backlog. Items advance to the Iteration Backlog when Local OBC reaches Committed state. See [`backlogs.en.md`](backlogs.en.md).
+**Relationship with other concepts:** View over the Product Backlog. Items advance to the Iteration Backlog when Local OBC reaches Readiness state. See [`backlogs.en.md`](backlogs.en.md).
 
 ---
 
 ## Iteration Backlog
 
-**Definition:** A **view of the Product Backlog** representing items with a Committed Local OBC, ready for immediate Delivery. Not a refinement backlog — refinement happens in the Icebox. The only remaining decision is the Product Owner's priority. Artifact: `prodops/artifacts/product/backlogs/iteration-backlog.md`.
+**Definition:** A **view of the Product Backlog** representing items with a Local OBC in Readiness state, ready for immediate Delivery. Not a refinement backlog — refinement happens in the Icebox. The only remaining decision is the Product Owner's priority. Artifact: `prodops/artifacts/product/backlogs/iteration-backlog.md`.
 
 **Nature:** View — not a separate queue. Items do not leave the Product Backlog when in this view.
 
-**OBC state in this view:** Committed (ready for Delivery — criteria validated and approved)
+**OBC state in this view:** Readiness (ready for Delivery — criteria validated and verified by third parties)
 
 **Question:** What is ready to be developed?
 

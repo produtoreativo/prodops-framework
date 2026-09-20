@@ -333,13 +333,13 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 ## Inception
 
-**Definição:** Fase que compreende o período desde a entrada no Product Backlog até o Local OBC atingir o estado Committed (Iteration Backlog). O Product Owner assumiu compromisso formal de investigação.
+**Definição:** Fase que compreende o período desde a entrada no Product Backlog até o Local OBC atingir o estado Readiness (Iteration Backlog). O Product Owner assumiu compromisso formal de investigação.
 
 **Pergunta central:** O Product Owner está comprometendo atenção e capacidade para investigar isso agora?
 
 **Backlogs:** Product Backlog → Icebox → Iteration Backlog.
 
-**Estado do Local OBC:** Draft → Refining (Icebox) → Committed (Iteration Backlog).
+**Estado do Local OBC:** Draft → Refining (Icebox) → Readiness (Iteration Backlog).
 
 **Compromisso:** Formal. Qualquer encerramento exige registro de aprendizado rastreável no OBC.
 
@@ -419,7 +419,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 **Definição:** O contrato vivo que representa uma Business Intent durante todo o seu ciclo de vida. Existe em dois níveis: **Global OBC** (contrato de negócio estratégico, pertence ao BIB/Portfolio) e **Local OBC** (contrato de produto, pertence ao Product Backlog/Product Owner). Ver entradas separadas abaixo.
 
-**Estados (maturidade do contrato):** Draft → Refining → Committed → In Delivery → Released → Archived.
+**Estados (maturidade do contrato):** Draft → Refining → Readiness → In Delivery → Released → Archived.
 
 **Criação:** Um OBC nasce APENAS quando uma Business Intent é aceita. O Global OBC nasce ao entrar no Business Intent Backlog. O Local OBC nasce após o Particionamento do OBC (fluxo global) ou ao entrar no Product Backlog (fluxo local). Não existe OBC para Business Signals — o OBC só nasce de Business Intents.
 
@@ -457,7 +457,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 **Localização:** `prodops/artifacts/obcs/<slug>.md`
 
-**Ciclo de vida:** Draft → Refining → Committed → In Delivery → Released → Archived.
+**Ciclo de vida:** Draft → Refining → Readiness → In Delivery → Released → Archived.
 
 **Não duplica:** quando houver Global OBC, seu conteúdo estratégico. Sempre referencia, nunca copia.
 
@@ -665,6 +665,23 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 ---
 
+## Readiness (estado do OBC)
+
+**Definição:** Estado do OBC que certifica que a Discovery Downstream produziu contrato completo e verificável por terceiros. Não representa a mudança de regime (que ocorre no Promover/Momento 2), mas a conclusão da Discovery: Elaboration.
+
+**Exige para ser declarado:**
+- Acceptance criteria verificáveis sem contexto verbal adicional
+- Métricas com baseline e target mensuráveis
+- Observable Events com dimensões mensuráveis definidas
+
+**Quando é atingido:** Readiness Gate aprovado (Momento 3 do protocolo de transição Downstream). OBC em `prodops/artifacts/obcs/<slug>.md` no estado Readiness.
+
+**Distinção de Refining:** o estado Refining indica que o contrato está sendo refinado. Readiness certifica que o refinamento está completo e o contrato é verificável.
+
+**Relação com outros conceitos:** Precede o estado In Delivery. Condição obrigatória para iniciar Bootstrap. Ver [`obc.md`](obc.md), [`execution-model/downstream.md`](execution-model/downstream.md) e [`skills/commitment/SKILL.md`](../skills/commitment/SKILL.md).
+
+---
+
 ## Business Intent Backlog
 
 **Definição:** Backlog estratégico da plataforma que representa Business Intents aceitas para Discovery. O **Global OBC** nasce como Draft ao entrar neste backlog. Contém APENAS Business Intents — nunca Business Signals, nunca Local OBCs. Gerenciado pelo Portfolio.
@@ -689,15 +706,33 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 ---
 
+## Product Intent Backlog (PIB)
+
+**Definição:** O Product Backlog quando referenciado como contentor de Product Intents com OBC associado. Termo canônico nos contextos onde é necessário distinguir o backlog de produto do Business Intent Backlog (BIB) da plataforma. PIB e Product Backlog são o mesmo artefato físico — a distinção é de ênfase semântica.
+
+**Pergunta:** O que está no Product Backlog deste produto, como Product Intents com OBC?
+
+**Views:** Icebox (Refining) · Plano de Experimento (Upstream ativos) · Iteration Backlog (Readiness) · Release (agrupado por versão).
+
+**Relação com outros conceitos:** Equivalente produto do Business Intent Backlog (BIB) da plataforma. Ver [`backlogs.md`](backlogs.md).
+
+---
+
+## BIB
+
+**Definição:** Abreviação de **Business Intent Backlog** — o backlog estratégico da plataforma que representa Business Intents aceitas para Discovery. Ver entrada `## Business Intent Backlog`.
+
+---
+
 ## Product Backlog
 
-**Definição:** Backlog de produto que representa todo trabalho formalmente aceito pelo Product Owner. Contém exclusivamente **Business Intents** — cada Intent possui um Local OBC como documento de contrato. Nunca contém Business Signals isolados nem Global OBCs. Ponto de entrada único do produto para o ciclo de Delivery. Views: **Icebox** (Refining), **Iteration Backlog** (Committed) e **Release** (agrupado por versão).
+**Definição:** Backlog de produto que representa todo trabalho formalmente aceito pelo Product Owner. Contém exclusivamente **Business Intents** — cada Intent possui um Local OBC como documento de contrato. Nunca contém Business Signals isolados nem Global OBCs. Ponto de entrada único do produto para o ciclo de Delivery. Views: **Icebox** (Refining), **Iteration Backlog** (Readiness) e **Release** (agrupado por versão).
 
 **Pergunta:** O que foi oficialmente aceito pelo Product Owner?
 
 **Dois caminhos de entrada:** (1) Local OBC via OBC Partitioning, direcionado pelo Portfolio após Discovery no BIB (fluxo global); (2) Business Signal promovido via Premortem + Análise de Risco Preliminar com Owner Approval (Local OBC Draft nasce aqui, fluxo local).
 
-**Após a entrada, a origem deixa de importar.** Todos os itens seguem a mesma jornada: Icebox (Refining) → Iteration Backlog (Committed) → Iteration Plan (In Delivery) → Operation (Released).
+**Após a entrada, a origem deixa de importar.** Todos os itens seguem a mesma jornada: Icebox (Refining) → Iteration Backlog (Readiness) → Iteration Plan (In Delivery) → Operation (Released).
 
 **Relação com outros conceitos:** Ponto de convergência dos fluxos global e local. Nunca recebe Business Signals diretamente — apenas OBCs. Ver [`backlogs.md`](backlogs.md).
 
@@ -713,17 +748,17 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 
 **Natureza:** View — não é uma fila separada. Itens permanecem no Product Backlog e mudam de estado.
 
-**Relação com outros conceitos:** View sobre o Product Backlog. Itens transitam para a view Iteration Backlog quando o Local OBC atinge o estado Committed. Ver [`backlogs.md`](backlogs.md).
+**Relação com outros conceitos:** View sobre o Product Backlog. Itens transitam para a view Iteration Backlog quando o Local OBC atinge o estado Readiness. Ver [`backlogs.md`](backlogs.md).
 
 ---
 
 ## Iteration Backlog
 
-**Definição:** View sobre o Product Backlog que representa itens com Local OBC no estado **Committed**, prontos para Delivery imediata. Não é um backlog de refinamento — refinamento acontece no estado Icebox. A única decisão restante é a prioridade do Product Owner. Artefato: `prodops/artifacts/product/backlogs/iteration-backlog.md`.
+**Definição:** View sobre o Product Backlog que representa itens com Local OBC no estado **Readiness**, prontos para Delivery imediata. Não é um backlog de refinamento — refinamento acontece no estado Icebox. A única decisão restante é a prioridade do Product Owner. Artefato: `prodops/artifacts/product/backlogs/iteration-backlog.md`.
 
 **Pergunta:** Quais itens do Product Backlog estão prontos para ser desenvolvidos?
 
-**Estado do Local OBC:** Committed.
+**Estado do Local OBC:** Readiness.
 
 **Natureza:** View — não é uma fila separada. Itens permanecem no Product Backlog e mudam de estado.
 

@@ -181,6 +181,20 @@ As métricas DORA e extensões acima medem o modo Downstream (compromisso de ent
 
 ---
 
+### Gate Failure Rate
+
+**O que mede:** frequência com que os Gates foram bloqueados antes de serem satisfeitos — ou seja, quantas vezes o CommitmentGate ou o Readiness Gate foram convocados e não passaram na primeira tentativa.
+
+**Por que importa:** um Gate Failure Rate alto indica rigor inadequado na preparação dos artefatos de pré-Gate ou que o time está convocando o Gate antes de estar pronto. Lido pelo Assessment retrospectivo em ciclos Downstream.
+
+**Como medir:** contagem de convocações de Gate (CommitmentGate + Readiness Gate) com outcome bloqueante / total de convocações de Gate, por janela de tempo.
+
+**Sinal de alerta:** Gate Failure Rate > 30% em ciclos consecutivos indica padrão de AP-D1 (Gate Theater) ou AP-D3 (Forced Readiness) — os Gates estão sendo convocados sem que os artefatos satisfaçam os critérios.
+
+**Como coletar:** registros no `upstream-trail.md` (CommitmentGate) e nas sessões de Readiness Gate em `commitment/SKILL.md`; lidos pelo Assessment async.
+
+---
+
 ## Métricas complementares
 
 Usadas em perfis específicos (especialmente `quality` e `ai_readiness`):

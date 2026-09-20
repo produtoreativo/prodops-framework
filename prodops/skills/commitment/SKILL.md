@@ -30,7 +30,7 @@ Esta skill cobre dois gates sequenciais do lifecycle canônico:
 
 **Readiness Gate:**
 - Um item em Downstream Declared precisa ser verificado antes de entrar no Iteration Plan
-- O OBC precisa estar em estado Committed e todos os artefatos obrigatórios verificados
+- O OBC precisa estar em estado Readiness e todos os artefatos obrigatórios verificados
 - O Diligence bloqueou uma capability e é necessário avaliar prontidão atual
 
 ---
@@ -133,7 +133,7 @@ O Readiness Gate verifica que um item em Downstream Declared tem todos os pré-r
 
 ### Gates de Prontidão
 
-1. Local OBC no estado Committed em `prodops/artifacts/obcs/<slug>.md`
+1. Local OBC no estado Readiness em `prodops/artifacts/obcs/<slug>.md`
 2. BDD Feature committed em `prodops/artifacts/bdd/<slug>.feature`
 3. Riscos documentados em `prodops/artifacts/risks/risks.md`
 4. Item no Iteration Plan com status `Entrou`

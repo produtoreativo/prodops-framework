@@ -140,7 +140,7 @@ States represent **contract maturity**, not software state.
 |---|---|---|
 | **Draft** | BIB / Product Backlog — entry | Created; may be incomplete; records initial intent and hypotheses |
 | **Refining** | Product Backlog — Icebox view | Actively being refined; the Discovery journey may be in progress (in Upstream or Downstream mode) |
-| **Committed** | Product Backlog — Iteration Backlog view | Minimum information validated; ready for Delivery |
+| **Readiness** | Product Backlog — Iteration Backlog view | Certifies that Downstream Discovery produced a complete contract verifiable by third parties; ready for Delivery |
 | **In Delivery** | Iteration Plan → Delivery | In execution; implementation in progress |
 | **Operational** | Operation | In production; updated with operational evidence |
 | **Archived** | — | Intent closed; history preserved |
@@ -150,8 +150,8 @@ States represent **contract maturity**, not software state.
 ```
 [*] → Draft               (Business Signal → Business Intent)
 Draft → Refining          (CommitmentGate Promote outcome — Moment 2)
-Refining → Committed      (Readiness Gate approved — Moment 3)
-Committed → In Delivery   (Bootstrap.Started)
+Refining → Readiness      (Readiness Gate approved — Moment 3)
+Readiness → In Delivery   (Bootstrap.Started)
 In Delivery → Operational (Promote completed)
 Operational → Archived    (Deprecation or replacement)
 Refining → Archived       (CommitmentGate Discard outcome)
@@ -184,7 +184,7 @@ The `In Delivery → Refining` transition is a formal commitment suspension — 
 | OBC Partitioning | Draft | Local OBC created with reference to the Global OBC |
 | Product Backlog — Icebox view | Refining | Discovery refines the Local OBC; criteria emerge |
 | Assessment Review | Committed candidate | OBC reviewed by PM + Tech Lead; required sections validated |
-| Product Backlog — Iteration Backlog view | Committed | Minimum criteria validated; Downstream can begin |
+| Product Backlog — Iteration Backlog view | Readiness | Criteria validated; contract complete and verifiable by third parties; Downstream can begin |
 | Iteration Plan / Delivery | In Delivery | Guides implementation; BDD Feature operationalizes it |
 | Operation | Operational | In production; complemented with metrics, SLOs, incidents |
 | — | Archived | Intent closed |
@@ -242,10 +242,10 @@ OBCs produced within Upstream experiments remain in the experiment directory (`p
 
 ## OBC in Downstream
 
-Upon entering Downstream, the Local OBC ceases to be merely a record — it becomes the operational contract of the delivery. It is refined in the Icebox until reaching the Committed state, then controls the entire evolution of subsequent journeys.
+Upon entering Downstream, the Local OBC ceases to be merely a record — it becomes the operational contract of the delivery. It is refined in the Icebox until reaching the Readiness state, then controls the entire evolution of subsequent journeys.
 
 Commitment may be declared before readiness. The minimum set required to reach **Downstream Ready** and start a Delivery phase is:
-- Local OBC committed in `prodops/artifacts/obcs/<slug>.md` with Committed state
+- Local OBC in Readiness state at `prodops/artifacts/obcs/<slug>.md`
 - BDD Feature committed in `prodops/artifacts/bdd/<slug>.feature`
 - Documented risks and an `In` Iteration Plan entry
 - Updated Reliability Plan when there is money movement, an external integration, an SLO change, high/critical risk, or a persistence or security change
@@ -283,7 +283,7 @@ All Downstream Skills use the Local OBC as their primary source of context. Skil
 | **Who modifies** | Product Manager, Tech Lead, engineers (with change record) |
 | **Who approves** | Product Manager + Tech Lead (Assessment Review) |
 | **Consumers** | Delivery, Reliability Plan, BDD Feature, Release Trail, Iteration Plan |
-| **Lifecycle** | Draft → Refining → Committed → In Delivery → Operational → Archived |
+| **Lifecycle** | Draft → Refining → Readiness → In Delivery → Operational → Archived |
 | **Journeys** | Discovery, Delivery, Operation, Assessment, Diligence |
 
 ---
@@ -294,7 +294,7 @@ All Downstream Skills use the Local OBC as their primary source of context. Skil
 |---|---|
 | Exploratory OBC (in Upstream experiment) | `prodops/artifacts/experiments/<NNN-slug>/obcs/<slug>.md` |
 | Committed Global OBC | Platform portfolio repository (external to this repository) |
-| Committed Local OBC | `prodops/artifacts/obcs/<slug>.md` |
+| Local OBC in Readiness state | `prodops/artifacts/obcs/<slug>.md` |
 
 ---
 

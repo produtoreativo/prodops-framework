@@ -43,4 +43,34 @@ An agent must always attempt to execute an action itself before instructing a hu
 
 ---
 
+---
+
+## Fundamental Chain
+
+The type of active commitment determines the execution mode; the mode determines the rigor regime; the rigor determines the type of evidence required; the evidence enables control. The arrow does not represent temporal sequence: it represents the progressive transformation of the type of commitment governing the work.
+
+```
+COMMITMENT → MODE → RIGOR → EVIDENCE → CONTROL
+```
+
+See [`execution-model/README.en.md`](execution-model/README.en.md) for the Upstream/Downstream distinction, and [`glossary.en.md`](glossary.en.md#commitment) for the canonical Commitment definition.
+
+---
+
+## Three Action Regimes
+
+Synthesis of the three regimes that organize product work in ProdOps. The arrow does not represent temporal sequence — it represents the type of active commitment in each regime.
+
+```
+LEARN → COMMIT → DELIVER
+```
+
+- **LEARN:** the work is uncertainty reduction. Hypothesis failure is a legitimate outcome — it informs the next decision. Upstream mode.
+- **COMMIT:** transition formalized by the CommitmentGate. The rigor type changes from advisory to blocking. The cost of being wrong increases.
+- **DELIVER:** the work is honoring what was promised. Failure carries a different cost than failure in the learning regime. Downstream mode.
+
+See [`execution-model/upstream.en.md`](execution-model/upstream.en.md) and [`execution-model/downstream.en.md`](execution-model/downstream.en.md).
+
+---
+
 → **Next:** [Operating Model](operating-model.en.md)

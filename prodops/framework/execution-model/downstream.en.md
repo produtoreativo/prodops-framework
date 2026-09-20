@@ -126,7 +126,7 @@ The PM must explicitly document the justification for direct Downstream entry (e
 | ID | Name | Description |
 |----|------|-------------|
 | **AP-D1** | Gate Theater | Gates executed formally without the artifacts satisfying the criteria. The ritual exists; the substance does not. |
-| **AP-D2** | Proxy Commitment | OBC marked as Committed without measurable success criteria. The commitment is named but not verifiable. |
+| **AP-D2** | Proxy Commitment | OBC marked as Readiness without measurable success criteria. The commitment is named but not verifiable. |
 | **AP-D3** | Forced Readiness | Readiness Gate approved with known gaps due to deadline pressure. Unlike a Waiver (which is explicit and recorded), Forced Readiness is silent. |
 | **AP-D4** | Phantom BDD | BDD Feature written after the code, describing what was implemented instead of the expected behavior. The test passes because the code already exists — not because the behavior was specified. |
 | **AP-D5** | Empty Release Trail | Promote executed without a filled Release Trail. The commitment was honored but is not verifiable by those who did not participate. |
@@ -143,7 +143,7 @@ Triggered when a hypothesis is invalidated during Delivery — what was committe
 
 1. **Record in Release Trail:** entry documenting the reason for suspension, the invalidated hypothesis, and the regression decision
 2. **Open new Upstream experiment:** referencing the original OBC and the suspended Downstream; the experiment investigates what invalidated the hypothesis
-3. **Transition the OBC:** `Committed → Refining` (the transition is recorded in the OBC with date and justification)
+3. **Transition the OBC:** `In Delivery → Refining` (the transition is recorded in the OBC with date and justification)
 4. **Update the Work Item:** status returns to Icebox; Downstream Declared remains recorded as history
 
 The team and leadership must be notified. Regression is not a process failure — it is the correct protocol when evidence changes during execution.
