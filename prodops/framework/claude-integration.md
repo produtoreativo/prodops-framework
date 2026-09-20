@@ -128,7 +128,7 @@ O `check-work-item-schema.sh` é registrado no `settings.json` como hook PreTool
 `derive-context.sh` gera `prodops/artifacts/context/prodops-context.yaml` — snapshot machine-readable do estado atual do produto.
 
 **Conteúdo:**
-- OBCs por estado (Draft, Refining, Committed, In Delivery, Released)
+- OBCs por estado (Draft, Refining, Readiness, In Delivery, Released)
 - Experimentos Upstream ativos
 - Capabilities na iteração ativa
 
@@ -220,7 +220,7 @@ Usuário: "Verificar outcome do split-payment (Released há 30 dias)"
 ```
 Usuário: "/downstream DS-42"
 → downstream-agent: verifica Readiness Gate via check-readiness-gate.sh
-→ Gate 1 falha: OBC não está em estado Committed
+→ Gate 1 falha: OBC não está em estado Readiness
 → Para com: lista de gates faltando + ação concreta necessária
 → Não inicia Bootstrap
 ```

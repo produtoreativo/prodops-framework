@@ -54,7 +54,7 @@ Capabilities são competências reutilizáveis consumidas pelos ciclos da Dilige
 
 **Exemplos de uso:**
 - OBC transitiona de Draft para Refining → Backlog Synchronization move o item para o Icebox
-- OBC transiciona para Committed → Backlog Synchronization move o item para o Iteration Backlog
+- OBC transiciona para Readiness → Backlog Synchronization move o item para o Iteration Backlog
 - Diligence Async detecta item no Iteration Plan com OBC em estado Draft → Backlog Synchronization sinaliza divergência
 
 **Anti-padrões:**
@@ -103,7 +103,7 @@ A operação e o tipo de artefato vão nos campos e labels do Issue — não no 
 - Não usa Issue como fonte de verdade do OBC
 
 **Exemplos de uso:**
-- Diligence Sync — Attach: OBC Committed com Delivery ativa, sem Work Item → Work Item Management cria Issue com schema completo
+- Diligence Sync — Attach: OBC Readiness com Delivery ativa, sem Work Item → Work Item Management cria Issue com schema completo
 - Diligence Sync — Close: OBC transiciona para Operational, Release Trail confirmado → Work Item Management fecha o Issue com referência à entrega
 - Diligence Async — Repair: Work Item com artifact_id inválido → Work Item Management registra divergência e escala
 
@@ -146,7 +146,7 @@ A operação e o tipo de artefato vão nos campos e labels do Issue — não no 
 - Não decide se um Reliability Plan é necessário — apenas verifica sua presença quando já foi decidido que é necessário
 
 **Exemplos de uso:**
-- Item candidato ao Iteration Plan: Readiness Verification verifica OBC Committed + BDD Feature Committed + riscos documentados
+- Item candidato ao Iteration Plan: Readiness Verification verifica OBC Readiness + BDD Feature committed + riscos documentados
 - Item com risco qualificado para Reliability Plan: Readiness Verification verifica se o Reliability Plan existe e foi revisado
 - Diligence Async — Scan: item no Iteration Plan sem BDD Feature committed → Readiness Verification registra divergência
 

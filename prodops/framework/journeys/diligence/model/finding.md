@@ -94,7 +94,7 @@ Um Finding tem UMA dimensão primária e pode ter dimensões secundárias opcion
 
 **Exemplos:**
 - OBC em estado Operational com Work Item ainda aberto (Close não foi executado)
-- Item promovido ao Iteration Plan sem BDD Feature Committed
+- Item promovido ao Iteration Plan sem BDD Feature committed
 - Work Item marcado como Done sem Evidence de conclusão
 - OBC em estado In Delivery sem nenhum Work Item de implementação ativo
 

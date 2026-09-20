@@ -3,7 +3,7 @@
 O fluxo oficial do Framework ProdOps descreve o caminho que toda mudança percorre desde a sua origem até a operação contínua.
 
 ```
-Origin Stream → Business Signal → [Fluxo Global ou Fluxo Local] → Local OBC Draft (Product Backlog) → Exploration + Assessment → Assessment Review → Local OBC Committed + BDD committed → Iteration Backlog (VIEW) → Iteration Plan → Delivery → Operation → Refinamento Contínuo do OBC
+Origin Stream → Business Signal → [Fluxo Global ou Fluxo Local] → Local OBC Draft (Product Backlog) → Exploration + Assessment → Assessment Review → Local OBC Readiness + BDD committed → Iteration Backlog (VIEW) → Iteration Plan → Delivery → Operation → Refinamento Contínuo do OBC
 ```
 
 Este documento é a referência canônica para entender **o que acontece em cada etapa**, **o que é produzido** e **quando avançar**.
@@ -30,7 +30,7 @@ flowchart TD
     AS["Assessment\n(transversal)"]
     RP["Reliability Plan\n(condicional por risco)"]
     REV["Assessment Review\n(PM + Tech Lead)"]
-    OBC["Local OBC Committed + BDD\ncommitted"]
+    OBC["Local OBC Readiness + BDD\ncommitted"]
     IP["Iteration Plan\n(status: Entrou)"]
     D["Delivery\n(Downstream)"]
     OP["Operation\n(Jornada: Operation)"]
@@ -51,7 +51,7 @@ flowchart TD
     AS -.-> RP
     RP -.-> REV
     REV --> OBC
-    OBC --> IB["Iteration Backlog\n(view: Committed)"]
+    OBC --> IB["Iteration Backlog\n(view: Readiness)"]
     IB --> IP
     IP --> D
     D --> OP
@@ -173,7 +173,7 @@ Esta etapa pertence somente ao **Fluxo Global**. No **Fluxo Local**, o Business 
 **O que acontece:** A jornada Discovery continua no nível de produto — agora no Icebox. O Local OBC é refinado com critérios de aceite, eventos observáveis, regras de confiabilidade e contrato de resposta. Em Upstream não há compromisso de entrega e a maturidade pode variar; em Downstream aplicam-se todos os gates vigentes.
 
 **O que é produzido:**
-- Local OBC refinado (estado: Refining → Committed)
+- Local OBC refinado (estado: Refining → Readiness)
 - BDD Feature draft
 - Atualização de riscos e oportunidades
 
@@ -183,11 +183,11 @@ Esta etapa pertence somente ao **Fluxo Global**. No **Fluxo Local**, o Business 
 
 ---
 
-### 7. Local OBC Committed + BDD
+### 7. Local OBC Readiness + BDD
 
 **Objetivo:** Transformar o conhecimento validado em um contrato observável e verificável — pronto para Delivery.
 
-**O que acontece:** O Local OBC Draft é refinado pela Exploration (Discovery no Icebox) e pela Assessment. Na Assessment Review, PM e Tech Lead revisam o conjunto; quando aprovado, o Local OBC atinge o estado Committed e a BDD Feature é promovida para os diretórios committed. Sem esse conjunto, não há execução Downstream.
+**O que acontece:** O Local OBC Draft é refinado pela Exploration (Discovery no Icebox) e pela Assessment. Na Assessment Review, PM e Tech Lead revisam o conjunto; quando aprovado, o Local OBC atinge o estado Readiness e a BDD Feature é promovida para os diretórios committed. Sem esse conjunto, não há execução Downstream.
 
 **O que é produzido:**
 - Local OBC committed em `prodops/artifacts/obcs/<slug>.md`
@@ -220,7 +220,7 @@ Esta etapa pertence somente ao **Fluxo Global**. No **Fluxo Local**, o Business 
 
 **Objetivo:** Comprometer formalmente a capability na próxima iteração de entrega depois da Assessment Review.
 
-**O que acontece:** O conjunto aprovado — Local OBC Committed, BDD Feature, riscos e Reliability Plan (quando houver movimentação financeira, integração externa, mudança de SLO, risco alto/crítico ou alteração de persistência ou segurança) — entra no Iteration Plan com status `Entrou`. Isso representa compromisso formal de entrega; não é, isoladamente, prova de readiness.
+**O que acontece:** O conjunto aprovado — Local OBC Readiness, BDD Feature, riscos e Reliability Plan (quando houver movimentação financeira, integração externa, mudança de SLO, risco alto/crítico ou alteração de persistência ou segurança) — entra no Iteration Plan com status `Entrou`. Isso representa compromisso formal de entrega; não é, isoladamente, prova de readiness.
 
 **O que é produzido:**
 - Entrada no Iteration Plan em `prodops/artifacts/plans/iteration-plan.md` com status `Entrou`
@@ -288,7 +288,7 @@ Um item pode transicionar entre modos ao longo do mesmo estágio. O modo nunca d
 
 | Termo | Nível | Significado |
 |---|---|---|
-| **Exploration** | Etapa do fluxo | O que acontece entre Business Intent e OBC Committed: redução de incerteza |
+| **Exploration** | Etapa do fluxo | O que acontece entre Business Intent e OBC Readiness: redução de incerteza |
 | **Discovery** | Jornada | O nome da jornada do Framework que implementa Exploration — existe nos **dois modos** |
 | **Upstream** | Execution Mode | O modo permissivo e sem compromisso que modula **todas as jornadas** |
 

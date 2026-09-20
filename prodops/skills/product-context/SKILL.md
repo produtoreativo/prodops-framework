@@ -51,7 +51,7 @@ Determinar o slug da capability ou OBC-ID a partir da entrada fornecida. Se não
 ### 2. Ler o OBC ativo
 
 Ler `prodops/artifacts/obcs/<slug>.md` e extrair:
-- Estado atual (Draft / Refining / Committed / In Delivery / Released / Archived)
+- Estado atual (Draft / Refining / Readiness / In Delivery / Released / Archived)
 - Origem (Global OBC ou Business Intent + Tracking Item)
 - Critérios de aceite (se presentes)
 - Observable Events declarados
@@ -72,8 +72,8 @@ Com base no estado do OBC e nos artefatos presentes, classificar a capability em
 | Business Intent / Product Intent | OBC Draft + referência de origem estabelecida |
 | Context Discovery | OBC Draft em diretório de experimento + `experiment.md` ativo |
 | Commitment | OBC transitando Draft → Refining; CommitmentGate registrado no `upstream-trail.md` |
-| Diligence & Readiness | OBC Refining → Committed; gates de readiness em verificação |
-| Iteration | OBC Committed; item no Iteration Plan com status `Entrou` |
+| Diligence & Readiness | OBC Refining → Readiness; gates de readiness em verificação |
+| Iteration | OBC Readiness; item no Iteration Plan com status `Entrou` |
 | Delivery | OBC In Delivery; Bootstrap.Started registrado; CI Sync em execução |
 | Evidence | OBC Released; Release Trail atualizado; Observable Events operando |
 | Outcome | OBC Released; KPIs e Product Outcome verificados |

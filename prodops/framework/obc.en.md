@@ -145,6 +145,8 @@ States represent **contract maturity**, not software state.
 | **Operational** | Operation | In production; updated with operational evidence |
 | **Archived** | — | Intent closed; history preserved |
 
+> **Causal direction:** OBC states do not determine the mode or produce the commitment — they make the commitment observable. What causes an OBC to transition between states is the satisfaction of criteria reflecting the current commitment's maturity. **The mode is the cause; the states are the verifiable record.** Changing an OBC's state does not change the mode; the mode already exists before the state reflects it.
+
 ### Canonical State Transitions
 
 ```
@@ -154,7 +156,8 @@ Refining → Readiness      (Readiness Gate approved — Moment 3)
 Readiness → In Delivery   (Bootstrap.Started)
 In Delivery → Operational (Promote completed)
 Operational → Archived    (Deprecation or replacement)
-Refining → Archived       (CommitmentGate Discard outcome)
+Draft → Archived           (CommitmentGate Discard outcome)
+Refining → Draft           (pre-condition for Discard when OBC is in Refining: formal redraft records learnings before archiving)
 In Delivery → Refining    (Downstream → Upstream regression: hypothesis invalidated during Delivery)
 ```
 
@@ -183,7 +186,7 @@ The `In Delivery → Refining` transition is a formal commitment suspension — 
 |---|---|---|
 | OBC Partitioning | Draft | Local OBC created with reference to the Global OBC |
 | Product Backlog — Icebox view | Refining | Discovery refines the Local OBC; criteria emerge |
-| Assessment Review | Committed candidate | OBC reviewed by PM + Tech Lead; required sections validated |
+| Assessment Review | Readiness candidate | OBC reviewed by PM + Tech Lead; required sections validated |
 | Product Backlog — Iteration Backlog view | Readiness | Criteria validated; contract complete and verifiable by third parties; Downstream can begin |
 | Iteration Plan / Delivery | In Delivery | Guides implementation; BDD Feature operationalizes it |
 | Operation | Operational | In production; complemented with metrics, SLOs, incidents |

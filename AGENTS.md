@@ -30,6 +30,25 @@ O gate `prodops/scripts/validate-export-manifest.sh` falha automaticamente se
 
 ---
 
+## Regra de classificação de modo para agentes
+
+Ao trabalhar neste repositório, o agente deve inferir o modo correto a partir do estado dos artefatos — não de labels subjetivos:
+
+| Estado do OBC | Modo inferido |
+|---|---|
+| CommitmentGate registrado com outcome Promover ou Promover com restrição (OBC em Refining ou Readiness) | **Downstream** |
+| Sem CommitmentGate registrado (OBC em Draft) | **Upstream** |
+| OBC ausente | Pré-Business Intent ou Finding de Diligence — não é classificação de modo válida |
+
+**Dois modos de falha de agente a evitar:**
+
+- **Rigor máximo indiscriminado:** tratar tudo como Downstream, aplicar Gates onde não cabem, bloquear exploração ao exigir OBC Readiness durante hipótese. Sintoma: agente pergunta "onde está o OBC Committed?" durante um experimento Upstream.
+- **Permissividade total:** tratar tudo como Upstream, avançar sem Gates, implementar sem verificar se OBC está em Readiness ou se BDD existe. Sintoma: agente executa Bootstrap sem verificar as 5 pré-condições do Downstream Ready.
+
+Quando o modo for ambíguo, o agente deve perguntar ao usuário — não assumir.
+
+---
+
 ## Protocolo de review de PR de export
 
 Todo PR de export vem de `payments-api` via `export-framework.sh`. Ao revisar:

@@ -8,7 +8,7 @@ Upstream representa um modo de exploração. Seu objetivo é reduzir incertezas 
 
 ## Propósito
 
-Reduzir incerteza antes de assumir qualquer compromisso formal. O software produzido no Upstream pode ter qualidade de produção — o que não existe é compromisso de entrega, OBC Committed ou Release Trail. O rigor é uma escolha do engenheiro, não uma imposição do modo.
+Reduzir incerteza antes de assumir qualquer compromisso formal. O software produzido no Upstream pode ter qualidade de produção — o que não existe é compromisso de entrega, OBC Readiness ou Release Trail. O rigor é uma escolha do engenheiro, não uma imposição do modo.
 
 ## Características do modo
 
@@ -16,7 +16,7 @@ No Upstream:
 
 - não existem gates obrigatórios
 - não existe obrigação de concluir artefatos
-- não existe obrigação de produzir um OBC Committed
+- não existe obrigação de produzir um OBC Readiness
 - não existe obrigação de seguir todas as Skills
 - o engenheiro decide quais Skills utilizar
 - vibecoding é permitido
@@ -25,7 +25,7 @@ No Upstream:
 
 O objetivo é aprender o mais rápido possível.
 
-Um experimento Upstream pode produzir código de qualidade de produção. O rótulo exploratório descreve o modelo de compromisso — sem gates obrigatórios, sem OBC Committed, sem Release Trail — não o limite de implantação. Por decisão explícita do time e da liderança, esse código pode ser implantado em produção ou em ambientes produtivos controlados sem exigir promoção formal para Downstream. O CommitmentGate formaliza a transição de modo; não é pré-condição de implantação.
+Um experimento Upstream pode produzir código de qualidade de produção. O rótulo exploratório descreve o modelo de compromisso — sem gates obrigatórios, sem OBC Readiness, sem Release Trail — não o limite de implantação. Por decisão explícita do time e da liderança, esse código pode ser implantado em produção ou em ambientes produtivos controlados sem exigir promoção formal para Downstream. O CommitmentGate formaliza a transição de modo; não é pré-condição de implantação.
 
 ## OBC no Upstream
 
@@ -94,7 +94,7 @@ No Upstream, o código pode chegar a diferentes ambientes. Existem três atos di
 | **Produção Controlada** | Código Upstream implantado em produção real, sem CommitmentGate | Decisão explícita do time e da liderança | Rollback imediato disponível; sem Release Trail exigido |
 | **Promoção de Capability** | CommitmentGate outcome Promover: BDD + OBC movidos; item entra no Downstream | Trio PM + Tech Lead + Autor | Processo formal de rollback Downstream |
 
-**Produção Controlada não é uma violação do modo Upstream** — é um ato autorizado. O que a diferencia da Promoção é que o **compromisso de capability** (OBC Committed, Release Trail, Downstream gates) não foi assumido. O código chega a produção; a capability permanece em exploração.
+**Produção Controlada não é uma violação do modo Upstream** — é um ato autorizado. O que a diferencia da Promoção é que o **compromisso de capability** (OBC Readiness, Release Trail, Downstream gates) não foi assumido. O código chega a produção; a capability permanece em exploração.
 
 ## Como executar no modo Upstream
 
@@ -108,12 +108,14 @@ O Perpetual Discovery ocorre quando um experimento continua acumulando evidênci
 
 **Quatro sinais diagnósticos objetivos:**
 
-| Sinal | Critério | Ação |
-|-------|----------|------|
-| **S1** | Sem progressão no `upstream-trail` por 3 ou mais sessões consecutivas | Identificar bloqueio; escalar ao trio |
-| **S2** | Questões marcadas como "não respondíveis com evidências disponíveis" por 5 ou mais dias | Revisar hipótese; considerar CommitmentGate com outcome Descartar ou Aguardar |
-| **S3** | Evidence Threshold declarado identificado como não atingível sem nova hipótese, após 3 ou mais sessões de coleta | Reformular hipótese ou revisar threshold; registrar decisão no trail |
-| **S4** | Stakeholder com decisão bloqueada há 10 ou mais dias úteis por causa deste experimento | CommitmentGate imediato — a decisão de esperar mais também é uma decisão válida (outcome Aguardar) |
+| Sinal | Critério estrutural | Ação |
+|-------|---------------------|------|
+| **S1** | `experiment.md` não declara Evidence Threshold **e** não existe critério substituto explícito de parada | Convocar o trio: sem critério de parada, o experimento não pode terminar por definição |
+| **S2** | A hipótese central foi formulada de forma não-refutável — nenhum resultado poderia refutá-la — ou nunca foi formalizada como pergunta falsificável | Reformular hipótese antes de continuar coleta de evidências |
+| **S3** | Uma ou mais Questions to Answer foram marcadas como "não respondíveis com evidências disponíveis" e nenhuma nova rota de evidência ou reformulação de hipótese foi identificada | CommitmentGate com outcome Descartar ou reformulação completa da pergunta de investigação |
+| **S4** | Evidence Threshold existe mas a rota de coleta atual não consegue atingi-lo — dead end estrutural | CommitmentGate imediato: o experimento não pode concluir com a abordagem atual |
+
+> **Natureza dos sinais:** S1-S4 são diagnósticos **estruturais** — verificam o estado dos artefatos do experimento, não o tempo decorrido. Um S1 pode ser detectado no primeiro dia de um experimento; um experimento ativo há meses pode não apresentar nenhum sinal se seus artefatos estiverem bem definidos.
 
 A presença de qualquer sinal não exige encerramento imediato — exige **convocação do trio para decidir conscientemente** se o experimento deve continuar, ser suspenso ou encerrado.
 

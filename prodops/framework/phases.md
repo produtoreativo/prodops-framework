@@ -33,22 +33,22 @@ Os dois fluxos são independentes. Um sinal não precisa passar pelo fluxo globa
 
 ## Inception
 
-**Período:** desde a entrada no Product Backlog até o Local OBC atingir o estado Committed (Iteration Backlog).
+**Período:** desde a entrada no Product Backlog até o Local OBC atingir o estado Readiness (Iteration Backlog).
 
 **Backlogs envolvidos:**
-- Product Backlog (fonte de verdade) — com views: Icebox (Refining) → Iteration Backlog (Committed)
+- Product Backlog (fonte de verdade) — com views: Icebox (Refining) → Iteration Backlog (Readiness)
 
 **Pergunta central:** O Product Owner está comprometendo atenção e capacidade para investigar isso agora?
 
 **Governança:** Product Owner (aceite formal e modo de execução) e Tech Lead (Assessment Review).
 
-**Estado do OBC (Local OBC):** Draft → Refining (Icebox) → Committed (Iteration Backlog).
+**Estado do OBC (Local OBC):** Draft → Refining (Icebox) → Readiness (Iteration Backlog).
 
 **Compromisso:** Formal. O Product Owner comprometeu-se a investigar. Qualquer encerramento a partir daqui exige registro explícito de aprendizado e rastreabilidade no OBC.
 
 **Modo de execução:** Upstream ou Downstream — são **modos**, não fases. O modo é definido pelo Product Owner ao aceitar a Business Intent no Product Backlog e pode mudar ao longo da Inception. Upstream é usado para alta incerteza; Downstream para clareza suficiente com gates obrigatórios. Um item pode iniciar Upstream e, após reduzir incerteza, transicionar para Downstream sem mudar de fase.
 
-**O que termina a Inception:** Assessment Review aprovada, Local OBC em estado Committed, BDD Feature committed — item atinge o estado "pronto" no Product Backlog (view Iteration Backlog).
+**O que termina a Inception:** Assessment Review aprovada, Local OBC em estado Readiness, BDD Feature committed — item atinge o estado "pronto" no Product Backlog (view Iteration Backlog).
 
 ---
 
@@ -90,7 +90,7 @@ INCEPTION
   (Local OBC nasce como Draft se ainda não existe — fluxo local)
     │              │
     │  [view]      ├─ Icebox [Refining]
-    │              └─ Iteration Backlog [Committed]
+    │              └─ Iteration Backlog [Readiness]
     │  (Assessment Review: PM + Tech Lead valida a transição)
          │
          ▼
@@ -103,7 +103,7 @@ INCEPTION
 |---|---|---|
 | Backlogs | Tracking Lists, Business Intent Backlog | Product Backlog, Icebox (VIEW), Iteration Backlog (VIEW) |
 | Governança | Portfolio PM (global) / responsável local | Product Owner + Tech Lead |
-| OBC | Não existe → Global OBC Draft (BIB) / Local OBC Draft (Product Backlog) | Draft → Refining → Committed |
+| OBC | Não existe → Global OBC Draft (BIB) / Local OBC Draft (Product Backlog) | Draft → Refining → Readiness |
 | Descarte | Sem registro formal | Exige registro de aprendizado no OBC |
 | Modo de execução | Não aplicável | Upstream ou Downstream (modos, não fases) |
 

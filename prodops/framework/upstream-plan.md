@@ -24,7 +24,7 @@ Enquanto o Iteration Plan registra *o que está sendo entregue nesta iteração*
 | **Hipótese** | Uma linha: o que está sendo testado |
 | **Estado** | Ativo / Aguardando (dependência externa) / Concluído (aguardando CommitmentGate) |
 | **Decision Package** | Pronto / Em construção / Não iniciado |
-| **Sessões desde última entrada** | Contador de sessões desde a última entrada no upstream-trail (sinal S1 do Perpetual Discovery) |
+| **Sessões desde última entrada** | Contador de sessões desde a última entrada no upstream-trail (alerta A1 do Plano de Experimento) |
 | **Discovery WIP** | Posição neste experimento dentro do WIP total (ex: 2/3) |
 
 ---
@@ -34,11 +34,11 @@ Enquanto o Iteration Plan registra *o que está sendo entregue nesta iteração*
 | Dimensão | Plano de Experimento | Iteration Plan |
 |---|---|---|
 | **Modo** | Upstream (não bloqueante / advisory) | Downstream (bloqueante) |
-| **O que lista** | Experimentos com hipótese ativa | Capabilities com OBC Committed |
+| **O que lista** | Experimentos com hipótese ativa | Capabilities com OBC Readiness |
 | **Gate de entrada** | Abertura de experimento pelo PM/Tech Lead | CommitmentGate outcome Promover + Readiness Gate |
 | **Gate de saída** | CommitmentGate (qualquer dos 6 outcomes) | Promote concluído → OBC Released |
 | **Limite de WIP** | Discovery WIP (controlado pela equipe) | Capacidade da iteração |
-| **Artefato central** | `experiment.md` + `upstream-trail.md` | OBC Committed + BDD Feature |
+| **Artefato central** | `experiment.md` + `upstream-trail.md` | OBC Readiness + BDD Feature |
 
 ---
 
@@ -50,16 +50,18 @@ O limite de Discovery WIP é uma decisão de cada time — não um valor fixo do
 
 ---
 
-## Sinais de alerta no Plano de Experimento
+## Alertas do Plano de Experimento
 
-| Sinal | Critério | Diagnóstico |
-|---|---|---|
-| **S1** | Experimento ativo sem progressão de hipótese por 3+ sessões (upstream-trail tem entradas mas `Hypothesis` não mudou há 2+ semanas e Decision Package não tem substância) | Stagnação — experimento travado sem decisão |
-| **S2** | Experimento ativo há mais de N semanas sem Decision Package | Perpetual Discovery — exploração sem critério de parada |
-| **S3** | Discovery WIP acima do limite definido pelo time | Dispersão — muitas hipóteses em paralelo |
-| **S4** | Experimento com Decision Package pronto mas CommitmentGate não convocado | Decision Latency — evidência disponível, decisão adiada |
+| Alerta | Critério | Diagnóstico |
+|--------|----------|-------------|
+| **A1** | Experimento ativo sem progressão de hipótese por 3+ sessões (upstream-trail tem entradas mas `Hypothesis` não mudou há 2+ semanas e Decision Package não tem substância) | Stagnação — experimento travado sem decisão |
+| **A2** | Experimento ativo há mais de N semanas sem Decision Package | Perpetual Discovery — exploração sem critério de parada |
+| **A3** | Discovery WIP acima do limite definido pelo time | Dispersão — muitas hipóteses em paralelo |
+| **A4** | Experimento com Decision Package pronto mas CommitmentGate não convocado | Decision Latency — evidência disponível, decisão adiada |
 
-Quando múltiplos sinais estão ativos simultaneamente, a convocação do CommitmentGate é a resposta operacional específica — não para forçar aprovação, mas para decidir o destino do experimento.
+> **Distinção importante:** A1-A4 são alertas **operacionais** do Plano de Experimento — detectam padrões de gestão de fluxo. São distintos dos sinais S1-S4 do anti-padrão Perpetual Discovery (em [upstream.md](../execution-model/upstream.md#perpetual-discovery--anti-padrão)), que são diagnósticos estruturais sobre o estado dos artefatos do experimento.
+
+Quando múltiplos alertas estão ativos simultaneamente, a convocação do CommitmentGate é a resposta operacional específica — não para forçar aprovação, mas para decidir o destino do experimento.
 
 ---
 
@@ -76,11 +78,11 @@ O Plano de Experimento é atualizado no início de cada sessão de trabalho Upst
 ```
 Product Intent Backlog (PIB)
     │
-    └─ [VIEW] Icebox         (OBC ≠ Committed)
+    └─ [VIEW] Icebox         (OBC ≠ Readiness)
             │
             └─ [VIEW] Plano de Experimento   (experimentos Upstream ativos)
                        │
-                       └─ CommitmentGate → Iteration Backlog (OBC Committed)
+                       └─ CommitmentGate → Iteration Backlog (OBC Readiness)
 ```
 
 Um item do PIB pode estar no Icebox sem estar no Plano de Experimento — por exemplo, quando aguarda uma decisão de negócio externa antes de abrir um experimento. O Plano de Experimento é a subview ativa do Icebox para o trabalho de exploração em curso.

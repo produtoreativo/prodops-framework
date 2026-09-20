@@ -157,7 +157,7 @@ Business Signal  ·····  [Product Tracking List]
     ↓  Owner Approval
 Business Intent + Local OBC Draft  ·····  [Icebox — Refining]
     ↓  Discovery: Upstream ou Downstream
-Local OBC Committed + BDD Feature  ·····  [Iteration Backlog]
+Local OBC Readiness + BDD Feature  ·····  [Iteration Backlog]
     ↓  entra no Iteration Plan
 Delivery
   ├── CI Sync:   Bootstrap → Hack → Sync → Finish
@@ -174,7 +174,7 @@ Product Analytics + Reliability Matrix  ·····  [Product Deck atualizado]
 |---|---|---|
 | Origem | Business Signal | Qual necessidade originou a capability |
 | Compromisso | Business Intent + Local OBC | O que foi contratado e por quem |
-| Contratos | Local OBC Committed | APIs, eventos, schemas, SLIs — dimensão Data |
+| Contratos | Local OBC Readiness | APIs, eventos, schemas, SLIs — dimensão Data |
 | Especificação | BDD Feature | Comportamento esperado em Gherkin |
 | Entrega | Release Trail | Evidência de conclusão com quality gates |
 | Resultado | Product Analytics | KPIs de negócio e SLIs pós-entrega |

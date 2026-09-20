@@ -28,7 +28,7 @@ Skills are no longer optional. They become part of the execution process — the
 
 When entering Downstream, the OBC is no longer just a record. It becomes the operational contract of the work.
 
-During Discovery (in the Icebox), it will be refined until reaching the Committed state. That OBC controls the evolution of the subsequent journeys: Iteration Backlog → Iteration Plan → Delivery.
+During Discovery (in the Icebox), it will be refined until reaching the Readiness state. That OBC controls the evolution of the subsequent journeys: Iteration Backlog → Iteration Plan → Delivery.
 
 ## When to use Downstream mode
 
@@ -44,6 +44,8 @@ Downstream has three explicit moments, each with verifiable entry conditions:
 ### Moment 1 — CommitmentGate → Downstream Declared
 
 The commitment has been assumed. The CommitmentGate with outcome **Promote** is the only event that opens Downstream.
+
+> **Dual purpose:** The CommitmentGate makes two opposite problems simultaneously observable and treatable: **Perpetual Discovery** (exploration without decision pressure) and **Premature Promotion** (decision without sufficient evidence). By having a name, criteria, participants, and recorded outcomes, the Gate transforms both from implicit states into traceable states.
 
 **Mandatory entry conditions for CommitmentGate to emit Promote:**
 1. Hypothesis answered with Evidence Threshold satisfied (if declared)
@@ -67,7 +69,7 @@ Occurs immediately after the CommitmentGate. These are distinct actions from Mom
 ### Moment 3 — Readiness Gate → Downstream Ready
 
 **Mandatory conditions before starting any Delivery phase:**
-1. OBC in `prodops/artifacts/obcs/` with state **Committed**
+1. OBC in `prodops/artifacts/obcs/` with state **Readiness**
 2. BDD Feature in `prodops/artifacts/bdd/`
 3. Risks documented in `prodops/artifacts/risks/risks.md`
 4. Iteration Plan entry with status `In` in `prodops/artifacts/plans/iteration-plan.md`

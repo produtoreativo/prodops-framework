@@ -24,7 +24,7 @@ While the Iteration Plan records *what is being delivered in this iteration* (co
 | **Hypothesis** | One line: what is being tested |
 | **Status** | Active / Waiting (external dependency) / Concluded (awaiting CommitmentGate) |
 | **Decision Package** | Ready / In progress / Not started |
-| **Sessions since last entry** | Session count since the last upstream-trail entry (S1 signal of Perpetual Discovery) |
+| **Sessions since last entry** | Session count since the last upstream-trail entry (A1 alert of the Experiment Plan) |
 | **Discovery WIP** | Position of this experiment within total WIP (e.g., 2/3) |
 
 ---
@@ -50,16 +50,18 @@ The Discovery WIP limit is a decision for each team — not a fixed framework va
 
 ---
 
-## Warning signals in the Experiment Plan
+## Experiment Plan Alerts
 
-| Signal | Criterion | Diagnosis |
-|---|---|---|
-| **S1** | Active experiment with no hypothesis progression for 3+ sessions (upstream-trail has entries but `Hypothesis` has not changed in 2+ weeks and Decision Package has no substance) | Stagnation — experiment stuck without a decision |
-| **S2** | Experiment active for more than N weeks without a Decision Package | Perpetual Discovery — exploration without a stop criterion |
-| **S3** | Discovery WIP above the team-defined limit | Dispersion — too many hypotheses in parallel |
-| **S4** | Experiment with ready Decision Package but CommitmentGate not convened | Decision Latency — evidence available, decision deferred |
+| Alert | Criterion | Diagnosis |
+|-------|-----------|-----------|
+| **A1** | Active experiment with no hypothesis progression for 3+ sessions (upstream-trail has entries but `Hypothesis` has not changed in 2+ weeks and Decision Package has no substance) | Stagnation — experiment stuck without a decision |
+| **A2** | Experiment active for more than N weeks without a Decision Package | Perpetual Discovery — exploration without a stop criterion |
+| **A3** | Discovery WIP above the team-defined limit | Dispersion — too many hypotheses in parallel |
+| **A4** | Experiment with ready Decision Package but CommitmentGate not convened | Decision Latency — evidence available, decision deferred |
 
-When multiple signals are simultaneously active, convening the CommitmentGate is the specific operational response — not to force approval, but to decide the experiment's destination.
+> **Important distinction:** A1-A4 are **operational** alerts from the Experiment Plan — they detect flow management patterns. They are distinct from the S1-S4 signals of the Perpetual Discovery anti-pattern (in [upstream.en.md](../execution-model/upstream.en.md#perpetual-discovery--anti-pattern)), which are structural diagnostics about the state of the experiment's artifacts.
+
+When multiple alerts are simultaneously active, convening the CommitmentGate is the specific operational response — not to force approval, but to decide the experiment's destination.
 
 ---
 

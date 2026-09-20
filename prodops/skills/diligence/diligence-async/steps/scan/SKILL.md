@@ -101,7 +101,7 @@ limitação — não como divergência de OBC.
 ls prodops/artifacts/obcs/
 ```
 
-Para cada OBC: ler o arquivo e extrair o estado declarado (Draft, Committed, In Delivery, Operational).
+Para cada OBC: ler o arquivo e extrair o estado declarado (Draft, Refining, Readiness, In Delivery, Operational, Archived).
 
 ### 5. Verificar consistência de cada OBC
 
@@ -128,7 +128,7 @@ Comparar o estado retornado com o estado canônico do OBC:
 
 | Estado do OBC | Estado esperado do Issue | Divergência se |
 |---|---|---|
-| Draft / Committed | open | Issue está closed |
+| Draft / Refining / Readiness | open | Issue está closed |
 | In Delivery | open | Issue está closed |
 | Operational | closed | Issue está open |
 | Qualquer | — | Título do Issue não referencia o `artifact_id` do OBC |

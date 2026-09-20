@@ -38,7 +38,7 @@ Modes do not replace journeys. They define the rigor with which journeys will be
  Diligence      light                    blocking
                         │                      │
  Gates          none mandatory           all mandatory
- OBC            Draft / Refining         Refining at entry; Committed mandatory for Delivery Started
+ OBC            Draft / Refining         Refining at entry; Readiness mandatory for Delivery Started
  Release Trail  not mandatory            mandatory
  Rigor          engineer decides         mandatory sequence
 ```
@@ -103,7 +103,7 @@ Downstream delivers software with knowledge validated by Discovery, performed di
 | Situation | Mode |
 |---|---|
 | Hypothesis to validate, high uncertainty | Upstream |
-| Committed item being guided toward complete readiness | Downstream |
+| Downstream item (Refining state) being guided toward complete Readiness | Downstream |
 | Explore a new capability | Upstream |
 | Execute an item with every readiness gate satisfied | Downstream |
 | Prototype integration with a provider | Upstream |

@@ -53,7 +53,7 @@ Complete mapping of all Knowledge Space Artifacts against allowed operations, Gi
 | `Refine` | Issue, PR | Discovery | Upstream | OBC Draft updated; hypotheses recorded | PCE, TL |
 | `Explore` | Issue, Disc | Discovery | Upstream | Exploration results in OBC | PCE, SE |
 | `Review` | Issue, Disc | Discovery, Assessment | Upstream → Down | Review checklist; decision recorded | PO, TL |
-| `Approve → Committed` | Issue | Assessment | Downstream | OBC in Committed state; minimums validated | PO, TL |
+| `Approve → Readiness` | Issue | Assessment | Downstream | OBC in Readiness state; minimums validated | PO, TL |
 | `Prioritize` | Project Item | Discovery, Delivery | Both | Priority recorded in Project | PO |
 | `Split → Local OBCs` | Issue | Discovery | N/A | N Local OBC documents created | PPM, TLs |
 | `Promote → Product Backlog` | Issue | Discovery | N/A | Intent routed to Product Backlog | PPM, PO |
@@ -70,7 +70,7 @@ Complete mapping of all Knowledge Space Artifacts against allowed operations, Gi
 | `Create` | PR | Discovery | Upstream | OBC Draft in portfolio repository | PPM, TL |
 | `Refine` | PR, Issue | Discovery | Upstream | OBC evolved with new hypotheses and data | PPM, TL |
 | `Review` | Issue, Disc | Discovery, Assessment | Upstream | Comments and decisions recorded | PPM, TLs |
-| `Approve` | Issue | Assessment | Downstream | OBC in Committed state | PPM |
+| `Approve` | Issue | Assessment | Downstream | OBC in Readiness state | PPM |
 | `Update` | PR | Delivery, Operation | N/A | OBC updated with delivery/operation evidence | PPM, TL |
 | `Split` | Issue | Discovery | N/A | N Local OBCs created; traceability table updated | PPM, TLs |
 | `Archive` | PR | Operation | N/A | Closure note; Archived state | PPM |
@@ -86,7 +86,7 @@ Complete mapping of all Knowledge Space Artifacts against allowed operations, Gi
 | `Create` | PR | Discovery | Upstream | `artifacts/obcs/<slug>.md` in Draft state | PM, TL |
 | `Refine` | PR, Issue | Discovery, Assessment | Upstream | OBC in Refining state; criteria emerging | PM, TL, SE |
 | `Review` (Assessment) | Issue, Disc | Assessment | Upstream → Down | Assessment checklist completed | PM, TL |
-| `Approve` (→ Committed) | Issue | Assessment | Downstream | OBC in Committed state; minimums validated | PM, TL |
+| `Approve` (→ Readiness) | Issue | Assessment | Downstream | OBC in Readiness state; minimums validated | PM, TL |
 | `Implement` | PR | Delivery | Downstream | Code; BDD executed; PR approved | SE |
 | `Update` | PR | Delivery, Operation | Both | OBC updated with real evidence | SE, PM |
 | `Validate` | WF, Issue | Delivery | Downstream | CI pass; acceptance tests green | SE, PRE |

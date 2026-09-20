@@ -54,10 +54,10 @@ flowchart TD
 
     %% Modos determinam como Discovery opera — não são jornadas
     UP -."Discovery opera\nsem compromisso".-> DIS
-    DOWN -."Discovery prepara\nOBC Committed".-> DIS
+    DOWN -."Discovery prepara\nOBC Readiness".-> DIS
 
     %% Fluxo principal das jornadas de produto
-    DIS -->|"OBC Committed\n→ Iteration Plan"| DEL
+    DIS -->|"OBC Readiness\n→ Iteration Plan"| DEL
     DEL -->|"Promote.Completed"| OP
     OP -."sinais operacionais\nalimentam novos intents".-> DIS
 
@@ -157,7 +157,7 @@ Não existe compromisso de entrega. O objetivo é reduzir incerteza. Uma Intent 
 Intent
   ↓
 Downstream (rigor bloqueante — todas as fases e gates obrigatórios)
-  ├─ Discovery (preparatória): Icebox → OBC Committed → BDD committed
+  ├─ Discovery (preparatória): Icebox → OBC Readiness → BDD committed
   ├─ Delivery:  Bootstrap → Hack → Sync → Finish → Ship → Validate → Promote
   ├─ Operation: produção real, SLOs, runbooks, incidentes
   ├─ Assessment: gates formais, Reliability Plan obrigatório quando aplicável

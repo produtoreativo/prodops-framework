@@ -162,6 +162,8 @@ Essas views não substituem os estados permanentes — elas descrevem o ponto op
 
 ---
 
+> **Direção causal:** Os estados do OBC não determinam o modo nem produzem o compromisso — eles tornam o compromisso observável. O que faz um OBC transitar entre estados é a satisfação de critérios que refletem o grau de maturidade do compromisso vigente. **O modo é a causa; os estados são o registro verificável.** Mudar o estado do OBC não muda o modo; o modo já existe antes do estado refletir isso.
+
 ### Transições de estado canônicas
 
 ```
@@ -171,7 +173,8 @@ Refining → Readiness     (Readiness Gate aprovado — Momento 3)
 Readiness → In Delivery  (Bootstrap.Started)
 In Delivery → Released (Promote concluído)
 Released → Archived   (Deprecação ou substituição)
-Refining → Archived      (CommitmentGate outcome Descartar)
+Draft → Archived           (CommitmentGate outcome Descartar)
+Refining → Draft           (pré-condição de Descartar quando OBC está em Refining: redraft formal registra aprendizado antes de arquivar)
 In Delivery → Refining   (Regressão Downstream → Upstream: hipótese invalidada durante Delivery)
 ```
 

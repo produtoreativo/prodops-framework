@@ -36,12 +36,12 @@ OBC Partitioning           ← Business Intent → Local OBCs (um por produto)
           ↓
 Product Intent Backlog (PIB) ← OBCs do produto (fonte de verdade)
     │         │
-    │         ├─ Icebox           [VIEW sobre PIB: OBC ≠ Committed (Draft ou Refining)]
+    │         ├─ Icebox           [VIEW sobre PIB: OBC ≠ Readiness (Draft ou Refining)]
     │         │    └─ Plano de Experimento [VIEW sobre experimentos Upstream ativos]
-    │         ├─ Iteration Backlog [VIEW sobre PIB: OBC = Committed]
+    │         ├─ Iteration Backlog [VIEW sobre PIB: OBC = Readiness]
     │         └─ Release          [VIEW sobre PIB: agrupado por versão]
     │
-    │   (item com Local OBC Committed + BDD + critérios satisfeitos)
+    │   (item com Local OBC Readiness + BDD + critérios satisfeitos)
           ↓
 Iteration Plan             ← execução da iteração atual
           ↓
@@ -230,9 +230,9 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 - O item inicia seu ciclo de vida rastreável no produto.
 - O item recebe o estado inicial **Draft**. Quando o Discovery ativo começa, transiciona para **Refining** e passa a ser representado na VIEW Icebox.
 
-**Após a entrada, a origem deixa de importar.** O item evolui de estado no PIB: Draft (VIEW Icebox) → Refining (VIEW Icebox) → Committed (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Released.
+**Após a entrada, a origem deixa de importar.** O item evolui de estado no PIB: Draft (VIEW Icebox) → Refining (VIEW Icebox) → Readiness (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Released.
 
-> **Promoção de Upstream:** Um item promovido de Upstream que satisfaz os critérios do estado Committed pula o refinamento no Icebox e aparece na VIEW Iteration Backlog. O Product Owner ainda precisa selecioná-lo explicitamente para o Iteration Plan.
+> **Promoção de Upstream:** Um item promovido de Upstream que satisfaz os critérios do estado Readiness pula o refinamento no Icebox e aparece na VIEW Iteration Backlog. O Product Owner ainda precisa selecioná-lo explicitamente para o Iteration Plan.
 
 **Compromisso:** O Product Owner comprometeu-se a investigar e entregar este item.
 
@@ -240,7 +240,7 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 
 ### Icebox
 
-**Natureza:** VIEW sobre o PIB — não é uma fila separada. Representa todos os itens do PIB cujo Local OBC ainda não atingiu o estado Committed: inclui itens recém-criados (Draft) e itens em refinamento ativo (Refining).
+**Natureza:** VIEW sobre o PIB — não é uma fila separada. Representa todos os itens do PIB cujo Local OBC ainda não atingiu o estado Readiness: inclui itens recém-criados (Draft) e itens em refinamento ativo (Refining).
 
 **Pergunta:** Quais itens do PIB ainda não estão prontos para Delivery?
 
@@ -251,7 +251,7 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 - **Técnico** — entender como construir com confiança
 - **Operacional** — entender como operar e monitorar
 
-**Transição de estado:** O item sai da VIEW Icebox quando o Local OBC atinge o estado Committed — passa a ser representado na VIEW Iteration Backlog.
+**Transição de estado:** O item sai da VIEW Icebox quando o Local OBC atinge o estado Readiness — passa a ser representado na VIEW Iteration Backlog.
 
 **Artefato canônico:** `prodops/artifacts/product/backlogs/icebox-backlog.md`
 
@@ -277,16 +277,16 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 
 ### Iteration Backlog
 
-**Natureza:** VIEW sobre o Product Backlog — não é uma fila separada. Representa os itens do Product Backlog que estão comprometidos e prontos para iniciar Delivery: Local OBC Committed, Discovery concluído, decisão de entrega assumida.
+**Natureza:** VIEW sobre o Product Backlog — não é uma fila separada. Representa os itens do Product Backlog que estão comprometidos e prontos para iniciar Delivery: Local OBC Readiness, Discovery concluído, decisão de entrega assumida.
 
 **Pergunta:** Quais itens do Product Backlog estão prontos para ser desenvolvidos?
 
-**O que representa:** Um item está na VIEW Iteration Backlog quando satisfaz todos os critérios de prontidão. O estado do Local OBC é **Committed**. A única decisão restante é a prioridade do Product Owner para a próxima iteração.
+**O que representa:** Um item está na VIEW Iteration Backlog quando satisfaz todos os critérios de prontidão. O estado do Local OBC é **Readiness**. A única decisão restante é a prioridade do Product Owner para a próxima iteração.
 
 **Não é refinamento.** Refinamento acontece no estado Icebox. Um item que chega aqui está pronto — não precisa de mais Discovery.
 
 **Critérios para estar nesta view:**
-- Local OBC no estado Committed
+- Local OBC no estado Readiness
 - Discovery funcional, técnico e operacional suficiente
 - Riscos identificados em `prodops/artifacts/risks/risks.md`
 
@@ -328,7 +328,7 @@ Um item pode estar no BIB, associado a um Roadmap e a uma Platform Release, ao m
 - Evidências produzidas
 - Critérios de saída da iteração
 
-**Não contém:** Priorização. Refinamento. Itens do Icebox. Itens sem Local OBC Committed.
+**Não contém:** Priorização. Refinamento. Itens do Icebox. Itens sem Local OBC Readiness.
 
 **Artefato canônico:** `prodops/artifacts/plans/iteration-plan.md`
 
@@ -395,7 +395,7 @@ A Diligence é a jornada responsável por manter os backlogs sincronizados em to
 | Product Backlog | Business Intents | O que foi oficialmente aceito pelo Product Owner? | Product Owner |
 | Icebox (VIEW sobre PIB) | Business Intents | O que ainda não passou pelo CommitmentGate? (Draft ou Refining) | Product Owner + Tech Lead |
 | Plano de Experimento (VIEW sobre Icebox) | Business Intents | Quais hipóteses Upstream estão ativas agora? | PM + Autor do experimento |
-| Iteration Backlog (VIEW sobre Product Backlog) | Business Intents | O que está pronto para ser desenvolvido? (Committed) | Product Owner |
+| Iteration Backlog (VIEW sobre Product Backlog) | Business Intents | O que está pronto para ser desenvolvido? (Readiness) | Product Owner |
 | Release (VIEW sobre Product Backlog) | Business Intents | O que compõe esta versão do produto? | Product Owner |
 | Iteration Plan | Business Intents | O que está sendo executado nesta iteração? | Time de Delivery |
 

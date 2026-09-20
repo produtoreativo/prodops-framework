@@ -58,6 +58,23 @@ Antes de iniciar, ler:
 
 Se qualquer pré-condição não for satisfeita: não convocar o trio. Retornar ao experimento e completar o Decision Package.
 
+### Componentes do Decision Package
+
+**6 componentes canônicos do Decision Package:**
+
+| Componente | Descrição | Obrigatoriedade |
+|---|---|---|
+| **Hipótese** | A pergunta central que o experimento investigou | Obrigatório |
+| **Evidence Threshold** | O critério que determinou quando o experimento estava concluído | Obrigatório |
+| **Evidências** | O que foi observado — verificável por quem não participou | Obrigatório |
+| **Conclusão** | O que a evidência implica para a hipótese | Obrigatório |
+| **Riscos residuais** | Incertezas aceitas ao prosseguir; explicitadas como tal | Obrigatório quando existem |
+| **Oportunidades** | O que o experimento revelou além da hipótese central que pode informar decisões futuras | Obrigatório quando existe — não deve ser omitido |
+
+**Teste operacional de verificabilidade:** O Decision Package tem substância quando o membro do trio que **não participou** do experimento consegue lê-lo e chegar às mesmas conclusões — sem contexto verbal adicional, sem reunião de alinhamento. Se a substância do Decision Package depende de explicação oral, o documento não está pronto.
+
+**Pré-condições de entrada no CommitmentGate:** o OBC Draft e a BDD rascunhada precisam **existir** — não estar completos. "A completude não é exigida no CommitmentGate; a existência, sim." Um OBC com nome e referência ao experimento satisfaz a pré-condição. Uma BDD legível com cenários rascunhados satisfaz a pré-condição. Completude é exigida no Readiness Gate.
+
 ---
 
 ### O Trio

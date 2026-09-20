@@ -53,7 +53,7 @@ Mapeamento completo de todos os Artefatos do Knowledge Space contra operações 
 | `Refine` | Issue, PR | Discovery | Upstream | OBC Draft atualizado; hipóteses registradas | PCE, TL |
 | `Explore` | Issue, Disc | Discovery | Upstream | Resultados de exploração no OBC | PCE, SE |
 | `Review` | Issue, Disc | Discovery, Assessment | Upstream → Down | Checklist de revisão; decisão registrada | PO, TL |
-| `Approve → Committed` | Issue | Assessment | Downstream | OBC em estado Committed | PO, TL |
+| `Approve → Readiness` | Issue | Assessment | Downstream | OBC em estado Readiness | PO, TL |
 | `Prioritize` | Project Item | Discovery, Delivery | Both | Prioridade registrada no Project | PO |
 | `Split → Local OBCs` | Issue | Discovery | N/A | N Local OBC documents criados | PPM, TLs |
 | `Promote → Product Backlog` | Issue | Discovery | N/A | Intent roteada ao Product Backlog | PPM, PO |
@@ -70,7 +70,7 @@ Mapeamento completo de todos os Artefatos do Knowledge Space contra operações 
 | `Create` | PR | Discovery | Upstream | OBC Draft no repositório de portfólio | PPM, TL |
 | `Refine` | PR, Issue | Discovery | Upstream | OBC evoluído com novas hipóteses e dados | PPM, TL |
 | `Review` | Issue, Disc | Discovery, Assessment | Upstream | Comentários e decisões registrados | PPM, TLs |
-| `Approve` | Issue | Assessment | Downstream | OBC em estado Committed | PPM |
+| `Approve` | Issue | Assessment | Downstream | OBC em estado Readiness | PPM |
 | `Update` | PR | Delivery, Operation | N/A | OBC atualizado com evidências de entrega/operação | PPM, TL |
 | `Split` | Issue | Discovery | N/A | N Local OBCs criados; tabela de rastreabilidade atualizada | PPM, TLs |
 | `Archive` | PR | Operation | N/A | Nota de encerramento; estado Archived | PPM |
@@ -86,7 +86,7 @@ Mapeamento completo de todos os Artefatos do Knowledge Space contra operações 
 | `Create` | PR | Discovery | Upstream | `artifacts/obcs/<slug>.md` em estado Draft | PM, TL |
 | `Refine` | PR, Issue | Discovery, Assessment | Upstream | OBC em estado Refining; critérios emergindo | PM, TL, SE |
 | `Review` (Assessment) | Issue, Disc | Assessment | Upstream → Down | Checklist de Assessment preenchido | PM, TL |
-| `Approve` (→ Committed) | Issue | Assessment | Downstream | OBC em estado Committed; mínimos validados | PM, TL |
+| `Approve` (→ Readiness) | Issue | Assessment | Downstream | OBC em estado Readiness; mínimos validados | PM, TL |
 | `Implement` | PR | Delivery | Downstream | Código; BDD executado; PR aprovado | SE |
 | `Update` | PR | Delivery, Operation | Both | OBC atualizado com evidência real | SE, PM |
 | `Validate` | WF, Issue | Delivery | Downstream | CI pass; acceptance tests green | SE, PRE |

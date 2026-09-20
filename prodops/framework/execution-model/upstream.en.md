@@ -16,7 +16,7 @@ In Upstream:
 
 - no mandatory gates
 - no obligation to complete artifacts
-- no obligation to produce a Committed OBC
+- no obligation to produce a Readiness OBC
 - no obligation to follow all Skills
 - the engineer decides which Skills to use
 - vibecoding is allowed
@@ -108,12 +108,14 @@ Perpetual Discovery occurs when an experiment continues accumulating evidence in
 
 **Four objective diagnostic signals:**
 
-| Signal | Criterion | Action |
-|--------|-----------|--------|
-| **S1** | No progression in `upstream-trail` for 3 or more consecutive sessions | Identify blocker; escalate to trio |
-| **S2** | Questions marked as "unanswerable with available evidence" for 5 or more days | Revisit hypothesis; consider CommitmentGate with Discard or Await outcome |
-| **S3** | Declared Evidence Threshold identified as unachievable without a new hypothesis, after 3 or more collection sessions | Reformulate hypothesis or revise threshold; record decision in trail |
-| **S4** | Stakeholder with blocked decision for 10 or more business days due to this experiment | Immediate CommitmentGate — the decision to wait longer is also a valid decision (Await outcome) |
+| Signal | Structural criterion | Action |
+|--------|----------------------|--------|
+| **S1** | `experiment.md` does not declare an Evidence Threshold **and** no explicit substitute stopping criterion exists | Convene the trio: without a stopping criterion, the experiment cannot end by definition |
+| **S2** | The central hypothesis was formulated non-refutably — no result could refute it — or was never formalized as a falsifiable question | Reformulate hypothesis before continuing evidence collection |
+| **S3** | One or more Questions to Answer were marked "unanswerable with available evidence" and no new evidence route or hypothesis reformulation was identified | CommitmentGate with Discard outcome or complete reformulation of the investigation question |
+| **S4** | Evidence Threshold exists but the current collection route cannot reach it — structural dead end | Immediate CommitmentGate: the experiment cannot conclude with the current approach |
+
+> **Nature of signals:** S1-S4 are **structural** diagnostics — they verify the state of the experiment's artifacts, not elapsed time. An S1 can be detected on the first day of an experiment; an experiment active for months may show no signal if its artifacts are well-defined.
 
 The presence of any signal does not require immediate closure — it requires **convening the trio to consciously decide** whether the experiment should continue, be suspended, or closed.
 

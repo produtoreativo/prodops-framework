@@ -900,6 +900,120 @@ See [`prodops/framework/execution-model/downstream.en.md`](execution-model/downs
 
 ---
 
+## Acceptable Residual Uncertainty
+
+**Definition:** Uncertainty that remains at the CommitmentGate and is explicitly declared as acceptable by the trio. Upstream does not need to eliminate all uncertainty for the CommitmentGate to proceed — what is "acceptable" is the trio's collective judgment.
+
+**Critical rule:** Residual uncertainty must be declared in the Decision Package. Risks not declared at the CommitmentGate are risks managed without visibility — the Gate can no longer act on what was not recorded.
+
+**Relation to the Readiness Gate:** the residual uncertainty declared at the CommitmentGate is part of the context that the Readiness Gate verifies before authorizing Delivery.
+
+---
+
+## Blocking Rigor
+
+**Definition:** Characteristic of Downstream mode. Gates must be satisfied before advancing — work stops until conditions are met. There is no Gate bypass; there is only the Waiver, which is an **explicit and recorded** bypass.
+
+**Contrast:** see Non-blocking Rigor (Upstream mode).
+
+**Practical consequence:** in Downstream, the AgentCode or the engineer cannot advance to the next phase without the Gate of the previous phase being satisfied. The block is the guarantee — not an obstacle.
+
+---
+
+## Commitment Rigor
+
+**Definition:** Regime applied in Downstream mode. Oriented toward compliance verification, preservation of the assumed commitment, change control, and generation of outcome evidence. Characteristic questions: "Is what was committed being delivered?" and "Is there verifiable evidence of each step?".
+
+**Contrast:** see Exploration Rigor (Upstream mode).
+
+---
+
+## Controlled Production
+
+**Definition:** Deploy to a real production environment performed in Upstream mode, without the CommitmentGate having been executed. Requires: explicit trio authorization, immediate rollback available, and observations recorded in the upstream-trail.
+
+**Distinction from Promotion:** Controlled Production does not transfer the capability to Downstream. The OBC remains in Draft or Refining; the delivery commitment has not been assumed. The code reaches production; the capability remains in exploration.
+
+**When to use:** validation of hypotheses that require real traffic and cannot be reproduced in an isolated or sandbox environment.
+
+---
+
+## Cycle Report
+
+**Definition:** Output of the retrospective Assessment Sync at the end of a cycle. Synthesis of what the cycle revealed about process health: anti-patterns detected, diagnostic signals activated, causes identified, and recommendations for the next cycle.
+
+**Produced by:** Assessment Sync (Synthesize → Report phase).
+
+**Typical content:** Gate Failure Rate patterns, correlations between WIP and TTE, recurring anti-patterns, and process adjustment proposals for the next cycle.
+
+**Do not confuse with:** Release Trail (evidence of a specific delivery) or Decision Package (evidence of a specific experiment).
+
+---
+
+## Discovery in Downstream
+
+**Type:** Mode anti-pattern.
+
+**Definition:** Exploration performed after a decision that carries operational, economic, or temporal commitment, without recognizing that the cost of being wrong has changed. Occurs when the team treats Downstream work as if it were Upstream — deferring decisions, expanding scope, or revisiting already-committed hypotheses without formally recording the regression.
+
+**Distinction:** Discovery in Downstream is not the same as the Discovery journey executed in Downstream mode (which is legitimate and has mandatory gates). The anti-pattern is informal exploration within an assumed commitment.
+
+**Diagnostic signal:** OBC in In Delivery state with open hypotheses that should have been resolved before the CommitmentGate.
+
+---
+
+## Exploration Rigor
+
+**Definition:** Regime applied in Upstream mode. Oriented toward evidence quality, learning, and reduction of relevant uncertainty. Characteristic questions: "Is the hypothesis falsifiable?" and "Is the evidence produced verifiable by someone who did not participate in the experiment?".
+
+**Contrast:** see Commitment Rigor (Downstream mode).
+
+**Do not confuse with the absence of rigor:** exploration rigor is as demanding as commitment rigor — the difference is what it demands. In Upstream, rigor applies to the epistemic quality of evidence; in Downstream, to the fulfillment of the assumed commitment.
+
+---
+
+## Mode Coexistence
+
+**Definition:** State in which the same team simultaneously operates in different modes for different work objects. Example: an experiment in Upstream (EXP-007) running in parallel with an item in Downstream (DS-61). Each work object maintains its own mode, gates, and rigor — coexistence is expected and operationally normal.
+
+**Rule:** mode is a property of the work object, not of the team. A team can have items in Upstream, Refining, and In Delivery simultaneously. What cannot occur is a single work object with mode ambiguity.
+
+---
+
+## Non-blocking Rigor
+
+**Definition:** Characteristic of Upstream mode. Practices available and recommended, but not mandatory conditions that block advancement. The engineer decides which Skills to use; no Gates block the next step.
+
+**Contrast:** see Blocking Rigor (Downstream mode).
+
+**Practical consequence:** in Upstream, the Code Agent can advance without satisfying formal preconditions. Accountability for exploration rigor is individual and of the trio — not enforced by the framework.
+
+---
+
+## Premature Promotion
+
+**Type:** Mode anti-pattern.
+
+**Definition:** Committing a Product Capability before having sufficient evidence, whether due to deadline pressure, unverified optimism, or omission of relevant uncertainty in the Decision Package.
+
+**Why it is problematic:** the CommitmentGate exists precisely to make Premature Promotion detectable and treatable. When it occurs without formal record, the cost of being wrong is silently absorbed in Downstream — without traceability or regression protocol activated.
+
+**Diagnostic signal:** OBC in In Delivery with active Discovery WIP for the same capability, or Evidence Threshold absent from the Decision Package that authorized the CommitmentGate.
+
+**Contrast with legitimate Promotion:** a Promotion with residual uncertainty explicitly declared in the Decision Package is legitimate — Premature Promotion is silent.
+
+---
+
+## Sandbox Deploy
+
+**Definition:** Upstream deploy on an ephemeral, isolated stack with no real customer traffic. Stack prefixed with `experiment-*`, destroyed at the end of the experiment (mandatory `teardown`). Used to validate hypotheses that require integration with real providers in a controlled environment.
+
+**Distinction from Controlled Production:** Sandbox Deploy never exposes real customer traffic. Controlled Production uses real production with rollback available.
+
+**Distinction from Downstream:** Sandbox Deploy does not produce deliverable artifacts, does not generate a Release Trail, and does not require an OBC in Readiness state.
+
+---
+
 ## Hack
 
 **Definition:** The coding phase in Upstream and Downstream. Second stage of CI Sync, follows Bootstrap. Defined in [`journeys/delivery/phases/hack/README.md`](journeys/delivery/phases/hack/README.en.md). Execution mechanics in [`skills/hack/`](../skills/hack/).
@@ -1028,7 +1142,7 @@ See [`prodops/framework/execution-model/downstream.en.md`](execution-model/downs
 
 **Purpose:** Close the continuous improvement cycle of the Framework. While Delivery executes and Diligence organizes, Assessment evaluates — answering the central question: "Are we continuously improving our operational model?"
 
-**Cycles:** Assessment Sync (Collect → Analyze → Synthesize → Report — structured, on demand) and Assessment Async (Monitor → Alert — continuous, proactive).
+**Cycles:** Assessment Sync (Collect → Analyze → Synthesize → Report — structured, on demand) and Assessment Async (Monitor → Alert → Evolve — continuous, proactive). The Evolve phase incorporates new monitoring criteria from what previous cycles revealed as blind spots.
 
 **What it does not do:** Does not execute Delivery. Does not execute Diligence. Does not write to other Journeys' Timelines. Does not prioritize the backlog — it informs, it does not decide.
 

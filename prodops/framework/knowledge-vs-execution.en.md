@@ -107,7 +107,7 @@ Not every document in the repository is a Knowledge Space artifact.
 
 An artifact:
 - **has permanent identity** — a `slug` or ID that persists throughout its entire lifecycle;
-- **has its own state** — Draft, Refining, Committed, In Delivery, Operational, Archived;
+- **has its own state** — Draft, Refining, Readiness, In Delivery, Operational, Archived;
 - **is never replaced by tools** — GitHub Issues, Jira cards, and ADO work items are temporary reflections of work, not the artifact itself;
 - **is the source of truth** — any divergence between the Markdown file and a tool representation must be resolved in favor of the Markdown file.
 
@@ -216,7 +216,7 @@ OBC feature-name-v2
        → operation: Refine
        → journey: Discovery
        → closes when BDD is complete
-       → OBC continues to exist, now in Committed state
+       → OBC continues to exist, now in Readiness state
 ```
 
 ```
@@ -287,7 +287,7 @@ Diligence does not create Issues "for" artifacts. It creates Issues when **ident
 | Error | Why it's wrong | How to correct |
 |---|---|---|
 | "The OBC is in Issue #234" | The OBC is a Markdown file. The Issue is work on the OBC. | "Issue #234 records refinement work on OBC `feature-name-v2`" |
-| "Close the Issue when the OBC is Committed" | OBC state is independent of Issue state | "Close the Issue when the refinement work is complete. The OBC reaches Committed when its minimum criteria are satisfied." |
+| "Close the Issue when the OBC is Readiness" | OBC state is independent of Issue state | "Close the Issue when the refinement work is complete. The OBC reaches Readiness when its minimum criteria are satisfied." |
 | "Create an Issue for each Business Intent" | A Business Intent can have dozens of Issues over its lifetime | "Create Issues for specific operations on the Intent: Discovery, Review, Update OBC, etc." |
 | "GitHub Project contains Business Signals" | The Project contains Work Items. Signals are artifacts in files. | "GitHub Project contains Work Items about Business Signals" |
 | "Business Intent Issue #42" | Names the Issue after the artifact, establishing 1:1 | "Issue: 'Discovery — BI-042 Payment split support'" |

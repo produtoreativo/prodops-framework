@@ -18,8 +18,8 @@ Se o estágio for incerto, leia `prodops/skills/product-context/SKILL.md` e exec
 
 ## Regra 2: Modo determina rigor
 
-- **Upstream** (sem compromisso): não há gates obrigatórios, não há OBC Committed, não há Release Trail. O objetivo é aprendizado.
-- **Downstream** (comprometido): todos os gates são bloqueantes. OBC Committed é obrigatório. Release Trail é mandatório. Sem bypass.
+- **Upstream** (sem compromisso): não há gates obrigatórios, não há OBC Readiness, não há Release Trail. O objetivo é aprendizado.
+- **Downstream** (comprometido): todos os gates são bloqueantes. OBC Readiness é obrigatório. Release Trail é mandatório. Sem bypass.
 
 Nunca aplique rigor de Downstream a trabalho em modo Upstream. Nunca aplique a flexibilidade de Upstream a trabalho já em modo Downstream.
 

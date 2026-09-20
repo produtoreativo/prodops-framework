@@ -153,7 +153,7 @@ Artifacts
 
 **Exploration** — refines the OBC draft and reduces uncertainty through the Discovery journey. Discovery exists in both modes; rigor and commitment vary between Upstream and Downstream. See [`flow.md`](flow.en.md).
 
-**OBC (Observable Business Contract)** — born as a Draft when a Business Intent enters the Business Intent Backlog (global flow) or the Product Backlog (local flow). Refined through Discovery in the Icebox until reaching the **Committed** state (entry gate to the Iteration Backlog). Becomes **In Delivery** during Delivery and **Operational** in Operation.
+**OBC (Observable Business Contract)** — born as a Draft when a Business Intent enters the Business Intent Backlog (global flow) or the Product Backlog (local flow). Refined through Discovery in the Icebox until reaching the **Readiness** state (entry gate to the Iteration Backlog). Becomes **In Delivery** during Delivery and **Operational** in Operation.
 
 **Continuous Assessment** — continuously evaluates risks, opportunities, and decides the next step.
 

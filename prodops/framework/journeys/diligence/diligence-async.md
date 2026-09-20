@@ -23,6 +23,8 @@ Diligence Async produz:
 - Artefatos e ferramentas restaurados à consistência para itens reparáveis
 - Escalações registradas para itens que requerem decisão humana
 
+> **Nuance de saúde:** Poucos Findings não equivalem a produto saudável. Podem ser sinal de instrumentação insuficiente — o time está sistematicamente não detectando divergências, não sistematicamente evitando-as. A saúde real se verifica na ausência de divergências **detectáveis**, não apenas na ausência de Findings **registrados**. Quando a Diligence produz Findings repetidos do mesmo tipo de problema, isso é um sinal de processo: a causa raiz deve ser endereçada, não apenas cada instância corrigida individualmente.
+
 ---
 
 ## Modelo de acionamento
@@ -58,8 +60,8 @@ O Diligence Async é acionado por:
 |---|---|
 | OBC em Draft, sem operação ativa autorizada, sem Work Item | **Ausência legítima** — não é divergência |
 | Business Signal registrado, sem investigação ativa, sem Work Item | **Ausência legítima** — não é divergência |
-| OBC Committed com operação de Delivery ativa, sem Work Item | **Relação incompleta** — divergência |
-| OBC Committed no Iteration Plan, Work Item ainda aberto após Release Operational | **Relação incompleta** — divergência (Close não foi executado) |
+| OBC Readiness com operação de Delivery ativa, sem Work Item | **Relação incompleta** — divergência |
+| OBC Readiness no Iteration Plan, Work Item ainda aberto após Release Operational | **Relação incompleta** — divergência (Close não foi executado) |
 | Work Item aberto referenciando OBC inexistente | **Relação inválida** — divergência |
 
 **O que NÃO faz:**

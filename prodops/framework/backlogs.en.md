@@ -36,12 +36,12 @@ OBC Partitioning           ← Business Intent → Local OBCs (one per product)
           ↓
 Product Intent Backlog (PIB) ← Product OBCs (source of truth)
     │         │
-    │         ├─ Icebox           [VIEW over PIB: OBC ≠ Committed (Draft or Refining)]
+    │         ├─ Icebox           [VIEW over PIB: OBC ≠ Readiness (Draft or Refining)]
     │         │    └─ Experiment Plan [VIEW over active Upstream experiments]
-    │         ├─ Iteration Backlog [VIEW over PIB: OBC = Committed]
+    │         ├─ Iteration Backlog [VIEW over PIB: OBC = Readiness]
     │         └─ Release          [VIEW over PIB: grouped by version]
     │
-    │   (item with Committed Local OBC + BDD + criteria satisfied)
+    │   (item with Readiness Local OBC + BDD + criteria satisfied)
           ↓
 Iteration Plan             ← current iteration execution
           ↓
@@ -230,9 +230,9 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 - The item begins its traceable lifecycle in the product.
 - The item receives the initial state **Draft**. When active Discovery starts, it transitions to **Refining** and is represented in the Icebox VIEW.
 
-**After entry, the origin no longer matters.** The item evolves in state within the PIB: Draft (VIEW Icebox) → Refining (VIEW Icebox) → Committed (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Released.
+**After entry, the origin no longer matters.** The item evolves in state within the PIB: Draft (VIEW Icebox) → Refining (VIEW Icebox) → Readiness (VIEW Iteration Backlog) → In Delivery (Iteration Plan) → Released.
 
-> **Upstream promotion:** An item promoted from Upstream that satisfies the Committed criteria skips Icebox refinement and appears in the Iteration Backlog VIEW. The Product Owner must still select it explicitly for the Iteration Plan.
+> **Upstream promotion:** An item promoted from Upstream that satisfies the Readiness criteria skips Icebox refinement and appears in the Iteration Backlog VIEW. The Product Owner must still select it explicitly for the Iteration Plan.
 
 **Commitment:** The Product Owner has committed to investigating and delivering this item.
 
@@ -240,7 +240,7 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 
 ### Icebox
 
-**Nature:** VIEW over the PIB — not a separate queue. Represents all PIB items whose Local OBC has not yet reached Committed state: newly created items (Draft) and items in active refinement (Refining).
+**Nature:** VIEW over the PIB — not a separate queue. Represents all PIB items whose Local OBC has not yet reached Readiness state: newly created items (Draft) and items in active refinement (Refining).
 
 **Question:** Which PIB items have not yet passed through the CommitmentGate?
 
@@ -251,7 +251,7 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 - **Technical** — understand how to build with confidence
 - **Operational** — understand how to operate and monitor
 
-**State transition:** The item leaves the Icebox VIEW when the Local OBC reaches Committed state — it is then represented in the Iteration Backlog VIEW.
+**State transition:** The item leaves the Icebox VIEW when the Local OBC reaches Readiness state — it is then represented in the Iteration Backlog VIEW.
 
 **Canonical artifact:** `prodops/artifacts/product/backlogs/icebox-backlog.md`
 
@@ -277,16 +277,16 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 
 ### Iteration Backlog
 
-**Nature:** VIEW over the Product Backlog — not a separate queue. Represents Product Backlog items that are committed and ready to start Delivery: Local OBC in Committed state, Discovery complete, delivery decision made.
+**Nature:** VIEW over the Product Backlog — not a separate queue. Represents Product Backlog items that are committed and ready to start Delivery: Local OBC in Readiness state, Discovery complete, delivery decision made.
 
 **Question:** Which Product Backlog items are ready to be developed?
 
-**What it represents:** An item is in the Iteration Backlog VIEW when it satisfies all readiness criteria. The Local OBC state is **Committed**. The only remaining decision is the Product Owner's priority for the next iteration.
+**What it represents:** An item is in the Iteration Backlog VIEW when it satisfies all readiness criteria. The Local OBC state is **Readiness**. The only remaining decision is the Product Owner's priority for the next iteration.
 
 **Not refinement.** Refinement happens in the Icebox state. An item that reaches this view is ready — no more Discovery needed.
 
 **Criteria to be in this view:**
-- Local OBC in Committed state
+- Local OBC in Readiness state
 - Functional, technical, and operational Discovery sufficient
 - Risks identified in `prodops/artifacts/risks/risks.md`
 
@@ -328,7 +328,7 @@ An item can be in the BIB, associated with a Roadmap, and linked to a Platform R
 - Produced evidence
 - Iteration exit criteria
 
-**Does not contain:** Prioritization. Refinement. Icebox items. Items without Committed Local OBC.
+**Does not contain:** Prioritization. Refinement. Icebox items. Items without Readiness Local OBC.
 
 **Canonical artifact:** `prodops/artifacts/plans/iteration-plan.md`
 
@@ -395,7 +395,7 @@ Diligence is the journey responsible for keeping backlogs synchronized at all le
 | Product Intent Backlog (PIB) | Business Intents | What has been officially accepted by the Product Owner? | Product Owner |
 | Icebox (VIEW over PIB) | Business Intents | What has not yet passed through the CommitmentGate? (Draft or Refining) | Product Owner + Tech Lead |
 | Experiment Plan (VIEW over Icebox) | Business Intents | Which Upstream hypotheses are active right now? | PM + Experiment Author |
-| Iteration Backlog (VIEW over PIB) | Business Intents | What is ready to be developed? (Committed) | Product Owner |
+| Iteration Backlog (VIEW over PIB) | Business Intents | What is ready to be developed? (Readiness) | Product Owner |
 | Release (VIEW over PIB) | Business Intents | What composes this product version? | Product Owner |
 | Iteration Plan | Business Intents | What is being executed in this iteration? | Delivery Team |
 
@@ -406,7 +406,7 @@ Diligence is the journey responsible for keeping backlogs synchronized at all le
 - `prodops/artifacts/product/backlogs/tracking-list.md` — Product Tracking List
 - `prodops/artifacts/product/backlogs/icebox-backlog.md` — Icebox
 - `prodops/artifacts/product/backlogs/experiment-plan.md` — Experiment Plan
-- `prodops/artifacts/obcs/` — Committed OBCs
+- `prodops/artifacts/obcs/` — Readiness OBCs
 - `prodops/artifacts/product/backlogs/iteration-backlog.md` — Iteration Backlog
 - `prodops/artifacts/plans/iteration-plan.md` — Iteration Plan
 - `prodops/framework/upstream-plan.md` — Experiment Plan (canonical definition)

@@ -107,7 +107,7 @@ Nem todo documento no repositório é um artefato do Knowledge Space.
 
 Um artefato:
 - **tem identidade permanente** — um `slug` ou ID que persiste durante todo o seu ciclo de vida;
-- **tem estado próprio** — Draft, Refining, Committed, In Delivery, Operational, Archived;
+- **tem estado próprio** — Draft, Refining, Readiness, In Delivery, Operational, Archived;
 - **nunca é substituído por ferramentas** — GitHub Issues, Jira cards e ADO work items são reflexos temporários de trabalho, não o artefato em si;
 - **é a fonte de verdade** — qualquer divergência entre o arquivo Markdown e uma representação em ferramenta deve ser resolvida em favor do arquivo Markdown.
 
@@ -216,7 +216,7 @@ OBC feature-name-v2
        → operation: Refine
        → journey: Discovery
        → fecha quando BDD está completo
-       → OBC continua existindo, agora em estado Committed
+       → OBC continua existindo, agora em estado Readiness
 ```
 
 ```
@@ -287,7 +287,7 @@ Diligence não cria Issues "para" artefatos. Ela cria Issues quando há **trabal
 | Erro | Por que é errado | Como corrigir |
 |---|---|---|
 | "O OBC está na Issue #234" | O OBC é um arquivo Markdown. A Issue é trabalho sobre o OBC. | "A Issue #234 registra trabalho de refinamento sobre o OBC `feature-name-v2`" |
-| "Fechar a Issue quando o OBC estiver Committed" | O estado do OBC é independente do estado da Issue | "Fechar a Issue quando o trabalho de refinamento estiver concluído. O OBC atingirá Committed quando seus critérios mínimos forem satisfeitos." |
+| "Fechar a Issue quando o OBC estiver Readiness" | O estado do OBC é independente do estado da Issue | "Fechar a Issue quando o trabalho de refinamento estiver concluído. O OBC atingirá Readiness quando seus critérios mínimos forem satisfeitos." |
 | "Criar uma Issue para cada Business Intent" | Uma Business Intent pode ter dezenas de Issues ao longo de sua vida | "Criar Issues para operações específicas sobre a Intent: Discovery, Review, Atualizar OBC, etc." |
 | "GitHub Project contém Business Signals" | O Project contém Work Items. Os Signals são artefatos nos arquivos. | "GitHub Project contém Work Items sobre Business Signals" |
 | "A Business Intent Issue #42" | Nomeia a Issue pelo artefato, estabelecendo 1:1 | "Issue: 'Discovery — BI-042 Suporte a split de pagamento'" |

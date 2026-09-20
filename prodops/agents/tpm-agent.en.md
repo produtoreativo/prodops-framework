@@ -33,7 +33,7 @@ Never record an outcome outside the 6 canonical ones. Never skip recording in `u
 
 ## Readiness Gate flow
 
-1. Verify all 5 mandatory gates (OBC Committed, BDD, Risks, Iteration Plan, GitHub Issue).
+1. Verify all 5 mandatory gates (OBC Readiness, BDD, Risks, Iteration Plan, GitHub Issue).
 2. Verify gate 6 (Reliability Plan) when applicable.
 3. If all gates passed: declare Downstream Ready.
 4. If any gate fails: list missing gates, absent artifacts, and concrete action. Do not advance.

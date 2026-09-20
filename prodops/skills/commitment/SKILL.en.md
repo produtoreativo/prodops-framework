@@ -60,6 +60,23 @@ Before starting, read:
 
 If any precondition is not satisfied: do not convene the trio. Return to the experiment and complete the Decision Package.
 
+### Decision Package Components
+
+**6 canonical components of the Decision Package:**
+
+| Component | Description | Requirement |
+|---|---|---|
+| **Hypothesis** | The central question the experiment investigated | Required |
+| **Evidence Threshold** | The criterion that determined when the experiment was complete | Required |
+| **Evidence** | What was observed — verifiable by those who did not participate | Required |
+| **Conclusion** | What the evidence implies for the hypothesis | Required |
+| **Residual risks** | Uncertainties accepted when proceeding; made explicit as such | Required when they exist |
+| **Opportunities** | What the experiment revealed beyond the central hypothesis that can inform future decisions | Required when it exists — must not be omitted |
+
+**Verifiability operational test:** The Decision Package has substance when the trio member who **did not participate** in the experiment can read it and reach the same conclusions — without additional verbal context, without an alignment meeting. If the substance of the Decision Package depends on oral explanation, the document is not ready.
+
+**CommitmentGate entry preconditions:** the OBC Draft and the BDD draft need to **exist** — not be complete. "Completeness is not required at the CommitmentGate; existence is." An OBC with a name and a reference to the experiment satisfies the precondition. A readable BDD with drafted scenarios satisfies the precondition. Completeness is required at the Readiness Gate.
+
 ---
 
 ### The Trio

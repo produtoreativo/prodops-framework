@@ -54,7 +54,7 @@ Capabilities are reusable competencies consumed by the Diligence cycles and by B
 
 **Usage examples:**
 - OBC transitions from Draft to Refining → Backlog Synchronization moves the item to Icebox
-- OBC transitions to Committed → Backlog Synchronization moves the item to the Iteration Backlog
+- OBC transitions to Readiness → Backlog Synchronization moves the item to the Iteration Backlog
 - Diligence Async detects item in the Iteration Plan with OBC in Draft state → Backlog Synchronization signals divergence
 
 **Anti-patterns:**
@@ -103,7 +103,7 @@ The operation and artifact type go in the Issue's fields and labels — not in t
 - Does not use Issue as source of truth for OBC
 
 **Usage examples:**
-- Diligence Sync — Attach: Committed OBC with active Delivery, no Work Item → Work Item Management creates Issue with complete schema
+- Diligence Sync — Attach: Readiness OBC with active Delivery, no Work Item → Work Item Management creates Issue with complete schema
 - Diligence Sync — Close: OBC transitions to Operational, Release Trail confirmed → Work Item Management closes the Issue with reference to the delivery
 - Diligence Async — Repair: Work Item with invalid artifact_id → Work Item Management records divergence and escalates
 
@@ -146,7 +146,7 @@ The operation and artifact type go in the Issue's fields and labels — not in t
 - Does not decide whether a Reliability Plan is necessary — only verifies its presence when it has already been decided it is necessary
 
 **Usage examples:**
-- Item candidate for Iteration Plan: Readiness Verification verifies OBC Committed + BDD Feature Committed + documented risks
+- Item candidate for Iteration Plan: Readiness Verification verifies OBC Readiness + BDD Feature committed + documented risks
 - Item with risk qualifying for Reliability Plan: Readiness Verification verifies whether the Reliability Plan exists and has been reviewed
 - Diligence Async — Scan: item in Iteration Plan without committed BDD Feature → Readiness Verification records divergence
 

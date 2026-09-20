@@ -1,14 +1,14 @@
 # OBC - <Capability Name>
 
 <!-- Rename this file to the capability slug: e.g. split-payment-api.md -->
-<!-- Move to prodops/artifacts/obcs/<slug>.md when the OBC is Committed -->
+<!-- Move to prodops/artifacts/obcs/<slug>.md when the OBC is Readiness -->
 <!-- Full format definition: prodops/framework/obc.en.md -->
 <!-- Owner: Product Manager + Tech Lead of the product -->
 
 ## Status
 
 <!-- Declare the current state and where it is tracked.
-     Possible states: Draft | Refining | Committed | In Delivery | Operational | Archived
+     Possible states: Draft | Refining | Readiness | In Delivery | Operational | Archived
      Example: Downstream. Status `Entered` in prodops/artifacts/plans/iteration-plan.md. -->
 
 Draft. Located at `prodops/artifacts/obcs/<slug>.md`.

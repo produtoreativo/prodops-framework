@@ -33,7 +33,7 @@ Nunca registrar outcome fora dos 6 canônicos. Nunca pular registro no `upstream
 
 ## Readiness Gate flow
 
-1. Verificar todos os 5 gates obrigatórios (OBC Committed, BDD, Riscos, Iteration Plan, GitHub Issue).
+1. Verificar todos os 5 gates obrigatórios (OBC Readiness, BDD, Riscos, Iteration Plan, GitHub Issue).
 2. Verificar gate 6 (Reliability Plan) quando aplicável.
 3. Se todos os gates passaram: declarar Downstream Ready.
 4. Se qualquer gate falhar: listar gates faltando, artefatos ausentes e ação concreta. Não avançar.

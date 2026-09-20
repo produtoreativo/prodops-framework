@@ -412,8 +412,8 @@ O estado do OBC e o estado do Work Item são **independentes**. Uma transição 
 | Transição do OBC | Operação Esperada | Ação no Work Item |
 |---|---|---|
 | Draft → Refining | Explore ou Refine | Criar Work Item se existe operação ativa; não criar se o OBC avança passivamente |
-| Refining → Committed | Commit ou Promote | Fechar Work Item de refinamento quando a operação termina; registrar promoção se necessário |
-| Committed → In Delivery | Implement | Criar Work Item de implementação quando a Delivery é iniciada |
+| Refining → Readiness | Commit ou Promote | Fechar Work Item de refinamento quando a operação termina; registrar promoção se necessário |
+| Readiness → In Delivery | Implement | Criar Work Item de implementação quando a Delivery é iniciada |
 | In Delivery → Operational | Validate e Promote | Fechar Work Items de implementação concluídos; registrar evidências |
 | Operational → Archived | Archive | Criar Work Item somente para operação formal de arquivamento se necessário |
 

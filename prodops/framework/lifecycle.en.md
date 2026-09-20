@@ -38,7 +38,7 @@ flowchart TD
 
     subgraph DIL_STAGE["Diligence & Readiness"]
         direction TB
-        ICE["Icebox\nRefinamento: OBC → Committed\nBDD committed · Riscos documentados"]
+        ICE["Icebox\nRefinamento: OBC → Readiness\nBDD committed · Riscos documentados"]
         RG["Readiness Gate\nDiligence Sync bloqueante"]
         ICE --> RG
     end
@@ -144,11 +144,11 @@ flowchart TD
 
 ### 5. Diligence & Readiness (Icebox + Readiness Gate)
 
-**What it is:** The refinement stage within Downstream, before Delivery. The OBC is refined from Refining to Committed. Diligence verifies, in a blocking manner, that prerequisites are satisfied before the item enters the Iteration Plan.
+**What it is:** The refinement stage within Downstream, before Delivery. The OBC is refined from Refining to Readiness. Diligence verifies, in a blocking manner, that prerequisites are satisfied before the item enters the Iteration Plan.
 
 **Entry condition:** Downstream Declared (OBC in Refining, Work Item in Icebox).
 
-**Exit condition:** OBC Committed, BDD Feature at `prodops/artifacts/bdd/`, risks documented, Reliability Plan (when required), Readiness Gate approved → Downstream Ready.
+**Exit condition:** OBC Readiness, BDD Feature at `prodops/artifacts/bdd/`, risks documented, Reliability Plan (when required), Readiness Gate approved → Downstream Ready.
 
 **The Readiness Gate is not optional:** it is the point where Diligence verifies, in a blocking manner, that the Downstream has the necessary substrate to be executed with integrity.
 
@@ -212,8 +212,8 @@ flowchart TD
 | Business / Product Intent | — | Draft | Intent document + OBC Draft | Owner Approval / OBC Partitioning |
 | Context Discovery | Upstream | Draft | Evidence Package + Decision Package | CommitmentGate |
 | Commitment | Transition | Draft → Refining | updated upstream-trail | Outcome: Promote |
-| Diligence & Readiness | Downstream | Refining → Committed | OBC Committed + BDD + Risks | Readiness Gate |
-| Iteration | Downstream | Committed | Iteration Plan entry | Bootstrap.Started |
+| Diligence & Readiness | Downstream | Refining → Readiness | OBC Readiness + BDD + Risks | Readiness Gate |
+| Iteration | Downstream | Readiness | Iteration Plan entry | Bootstrap.Started |
 | Delivery | Downstream | In Delivery | Release Trail | Promote completed |
 | Evidence | Downstream | Released | Release Trail complete + Observable Events | Assessment Review |
 | Outcome | Downstream | Released | Business metrics + Product Outcome | Delivered value verification |
@@ -226,7 +226,7 @@ When a hypothesis is invalidated during Delivery — what was committed cannot b
 
 1. Record the reason for suspension in the Release Trail
 2. Open a new Upstream experiment referencing the OBC and the suspended Downstream
-3. OBC transitions `Committed → Refining` (with date and justification)
+3. OBC transitions `Readiness → Refining` (with date and justification)
 4. Work Item returns to the Icebox; Downstream Declared remains as history
 
 Regression is not a process failure — it is the correct protocol when evidence changes during execution.

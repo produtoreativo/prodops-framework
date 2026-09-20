@@ -21,12 +21,12 @@ For each divergence, classify the corrective action and the responsible party:
 
 | Gap type | Action | Who can repair |
 |---|---|---|
-| Committed OBC without Work Item | Attach — create Work Item | Diligence |
+| Readiness OBC without Work Item | Attach — create Work Item | Diligence |
 | Issue with canonical labels outside the managed project | Attach — add Issue to the project | Diligence |
 | Item in Iteration Plan without BDD Feature | Blocker — BDD Feature must be created first | Delivery (Downstream readiness) |
 | Item in Iteration Plan without documented risks | Blocker — document risks in risks.md | Assessment |
 | Open Work Item with Operational OBC | Close — close Work Item | Diligence |
-| Committed OBC absent from Iteration Plan | Promote — verify preconditions and promote | Diligence |
+| Readiness OBC absent from Iteration Plan | Promote — verify preconditions and promote | Diligence |
 | Outdated management artifact | Artifact Evolution — update artifact | Diligence |
 
 ### 3. Register pending items

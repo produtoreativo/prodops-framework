@@ -404,8 +404,8 @@ The OBC state and the Work Item state are **independent**. An OBC state transiti
 | OBC Transition | Expected Operation | Work Item Action |
 |---|---|---|
 | Draft → Refining | Explore or Refine | Create Work Item if there is an active operation; do not create if the OBC advances passively |
-| Refining → Committed | Commit or Promote | Close refinement Work Item when the operation ends; record promotion if necessary |
-| Committed → In Delivery | Implement | Create implementation Work Item when Delivery is started |
+| Refining → Readiness | Commit or Promote | Close refinement Work Item when the operation ends; record promotion if necessary |
+| Readiness → In Delivery | Implement | Create implementation Work Item when Delivery is started |
 | In Delivery → Operational | Validate and Promote | Close completed implementation Work Items; record evidence |
 | Operational → Archived | Archive | Create Work Item only for formal archiving operation if necessary |
 

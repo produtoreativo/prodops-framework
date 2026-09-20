@@ -23,6 +23,8 @@ Diligence Async produces:
 - Artifacts and tools restored to consistency for repairable items
 - Escalations recorded for items that require human decision
 
+> **Health nuance:** Few Findings do not equate to a healthy product. They may be a signal of insufficient instrumentation — the team is systematically not detecting divergences, not systematically avoiding them. Real health is verified by the absence of **detectable** divergences, not merely the absence of **recorded** Findings. When Diligence produces repeated Findings of the same type of problem, this is a process signal: the root cause must be addressed, not just each individual instance corrected.
+
 ---
 
 ## Trigger model
@@ -58,8 +60,8 @@ Diligence Async is triggered by:
 |---|---|
 | OBC in Draft, no authorized active operation, no Work Item | **Legitimate absence** — not a divergence |
 | Business Signal recorded, no active investigation, no Work Item | **Legitimate absence** — not a divergence |
-| Committed OBC with active Delivery operation, no Work Item | **Incomplete relationship** — divergence |
-| Committed OBC in Iteration Plan, Work Item still open after Release Operational | **Incomplete relationship** — divergence (Close was not executed) |
+| Readiness OBC with active Delivery operation, no Work Item | **Incomplete relationship** — divergence |
+| Readiness OBC in Iteration Plan, Work Item still open after Release Operational | **Incomplete relationship** — divergence (Close was not executed) |
 | Open Work Item referencing non-existent OBC | **Invalid relationship** — divergence |
 
 **What it does NOT do:**

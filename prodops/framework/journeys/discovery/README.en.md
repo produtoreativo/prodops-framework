@@ -17,7 +17,7 @@ flowchart TD
         direction TB
         ICE["Icebox\n(item accepted in the Product Backlog)"]
         REF["Refinement\nfunctional · technical · operational"]
-        OBC["OBC Committed\n+ BDD Feature\n+ Documented Risks"]
+        OBC["OBC Readiness\n+ BDD Feature\n+ Documented Risks"]
         ICE --> REF --> OBC
     end
 
@@ -48,7 +48,7 @@ Can include:
 - experiments and vibecoding
 - research
 
-An Upstream experiment may produce production-quality code. The exploratory label describes the commitment model — no mandatory gates, no Committed OBC, no Release Trail — not the deployment limit. By explicit team and leadership decision, this code may be deployed to production or controlled productive environments without requiring formal promotion to Downstream. The CommitmentGate formalizes the mode transition; it is not a precondition for deployment.
+An Upstream experiment may produce production-quality code. The exploratory label describes the commitment model — no mandatory gates, no Readiness OBC, no Release Trail — not the deployment limit. By explicit team and leadership decision, this code may be deployed to production or controlled productive environments without requiring formal promotion to Downstream. The CommitmentGate formalizes the mode transition; it is not a precondition for deployment.
 
 ---
 
@@ -56,13 +56,13 @@ An Upstream experiment may produce production-quality code. The exploratory labe
 
 **Objective:** Prepare a committed item for Delivery.
 
-An item enters the Icebox after being accepted in the Product Backlog. Discovery in Downstream occurs within the Icebox. The goal is to produce a Local OBC in the Committed state through refinement:
+An item enters the Icebox after being accepted in the Product Backlog. Discovery in Downstream occurs within the Icebox. The goal is to produce a Local OBC in the Readiness state through refinement:
 
 - functional — what the system must do
 - technical — how the system must do it
 - operational — how the system must behave in production
 
-At the end of Discovery in Downstream, the item has a Local OBC in the Committed state and advances to the Iteration Backlog.
+At the end of Discovery in Downstream, the item has a Local OBC in the Readiness state and advances to the Iteration Backlog.
 
 ---
 
@@ -142,7 +142,7 @@ An exploratory activity (Upstream mode) can produce:
 
 A refinement activity (Discovery in Downstream mode) typically produces:
 
-- OBC in Committed state;
+- OBC in Readiness state;
 - BDD Feature refined and moved to `prodops/artifacts/bdd/`;
 - Risks documented in `prodops/artifacts/risks/risks.md`;
 - Reliability Plan updated (when applicable);
@@ -202,7 +202,7 @@ Icebox (functional, technical, operational refinement)
 
 ↓
 
-OBC Committed + BDD Feature + Risks documented
+OBC Readiness + BDD Feature + Risks documented
 
 ↓
 
@@ -350,7 +350,7 @@ If the outcome generates a change in the Reliability Plan, update `prodops/artif
 
 # Relationship with Downstream
 
-Upstream operates without capability commitment: the team learns, experiments and deploys without a Committed OBC, without a Release Trail, without mandatory gates.
+Upstream operates without capability commitment: the team learns, experiments and deploys without a Readiness OBC, without a Release Trail, without mandatory gates.
 
 Downstream operates with formal commitment: delivery, quality, reliability and traceability are mandatory at each phase.
 

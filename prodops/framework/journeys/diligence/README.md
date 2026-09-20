@@ -430,7 +430,7 @@ A Diligence pode detectar AP-D3 quando encontra itens promovidos sem critérios 
 | Tratar ausência de Issue como divergência automática | Artefato passivo (sem operação ativa) não requer Work Item |
 | Usar Issue como fonte de verdade do OBC | O OBC canônico vive no arquivo Markdown — não no Issue |
 | Reutilizar indefinidamente o mesmo Work Item para toda a vida do artefato | Cada operação ativa deve ter seu próprio Work Item rastreável |
-| Confundir estado do artefato com estado do Work Item | São independentes: o artefato pode estar Committed enquanto o Work Item está Open |
+| Confundir estado do artefato com estado do Work Item | São independentes: o artefato pode estar em estado Readiness enquanto o Work Item está Open |
 | Promover item sem critérios satisfeitos | Viola os pré-requisitos de transição e quebra rastreabilidade |
 | Inventar conteúdo de artefato durante sincronização | Conteúdo de artefato é decisão de negócio — Diligence sincroniza, não inventa |
 | Executar Assessment dentro da Diligence | Diligence detecta divergências; não avalia nem recomenda estratégia |
@@ -468,7 +468,7 @@ Uma investigação foi autorizada sobre o Business Signal.
 
 Assessment ou parte autorizada declarou readiness do OBC.
 
-**Estado esperado:** A Diligence verifica critérios (OBC committed, BDD Feature committed, riscos documentados); Promote registra a transição; Work Item de implementação pode ser criado; OBC e Work Item mantêm estados independentes (OBC pode ser Committed enquanto Work Item está Open e em progresso).
+**Estado esperado:** A Diligence verifica critérios (OBC committed, BDD Feature committed, riscos documentados); Promote registra a transição; Work Item de implementação pode ser criado; OBC e Work Item mantêm estados independentes (OBC pode ser Readiness enquanto Work Item está Open e em progresso).
 
 **Lição:** Estados de artefato e Work Item são independentes — a Diligence os verifica sem confundi-los.
 

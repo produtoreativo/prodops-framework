@@ -57,7 +57,7 @@ flowchart TD
     DOWN -."Discovery prepares\nCommitted OBC".-> DIS
 
     %% Main flow of product journeys
-    DIS -->|"OBC Committed\n→ Iteration Plan"| DEL
+    DIS -->|"OBC Readiness\n→ Iteration Plan"| DEL
     DEL -->|"Promote.Completed"| OP
     OP -."operational signals\nfeed new intents".-> DIS
 
@@ -157,7 +157,7 @@ There is no delivery commitment. The goal is to reduce uncertainty. An Intent ma
 Intent
   ↓
 Downstream (blocking rigor — all phases and gates mandatory)
-  ├─ Discovery (preparatory): Icebox → Committed OBC → committed BDD
+  ├─ Discovery (preparatory): Icebox → Readiness OBC → committed BDD
   ├─ Delivery:  Bootstrap → Hack → Sync → Finish → Ship → Validate → Promote
   ├─ Operation: real production, SLOs, runbooks, incidents
   ├─ Assessment: formal gates, Reliability Plan mandatory when applicable

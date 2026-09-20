@@ -49,6 +49,9 @@ Eventos com sufixo `*_failed`, `*_rejected`, `*_refused`, `*_error` correlaciona
 ---
 
 #### Mean Time to Recovery (MTTR)
+
+> **Nota 2024-2026:** A formulação DORA 2024-2026 atualizou o nome desta métrica para **Failed Deployment Recovery Time**. O ProdOps Framework mantém o nome MTTR por familiaridade com as equipes, mas reconhece a equivalência. A mesma formulação introduziu **Deployment Rework Rate** como quinta métrica de delivery performance — não adotada neste modelo por sobreposição parcial com o Change Fail Rate existente.
+
 **O que mede:** tempo médio desde a detecção da falha até a recovery completa.
 
 **Por que importa:** falhas acontecem. O que diferencia times maduros é a velocidade de recuperação. Nos estágios avançados (MVT/MLP), MTTR alto é inaceitável.
@@ -153,7 +156,7 @@ As métricas DORA e extensões acima medem o modo Downstream (compromisso de ent
 
 **Como medir:** `timestamp(primeira entrada de evidência no upstream-trail)` − `timestamp(experimento aberto)`.
 
-**Sinal de alerta:** TTE > 5 dias úteis sem evidência registrada pode indicar bloqueio não declarado (correlaciona com S1 e S2 do Perpetual Discovery).
+**Sinal de alerta:** TTE > 5 dias úteis sem evidência registrada pode indicar bloqueio não declarado (correlaciona com A1 dos alertas do Plano de Experimento — ver também os sinais diagnósticos S1-S4 do Perpetual Discovery).
 
 ---
 

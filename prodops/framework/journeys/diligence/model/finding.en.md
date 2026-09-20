@@ -94,7 +94,7 @@ A Finding has ONE primary dimension and may have optional secondary dimensions. 
 
 **Examples:**
 - OBC in Operational state with Work Item still open (Close was not executed)
-- Item promoted to Iteration Plan without BDD Feature Committed
+- Item promoted to Iteration Plan without BDD Feature committed
 - Work Item marked as Done without completion Evidence
 - OBC in In Delivery state without any active implementation Work Item
 

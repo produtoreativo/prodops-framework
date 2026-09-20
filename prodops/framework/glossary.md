@@ -893,6 +893,120 @@ Ver [`prodops/framework/execution-model/downstream.md`](execution-model/downstre
 
 ---
 
+## Coexistência de modos
+
+**Definição:** Estado em que o mesmo time opera simultaneamente em modos diferentes para diferentes objetos de trabalho. Exemplo: um experimento em Upstream (EXP-007) rodando em paralelo com um item em Downstream (DS-61). Cada objeto de trabalho mantém seu próprio modo, gates e rigor — a coexistência é esperada e operacionalmente normal.
+
+**Regra:** o modo é uma propriedade do objeto de trabalho, não do time. Um time pode ter items em Upstream, Refining e In Delivery simultaneamente. O que não pode ocorrer é um único objeto de trabalho com ambiguidade de modo.
+
+---
+
+## Discovery no Downstream
+
+**Tipo:** Anti-padrão de modo.
+
+**Definição:** Exploração realizada após uma decisão que carrega compromisso operacional, econômico ou temporal, sem reconhecer que o custo de estar errado mudou. Ocorre quando o time trata trabalho Downstream como se fosse Upstream — adiando decisões, ampliando escopo ou revisando hipóteses já comprometidas sem registrar formalmente a regressão.
+
+**Distinção:** Discovery no Downstream não é o mesmo que a jornada Discovery executada em modo Downstream (que é legítima e tem gates obrigatórios). O anti-padrão é a exploração informal dentro de um compromisso assumido.
+
+**Sinal diagnóstico:** OBC em estado In Delivery com hipóteses abertas que deveriam ter sido resolvidas antes do CommitmentGate.
+
+---
+
+## Incerteza residual aceitável
+
+**Definição:** Incerteza que permanece no momento do CommitmentGate e é explicitamente declarada como aceitável pelo trio. O Upstream não precisa eliminar toda incerteza para que o CommitmentGate ocorra — o que é "aceitável" é julgamento coletivo do trio.
+
+**Regra crítica:** A incerteza residual deve ser declarada no Decision Package. Riscos não declarados no CommitmentGate são riscos gerenciados sem visibilidade — o Gate não pode mais atuar sobre o que não foi registrado.
+
+**Relação com o Readiness Gate:** a incerteza residual declarada no CommitmentGate é parte do contexto que o Readiness Gate verifica antes de autorizar Delivery.
+
+---
+
+## Produção Controlada
+
+**Definição:** Deploy em ambiente de produção real realizado em modo Upstream, sem que o CommitmentGate tenha sido executado. Requer: autorização explícita do trio, rollback imediato disponível e observações registradas no upstream-trail.
+
+**Distinção com Promoção:** a Produção Controlada não transfere a capability para Downstream. O OBC permanece em Draft ou Refining; o compromisso de delivery não foi assumido. O código chega a produção; a capability permanece em exploração.
+
+**Quando usar:** validação de hipóteses que requerem tráfego real e não podem ser reproduzidas em ambiente isolado ou sandbox.
+
+---
+
+## Promoção Prematura
+
+**Tipo:** Anti-padrão de modo.
+
+**Definição:** Comprometer uma Product Capability antes de ter evidência suficiente, seja por pressão de deadline, otimismo não verificado ou omissão de incerteza relevante no Decision Package.
+
+**Por que é problemático:** o CommitmentGate existe precisamente para tornar a Promoção Prematura detectável e tratável. Quando ocorre sem registro formal, o custo de estar errado é absorvido silenciosamente no Downstream — sem rastreabilidade nem protocolo de regressão ativado.
+
+**Sinal diagnóstico:** OBC em In Delivery com Discovery WIP ativo para a mesma capability, ou Evidence Threshold ausente no Decision Package que autorizou o CommitmentGate.
+
+**Contraste com Promoção legítima:** uma Promoção com incerteza residual explicitamente declarada no Decision Package é legítima — a Promoção Prematura é silenciosa.
+
+---
+
+## Relatório de ciclo
+
+**Definição:** Output do Assessment Sync retrospectivo ao final de um ciclo. Síntese do que o ciclo revelou sobre a saúde do processo: anti-padrões detectados, sinais diagnósticos ativados, causas identificadas e recomendações para o próximo ciclo.
+
+**Produzido por:** Assessment Sync (fase Synthesize → Report).
+
+**Conteúdo típico:** padrões de Gate Failure Rate, correlações entre WIP e TTE, anti-padrões recorrentes e propostas de ajuste de processo para o próximo ciclo.
+
+**Não confundir com:** Release Trail (evidência de uma entrega específica) ou Decision Package (evidência de um experimento específico).
+
+---
+
+## Rigor bloqueante
+
+**Definição:** Característica do modo Downstream. Gates devem ser satisfeitos antes de avançar — o trabalho para até que as condições sejam atendidas. Não existe bypass de Gate; existe apenas o Waiver, que é um bypass **explícito e registrado**.
+
+**Contraste:** ver Rigor não bloqueante (modo Upstream).
+
+**Consequência prática:** em Downstream, o AgentCode ou o engenheiro não pode avançar para a próxima fase sem que o Gate da fase anterior esteja satisfeito. O bloqueio é a garantia — não um obstáculo.
+
+---
+
+## Rigor de compromisso
+
+**Definição:** Regime aplicado em modo Downstream. Orientado à verificação de cumprimento, preservação do compromisso assumido, controle de mudança e geração de evidência de resultado. Perguntas características: "O que foi comprometido está sendo entregue?" e "Existe evidência verificável de cada etapa?".
+
+**Contraste:** ver Rigor de exploração (modo Upstream).
+
+---
+
+## Rigor de exploração
+
+**Definição:** Regime aplicado em modo Upstream. Orientado à qualidade da evidência, ao aprendizado e à redução de incerteza relevante. Perguntas características: "A hipótese é falsificável?" e "A evidência produzida é verificável por quem não participou do experimento?".
+
+**Contraste:** ver Rigor de compromisso (modo Downstream).
+
+**Não confundir com ausência de rigor:** o rigor de exploração é tão exigente quanto o de compromisso — a diferença é o que ele exige. Em Upstream, o rigor incide sobre a qualidade epistêmica da evidência; em Downstream, sobre o cumprimento do compromisso assumido.
+
+---
+
+## Rigor não bloqueante
+
+**Definição:** Característica do modo Upstream. Práticas disponíveis e recomendadas, mas não condições mandatórias que bloqueiem o avanço. O engenheiro decide quais Skills utilizar; nenhuma Gates bloqueia o próximo passo.
+
+**Contraste:** ver Rigor bloqueante (modo Downstream).
+
+**Consequência prática:** em Upstream, o Code Agent pode avançar sem cumprir pré-condições formais. A accountability pelo rigor de exploração é individual e do trio — não enforced pelo framework.
+
+---
+
+## Sandbox Deploy
+
+**Definição:** Deploy Upstream em stack efêmera, isolada e sem tráfego de clientes reais. Stack prefixada com `experiment-*`, destruída ao final do experimento (`teardown` obrigatório). Utilizado para validar hipóteses que requerem integração com provedores reais em ambiente controlado.
+
+**Distinção com Produção Controlada:** o Sandbox Deploy nunca expõe tráfego real de clientes. A Produção Controlada usa produção real com rollback disponível.
+
+**Distinção com Downstream:** o Sandbox Deploy não produz artefatos entregáveis, não gera Release Trail e não exige OBC em estado Readiness.
+
+---
+
 ## Hack
 
 **Definição:** A fase de codificação em Upstream e Downstream. Segundo estágio do CI Sync, sucede o Bootstrap. Definido em [`journeys/delivery/phases/hack/README.md`](journeys/delivery/phases/hack/README.md). Mecânica de execução em [`skills/hack/`](../skills/hack/).
@@ -1021,7 +1135,7 @@ Ver [`prodops/framework/execution-model/downstream.md`](execution-model/downstre
 
 **Propósito:** Fechar o ciclo de melhoria contínua do Framework. Enquanto a Delivery executa e a Diligence organiza, o Assessment avalia — respondendo à pergunta central: "Estamos melhorando continuamente o nosso modelo operacional?"
 
-**Cycles:** Assessment Sync (Collect → Analyze → Synthesize → Report — estruturado, por demanda) e Assessment Async (Monitor → Alert — contínuo, proativo).
+**Cycles:** Assessment Sync (Collect → Analyze → Synthesize → Report — estruturado, por demanda) e Assessment Async (Monitor → Alert → Evoluir — contínuo, proativo). A fase Evoluir incorpora novos critérios de monitoramento a partir do que ciclos anteriores revelaram como pontos cegos.
 
 **O que não faz:** Não executa Delivery. Não executa Diligence. Não escreve nas Timelines de outras Journeys. Não prioriza o backlog — informa, não decide.
 

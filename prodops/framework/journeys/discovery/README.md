@@ -17,7 +17,7 @@ flowchart TD
         direction TB
         ICE["Icebox\n(item aceito no Product Backlog)"]
         REF["Refinamento\nfuncional · técnico · operacional"]
-        OBC["OBC Committed\n+ BDD Feature\n+ Riscos documentados"]
+        OBC["OBC Readiness\n+ BDD Feature\n+ Riscos documentados"]
         ICE --> REF --> OBC
     end
 
@@ -48,7 +48,7 @@ Pode incluir:
 - experimentos e vibecoding
 - pesquisas
 
-Um experimento Upstream pode produzir código de qualidade de produção. O rótulo exploratório descreve o modelo de compromisso — sem gates obrigatórios, sem OBC Committed, sem Release Trail — não o limite de implantação. Por decisão explícita do time e da liderança, esse código pode ser implantado em produção ou em ambientes produtivos controlados sem exigir promoção formal para Downstream. O CommitmentGate formaliza a transição de modo; não é pré-condição de implantação.
+Um experimento Upstream pode produzir código de qualidade de produção. O rótulo exploratório descreve o modelo de compromisso — sem gates obrigatórios, sem OBC Readiness, sem Release Trail — não o limite de implantação. Por decisão explícita do time e da liderança, esse código pode ser implantado em produção ou em ambientes produtivos controlados sem exigir promoção formal para Downstream. O CommitmentGate formaliza a transição de modo; não é pré-condição de implantação.
 
 ---
 
@@ -56,13 +56,13 @@ Um experimento Upstream pode produzir código de qualidade de produção. O rót
 
 **Objetivo:** Preparar um item comprometido para Delivery.
 
-Um item entra no Icebox após ser aceito no Product Backlog. A Discovery no Downstream ocorre dentro do Icebox. O objetivo é produzir um Local OBC no estado Committed por meio de refinamento:
+Um item entra no Icebox após ser aceito no Product Backlog. A Discovery no Downstream ocorre dentro do Icebox. O objetivo é produzir um Local OBC no estado Readiness por meio de refinamento:
 
 - funcional — o que o sistema deve fazer
 - técnico — como o sistema deve fazer
 - operacional — como o sistema deve se comportar em produção
 
-Ao final da Discovery no Downstream, o item possui Local OBC no estado Committed e avança para o Iteration Backlog.
+Ao final da Discovery no Downstream, o item possui Local OBC no estado Readiness e avança para o Iteration Backlog.
 
 ---
 
@@ -142,7 +142,7 @@ Uma atividade exploratória (modo Upstream) pode produzir:
 
 Uma atividade de refinamento (Discovery em modo Downstream) tipicamente produz:
 
-- OBC em estado Committed;
+- OBC em estado Readiness;
 - BDD Feature refinada e movida para `prodops/artifacts/bdd/`;
 - Riscos documentados em `prodops/artifacts/risks/risks.md`;
 - Reliability Plan atualizado (quando aplicável);
@@ -202,7 +202,7 @@ Icebox (refinamento funcional, técnico, operacional)
 
 ↓
 
-OBC Committed + BDD Feature + Riscos documentados
+OBC Readiness + BDD Feature + Riscos documentados
 
 ↓
 
@@ -350,7 +350,7 @@ Se o outcome gerar mudança no Reliability Plan, atualizar `prodops/artifacts/ri
 
 # Relationship with Downstream
 
-O Upstream opera sem compromisso de capability: o time aprende, experimenta e implanta sem OBC Committed, sem Release Trail, sem gates obrigatórios.
+O Upstream opera sem compromisso de capability: o time aprende, experimenta e implanta sem OBC Readiness, sem Release Trail, sem gates obrigatórios.
 
 O Downstream opera com compromisso formal: entrega, qualidade, confiabilidade e rastreabilidade são obrigatórios em cada fase.
 

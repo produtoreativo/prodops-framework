@@ -76,7 +76,7 @@ Product Backlog               ← Local OBC Draft born here if not yet existing
 Product Backlog
   ↓ VIEW Icebox — Discovery
 Icebox [VIEW]
-  ↓ OBC Committed
+  ↓ OBC Readiness
 Iteration Backlog [VIEW]
   ↓ OBC committed + BDD committed
 Iteration Plan
@@ -192,9 +192,9 @@ Operation
 | **Who modifies** | Product Team (Product Manager, Tech Lead, engineers) |
 | **Who approves** | Product Owner + Tech Lead (for exit from Icebox) |
 | **Consumers** | Iteration Backlog |
-| **OBC** | Refining (Discovery); reaches Committed upon exit |
+| **OBC** | Refining (Discovery); reaches Readiness upon exit |
 | **Entry criteria** | Local OBC transitioning from Draft to **Refining** — start of active Discovery |
-| **Exit criteria** | OBC Committed → Iteration Backlog |
+| **Exit criteria** | OBC Readiness → Iteration Backlog |
 | **Journeys** | Discovery (Downstream), Assessment |
 
 ### Iteration Backlog
@@ -202,13 +202,13 @@ Operation
 | Field | Value |
 |---|---|
 | **Owner** | Product Owner |
-| **Where born** | Product Repository — item with OBC Committed exiting the Icebox |
+| **Where born** | Product Repository — item with OBC Readiness exiting the Icebox |
 | **Canonical artifact** | `prodops/artifacts/product/backlogs/iteration-backlog.md` |
 | **Who modifies** | Product Owner, Diligence |
 | **Who approves** | Product Owner (prioritization) |
 | **Consumers** | Iteration Plan |
-| **OBC** | Committed |
-| **Entry criteria** | OBC Committed + BDD Feature draft |
+| **OBC** | Readiness |
+| **Entry criteria** | OBC Readiness + BDD Feature draft |
 | **Exit criteria** | OBC committed + BDD Feature committed + Iteration Plan entry |
 | **Journeys** | Diligence, Assessment |
 
@@ -223,7 +223,7 @@ Operation
 | **Who approves** | Product Owner + Tech Lead (for item entry) |
 | **Consumers** | Delivery (CI Sync, CI Async), Release Trail |
 | **OBC** | In Delivery (during Delivery) |
-| **Entry criteria** | Committed OBC + committed BDD Feature + Reliability Plan when canonical risk triggers apply |
+| **Entry criteria** | Readiness OBC + committed BDD Feature + Reliability Plan when canonical risk triggers apply |
 | **Exit criteria** | Delivery completed + evidence recorded |
 | **Journeys** | Delivery, Diligence |
 
@@ -237,7 +237,7 @@ Operation
 | **Who modifies** | Product Manager, Tech Lead, engineers (with change record) |
 | **Who approves** | Product Manager + Tech Lead (Assessment Review) |
 | **Consumers** | Delivery, Reliability Plan, BDD Feature, Release Trail, Iteration Plan |
-| **Lifecycle** | Draft → Refining → Committed → In Delivery → Operational → Archived |
+| **Lifecycle** | Draft → Refining → Readiness → In Delivery → Operational → Archived |
 | **Journeys** | Discovery, Delivery, Operation, Assessment, Diligence |
 
 ### Reliability Plan

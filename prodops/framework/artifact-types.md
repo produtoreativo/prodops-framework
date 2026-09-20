@@ -55,7 +55,7 @@ Artefatos de execução (`Iteration Plan`, `Context Capsule`, `Release Trail`) s
 
 **Caminho canônico:** `prodops/artifacts/business-intents/<id>.md`
 
-**Relações:** origina um OBC (Global ou Local). Em Downstream, deve ter OBC Committed antes de entrar no Iteration Plan.
+**Relações:** origina um OBC (Global ou Local). Em Downstream, deve ter OBC Readiness antes de entrar no Iteration Plan.
 
 ---
 
@@ -77,15 +77,15 @@ Artefatos de execução (`Iteration Plan`, `Context Capsule`, `Release Trail`) s
 
 **O que é:** Observable Business Contract de uma capability específica dentro de um Product Repository. Define Business Outcome, Observable Events, SLIs, Reliability Rules e Response Contract.
 
-**Nasce quando:** uma Business Intent entra no Product Backlog — começa como Draft e evolui até Committed conforme o Discovery avança.
+**Nasce quando:** uma Business Intent entra no Product Backlog — começa como Draft e evolui até Readiness conforme o Discovery avança.
 
 **Jornada:** Discovery → Delivery → Operation → Assessment (retroativo).
 
 **Caminho canônico:** `prodops/artifacts/obcs/<slug>.md`
 
-**Status possíveis:** `Draft` → `Refining` → `Committed` → `In Delivery` → `Operational` → `Archived`
+**Status possíveis:** `Draft` → `Refining` → `Readiness` → `In Delivery` → `Operational` → `Archived`
 
-**Relações:** presuposto por `bdd-feature`, `reliability-plan`, `context-capsule` e `release-trail`. Sem OBC Committed, não há entrada no Iteration Plan.
+**Relações:** presuposto por `bdd-feature`, `reliability-plan`, `context-capsule` e `release-trail`. Sem OBC Readiness, não há entrada no Iteration Plan.
 
 ---
 
@@ -93,7 +93,7 @@ Artefatos de execução (`Iteration Plan`, `Context Capsule`, `Release Trail`) s
 
 **O que é:** especificação comportamental em formato Gherkin (Given/When/Then) que descreve os cenários esperados da capability. É a definição executável do que será construído.
 
-**Nasce quando:** o OBC atinge estado Committed e o Tech Lead escreve os cenários que guiarão o ciclo TDD.
+**Nasce quando:** o OBC atinge estado Readiness e o Tech Lead escreve os cenários que guiarão o ciclo TDD.
 
 **Jornada:** Delivery (fase Hack — ciclo Red → Green → Refactor).
 
@@ -129,7 +129,7 @@ Artefatos de execução (`Iteration Plan`, `Context Capsule`, `Release Trail`) s
 
 **Caminho canônico:** `prodops/artifacts/plans/iteration-plan.md`
 
-**Relações:** presupõe `local-obc` Committed + `bdd-feature` + `risk-register`. Referenciado pelo `context-capsule` e `release-trail`.
+**Relações:** presupõe `local-obc` Readiness + `bdd-feature` + `risk-register`. Referenciado pelo `context-capsule` e `release-trail`.
 
 ---
 
@@ -199,7 +199,7 @@ Artefatos de execução (`Iteration Plan`, `Context Capsule`, `Release Trail`) s
 
 **Nasce quando:** um serviço é listado no Product Deck com um Local OBC committed — o Service Deck materializa os contratos desse OBC como visão operacional do serviço.
 
-**Jornada:** transversal — criado quando o OBC atinge Committed; atualizado em Operation (métricas, SLOs) e Assessment (revisão de risco e contratos).
+**Jornada:** transversal — criado quando o OBC atinge Readiness; atualizado em Operation (métricas, SLOs) e Assessment (revisão de risco e contratos).
 
 **Caminho canônico:** `prodops/artifacts/services/<service-slug>/service-deck.md`
 

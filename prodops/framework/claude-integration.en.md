@@ -67,7 +67,7 @@ Skills are authoritative execution rules for each action in the lifecycle. Each 
 | `commitment` | CommitmentGate + Readiness Gate | `/commitment` |
 | `product-context` | Current state reading | `/product-context` |
 | `upstream` | Any work in Upstream mode (without delivery commitment) | `/upstream` |
-| `downstream` | Committed delivery cycle in Downstream mode (CI Sync + CI Async) | `/downstream` |
+| `downstream` | Readiness delivery cycle in Downstream mode (CI Sync + CI Async) | `/downstream` |
 | `evidence` | Evidence (Upstream + Downstream) | `/evidence` |
 | `outcome` | Business + Product Outcome | `/outcome` |
 | `diligence` | Cross-cutting synchronization | `/diligence` |
@@ -130,7 +130,7 @@ Validation scripts executed before critical actions.
 `derive-context.sh` generates `prodops/artifacts/context/prodops-context.yaml` — a machine-readable snapshot of the current product state.
 
 **Contents:**
-- OBCs by state (Draft, Refining, Committed, In Delivery, Released)
+- OBCs by state (Draft, Refining, Readiness, In Delivery, Released)
 - Active Upstream experiments
 - Capabilities in the active iteration
 
@@ -222,7 +222,7 @@ User: "Verify outcome of split-payment (Released 30 days ago)"
 ```
 User: "/downstream DS-42"
 → downstream-agent: verifies Readiness Gate via check-readiness-gate.sh
-→ Gate 1 fails: OBC is not in Committed state
+→ Gate 1 fails: OBC is not in Readiness state
 → Stops with: list of missing gates + concrete action required
 → Does not start Bootstrap
 ```

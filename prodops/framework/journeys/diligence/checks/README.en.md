@@ -610,7 +610,7 @@ Catalog v1.0.0 contains 18 Checks covering:
 
 ### What is NOT covered in this version (intentionally)
 
-- Checks about OBC state (Draft, Refining, Committed, In Delivery, Operational) — requires complete transition mapping
+- Checks about OBC state (Draft, Refining, Readiness, In Delivery, Operational) — requires complete transition mapping
 - Checks about BDD Features (presence, completeness, acceptance criteria)
 - Checks about Reliability Plan (content, completeness, periodic review)
 - Checks about Release Trail (entries, Release evidence)

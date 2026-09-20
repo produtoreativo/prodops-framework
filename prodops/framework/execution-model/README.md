@@ -38,7 +38,7 @@ Os modos não substituem as jornadas. Eles definem o rigor com que as jornadas s
  Diligence      leve                     bloqueante
                         │                      │
  Gates          nenhum obrigatório       todos obrigatórios
- OBC            Draft / Refining         Refining na entrada; Committed obrigatório para Delivery Started
+ OBC            Draft / Refining         Refining na entrada; Readiness obrigatório para Delivery Started
  Release Trail  não obrigatório          obrigatório
  Rigor          o engenheiro decide      sequência obrigatória
 ```

@@ -106,6 +106,8 @@ A operação (`Promote`) e o tipo de artefato (`Local OBC`) vão nos campos e la
 
 **Objetivo:** Mover o item pela hierarquia de backlogs verificando os pré-requisitos de cada transição.
 
+> **Disambiguação:** A fase **Promote** do ciclo de vida de Findings indica que o Finding avançou do estado Attach para resolução ativa. Esta fase **não se relaciona** com o outcome **Promover** do CommitmentGate — são conceitos homônimos com significados completamente distintos: um descreve o avanço de um Finding no ciclo de Diligence, o outro descreve o outcome que abre o modo Downstream.
+
 **O que faz:**
 - Verifica pré-requisitos canônicos de cada transição
 - Registra o status `Entrou` no nível de destino quando a transição é concluída
@@ -117,8 +119,8 @@ A operação (`Promote`) e o tipo de artefato (`Local OBC`) vão nos campos e la
 | Destino | Pré-requisitos obrigatórios |
 |---|---|
 | → Icebox | OBC transitioning de Draft para Refining; início de Discovery ativo |
-| → Iteration Backlog | OBC Committed; Discovery suficiente; riscos identificados |
-| → Iteration Plan | OBC Committed + BDD Feature Committed + riscos documentados |
+| → Iteration Backlog | OBC Readiness; Discovery suficiente; riscos identificados |
+| → Iteration Plan | OBC Readiness + BDD Feature committed + riscos documentados |
 | → Iteration Plan (com risco qualificado) | + Reliability Plan (quando: movimentação financeira, integração externa, mudança de SLO, risco alto/crítico, alteração de persistência ou segurança) |
 
 **O que NÃO faz:**

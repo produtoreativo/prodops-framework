@@ -1,14 +1,14 @@
 # OBC - <Nome da Capability>
 
 <!-- Renomeie este arquivo para o slug da capability: ex. split-payment-api.md -->
-<!-- Mova para prodops/artifacts/obcs/<slug>.md quando o OBC estiver Committed -->
+<!-- Mova para prodops/artifacts/obcs/<slug>.md quando o OBC estiver Readiness -->
 <!-- Definição completa do formato: prodops/framework/obc.md -->
 <!-- Owner: Product Manager + Tech Lead do produto -->
 
 ## Status
 
 <!-- Declare o estado atual e onde está rastreado.
-     Estados possíveis: Draft | Refining | Committed | In Delivery | Operational | Archived
+     Estados possíveis: Draft | Refining | Readiness | In Delivery | Operational | Archived
      Exemplo: Downstream. Status `Entrou` em prodops/artifacts/plans/iteration-plan.md. -->
 
 Draft. Localizado em `prodops/artifacts/obcs/<slug>.md`.

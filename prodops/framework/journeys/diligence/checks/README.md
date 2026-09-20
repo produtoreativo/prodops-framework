@@ -610,7 +610,7 @@ O catálogo v1.0.0 contém 18 Checks cobrindo:
 
 ### O que NÃO está coberto nesta versão (intencionalmente)
 
-- Checks sobre estado de OBC (Draft, Refining, Committed, In Delivery, Operational) — requer mapeamento completo de transições
+- Checks sobre estado de OBC (Draft, Refining, Readiness, In Delivery, Operational) — requer mapeamento completo de transições
 - Checks sobre BDD Features (presença, completude, critérios de aceite)
 - Checks sobre Reliability Plan (conteúdo, completude, revisão periódica)
 - Checks sobre Release Trail (entradas, evidências de Release)

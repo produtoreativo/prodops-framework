@@ -106,6 +106,8 @@ The operation (`Promote`) and artifact type (`Local OBC`) go in the Issue's fiel
 
 **Objective:** Move the item through the backlog hierarchy verifying the prerequisites of each transition.
 
+> **Disambiguation:** The **Promote** phase of the Finding lifecycle indicates that the Finding advanced from the Attach state to active resolution. This phase **is not related** to the **Promote** outcome of the CommitmentGate — they are homonymous concepts with completely distinct meanings: one describes the advancement of a Finding in the Diligence cycle, the other describes the outcome that opens Downstream mode.
+
 **What it does:**
 - Verifies canonical prerequisites of each transition
 - Records the `Entered` status at the target level when the transition is completed
@@ -117,8 +119,8 @@ The operation (`Promote`) and artifact type (`Local OBC`) go in the Issue's fiel
 | Destination | Mandatory prerequisites |
 |---|---|
 | → Icebox | OBC transitioning from Draft to Refining; active Discovery started |
-| → Iteration Backlog | OBC Committed; sufficient Discovery; risks identified |
-| → Iteration Plan | OBC Committed + BDD Feature Committed + documented risks |
+| → Iteration Backlog | OBC Readiness; sufficient Discovery; risks identified |
+| → Iteration Plan | OBC Readiness + BDD Feature committed + documented risks |
 | → Iteration Plan (with qualified risk) | + Reliability Plan (when: financial movement, external integration, SLO change, high/critical risk, persistence or security change) |
 
 **What it does NOT do:**

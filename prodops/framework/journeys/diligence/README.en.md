@@ -430,7 +430,7 @@ The Diligence can detect AP-D3 when it finds items promoted without satisfied cr
 | Treating absence of Issue as automatic divergence | A passive artifact (no active operation) does not require a Work Item |
 | Using Issue as source of truth for the OBC | The canonical OBC lives in the Markdown file — not in the Issue |
 | Reusing the same Work Item indefinitely throughout the artifact's life | Each active operation must have its own traceable Work Item |
-| Confusing artifact state with Work Item state | They are independent: the artifact can be Committed while the Work Item is Open |
+| Confusing artifact state with Work Item state | They are independent: the artifact can be in Readiness state while the Work Item is Open |
 | Promoting an item without satisfied criteria | Violates transition pre-requisites and breaks traceability |
 | Inventing artifact content during synchronization | Artifact content is a business decision — Diligence synchronizes, does not invent |
 | Executing Assessment inside Diligence | Diligence detects divergences; it does not evaluate or recommend strategy |
@@ -468,7 +468,7 @@ An investigation was authorized on the Business Signal.
 
 Assessment or an authorized party declared OBC readiness.
 
-**Expected state:** Diligence verifies criteria (OBC committed, BDD Feature committed, risks documented); Promote records the transition; an implementation Work Item may be created; OBC and Work Item maintain independent states (OBC can be Committed while the Work Item is Open and in progress).
+**Expected state:** Diligence verifies criteria (OBC committed, BDD Feature committed, risks documented); Promote records the transition; an implementation Work Item may be created; OBC and Work Item maintain independent states (OBC can be in Readiness state while the Work Item is Open and in progress).
 
 **Key learning:** Artifact and Work Item states are independent — Diligence verifies them without confusing them.
 

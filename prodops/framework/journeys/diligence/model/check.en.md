@@ -79,7 +79,7 @@ A Check has a primary type and may have optional secondary types.
 | **Consistency** | Compares two or more sources or states | "OBC state in the Markdown file must be consistent with the state in the GitHub Project Field" |
 | **Completeness** | Verifies that required fields are filled with acceptable values | "Work Item must have artifact_type, artifact_id, operation and journey filled" |
 | **Traceability** | Verifies relationship chain between entities | "Every OBC in In Delivery must have at least one open implementation Work Item" |
-| **Readiness** | Verifies preconditions for advancement | "OBC in Iteration Plan must have BDD Feature Committed" |
+| **Readiness** | Verifies preconditions for advancement | "OBC in Iteration Plan must have BDD Feature committed" |
 | **Freshness** | Verifies temporal validity of information | "Waiver must not be expired for Finding with Waived status" |
 | **Conformance** | Verifies adherence to schema or configuration | "GitHub Project must have all canonical fields defined in github-workspace.md" |
 | **Outcome** | Verifies that Evidence supports the declared result | "Resolved Finding must have resolution Evidence collected" |

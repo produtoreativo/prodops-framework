@@ -45,6 +45,8 @@ O Downstream possui três momentos explícitos, cada um com condições de entra
 
 O compromisso foi assumido. O CommitmentGate com outcome **Promover** é o único evento que abre o Downstream.
 
+> **Propósito dual:** O CommitmentGate torna observáveis e tratáveis dois problemas opostos simultaneamente: **Perpetual Discovery** (exploração sem pressão de decidir) e **Promoção Prematura** (decisão sem evidência suficiente). Ao ter nome, critérios, participantes e outcomes registrados, o Gate transforma ambos de estados implícitos em estados rastreáveis.
+
 **Condições de entrada obrigatórias para o CommitmentGate emitir Promover:**
 1. Hipótese respondida com Evidence Threshold satisfeito (se declarado)
 2. Decision Package com substância real — legível por membro do trio que não participou do experimento

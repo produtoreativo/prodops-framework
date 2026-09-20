@@ -401,6 +401,8 @@ Timeline(W) ──read-only──► Assessment Consumer
                               └── does not emit events
 ```
 
+> **Rule: Assessment does not write to Timelines.** Timelines are append-only records produced exclusively by the classic journeys (Discovery, Delivery, Operation). Assessment reads Timelines to detect deviations; it never modifies them. This restriction is not technical — it is epistemological: Assessment preserves its function as an independent observer by not participating in the production of the records it analyzes.
+
 ### 8.2 Use of Derived State
 
 Assessment uses Derived State to understand the current state of sets of Work Items:
