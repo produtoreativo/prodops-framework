@@ -7,6 +7,78 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.2.0] — 2026-09-22
+
+### Changed — Alinhamento canônico com from-intent-to-outcome (Waves 6 e 7)
+
+Esta versão consolida dois ciclos de sincronização com o livro canônico do framework
+([from-intent-to-outcome](https://github.com/produtoreativo/from-intent-to-outcome)),
+endereçando inconsistências terminológicas, conceitos ausentes e erros estruturais
+identificados por varredura comparativa. Issues #21 (Wave 6) e #22 (Wave 7).
+
+**Gap 1 — Renaming de estado do OBC: `Committed` → `Readiness` (50+ arquivos PT+EN)**
+
+O estado `Committed` do OBC foi renomeado para `Readiness` em todo o framework para
+alinhar com TERMINOLOGY.md (fonte de verdade). Arquivos atualizados incluem:
+`lifecycle.md`, `phases.md`, `backlogs.md`, `flow.md`, `operating-model.md`,
+`knowledge-vs-execution.md`, `artifact-governance.md`, `artifact-types.md`,
+`product-deck.md`, `claude-integration.md`, `upstream-plan.md`,
+`journeys/README.md`, `journeys/discovery/README.md`, `execution-mapping/matrix.md`,
+`execution-mapping/work-item-schema.md`, todos os pares `.en.md`,
+`execution-model/downstream.en.md`, `obc.en.md`, `journeys/diligence/*`,
+`skills/diligence/*`, `skills/product-context/*`, `templates/obcs/local-obc.*`,
+`templates/claude/rules/prodops-lifecycle.md`, `agents/tpm-agent.*`.
+Exceções preservadas: `CommitmentGate` (nome próprio), `BDD Feature committed` (git),
+`Committed KPIs` (sentido negocial), `Committed Global OBC` (artefato de plataforma).
+
+**Gap 2 — Naming collision S1-S4 resolvida**
+
+- `execution-model/upstream.md` + `.en.md`: S1-S4 substituídos por definições canônicas
+  **epistêmicas** do livro (verificam estado dos artefatos, não tempo decorrido).
+- `upstream-plan.md` + `.en.md`: sinais operacionais renomeados **A1-A4**
+  (Alertas do Plano de Experimento) para eliminar colisão.
+- `dora-metrics.md` + `.en.md`: referência TTE atualizada para A1.
+
+**Gap 3 — 11 entradas canônicas adicionadas ao glossário PT+EN**
+
+Rigor de compromisso, Rigor de exploração, Rigor bloqueante, Rigor não bloqueante,
+Coexistência de modos, Relatório de ciclo, Incerteza residual aceitável,
+Promoção Prematura, Discovery no Downstream, Produção Controlada, Sandbox Deploy.
+Assessment Async: fase **Evoluir** adicionada (Monitor → Alert → Evoluir).
+
+**Gap 4 — CommitmentGate nuances**
+
+- `obc.md` + `.en.md`: path Descartar corrigido (`Refining → Draft → Archived`);
+  statement causal "modo é a causa; estados são o registro verificável".
+- `execution-model/downstream.md` + `.en.md`: framing dual do Gate documentado
+  (torna Perpetual Discovery e Promoção Prematura simultâneamente tratáveis).
+- `skills/commitment/SKILL.md` + `.en.md`: 6 componentes canônicos do Decision Package
+  (com Oportunidades como obrigatório quando existe); teste operacional de verificabilidade;
+  distinção existência ≠ completude nas pré-condições do Gate.
+
+**Gaps 5-7 — Assessment, Diligence, AGENTS**
+
+- `journeys/assessment/README.md` + `.en.md`: regra "Assessment não escreve em Timelines".
+- `journeys/diligence/diligence-sync.md` + `.en.md`: disambiguação Finding Promote vs
+  CommitmentGate Promover.
+- `journeys/diligence/diligence-async.md` + `.en.md`: nuance de saúde (poucos Findings
+  ≠ produto saudável; Findings repetidos = sinal de processo, não de instância).
+- `AGENTS.md`: regra de classificação de modo para agentes (tabela OBC state → modo);
+  dois failure modes nomeados (Rigor máximo indiscriminado, Permissividade total).
+
+**Gap 9 — DORA 2024-2026**
+
+- `dora-metrics.md` + `.en.md`: nota sobre rename MTTR → Failed Deployment Recovery Time
+  e decisão de não adotar Deployment Rework Rate (sobreposição com Change Fail Rate).
+
+**Arquivos de versão atualizados:**
+
+- `prodops/scripts/setup-mac.sh` — `PRODOPS_VERSION` atualizado para `v2.2.0`.
+- `prodops/scripts/setup-wsl.sh` — `PRODOPS_VERSION` atualizado para `v2.2.0`.
+- `prodops/runtime/runtime.yaml.example` — `framework-version` atualizado para `v2.2.0`.
+
+---
+
 ## [2.1.0] — 2026-09-01
 
 ### Added — Cobertura completa de traduções EN para todos os documentos do framework
