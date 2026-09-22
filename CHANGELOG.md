@@ -7,6 +7,30 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.3.0] — 2026-09-22
+
+### Added — Snapshot materializado de `.claude/`, `.agents/`, `.github/` no repositório do framework
+
+O framework agora entrega os diretórios de player pré-materializados diretamente
+no repositório canônico, eliminando a necessidade de rodar `materialize-skills.sh`
+ou `materialize-agents.sh` em tempo de instalação ou sync.
+
+**Mudanças:**
+
+- `.claude/skills/`, `.claude/agents/` — snapshot materializado para Claude Code
+- `.agents/skills/`, `.agents/agents/` — snapshot materializado para Codex / OpenAI Agents
+- `.github/skills/` — snapshot materializado para GitHub Copilot
+- `export-framework.sh` agora executa a materialização automaticamente no destino
+  (Step 6c) a cada export, mantendo os snapshots em sincronia com a versão exportada
+- `install-claude.sh` refatorado: Steps 2 e 3 copiam de `.claude/skills/` e
+  `.claude/agents/` pré-materializados em vez de rodar os scripts de build;
+  mantém fallback para versões `< v2.3.0`
+- Corrigido bug em `materialize-agents.sh`: contadores usavam `((N++))` com
+  `set -e`, causando exit code 1 quando o contador partia de 0; substituído por
+  `N=$((N + 1))`, alinhado com o padrão de `materialize-skills.sh`
+
+---
+
 ## [2.2.0] — 2026-09-22
 
 ### Changed — Alinhamento canônico com from-intent-to-outcome (Waves 6 e 7)
