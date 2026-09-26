@@ -73,7 +73,10 @@ Ocorre logo após o CommitmentGate. São ações distintas do Momento 1:
 2. BDD Feature em `prodops/artifacts/bdd/`
 3. Riscos documentados em `prodops/artifacts/risks/risks.md`
 4. Entrada no Iteration Plan com status `Entrou` em `prodops/artifacts/plans/iteration-plan.md`
-5. Reliability Plan quando houver movimentação financeira, integração externa, mudança de SLO, risco alto/crítico ou alteração de persistência ou segurança
+5. GitHub Issue existente e mapeada no `plan.md` da iteração ativa
+6. Reliability Plan quando houver movimentação financeira, integração externa, mudança de SLO, risco alto/crítico ou alteração de persistência ou segurança
+
+**Gates 1–5 são bloqueantes.** Gate 6 é bloqueante apenas nas condições declaradas.
 
 **Estado resultante:** `Downstream Ready` → `Delivery Started` (após Bootstrap.Started).
 

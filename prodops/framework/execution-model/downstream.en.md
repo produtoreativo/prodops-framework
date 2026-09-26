@@ -73,7 +73,10 @@ Occurs immediately after the CommitmentGate. These are distinct actions from Mom
 2. BDD Feature in `prodops/artifacts/bdd/`
 3. Risks documented in `prodops/artifacts/risks/risks.md`
 4. Iteration Plan entry with status `In` in `prodops/artifacts/plans/iteration-plan.md`
-5. Reliability Plan when there is money movement, an external integration, an SLO change, high/critical risk, or a persistence or security change
+5. GitHub Issue existing and mapped in the `plan.md` of the active iteration
+6. Reliability Plan when there is money movement, an external integration, an SLO change, high/critical risk, or a persistence or security change
+
+**Gates 1–5 are blocking.** Gate 6 is blocking only under the declared conditions.
 
 **Resulting state:** `Downstream Ready` → `Delivery Started` (after Bootstrap.Started).
 

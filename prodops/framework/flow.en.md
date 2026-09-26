@@ -3,7 +3,7 @@
 The official ProdOps Framework flow describes the path every change takes from its origin to continuous operation.
 
 ```
-Origin Stream → Business Signal → [Global Flow or Local Flow] → Local OBC Draft (Product Backlog) → Exploration + Assessment → Assessment Review → Readiness Local OBC + BDD committed → Iteration Backlog (VIEW) → Iteration Plan → Delivery → Operation → Continuous OBC Refinement
+Origin Stream → Business Signal → [Global Flow or Local Flow] → Local OBC Draft (Product Backlog) → Exploration + Assessment → **CommitmentGate** → Downstream Declared (OBC Refining) → Diligence + Readiness Gate → Readiness Local OBC + BDD committed → Iteration Backlog (VIEW) → Iteration Plan → Delivery → Operation → Continuous OBC Refinement
 ```
 
 This document is the canonical reference for understanding **what happens at each step**, **what is produced**, and **when to advance**.
@@ -29,7 +29,9 @@ flowchart TD
     EX2["Exploration in Icebox\n(Journey: Discovery; rigor by mode)"]
     AS["Assessment\n(transversal)"]
     RP["Reliability Plan\n(risk-triggered)"]
-    REV["Assessment Review\n(PM + Tech Lead)"]
+    CG["CommitmentGate\n(Trio: PM + Tech Lead + Author)\n6 canonical outcomes"]
+    DD["Downstream Declared\n(OBC: Draft → Refining)"]
+    RG["Readiness Gate\n(Diligence Sync — PM + Tech Lead)"]
     OBC["Readiness Local OBC + BDD\ncommitted"]
     IP["Iteration Plan\n(status: In)"]
     D["Delivery\n(Journey: Delivery, Mode: Downstream)"]
@@ -45,12 +47,15 @@ flowchart TD
     PART --> LPIB
     RTL -->|"Owner Approval"| LPIB
     LPIB --> EX2
-    EX2 --> REV
+    EX2 --> CG
+    CG -->|"Promote"| DD
+    CG -.->|"Other outcomes"| EX2
+    DD --> RG
     LPIB -.-> AS
     EX2 -.-> AS
     AS -.-> RP
-    RP -.-> REV
-    REV --> OBC
+    RP -.-> RG
+    RG --> OBC
     OBC --> IB["Iteration Backlog\n(view: Readiness)"]
     IB --> IP
     IP --> D
@@ -58,8 +63,12 @@ flowchart TD
     OP --> REF
     REF -.->|"new Business Signals"| OS
 
-    EX2 -.->|"Discard (sufficient learning)"| X[Close without advancing]
+    CG -.->|"Discard"| X[Close without advancing]
     EX2 -.->|"Requires further exploration"| EX2
+
+    style CG fill:#fff3cd,stroke:#856404
+    style DD fill:#e2d9f3,stroke:#6f42c1
+    style RG fill:#d1ecf1,stroke:#0c5460
 
     style OS fill:#e2e3e5,stroke:#6c757d
     style GBIB fill:#fff3cd,stroke:#856404
@@ -177,7 +186,7 @@ This step belongs only to the **Global Flow**. In the **Local Flow**, the Busine
 - BDD Feature draft
 - Risk and opportunity updates
 
-**When to advance:** When the expected behavior is sufficiently understood and the remaining uncertainty is acceptable to enter Downstream. The decision to advance is explicit (PM + Tech Lead — Assessment Review).
+**When to advance:** When the expected behavior is sufficiently understood and the remaining uncertainty is acceptable to assume commitment. The decision to advance is the **CommitmentGate** — convened by the Trio (PM + Tech Lead + Author) with a ready Decision Package.
 
 → [Discovery Journey](journeys/discovery/README.en.md)
 
@@ -187,7 +196,7 @@ This step belongs only to the **Global Flow**. In the **Local Flow**, the Busine
 
 **Objective:** Transform the validated knowledge into an observable and verifiable contract — ready for Delivery.
 
-**What happens:** The Local OBC Draft is refined through Exploration (Discovery in the Icebox) and Assessment. In the Assessment Review, PM and Tech Lead review the full set; when approved, the Local OBC reaches the Readiness state and the BDD Feature is promoted to the committed directories. Without this set, there is no Downstream execution.
+**What happens:** The Local OBC (in Refining state after the CommitmentGate) is refined through Diligence. The Readiness Gate (Diligence Sync — PM + Tech Lead) verifies, in a blocking manner, that prerequisites are satisfied; when approved, the Local OBC reaches the Readiness state and the BDD Feature is promoted to the committed directories. Without this set, there is no Downstream execution.
 
 **What is produced:**
 - Local OBC committed in `prodops/artifacts/obcs/<slug>.md`
@@ -210,7 +219,7 @@ This step belongs only to the **Global Flow**. In the **Local Flow**, the Busine
 - Entry in the Reliability Plan in `prodops/artifacts/plans/reliability/`
 - Risks updated in `prodops/artifacts/risks/risks.md`
 
-**When to advance:** Reliability Plan updated and Assessment Review completed for the item.
+**When to advance:** Reliability Plan updated and Readiness Gate (Diligence Sync) completed for the item.
 
 → [Reliability Plans](../artifacts/plans/reliability/)
 
@@ -218,7 +227,7 @@ This step belongs only to the **Global Flow**. In the **Local Flow**, the Busine
 
 ### 9. Iteration Plan
 
-**Objective:** Formally commit the capability to the next delivery iteration after Assessment Review.
+**Objective:** Formally commit the capability to the next delivery iteration after the Readiness Gate.
 
 **What happens:** The approved set — Readiness Local OBC, BDD Feature, risks, and Reliability Plan (when there is financial movement, external integration, SLO change, high/critical risk, or persistence/security change) — enters the Iteration Plan with status `In`. This represents the formal delivery commitment; it is not, in isolation, proof of readiness.
 

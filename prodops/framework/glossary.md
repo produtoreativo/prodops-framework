@@ -315,7 +315,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 ## Concepção
 
-**Definição:** Fase que compreende o período desde o surgimento do Business Signal até a entrada no Product Backlog. O Business Signal existe como possibilidade — o Product Owner ainda não assumiu compromisso.
+**Definição:** Lifecycle Stage que compreende o período desde o surgimento do Business Signal até a entrada no Product Backlog. O Business Signal existe como possibilidade — o Product Owner ainda não assumiu compromisso.
 
 **Pergunta central:** Existe valor real aqui?
 
@@ -333,7 +333,7 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 
 ## Inception
 
-**Definição:** Fase que compreende o período desde a entrada no Product Backlog até o Local OBC atingir o estado Readiness (Iteration Backlog). O Product Owner assumiu compromisso formal de investigação.
+**Definição:** Lifecycle Stage que compreende o período desde a entrada no Product Backlog até o Local OBC atingir o estado Readiness (Iteration Backlog). O Product Owner assumiu compromisso formal de investigação.
 
 **Pergunta central:** O Product Owner está comprometendo atenção e capacidade para investigar isso agora?
 
@@ -412,6 +412,25 @@ Os quatro níveis hierárquicos que compõem o ecossistema ProdOps. Ver [operati
 **Exemplos:** Migração para DynamoDB, rotação automática de credenciais, adoção de OpenTelemetry, criptografia em repouso.
 
 **Relação com outros conceitos:** Um dos quatro Origin Streams. Ver [`origin-streams.md`](origin-streams.md).
+
+---
+
+## Trio (CommitmentGate)
+
+**Definição:** Grupo mínimo obrigatório para a realização do CommitmentGate e da Diligence Sync: PM, Tech Lead e Autor do experimento. Nenhum subconjunto de dois é suficiente.
+
+**Rationale epistêmico:** Cada papel tem um ponto cego distinto e ortogonal aos demais:
+- **PM:** conhece o contexto de negócio e a urgência estratégica, mas tende a subestimar a complexidade técnica e os riscos de implementação.
+- **Tech Lead:** tem visão técnica da solução, mas não tem a pressão estratégica e pode priorizar elegância técnica em detrimento do valor de negócio.
+- **Autor:** tem profundidade de investigação (conduziu o experimento), mas tem viés de confirmação — tende a interpretar evidências ambíguas como favoráveis à hipótese.
+
+Os três pontos cegos são **ortogonais**: nenhum par cobre o terceiro. O Trio não é um ritual burocrático — é a estrutura mínima que garante que os três ângulos de falha sejam cobertos simultaneamente.
+
+**Quando é obrigatório:** CommitmentGate (Momento 1 do Downstream) e Diligence Sync / Readiness Gate (Momento 3 do Downstream).
+
+**Regra de participação:** Todos os três devem estar presentes (ou ter registrado sua posição assincronamente com justificativa). A ausência de qualquer um invalida o gate.
+
+**Relação com outros conceitos:** Ver [`execution-model/downstream.md`](execution-model/downstream.md), [`skills/commitment/SKILL.md`](../skills/commitment/SKILL.md).
 
 ---
 
@@ -638,6 +657,16 @@ Ver [`flow.md`](flow.md), [`journeys/discovery/README.md`](journeys/discovery/RE
 ## BDD Feature
 
 **Definição:** Especificação Gherkin que descreve o comportamento esperado de uma Product Capability. Fica em `prodops/artifacts/bdd/` (comprometida) ou `prodops/artifacts/experiments/<NNN-slug>/features/` (exploratória — dentro do diretório do experimento). Usada como insumo de TDD no Downstream.
+
+---
+
+## Questions to Answer
+
+**Definição:** Seção obrigatória do `experiment.md` que lista as perguntas de investigação que o experimento deve responder para que o CommitmentGate possa emitir outcome Promover. Cada Question to Answer deve ser falsificável — formulada de forma que o experimento possa respondê-la com evidências observáveis.
+
+**Localização canônica:** Seção do arquivo `prodops/artifacts/experiments/<NNN-slug>/experiment.md`.
+
+**Relação com condições epistêmicas:** A condição S3 (dead-end epistêmico) é detectada quando uma ou mais Questions to Answer são marcadas como "não respondíveis com evidências disponíveis" e nenhuma reformulação de hipótese ou rota alternativa de evidência é identificada. Ver [`execution-model/upstream.md`](execution-model/upstream.md).
 
 ---
 

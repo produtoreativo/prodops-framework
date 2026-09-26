@@ -319,7 +319,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 ## Conception
 
-**Definition:** Phase covering the period from the emergence of a Business Signal to entry into the Product Backlog. The Business Signal exists as a possibility — the Product Owner has not yet made a commitment.
+**Definition:** Lifecycle Stage covering the period from the emergence of a Business Signal to entry into the Product Backlog. The Business Signal exists as a possibility — the Product Owner has not yet made a commitment.
 
 **Central question:** Is there real value here?
 
@@ -337,7 +337,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 ## Inception
 
-**Definition:** Phase covering the period from entry into the Product Backlog until the Local OBC reaches the Readiness state (Iteration Backlog). The Product Owner has made a formal commitment to investigate.
+**Definition:** Lifecycle Stage covering the period from entry into the Product Backlog until the Local OBC reaches the Readiness state (Iteration Backlog). The Product Owner has made a formal commitment to investigate.
 
 **Central question:** Is the Product Owner committing attention and capacity to investigate this now?
 
@@ -349,7 +349,7 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 
 **Execution mode:** Upstream or Downstream — they are **modes**, not phases. Defined by the Product Owner when accepting the Business Intent into the Product Backlog. May change during Inception.
 
-**Exit boundary:** Assessment Review approved, Local OBC in Committed state, BDD Feature committed — entry into the Iteration Backlog.
+**Exit boundary:** Assessment Review approved, Local OBC in Readiness state, BDD Feature committed — entry into the Iteration Backlog.
 
 **Relationship with other concepts:** See [`phases.en.md`](phases.en.md), [`backlogs.en.md`](backlogs.en.md).
 
@@ -416,6 +416,25 @@ The four hierarchical levels that compose the ProdOps ecosystem. See [operating-
 **Examples:** Migration to DynamoDB, automatic credential rotation, adoption of OpenTelemetry, encryption at rest.
 
 **Relationship with other concepts:** One of the four Origin Streams. See [`origin-streams.md`](origin-streams.en.md).
+
+---
+
+## Trio (CommitmentGate)
+
+**Definition:** Minimum mandatory group for conducting the CommitmentGate and Diligence Sync: PM, Tech Lead, and Experiment Author. No two-person subset is sufficient.
+
+**Epistemic rationale:** Each role has a distinct blind spot that is orthogonal to the others:
+- **PM:** knows business context and strategic urgency, but tends to underestimate technical complexity and implementation risks.
+- **Tech Lead:** has technical vision of the solution, but lacks strategic pressure and may prioritize technical elegance over business value.
+- **Author:** has investigation depth (ran the experiment), but has confirmation bias — tends to interpret ambiguous evidence as favorable to the hypothesis.
+
+The three blind spots are **orthogonal**: no pair of two covers the third. The Trio is not a bureaucratic ritual — it is the minimum structure that ensures all three failure angles are covered simultaneously.
+
+**When mandatory:** CommitmentGate (Downstream Moment 1) and Diligence Sync / Readiness Gate (Downstream Moment 3).
+
+**Participation rule:** All three must be present (or have recorded their position asynchronously with justification). The absence of any one invalidates the gate.
+
+**Relationship with other concepts:** See [`execution-model/downstream.en.md`](execution-model/downstream.en.md), [`skills/commitment/SKILL.en.md`](../skills/commitment/SKILL.en.md).
 
 ---
 
@@ -676,6 +695,16 @@ See [`flow.en.md`](flow.en.md), [`journeys/discovery/README.en.md`](journeys/dis
 ## BDD Feature
 
 **Definition:** Gherkin specification that describes the expected behavior of a Product Capability. Lives in `prodops/artifacts/bdd/` (committed) or `prodops/artifacts/experiments/<NNN-slug>/features/` (exploratory — inside the experiment directory). Used as TDD input in Downstream.
+
+---
+
+## Questions to Answer
+
+**Definition:** Mandatory section of `experiment.md` listing the investigation questions that the experiment must answer for the CommitmentGate to emit the Promote outcome. Each Question to Answer must be falsifiable — formulated so the experiment can answer it with observable evidence.
+
+**Canonical location:** Section inside `prodops/artifacts/experiments/<NNN-slug>/experiment.md`.
+
+**Relationship with epistemic conditions:** Condition S3 (epistemic dead-end) is detected when one or more Questions to Answer are marked as "unanswerable with available evidence" and no hypothesis reformulation or alternative evidence path is identified. See [`execution-model/upstream.en.md`](execution-model/upstream.en.md).
 
 ---
 

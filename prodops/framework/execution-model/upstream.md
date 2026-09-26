@@ -112,7 +112,7 @@ O Perpetual Discovery ocorre quando um experimento continua acumulando evidênci
 |-------|---------------------|------|
 | **S1** | `experiment.md` não declara Evidence Threshold **e** não existe critério substituto explícito de parada | Convocar o trio: sem critério de parada, o experimento não pode terminar por definição |
 | **S2** | A hipótese central foi formulada de forma não-refutável — nenhum resultado poderia refutá-la — ou nunca foi formalizada como pergunta falsificável | Reformular hipótese antes de continuar coleta de evidências |
-| **S3** | Uma ou mais Questions to Answer foram marcadas como "não respondíveis com evidências disponíveis" e nenhuma nova rota de evidência ou reformulação de hipótese foi identificada | CommitmentGate com outcome Descartar ou reformulação completa da pergunta de investigação |
+| **S3** | Uma ou mais [Questions to Answer](../../glossary.md#questions-to-answer) foram marcadas como "não respondíveis com evidências disponíveis" e nenhuma nova rota de evidência ou reformulação de hipótese foi identificada | CommitmentGate com outcome Descartar ou reformulação completa da pergunta de investigação |
 | **S4** | Evidence Threshold existe mas a rota de coleta atual não consegue atingi-lo — dead end estrutural | CommitmentGate imediato: o experimento não pode concluir com a abordagem atual |
 
 > **Natureza dos sinais:** S1-S4 são diagnósticos **estruturais** — verificam o estado dos artefatos do experimento, não o tempo decorrido. Um S1 pode ser detectado no primeiro dia de um experimento; um experimento ativo há meses pode não apresentar nenhum sinal se seus artefatos estiverem bem definidos.

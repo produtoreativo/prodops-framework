@@ -112,7 +112,7 @@ Perpetual Discovery occurs when an experiment continues accumulating evidence in
 |--------|----------------------|--------|
 | **S1** | `experiment.md` does not declare an Evidence Threshold **and** no explicit substitute stopping criterion exists | Convene the trio: without a stopping criterion, the experiment cannot end by definition |
 | **S2** | The central hypothesis was formulated non-refutably — no result could refute it — or was never formalized as a falsifiable question | Reformulate hypothesis before continuing evidence collection |
-| **S3** | One or more Questions to Answer were marked "unanswerable with available evidence" and no new evidence route or hypothesis reformulation was identified | CommitmentGate with Discard outcome or complete reformulation of the investigation question |
+| **S3** | One or more [Questions to Answer](../../glossary.en.md#questions-to-answer) were marked "unanswerable with available evidence" and no new evidence route or hypothesis reformulation was identified | CommitmentGate with Discard outcome or complete reformulation of the investigation question |
 | **S4** | Evidence Threshold exists but the current collection route cannot reach it — structural dead end | Immediate CommitmentGate: the experiment cannot conclude with the current approach |
 
 > **Nature of signals:** S1-S4 are **structural** diagnostics — they verify the state of the experiment's artifacts, not elapsed time. An S1 can be detected on the first day of an experiment; an experiment active for months may show no signal if its artifacts are well-defined.
