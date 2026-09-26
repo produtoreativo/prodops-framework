@@ -226,7 +226,7 @@ Quando uma hipótese é invalidada durante a Delivery — o que foi comprometido
 
 1. Registrar no Release Trail o motivo da suspensão
 2. Abrir novo experimento Upstream referenciando o OBC e o Downstream suspenso
-3. OBC transita `Readiness → Refining` (com data e justificativa)
+3. OBC transita `In Delivery → Refining` (com data e justificativa)
 4. Work Item retorna ao Icebox; Downstream Declared permanece como histórico
 
 A regressão não é falha de processo — é o protocolo correto quando a evidência muda durante a execução.

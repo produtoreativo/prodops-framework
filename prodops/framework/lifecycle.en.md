@@ -226,7 +226,7 @@ When a hypothesis is invalidated during Delivery — what was committed cannot b
 
 1. Record the reason for suspension in the Release Trail
 2. Open a new Upstream experiment referencing the OBC and the suspended Downstream
-3. OBC transitions `Readiness → Refining` (with date and justification)
+3. OBC transitions `In Delivery → Refining` (with date and justification)
 4. Work Item returns to the Icebox; Downstream Declared remains as history
 
 Regression is not a process failure — it is the correct protocol when evidence changes during execution.
