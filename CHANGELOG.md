@@ -7,6 +7,48 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.4.0] — 2026-09-26
+
+### Fixed + Added — Wave 8: canon sync pós-Wave 7 (5 gaps da análise do livro)
+
+**IC-3 — Ambiguidade "Fase" vs "Lifecycle Stage" (glossário)**
+- `glossary.md` + EN: entradas Concepção e Inception corrigidas de "Fase que compreende"
+  → "Lifecycle Stage que compreende", eliminando ambiguidade com Phase ontológica
+- Bonus: `glossary.en.md` Inception exit boundary "Committed state" → "Readiness state"
+  (último residual do rename Wave 6 em arquivo EN)
+
+**OC-3 — Gate 5 ausente no Readiness Gate (downstream.md Momento 3)**
+- `downstream.md` + EN: adicionado gate 5 obrigatório e bloqueante
+  "GitHub Issue existente e mapeada no plan.md da iteração ativa"
+- Reliability Plan renumerado de gate 5 para gate 6 (condicional)
+- Nota explícita: "Gates 1–5 são bloqueantes. Gate 6 é bloqueante apenas nas condições declaradas."
+- Alinhado com `skills/commitment/SKILL.md` (que já tinha os 6 gates corretos)
+
+**RU-1 — Artefato "Questions to Answer" indefinido no glossário**
+- `glossary.md` + EN: nova entrada com definição canônica, localização em `experiment.md`
+  e relação com condição epistêmica S3
+- `upstream.md` + EN: cross-link adicionado na referência de S3
+
+**T-1 — Rationale epistêmico do Trio ausente**
+- `glossary.md` + EN: nova entrada "Trio (CommitmentGate)" com rationale completo:
+  três pontos cegos ortogonais de PM (subestima complexidade técnica),
+  Tech Lead (sem urgência estratégica) e Autor (viés de confirmação);
+  justificativa de por que nenhum par de dois é suficiente
+
+**FL-1 — CommitmentGate ausente como nó no flow.md**
+- `flow.md` + EN: diagrama Mermaid reestruturado — CommitmentGate (Trio: PM + TL + Autor)
+  e Readiness Gate (Diligence Sync — PM + Tech Lead) agora são nós distintos e sequenciais,
+  com nó intermediário "Downstream Declared (OBC: Draft → Refining)"
+- Texto descritivo atualizado: "Assessment Review" removido como nome de gate;
+  substituído por CommitmentGate (Momento 1) e Readiness Gate (Momento 3)
+- Linha de resumo do fluxo atualizada para incluir ambos os gates explicitamente
+
+**Hotfixes incluídos nesta versão (commit anterior `2d31ef7`):**
+- IC-1: `glossary.md` "estado Committed" → "estado Readiness" (último sobrevivente Wave 6)
+- IC-2: `lifecycle.md` + EN protocolo de regressão `Readiness → Refining` → `In Delivery → Refining`
+
+---
+
 ## [2.3.0] — 2026-09-22
 
 ### Added — Snapshot materializado de `.claude/`, `.agents/`, `.github/` no repositório do framework
