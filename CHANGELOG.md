@@ -7,6 +7,44 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.6.0] — 2026-09-28
+
+### Added — Issue #20: Extensão da integração Claude Code (Wave 9)
+
+**Item 1 — `install-claude.sh`: instalação de rules e hooks com registro em `settings.json`**
+- Passos 4b e 4c adicionados: copia `prodops/templates/claude/rules/` → `.claude/rules/`
+  e `prodops/templates/claude/hooks/` → `.claude/hooks/` com `chmod +x`
+- `settings.json` template expandido com seção `"hooks"` (PreToolUse: work-item-schema,
+  PostToolUse: evidence-package)
+
+**Item 2 — `check-readiness-gate.sh`: 6 gates (Gate 6 condicional)**
+- Gate 1 corrigido: detecta estado `Readiness` (não `Committed`)
+- Gate 6 adicionado: Reliability Plan, verificado apenas com flag `--check-reliability`
+- Summary message atualizada: "todos os gates obrigatórios passaram"
+
+**Item 3 — `mcp-boundaries.md` + EN: documento canônico de fronteiras MCP**
+- Princípio fundamental: MCP expõe estado; nunca define canon
+- Matriz de fronteiras: 10 categorias de informação com fonte canônica e regra de uso
+- Integrações avaliadas: GitHub, CI/CD, Datadog, AWS
+- Regras de uso legítimo e proibido
+
+**Item 4 — `claude-integration.md` + EN: Guia de Extensão (5 receitas)**
+- Receita 1: adicionar nova skill canônica
+- Receita 2: adicionar gate (hook)
+- Receita 3: adicionar agente
+- Receita 4: propagar mudanças canônicas para adapters Claude
+- Receita 5: validar que Claude opera segundo o canon
+- Cross-reference para `mcp-boundaries.md` adicionado em Referências
+
+**Item 5 — `prodops/framework/evaluation/README.md` + EN: suíte de avaliação (11 cenários)**
+- Cenários 1–11: descoberta de contexto, Intent, distinção Upstream/Downstream,
+  recusa de implementação não autorizada, invocação de skill correta, Diligence,
+  implementação no limite autorizado, Evidence, hooks determinísticos, avanço de
+  estado de Delivery, verificação de Outcome
+- Tabela de 6 testes negativos adicionais (N1–N6)
+
+---
+
 ## [2.5.0] — 2026-09-28
 
 ### Fixed — Issue #24: canon sync pós-v2.4.0 (4 gaps de alta/média severidade)

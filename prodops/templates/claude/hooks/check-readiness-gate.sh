@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# check-readiness-gate.sh — Valida os 5 gates de prontidão do Downstream para uma capability.
+# check-readiness-gate.sh — Valida os 6 gates de prontidão do Downstream para uma capability.
 #
 # Gates verificados:
-#   1. Local OBC committed em prodops/artifacts/obcs/<slug>.md
+#   1. Local OBC em estado Readiness em prodops/artifacts/obcs/<slug>.md
 #   2. BDD Feature committed em prodops/artifacts/bdd/<slug>.feature
 #   3. Riscos documentados em prodops/artifacts/risks/risks.md
 #   4. Item no Iteration Plan com status "Entrou"
 #   5. GitHub Issue existente e mapeada (verificação básica de referência)
+#   6. Reliability Plan — verificado apenas quando declarado obrigatório (condicional)
 #
 # Uso:
 #   check-readiness-gate.sh <capability-slug>
@@ -32,10 +33,10 @@ GATES_FAILED=()
 OBC_PATH="prodops/artifacts/obcs/${CAPABILITY_SLUG}.md"
 if [[ -f "${OBC_PATH}" ]]; then
   # Verificar estado no arquivo
-  if grep -qi "Committed\|In Delivery\|Released" "${OBC_PATH}"; then
+  if grep -qi "Readiness\|In Delivery\|Released" "${OBC_PATH}"; then
     GATES_PASSED+=("Gate 1 ✅ OBC: ${OBC_PATH}")
   else
-    GATES_FAILED+=("Gate 1 ❌ OBC existe mas estado não é Committed: ${OBC_PATH}")
+    GATES_FAILED+=("Gate 1 ❌ OBC existe mas estado não é Readiness: ${OBC_PATH}")
   fi
 else
   GATES_FAILED+=("Gate 1 ❌ OBC ausente: ${OBC_PATH}")
@@ -83,7 +84,17 @@ else
   GATES_FAILED+=("Gate 5 ❌ Iteration Plan não encontrado: ${ITERATION_PLAN}")
 fi
 
-# Resultado
+# Gate 6: Reliability Plan (condicional — verificado apenas se --check-reliability flag presente)
+if [[ "${2:-}" == "--check-reliability" ]]; then
+  RELIABILITY_PATH="prodops/artifacts/plans/reliability/${CAPABILITY_SLUG}.md"
+  if [[ -f "${RELIABILITY_PATH}" ]]; then
+    GATES_PASSED+=("Gate 6 ✅ Reliability Plan: ${RELIABILITY_PATH}")
+  else
+    GATES_FAILED+=("Gate 6 ❌ Reliability Plan ausente: ${RELIABILITY_PATH} (obrigatório para este item)")
+  fi
+fi
+
+# Imprimir resultado
 echo "Readiness Gate — ${CAPABILITY_SLUG}"
 echo "══════════════════════════════════════"
 for passed in "${GATES_PASSED[@]}"; do
@@ -95,7 +106,7 @@ done
 echo ""
 
 if [[ ${#GATES_FAILED[@]} -eq 0 ]]; then
-  echo "✅ Downstream Ready — todos os 5 gates passaram."
+  echo "✅ Downstream Ready — todos os gates obrigatórios passaram."
   echo "   → Capability pode entrar no Bootstrap."
   exit 0
 else

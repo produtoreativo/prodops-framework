@@ -229,6 +229,104 @@ User: "/downstream DS-42"
 
 ---
 
+## Extension Guide
+
+This section describes how to extend the Claude Code integration without breaking the existing canon.
+
+> **Golden rule:** every extension starts in the empirical upstream (`prodops-framework`), is exported via `export-framework.sh`, and propagated to consumer repos via `sync-from-framework.sh`. Never edit directly in consumer repos — changes will be overwritten.
+
+---
+
+### Recipe 1 — Add a new canonical skill
+
+1. **Create the skill** at `prodops/skills/<name>/SKILL.md` (PT) and `SKILL.en.md` (EN).
+   - Required structure: `## When to use`, `## Required reading`, `## Flow`, `## Outputs`, `## Guardrails`.
+2. **Register in the runtime** at `prodops/runtime/runtime.yaml` (section `skills:`):
+   ```yaml
+   skills:
+     <name>: prodops/skills/<name>/SKILL.md
+   ```
+3. **Add the entry point** in `prodops/templates/claude/CLAUDE.md` (entry point table) and update `prodops/framework/claude-integration.md` (Layer 1 table).
+4. **Export** via `export-framework.sh` — the skill will appear in the consumer repo's `prodops/skills/` at the next sync.
+5. **Validate** with `bash prodops/scripts/doctor.sh` in the consumer repo.
+
+---
+
+### Recipe 2 — Add a gate (hook)
+
+1. **Create the script** at `prodops/templates/claude/hooks/check-<name>.sh`.
+   - Use `check-readiness-gate.sh` as a model: `GATES_PASSED` / `GATES_FAILED` arrays, exit 0/1.
+   - Document in the header: what it validates, expected trigger, and failure conditions.
+2. **Register in the `settings.json` template** in `install-claude.sh` (section `hooks:`):
+   ```json
+   {
+     "matcher": "Bash(gh pr create*)",
+     "hooks": [{ "type": "command", "command": "bash .claude/hooks/check-<name>.sh" }]
+   }
+   ```
+3. **Document** the validation in the Layer 4 table in this document and in `.en.md`.
+4. **Export** — the hook will appear in the consumer repo's `.claude/hooks/` after `sync-from-framework.sh`.
+5. **Isolated test:** `bash prodops/templates/claude/hooks/check-<name>.sh <slug>` — must exit 0 (passed) or 1 (failed) with a clear message.
+
+---
+
+### Recipe 3 — Add an agent
+
+1. **Create the agent** at `prodops/agents/<name>.md`.
+   - Required frontmatter fields: `description`, base skills referenced.
+   - Body: required reading, responsibility, decision flow, guardrails.
+2. **Copy to `.claude/agents/`** in the framework (the `install-claude.sh` propagates to consumer repos).
+3. **Add to the table** in Layer 2 in this document and in `.en.md`.
+4. **Export** — `install-claude.sh` will copy the agent via `${REPO_ROOT}/.claude/agents/`.
+5. **Validate:** `bash prodops/scripts/doctor.sh` — must list the agent as installed.
+
+---
+
+### Recipe 4 — Propagate canonical changes to Claude adapters
+
+When a canonical change alters lifecycle terms, OBC states, or gate names:
+
+1. **Fix the source** in `prodops/framework/` (PT + EN both required).
+2. **Fix affected skills** in `prodops/skills/` (search globally for the old term).
+3. **Fix affected hooks** in `prodops/templates/claude/hooks/`.
+4. **Fix the rules** in `prodops/templates/claude/rules/` if the term appears in guardrails.
+5. **Fix the CLAUDE.md template** at `prodops/templates/claude/CLAUDE.md`.
+6. **Export and bump the version** — see the framework's `CLAUDE.md` (critical rule: 3 files must share the same version).
+7. **In consumer repos**, `sync-from-framework.sh` will propagate changes; verify with `doctor.sh`.
+
+> Changes to `settings.json` (registered hooks) require manual update in consumer repos or re-running `install-claude.sh --force`.
+
+---
+
+### Recipe 5 — Validate that Claude operates according to canon
+
+Run in the consumer repo after any integration change:
+
+```bash
+# 1. Verify installed structure
+bash prodops/scripts/doctor.sh
+
+# 2. Test Readiness gate (should fail if artifacts are absent)
+bash .claude/hooks/check-readiness-gate.sh <capability-slug>
+
+# 3. Test CommitmentGate hook
+bash .claude/hooks/check-commitment-gate.sh <capability-slug>
+
+# 4. Verify that runtime.yaml resolves the skills
+grep "skills:" prodops/runtime/runtime.yaml
+
+# 5. Verify generated context
+bash prodops/runtime/tools/derive-context/scripts/derive-context.sh
+cat prodops/artifacts/context/prodops-context.yaml
+
+# 6. Check hooks registered in settings.json
+cat .claude/settings.json | grep -A5 '"hooks"'
+```
+
+If `doctor.sh` reports version divergences or missing artifacts, fix them before sending to review.
+
+---
+
 ## References
 
 → [Lifecycle](lifecycle.en.md)
@@ -237,3 +335,4 @@ User: "/downstream DS-42"
 → [install-claude.sh](../scripts/install-claude.sh)
 → [derive-context.sh](../runtime/tools/derive-context/scripts/derive-context.sh)
 → [Work Item Schema](execution-mapping/work-item-schema.md)
+→ [MCP Boundaries](mcp-boundaries.en.md)

@@ -4,7 +4,9 @@
 # Creates:
 #   .claude/skills/    — copied from framework's pre-materialized .claude/skills/
 #   .claude/agents/    — copied from framework's pre-materialized .claude/agents/
-#   .claude/settings.json — permissions template (if absent)
+#   .claude/rules/     — copied from prodops/templates/claude/rules/
+#   .claude/hooks/     — copied from prodops/templates/claude/hooks/
+#   .claude/settings.json — permissions + hook registration template (if absent)
 #
 # Requires prodops/ to be already installed (run install-prodops.sh first).
 #
@@ -57,6 +59,8 @@ fi
 log "Creating .claude/ directory structure..."
 mkdir -p "${TARGET_DIR}/.claude/skills"
 mkdir -p "${TARGET_DIR}/.claude/agents"
+mkdir -p "${TARGET_DIR}/.claude/rules"
+mkdir -p "${TARGET_DIR}/.claude/hooks"
 
 # ── 2. Copy pre-materialized skills → .claude/skills/ ────────────────────────
 # The framework ships .claude/skills/ already materialized; copy it directly.
@@ -141,7 +145,54 @@ else
   fi
 fi
 
-# ── 4. Create .claude/settings.json template ─────────────────────────────────
+# ── 4b. Copy rules → .claude/rules/ ─────────────────────────────────────────
+
+RULES_SRC="${REPO_ROOT}/prodops/templates/claude/rules"
+
+if [[ -d "${RULES_SRC}" ]]; then
+  log "Copying rules → .claude/rules/..."
+  copied=0
+  while IFS= read -r src_file; do
+    rule_name="$(basename "${src_file}")"
+    dest="${TARGET_DIR}/.claude/rules/${rule_name}"
+    if [[ -f "${dest}" && "${FORCE}" == "false" ]]; then
+      log "  SKIP (exists): .claude/rules/${rule_name}"
+    else
+      cp "${src_file}" "${dest}"
+      log "  copied: .claude/rules/${rule_name}"
+      copied=$((copied + 1))
+    fi
+  done < <(find "${RULES_SRC}" -maxdepth 1 -name "*.md" | LC_ALL=C sort)
+  log "  rules: ${copied} copied"
+else
+  warn "prodops/templates/claude/rules/ not found — skipping rules installation"
+fi
+
+# ── 4c. Copy hooks → .claude/hooks/ ──────────────────────────────────────────
+
+HOOKS_SRC="${REPO_ROOT}/prodops/templates/claude/hooks"
+
+if [[ -d "${HOOKS_SRC}" ]]; then
+  log "Copying hooks → .claude/hooks/..."
+  copied=0
+  while IFS= read -r src_file; do
+    hook_name="$(basename "${src_file}")"
+    dest="${TARGET_DIR}/.claude/hooks/${hook_name}"
+    if [[ -f "${dest}" && "${FORCE}" == "false" ]]; then
+      log "  SKIP (exists): .claude/hooks/${hook_name}"
+    else
+      cp "${src_file}" "${dest}"
+      chmod +x "${dest}"
+      log "  copied: .claude/hooks/${hook_name}"
+      copied=$((copied + 1))
+    fi
+  done < <(find "${HOOKS_SRC}" -maxdepth 1 -name "*.sh" | LC_ALL=C sort)
+  log "  hooks: ${copied} copied"
+else
+  warn "prodops/templates/claude/hooks/ not found — skipping hooks installation"
+fi
+
+# ── 4d. Create .claude/settings.json template ────────────────────────────────
 
 SETTINGS="${TARGET_DIR}/.claude/settings.json"
 
@@ -172,11 +223,35 @@ if [[ ! -f "${SETTINGS}" ]]; then
       "Bash(git push --force*)",
       "Bash(rm -rf /*)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(gh issue create*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-work-item-schema.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/check-evidence-package.sh"
+          }
+        ]
+      }
+    ]
   }
 }
 EOF
   log "Created: .claude/settings.json"
-  log "  → Review and customize permissions for your project before committing."
+  log "  → Review and customize permissions and hook matchers for your project before committing."
 else
   log "SKIP (exists): .claude/settings.json"
 fi
@@ -188,6 +263,8 @@ log ".claude/ installation complete at: ${TARGET_DIR}"
 printf '\n'
 log "Next steps:"
 log "  1. Review .claude/agents/ — adjust product-specific tool constraints"
-log "  2. Review .claude/settings.json — set correct permission allowlist"
-log "  3. Commit .claude/ to version control (exclude .claude/worktrees/ in .gitignore)"
-log "  4. Run: bash prodops/scripts/doctor.sh"
+log "  2. Review .claude/rules/ — verify lifecycle rules are aligned with your project"
+log "  3. Review .claude/hooks/ — test gate hooks against your artifact structure"
+log "  4. Review .claude/settings.json — set correct permission allowlist and hook matchers"
+log "  5. Commit .claude/ to version control (exclude .claude/worktrees/ in .gitignore)"
+log "  6. Run: bash prodops/scripts/doctor.sh"
