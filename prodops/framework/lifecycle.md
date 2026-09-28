@@ -30,6 +30,7 @@ flowchart TD
     end
 
     CG -->|"Promover"| COMM
+    CG -->|"Promover com restrição"| COMM
     CG -->|"Outros outcomes"| PI_BACK["Permanece em Upstream\nou é encerrado"]
 
     COMM["Commitment\nDownstream Declared\nOBC: Draft → Refining"]
@@ -130,11 +131,13 @@ flowchart TD
 
 ### 4. Commitment (CommitmentGate)
 
-**O que é:** O evento formal que transforma o modo de execução. O CommitmentGate é convocado pelo trio (PM + Tech Lead + Autor) quando o Decision Package está pronto. Com outcome **Promover**, o Commitment é assumido: o rigor muda de advisory para bloqueante.
+**O que é:** O evento formal que transforma o modo de execução. O CommitmentGate é convocado pelo trio (PM + Tech Lead + Autor) quando o Decision Package está pronto. Com outcomes **Promover** ou **Promover com restrição**, o Commitment é assumido: o rigor muda de advisory para bloqueante.
 
 **Condição de entrada:** Decision Package verificável, Evidence Threshold satisfeito (se declarado), OBC Draft existente, BDD rascunhada.
 
-**Condição de saída (outcome Promover):** OBC transita Draft → Refining; Work Item criado no Icebox; upstream-trail atualizado → Downstream Declared.
+**Condição de saída (outcomes que abrem Downstream):**
+- **Promover:** OBC transita Draft → Refining; escopo completo entra em Downstream.
+- **Promover com restrição:** somente o subconjunto aprovado pelo trio entra em Downstream; escopo restringido documentado no `upstream-trail.md`; Work Item criado no Icebox com escopo explícito.
 
 **Outros outcomes:** Requer outro experimento, Aguardar decisão de negócio, Aguardar dependência externa, Descartar — todos mantêm o item em Upstream ou encerram o experimento.
 

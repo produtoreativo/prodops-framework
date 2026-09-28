@@ -43,7 +43,7 @@ Downstream has three explicit moments, each with verifiable entry conditions:
 
 ### Moment 1 — CommitmentGate → Downstream Declared
 
-The commitment has been assumed. The CommitmentGate with outcome **Promote** is the only event that opens Downstream.
+The commitment has been assumed. The outcomes **Promote** and **Promote with restriction** are the only events that open Downstream. With **Promote with restriction**, only the subset approved by the Trio enters Downstream — the restricted scope must be documented in `upstream-trail.md` before any artifact promotion.
 
 > **Dual purpose:** The CommitmentGate makes two opposite problems simultaneously observable and treatable: **Perpetual Discovery** (exploration without decision pressure) and **Premature Promotion** (decision without sufficient evidence). By having a name, criteria, participants, and recorded outcomes, the Gate transforms both from implicit states into traceable states.
 

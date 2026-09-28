@@ -7,6 +7,45 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.5.0] — 2026-09-28
+
+### Fixed — Issue #24: canon sync pós-v2.4.0 (4 gaps de alta/média severidade)
+
+**Gap 1 — Estado terminal do OBC: `Operational` → `Released` (alta)**
+- `artifact-governance.md` + EN: ciclo de vida do OBC corrigido
+- `knowledge-vs-execution.md` + EN: lista de estados do artefato corrigida
+- `skills/diligence/SKILL.md` + EN: step Close referencia Released
+- `skills/diligence/diligence-sync/SKILL.md` + EN: todas as referências ao estado terminal
+- `skills/diligence/diligence-sync/steps/close/SKILL.md` + EN: renomeado para Released
+- `skills/diligence/diligence-async/steps/scan/SKILL.md` + EN: tabelas de check e routing
+- `skills/diligence/diligence-async/steps/repair/SKILL.md` + EN: ação de Close
+- `skills/diligence/diligence-async/steps/flag/SKILL.md` + EN: tabela de routing
+
+**Gap 2 — `Assessment Review` como gate (alta)**
+- `artifact-governance.md` + EN: "Quem aprova" do OBC atualizado para
+  "Trio (CommitmentGate) · PM + TL (Readiness Gate)"
+- `phases.md` + EN: Governança da Inception substitui "Assessment Review"
+  por CommitmentGate e Readiness Gate com participantes corretos;
+  diagrama ASCII corrigido; "O que termina a Inception" corrigido
+- `artifact-governance.md:248` e EN mantidos — uso legítimo do termo como
+  atividade da jornada Assessment (não como gate)
+
+**Gap 3 — `Promover com restrição` abre Downstream (média-alta)**
+- `downstream.md` + EN: Momento 1 agora declara que tanto `Promover` quanto
+  `Promover com restrição` abrem o Downstream; escopo restringido deve ser
+  documentado no `upstream-trail.md`
+- `lifecycle.md` + EN: diagrama Mermaid com novo ramo `Promover com restrição`;
+  seção 4 (Commitment) expandida com condição de saída para ambos os outcomes
+
+**Gap 4 — Downstream skill: 5 gates → 6 gates (média)**
+- `skills/downstream/SKILL.md` + EN: Gate de readiness atualizado com gate 6
+  (Reliability Plan condicional) e nota explícita "Gates 1–5 são bloqueantes"
+
+### Fechado
+- Issue #19 fechada (já implementada em commit `7078dad`, sem itens pendentes)
+
+---
+
 ## [2.4.0] — 2026-09-26
 
 ### Fixed + Added — Wave 8: canon sync pós-Wave 7 (5 gaps da análise do livro)

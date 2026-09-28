@@ -43,7 +43,7 @@ O Downstream possui três momentos explícitos, cada um com condições de entra
 
 ### Momento 1 — CommitmentGate → Downstream Declared
 
-O compromisso foi assumido. O CommitmentGate com outcome **Promover** é o único evento que abre o Downstream.
+O compromisso foi assumido. Os outcomes **Promover** e **Promover com restrição** são os únicos eventos que abrem o Downstream. Em **Promover com restrição**, apenas o subconjunto aprovado pelo trio entra em Downstream — o escopo restringido deve ser documentado no `upstream-trail.md` antes de qualquer promoção de artefatos.
 
 > **Propósito dual:** O CommitmentGate torna observáveis e tratáveis dois problemas opostos simultaneamente: **Perpetual Discovery** (exploração sem pressão de decidir) e **Promoção Prematura** (decisão sem evidência suficiente). Ao ter nome, critérios, participantes e outcomes registrados, o Gate transforma ambos de estados implícitos em estados rastreáveis.
 

@@ -107,7 +107,7 @@ Nem todo documento no repositório é um artefato do Knowledge Space.
 
 Um artefato:
 - **tem identidade permanente** — um `slug` ou ID que persiste durante todo o seu ciclo de vida;
-- **tem estado próprio** — Draft, Refining, Readiness, In Delivery, Operational, Archived;
+- **tem estado próprio** — Draft, Refining, Readiness, In Delivery, Released, Archived;
 - **nunca é substituído por ferramentas** — GitHub Issues, Jira cards e ADO work items são reflexos temporários de trabalho, não o artefato em si;
 - **é a fonte de verdade** — qualquer divergência entre o arquivo Markdown e uma representação em ferramenta deve ser resolvida em favor do arquivo Markdown.
 

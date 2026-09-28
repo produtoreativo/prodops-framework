@@ -235,9 +235,9 @@ Operation
 | **Where born** | Business Intent Backlog (global flow) or Product Backlog (local flow) |
 | **Canonical artifact** | `prodops/artifacts/obcs/<slug>.md` (when committed) |
 | **Who modifies** | Product Manager, Tech Lead, engineers (with change record) |
-| **Who approves** | Product Manager + Tech Lead (Assessment Review) |
+| **Who approves** | Trio PM + Tech Lead + Author (CommitmentGate) · PM + Tech Lead (Readiness Gate) |
 | **Consumers** | Delivery, Reliability Plan, BDD Feature, Release Trail, Iteration Plan |
-| **Lifecycle** | Draft → Refining → Readiness → In Delivery → Operational → Archived |
+| **Lifecycle** | Draft → Refining → Readiness → In Delivery → Released → Archived |
 | **Journeys** | Discovery, Delivery, Operation, Assessment, Diligence |
 
 ### Reliability Plan
@@ -269,7 +269,7 @@ Operation
 | Icebox (VIEW) | Product Owner | Product Team | PO + Tech Lead | VIEW Iteration Backlog |
 | Iteration Backlog (VIEW) | Product Owner | PO + Diligence | Product Owner | Iteration Plan |
 | Iteration Plan | Tech Lead / PO | Delivery team | PO + Tech Lead | Delivery, Release Trail |
-| OBC | PM + Tech Lead | PM, TL, engineers | PM + Tech Lead (Assessment Review) | Delivery, BDD, Release Trail |
+| OBC | PM + Tech Lead | PM, TL, engineers | Trio (CommitmentGate) · PM + TL (Readiness Gate) | Delivery, BDD, Release Trail |
 | Reliability Plan | Tech Lead + SRE | TL, SRE, engineers | TL + PO | Iteration Plan, Delivery |
 | BDD Feature | Tech Lead | PM, TL, engineers | Tech Lead | Hack, tests, Release Trail |
 | Release Trail | Delivery team | Delivery team (append-only) | — | Operation, retrospectives |

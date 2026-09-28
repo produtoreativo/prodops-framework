@@ -49,7 +49,7 @@ When invoked with a step argument (`/diligence diligence-sync capture`), execute
 1. **Capture** — create or update the OBC from the decision that triggered the cycle. Canonical state lives only in Markdown.
 2. **Attach** — verify or create the Work Item referencing the OBC in the external backlog.
 3. **Promote** — advance the item through the backlog hierarchy, verifying preconditions at each transition.
-4. **Close** — close the Work Item when the OBC reaches Operational state.
+4. **Close** — close the Work Item when the OBC reaches Released state.
 
 Stop at any blocker. Record the missing artifact, the responsible journey, and the concrete action before stopping.
 

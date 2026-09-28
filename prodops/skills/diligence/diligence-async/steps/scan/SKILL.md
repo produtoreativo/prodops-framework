@@ -101,7 +101,7 @@ limitação — não como divergência de OBC.
 ls prodops/artifacts/obcs/
 ```
 
-Para cada OBC: ler o arquivo e extrair o estado declarado (Draft, Refining, Readiness, In Delivery, Operational, Archived).
+Para cada OBC: ler o arquivo e extrair o estado declarado (Draft, Refining, Readiness, In Delivery, Released, Archived).
 
 ### 5. Verificar consistência de cada OBC
 
@@ -112,9 +112,9 @@ Para cada OBC ativo, verificar os seguintes checks:
 | Work Item ativo | Existe GitHub Issue aberto referenciando o OBC quando há operação ativa em andamento | OBC com operação ativa identificada sem Work Item rastreável |
 | BDD Feature | Existe `prodops/artifacts/bdd/<obc-id>.feature` quando OBC está em Iteration Plan | Item no Iteration Plan sem BDD Feature committed |
 | Iteration Plan | OBC committed aparece no Iteration Plan | OBC committed ausente do Iteration Plan |
-| Work Item fechado | Issue fechado quando OBC é Operational | OBC Operational com Issue ainda aberto |
+| Work Item fechado | Issue fechado quando OBC é Released | OBC Released com Issue ainda aberto |
 | Riscos | Riscos documentados em `risks.md` quando OBC está em Iteration Plan | Entrada no Iteration Plan sem entrada correspondente em risks.md |
-| Estado do Issue vs OBC | Estado do Issue no GitHub reflete o estado canônico do OBC | Issue fechado com OBC não-Operational; Issue aberto com labels divergentes do estado do OBC |
+| Estado do Issue vs OBC | Estado do Issue no GitHub reflete o estado canônico do OBC | Issue fechado com OBC não-Released; Issue aberto com labels divergentes do estado do OBC |
 
 ### 2a. Ler estado atual dos Issues no GitHub
 
@@ -130,7 +130,7 @@ Comparar o estado retornado com o estado canônico do OBC:
 |---|---|---|
 | Draft / Refining / Readiness | open | Issue está closed |
 | In Delivery | open | Issue está closed |
-| Operational | closed | Issue está open |
+| Released | closed | Issue está open |
 | Qualquer | — | Título do Issue não referencia o `artifact_id` do OBC |
 
 Se `gh` não estiver disponível ou o repositório não for acessível, registrar como limitação no relatório — não como divergência do OBC.
@@ -148,7 +148,7 @@ Responsável sugerido: Diligence | Assessment | Delivery
 ```
 
 **Alta:** item em Iteration Plan sem BDD Feature ou sem riscos documentados
-**Média:** OBC committed sem Work Item; Work Item aberto com OBC Operational
+**Média:** OBC committed sem Work Item; Work Item aberto com OBC Released
 **Baixa:** artefato de gestão desatualizado sem impacto em gate de Delivery
 
 ## Eventos — emissão obrigatória

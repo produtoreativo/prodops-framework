@@ -107,7 +107,7 @@ Not every document in the repository is a Knowledge Space artifact.
 
 An artifact:
 - **has permanent identity** — a `slug` or ID that persists throughout its entire lifecycle;
-- **has its own state** — Draft, Refining, Readiness, In Delivery, Operational, Archived;
+- **has its own state** — Draft, Refining, Readiness, In Delivery, Released, Archived;
 - **is never replaced by tools** — GitHub Issues, Jira cards, and ADO work items are temporary reflections of work, not the artifact itself;
 - **is the source of truth** — any divergence between the Markdown file and a tool representation must be resolved in favor of the Markdown file.
 

@@ -40,7 +40,7 @@ Os dois fluxos são independentes. Um sinal não precisa passar pelo fluxo globa
 
 **Pergunta central:** O Product Owner está comprometendo atenção e capacidade para investigar isso agora?
 
-**Governança:** Product Owner (aceite formal e modo de execução) e Tech Lead (Assessment Review).
+**Governança:** Product Owner (aceite formal e modo de execução). CommitmentGate (Trio: PM + Tech Lead + Autor) decide a entrada no Downstream; Readiness Gate (Diligence Sync — PM + Tech Lead) valida os pré-requisitos antes da Delivery.
 
 **Estado do OBC (Local OBC):** Draft → Refining (Icebox) → Readiness (Iteration Backlog).
 
@@ -48,7 +48,7 @@ Os dois fluxos são independentes. Um sinal não precisa passar pelo fluxo globa
 
 **Modo de execução:** Upstream ou Downstream — são **modos**, não fases. O modo é definido pelo Product Owner ao aceitar a Business Intent no Product Backlog e pode mudar ao longo da Inception. Upstream é usado para alta incerteza; Downstream para clareza suficiente com gates obrigatórios. Um item pode iniciar Upstream e, após reduzir incerteza, transicionar para Downstream sem mudar de fase.
 
-**O que termina a Inception:** Assessment Review aprovada, Local OBC em estado Readiness, BDD Feature committed — item atinge o estado "pronto" no Product Backlog (view Iteration Backlog).
+**O que termina a Inception:** Readiness Gate (Diligence Sync) aprovado, Local OBC em estado Readiness, BDD Feature committed — item atinge o estado "pronto" no Product Backlog (view Iteration Backlog).
 
 ---
 
@@ -91,7 +91,7 @@ INCEPTION
     │              │
     │  [view]      ├─ Icebox [Refining]
     │              └─ Iteration Backlog [Readiness]
-    │  (Assessment Review: PM + Tech Lead valida a transição)
+    │  (Readiness Gate: Diligence Sync — PM + Tech Lead)
          │
          ▼
   DELIVERY
