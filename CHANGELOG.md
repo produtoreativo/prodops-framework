@@ -7,6 +7,37 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.7.0] — 2026-09-29
+
+### Changed — `commitment` skill: Downstream Direto
+
+**`prodops/skills/commitment/SKILL.md` + EN — redesign de escopo**
+
+O skill `commitment` foi reescrito para cobrir exclusivamente o caminho
+**Downstream Direto** — CommitmentGate sem experimento Upstream prévio.
+
+- **Escopo anterior:** CommitmentGate pós-Upstream + Readiness Gate (dois gates em um skill)
+- **Escopo novo:** CommitmentGate Downstream Direto apenas
+
+**Racional da mudança:**
+- O caminho pós-Upstream já era coberto integralmente pelo `upstream/move-to-downstream`
+  (lê o Decision Package, confirma o outcome, move artefatos, atualiza trails, cria entrada no Iteration Plan)
+- Manter os dois caminhos no mesmo skill criava sobreposição e ambiguidade sobre qual usar
+- O Readiness Gate pertence semanticamente ao `/diligence` — que já o operacionaliza
+
+**O que não mudou:**
+- Pós-Upstream: `/upstream move-to-downstream` continua cobrindo esse caminho sem alterações
+- Readiness Gate: continua em `/diligence`
+- Os 6 outcomes canônicos do CommitmentGate permanecem inalterados
+- O trail de registro pós-Upstream continua no `upstream-trail.md` do experimento
+
+**Novo artefato produzido pelo skill:**
+- `prodops/artifacts/plans/commitment-trail.md` — trail append-only exclusivo do
+  Downstream Direto (análogo ao `upstream-trail.md` dos experimentos, mas para o
+  caminho sem experimento prévio)
+
+---
+
 ## [2.6.0] — 2026-09-28
 
 ### Added — Issue #20: Extensão da integração Claude Code (Wave 9)

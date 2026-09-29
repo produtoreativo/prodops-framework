@@ -2,213 +2,186 @@
 
 ---
 name: commitment
-description: Executes the CommitmentGate and Readiness Gate. Use to convene the trio (PM + Tech Lead + Author), verify the Decision Package, record the canonical outcome, transition from Upstream to Downstream Declared, and verify readiness prerequisites before a capability enters the Iteration Plan.
+description: Execute the CommitmentGate for a Business Intent entering Downstream directly (Downstream Direto), without prior Upstream experiment. Use when context is sufficient to commit — validated demand, clear scope, open questions classified as refinement rather than uncertainty. OBCs and BDD files already exist in canonical locations. For CommitmentGate after a completed Upstream experiment, use upstream/move-to-downstream instead.
 ---
 
-# Commitment Skill
+# Commitment Skill — Downstream Direto
 
-## Purpose
+Use this skill when a Business Intent has sufficient context to enter Downstream
+**without a prior Upstream experiment** — demand confirmed by independent sources,
+clear scope, open questions classified as refinement, not uncertainty.
 
-Use this skill to formalize the execution mode transition: from Upstream (exploratory, no commitment) to Downstream (committed, with blocking rigor).
+**Do not use** if artifacts are still in an experiment directory — in that case
+use `/upstream move-to-downstream`.
 
-This skill covers two sequential gates of the canonical lifecycle:
-
-1. **CommitmentGate** — Upstream → Downstream Declared transition
-2. **Readiness Gate** — Downstream Declared → Downstream Ready transition
-
-→ For work in Upstream mode (without delivery commitment), use `/upstream`.
-→ For executing the committed delivery cycle in Downstream mode (CI Sync + CI Async), use `/downstream`.
-→ For maintaining artifact state, use `/diligence`.
+For the Readiness Gate (readiness verification before Bootstrap), use `/diligence`.
 
 ---
 
 ## When to Use
 
-**CommitmentGate:**
-- An experiment's Decision Package is complete and the trio needs to be convened
-- A hypothesis has been answered and the recommendation is `Promote` or `Promote with restriction`
-- A canonical outcome needs to be formally recorded (including non-promotion outcomes)
-- An item needs to transition to Downstream Declared
-
-**Readiness Gate:**
-- An item in Downstream Declared needs to be verified before entering the Iteration Plan
-- The OBC needs to be in Readiness state and all required artifacts verified
-- Diligence blocked a capability and current readiness needs to be assessed
+- Business Intent with defined scope, without hypotheses requiring an experiment
+- OBCs in Draft already in `prodops/artifacts/obcs/`
+- BDD Features already in `prodops/artifacts/bdd/`
+- Evidence comes from sources external to an experiment: market research,
+  competitive analysis, prior EXP, historical data, user validation
 
 ---
 
 ## Required Reading
 
-Before starting, read:
-
-- `prodops/framework/lifecycle.en.md` — Commitment and Diligence & Readiness stages
-- `prodops/framework/glossary.en.md` — terms CommitmentGate, Commitment, Readiness Gate
-- `prodops/framework/journeys/discovery/README.en.md` — preconditions, trio, canonical outcomes, promotion process
+1. Business Intents for the scope (`prodops/artifacts/business-intents/`)
+2. Corresponding Draft OBCs (`prodops/artifacts/obcs/`)
+3. Available evidence sources
+4. `prodops/framework/obc.md` — canonical states and transitions
+5. `prodops/framework/lifecycle.md` — Commitment stage
 
 ---
 
-## CommitmentGate Flow
+## Moment 1 — Verify Evidence Threshold
 
-### Preconditions (verify all before convening the trio)
+Confirm all 5 criteria before registering the gate. All are blocking.
 
-1. **Decision Package complete:** `experiment.md` has Executive Summary, Recommended Decision, Risks, Opportunities, Tracking Items, OBCs, and Downstream Scope.
-2. **Hypothesis answered:** the experiment's Exit Criteria are satisfied.
-3. **Evidence Threshold satisfied** (if declared in `experiment.md`).
-4. **OBC Draft exists:** at least the file at `prodops/artifacts/experiments/<NNN-slug>/obcs/<slug>.md`.
-5. **BDD draft readable:** draft of behavior scenarios in `prodops/artifacts/experiments/<NNN-slug>/features/`.
-6. **Verifiability criterion:** any trio member who did not participate in the experiment can read the Decision Package and reach the same conclusions without additional oral context.
+| Criterion | Verification |
+|---|---|
+| Hypothesis answered | Core business question answered with evidence verifiable by third parties |
+| Decision Package present | BI + feature registry, roadmap, competitive analysis, or equivalent |
+| OBC Draft exists | File at `prodops/artifacts/obcs/<slug>.md` for each committed capability |
+| BDD readable | Feature at `prodops/artifacts/bdd/<slug>.feature` (draft acceptable — completeness required at Readiness Gate) |
+| Residual uncertainty declared | Open questions documented and classified as refinement, not hypothesis blockers |
 
-If any precondition is not satisfied: do not convene the trio. Return to the experiment and complete the Decision Package.
+**If any criterion is not satisfied:** do not register the gate. Return to the
+Business Intent owner with guidance on what to produce first.
 
-### Decision Package Components
+---
 
-**6 canonical components of the Decision Package:**
+## Moment 2 — Register the CommitmentGate
 
-| Component | Description | Requirement |
+Record in `prodops/artifacts/plans/commitment-trail.md`.
+
+If the file does not exist, create it with the header:
+
+```markdown
+# Commitment Trail — <Product>
+
+Append-only record of CommitmentGates executed in Downstream Direto mode.
+For post-Upstream CommitmentGates, see the upstream-trail.md of each experiment.
+```
+
+Add the entry:
+
+```markdown
+## YYYY-MM-DD — CommitmentGate — <scope name>
+
+**Outcome:** <canonical outcome>
+
+**Trio:** PM (<name>) + Tech Lead (<name>) + Author (<name>)
+
+**Evidence base:**
+- <source 1>
+- <source 2>
+
+**Criterion assessment:**
+
+| Criterion | Status | Evidence |
 |---|---|---|
-| **Hypothesis** | The central question the experiment investigated | Required |
-| **Evidence Threshold** | The criterion that determined when the experiment was complete | Required |
-| **Evidence** | What was observed — verifiable by those who did not participate | Required |
-| **Conclusion** | What the evidence implies for the hypothesis | Required |
-| **Residual risks** | Uncertainties accepted when proceeding; made explicit as such | Required when they exist |
-| **Opportunities** | What the experiment revealed beyond the central hypothesis that can inform future decisions | Required when it exists — must not be omitted |
+| Hypothesis answered | ✅/❌ | <reference> |
+| Decision Package | ✅/❌ | <reference> |
+| OBC Draft | ✅/❌ | <N files in prodops/artifacts/obcs/> |
+| BDD readable | ✅/❌ | <N files in prodops/artifacts/bdd/> |
+| Residual uncertainty | ✅/❌ | <classified as refinement — see BI> |
 
-**Verifiability operational test:** The Decision Package has substance when the trio member who **did not participate** in the experiment can read it and reach the same conclusions — without additional verbal context, without an alignment meeting. If the substance of the Decision Package depends on oral explanation, the document is not ready.
+**Outcome justification:**
+<2-3 paragraphs: what was validated, what remains uncertain but is acceptable,
+why additional discovery cost exceeds the risk of committing now.>
 
-**CommitmentGate entry preconditions:** the OBC Draft and the BDD draft need to **exist** — not be complete. "Completeness is not required at the CommitmentGate; existence is." An OBC with a name and a reference to the experiment satisfies the precondition. A readable BDD with drafted scenarios satisfies the precondition. Completeness is required at the Readiness Gate.
+**Committed scope:**
+<list of OBCs or BCs in the Promover outcome>
 
----
-
-### The Trio
-
-| Role | Responsibility |
-|---|---|
-| Product Manager | Validates business value; decides whether the capability enters the Iteration Plan |
-| Tech Lead | Validates technical feasibility, architectural risks, and OBC |
-| Experiment Author | Presents findings; defends the recommendation |
-
-Approval is collective. Any member can block with a recorded justification.
-
----
-
-### Canonical Outcomes
-
-| Outcome | Action |
-|---|---|
-| **Promote** | Execute promotion process (see below). OBC Draft → Refining. Downstream Declared. |
-| **Promote with restriction** | Subset is promoted. Restricted parts return to Upstream for a new experiment. |
-| **Requires another experiment** | Create new experiment with a more specific hypothesis. Record in `upstream-trail.md`. |
-| **Awaiting business decision** | Block in Product Tracking List with decision-maker and expected date. |
-| **Awaiting external dependency** | Record in Reliability Plan and Product Tracking List. |
-| **Discard** | Record learning in `prodops/framework/journeys/discovery/learnings.md`. Close experiment. |
-
----
-
-### Mandatory Record
-
-Regardless of outcome, record in the experiment's `upstream-trail.md`:
-- CommitmentGate date
-- Participants (trio)
-- Canonical outcome selected
-- Next steps
-
----
-
-### Promotion Process (outcome: Promote)
-
-Execute in order:
-
-```
-1. Move BDD Feature:
-   prodops/artifacts/experiments/<NNN-slug>/features/<slug>.feature
-   → prodops/artifacts/bdd/<slug>.feature
-
-2. Move OBC:
-   prodops/artifacts/experiments/<NNN-slug>/obcs/<slug>.md
-   → prodops/artifacts/obcs/<slug>.md
-   Remove draft marking. Update state to Refining.
-
-3. Create Iteration Plan entry:
-   prodops/artifacts/plans/iteration-plan.md
-   Add with "Entered" decision in the table. Status: Downstream Declared.
-
-4. Update Product Tracking List if item was there:
-   prodops/artifacts/product/backlogs/tracking-list.md
-   Change status to "Promoted to Downstream".
-
-5. Record promotion in the experiment's upstream-trail:
-   prodops/artifacts/experiments/<NNN-slug>/upstream-trail.md
-
-6. Record in global upstream trail:
-   prodops/framework/journeys/discovery/upstream-trail.md
-   (high-level entry: what was promoted and when)
+**Restricted scope (if applicable):**
+<what was excluded and why>
 ```
 
 ---
 
-## Readiness Gate Flow
+## Moment 3 — Transition OBC Draft → Refining
 
-The Readiness Gate verifies that an item in Downstream Declared has all prerequisites to begin Delivery.
+For each OBC in the committed scope:
 
-### Readiness Gates
+**3a. Update the Status field:**
 
-1. Local OBC in Readiness state at `prodops/artifacts/obcs/<slug>.md`
-2. BDD Feature committed at `prodops/artifacts/bdd/<slug>.feature`
-3. Risks documented at `prodops/artifacts/risks/risks.md`
-4. Item in the Iteration Plan with status `Entered`
-5. GitHub Issue existing and mapped in the active iteration's `plan.md`
-6. Reliability Plan updated (required when there is financial movement, external integration, SLO change, high/critical risk, or persistence or security changes)
+```
+Status: Refining. Downstream Declared on YYYY-MM-DD.
+Located at prodops/artifacts/obcs/<slug>.md.
+```
 
-**All gates 1–5 are blocking.** Gate 6 is blocking only under the declared conditions.
+**3b. Add `## State History` section** (if not present):
 
-### Readiness Gate Result
+```markdown
+## State History
 
-- **Downstream Ready:** all gates passed → item can proceed to Bootstrap.
-- **Downstream Declared blocked:** list missing gates, absent artifacts, and concrete action required. Do not advance until resolved.
+| Date | Transition | Actor | Context |
+|---|---|---|---|
+| YYYY-MM-DD | Draft → Refining | PM + Tech Lead | Downstream Direto CommitmentGate — commitment-trail.md |
+```
 
----
-
-## Operating Rules
-
-1. Never skip the CommitmentGate for items coming from Upstream — the mode transition must be formal and recorded.
-2. Never record an outcome other than the 6 canonical ones — there are no intermediate outcomes.
-3. Never mark an item as Downstream Ready while there are blocking gates.
-4. Do not invent acceptance criteria, OBCs, or BDD during the CommitmentGate — artifacts must exist before convening.
-5. The CommitmentGate is not a prerequisite for code deployment — code can go to production before the gate; the gate formalizes the *capability*, not the deploy.
+OBCs marked "Awaits CommitmentGate" remain in Draft — they have their own
+pending gate (e.g.: CategoryManagement, Copilot).
 
 ---
 
-## Expected Outputs
+## Moment 4 — Create or Update Iteration Plan
 
-**CommitmentGate (Promote):**
-- Experiment's `upstream-trail.md` updated with outcome, date, and trio
-- OBC moved to `prodops/artifacts/obcs/<slug>.md` in Refining state
-- BDD Feature moved to `prodops/artifacts/bdd/`
-- Iteration Plan updated with Downstream Declared status
-- `prodops/framework/journeys/discovery/upstream-trail.md` with promotion entry
+Create or update `prodops/artifacts/plans/iteration-plan.md`.
 
-**Readiness Gate (approved):**
-- Formal Downstream Ready confirmation
-- Context capsule ready for the CI Sync Bootstrap (Downstream mode)
+Each committed OBC enters with status **`Icebox`** — not `Entrou`. The `Entrou`
+status is assigned only after the Readiness Gate (via `/diligence`).
+
+```markdown
+## Iteration Backlog
+
+| OBC | Slug | BC | Release | State | Status |
+|---|---|---|---|---|---|
+| OBC-002 | demand-intent-capture | Demand | v1.0 | Refining | Icebox |
+```
+
+---
+
+## Canonical Outcomes (6)
+
+| Outcome | Next step | State transition |
+|---|---|---|
+| **Promover** | OBC → Refining; Icebox; Readiness Gate via `/diligence` | Draft → Refining |
+| **Promover com restrição** | Approved subset → Refining; remainder documented | Partial Draft → Refining |
+| **Requer outro experimento** | Open EXP with specific hypothesis; record in commitment-trail | Remains Draft |
+| **Aguardar decisão de negócio** | Owner records decision-maker and deadline | Remains Draft |
+| **Aguardar dependência externa** | Risk recorded in BI with owner and deadline | Remains Draft |
+| **Descartar** | OBC → Archived with justification | Draft → Archived |
 
 ---
 
 ## Guardrails
 
-- Never record an outcome without date, participants, and next steps in `upstream-trail.md`.
-- Never start Bootstrap without an approved Readiness Gate.
-- Never create Issues or PRs without declaring `artifact_type`, `artifact_id`, `operation`, and `journey`.
-- Do not confuse "code in production" with "capability promoted" — they are distinct objects.
+- Never skip Moment 1 — a gate without an evidence check is not a CommitmentGate.
+- Never transition OBC directly to `Readiness` here — that is the Readiness Gate (`/diligence`).
+- The commitment-trail is append-only — never edit existing entries.
+- Never transition OBCs marked "Awaits CommitmentGate" — they have their own gate.
+- Never use this skill for OBCs coming from a completed Upstream experiment — use `/upstream move-to-downstream`.
+- Never create GitHub Work Items without declaring `artifact_type`, `artifact_id`, `operation`, and `journey`.
+
+---
+
+## Expected Outputs
+
+- `prodops/artifacts/plans/commitment-trail.md` with gate entry
+- Committed OBCs with Status `Refining` and `## State History` section
+- `prodops/artifacts/plans/iteration-plan.md` with entries at status `Icebox`
 
 ---
 
 ## References
 
-→ [Lifecycle](../../framework/lifecycle.en.md)
-→ [Glossary](../../framework/glossary.en.md)
-→ [Discovery Journey — CommitmentGate](../../framework/journeys/discovery/README.en.md)
-→ [OBC — states and transitions](../../framework/obc.md)
-→ [Intent Skill](../intent/SKILL.en.md)
-→ [Upstream Skill](../upstream/SKILL.md)
-→ [Downstream Skill](../downstream/SKILL.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
+→ [Lifecycle — Commitment stage](../../../../framework/lifecycle.md)
+→ [OBC — states and transitions](../../../../framework/obc.md)
+→ [upstream/move-to-downstream](../upstream/steps/move-to-downstream/SKILL.md)
+→ [diligence — Readiness Gate](../diligence/SKILL.md)
