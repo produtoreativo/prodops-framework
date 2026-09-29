@@ -42,7 +42,7 @@ gh project item-list <project-number> --owner <owner> --format json \
 
 If the managed project does not exist: register blocker — escalate to Workspace Reconciliation before continuing.
 
-**Open Work Item with Operational OBC:** execute the Close step for the affected OBC.
+**Open Work Item with Released OBC:** execute the Close step for the affected OBC.
 
 ```
 → prodops/skills/diligence/diligence-sync/steps/close/SKILL.md

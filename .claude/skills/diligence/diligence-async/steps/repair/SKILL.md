@@ -43,7 +43,7 @@ gh project item-list <project-number> --owner <owner> --format json \
 Se o projeto gerenciado não existir: registrar bloqueio — escalar para Workspace
 Reconciliation antes de continuar.
 
-**Work Item aberto com OBC Operational:** executar step Close para o OBC afetado.
+**Work Item aberto com OBC Released:** executar step Close para o OBC afetado.
 
 ```
 → prodops/skills/diligence/diligence-sync/steps/close/SKILL.md

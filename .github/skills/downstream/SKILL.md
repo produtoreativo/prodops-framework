@@ -6,7 +6,7 @@ description: Orquestra a execução do fluxo de entrega governado do ProdOps. Se
      Source:    prodops/skills/downstream/SKILL.md
      Player:    copilot
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:22Z
+     Generated: 2026-09-29T11:47:44Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill downstream
 -->
 
@@ -267,8 +267,11 @@ Antes de executar qualquer ciclo, avaliar a capability contra todos os pré-requ
 3. Riscos documentados em `prodops/artifacts/risks/risks.md`.
 4. Item no Iteration Plan com status `Entrou`.
 5. GitHub Issue existente e mapeada na coluna `Issue` do `plan.md` da iteração ativa.
+6. Reliability Plan (`prodops/artifacts/plans/reliability/<capability>.md`) quando houver movimentação financeira, integração externa, mudança de SLO, risco alto/crítico ou alteração de persistência ou segurança.
 
-Tratar como **Downstream Declared** enquanto houver pré-requisitos ausentes. Declarar **Downstream Ready** apenas após os cinco gates passarem. **Delivery Started** começa somente quando o Bootstrap inicia.
+**Gates 1–5 são bloqueantes.** Gate 6 é bloqueante apenas nas condições declaradas.
+
+Tratar como **Downstream Declared** enquanto houver pré-requisitos ausentes. Declarar **Downstream Ready** apenas após os gates obrigatórios passarem. **Delivery Started** começa somente quando o Bootstrap inicia.
 
 Reliability Plan (`prodops/artifacts/plans/reliability/<capability>.md`) é opcional. Se existir, incluir `reliability-path` na capsule e referenciar SLOs nas fases de Validate e Promote. Sua ausência não bloqueia o flow.
 

@@ -25,7 +25,7 @@ Para cada divergência, classificar a ação corretora e o responsável:
 | Issue com labels canônicas fora do projeto gerenciado | Attach — adicionar Issue ao projeto | Diligence |
 | Item no Iteration Plan sem BDD Feature | Bloqueio — BDD Feature deve ser criada antes | Delivery (Downstream readiness) |
 | Item no Iteration Plan sem riscos documentados | Bloqueio — documentar riscos em risks.md | Assessment |
-| Work Item aberto com OBC Operational | Close — fechar Work Item | Diligence |
+| Work Item aberto com OBC Released | Close — fechar Work Item | Diligence |
 | OBC committed ausente do Iteration Plan | Promote — verificar pré-requisitos e promover | Diligence |
 | Artefato de gestão desatualizado | Artifact Evolution — atualizar artefato | Diligence |
 

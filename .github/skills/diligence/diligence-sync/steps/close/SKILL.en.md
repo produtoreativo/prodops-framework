@@ -1,17 +1,17 @@
 ---
 name: diligence/close
-description: Close the Work Item when the OBC reaches Operational state and update management artifacts. Use when the Release Trail confirms the delivery is complete.
+description: Close the Work Item when the OBC reaches Released state and update management artifacts. Use when the Release Trail confirms the delivery is complete.
 ---
 
 # DILIGENCE SYNC → CLOSE
 
 Execute only the Close step of the Diligence Sync flow.
 
-**Responsibility:** close the Work Item when the OBC reaches Operational state, ensuring that management artifacts reflect the final state of the delivered work.
+**Responsibility:** close the Work Item when the OBC reaches Released state, ensuring that management artifacts reflect the final state of the delivered work.
 
 ## Action
 
-### 1. Confirm Operational state in the Release Trail
+### 1. Confirm Released state in the Release Trail
 
 Check in `prodops/artifacts/trails/sessions/` whether the delivery was recorded in the Release Trail with:
 - Confirmed scope
@@ -21,7 +21,7 @@ Check in `prodops/artifacts/trails/sessions/` whether the delivery was recorded 
 ### 2. Update the OBC
 
 In the file `prodops/artifacts/obcs/<obc-id>.md`:
-- Update the status field to `Operational`
+- Update the status field to `Released`
 - Record the completion date and reference to the Release Trail
 
 ### 3. Close the Work Item
@@ -32,13 +32,13 @@ Close the Work Item in the external backlog with:
 
 ### 4. Update management artifacts
 
-If the item was represented in the Roadmap or Product Backlog, update to reflect Operational state.
+If the item was represented in the Roadmap or Product Backlog, update to reflect Released state.
 
 ### 5. Commit
 
 ```bash
 git add prodops/artifacts/obcs/<obc-id>.md
-git commit -m "docs(diligence): close OBC <obc-id> — Operational"
+git commit -m "docs(diligence): close OBC <obc-id> — Released"
 ```
 
 ## Events — mandatory emission
@@ -57,7 +57,7 @@ Before any Close work, emit:
 }
 ```
 
-After OBC updated to Operational, Work Item closed, and commit done, emit:
+After OBC updated to Released, Work Item closed, and commit done, emit:
 
 ```json
 {
@@ -77,13 +77,13 @@ Do not emit `Close.Completed` if the OBC was not updated or the Work Item was no
 
 Completed when:
 
-- OBC with status `Operational` in the Markdown file
+- OBC with status `Released` in the Markdown file
 - Work Item closed in the external backlog with reference to the Release Trail
 - Management artifacts updated
 
 ## Guardrails
 
-- Do not close without evidence in the Release Trail — the OBC is not Operational without a recorded delivery.
+- Do not close without evidence in the Release Trail — the OBC is not Released without a recorded delivery.
 - Do not close Work Items from other OBCs in the same step.
 - Do not modify BDD Features or code — Close is a traceability step, not an implementation step.
 

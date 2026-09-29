@@ -6,7 +6,7 @@ description: Synchronize OBC state across backlogs and tools. Runs event-driven 
      Source:    prodops/skills/diligence/SKILL.md
      Player:    claude
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:03Z
+     Generated: 2026-09-29T11:47:34Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill diligence
 -->
 
@@ -56,7 +56,7 @@ Quando invocado com argumento de step (`/diligence diligence-sync capture`), exe
 1. **Capture** — criar ou atualizar o OBC a partir da decisão que acionou o ciclo. Estado canônico apenas no Markdown.
 2. **Attach** — verificar ou criar o Work Item referenciando o OBC no backlog externo.
 3. **Promote** — avançar o item pela hierarquia de backlogs verificando pré-requisitos em cada transição.
-4. **Close** — fechar o Work Item quando o OBC atinge estado Operational.
+4. **Close** — fechar o Work Item quando o OBC atinge estado Released.
 
 Parar em qualquer bloqueio. Registrar o artefato ausente, a jornada responsável e a ação concreta antes de parar.
 

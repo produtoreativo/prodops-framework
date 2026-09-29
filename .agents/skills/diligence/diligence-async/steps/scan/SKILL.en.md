@@ -98,7 +98,7 @@ If `gh project item-list` fails due to permission or inaccessible project: recor
 ls prodops/artifacts/obcs/
 ```
 
-For each OBC: read the file and extract the declared state (Draft, Refining, Readiness, In Delivery, Operational, Archived).
+For each OBC: read the file and extract the declared state (Draft, Refining, Readiness, In Delivery, Released, Archived).
 
 ### 5. Verify consistency of each OBC
 
@@ -109,9 +109,9 @@ For each active OBC, verify the following checks:
 | Active Work Item | An open GitHub Issue referencing the OBC exists when there is an active operation in progress | OBC with active operation identified and no traceable Work Item |
 | BDD Feature | `prodops/artifacts/bdd/<obc-id>.feature` exists when OBC is in Iteration Plan | Item in Iteration Plan without committed BDD Feature |
 | Iteration Plan | Readiness OBC appears in the Iteration Plan | Readiness OBC missing from Iteration Plan |
-| Work Item closed | Issue closed when OBC is Operational | Operational OBC with Issue still open |
+| Work Item closed | Issue closed when OBC is Released | Released OBC with Issue still open |
 | Risks | Risks documented in `risks.md` when OBC is in Iteration Plan | Entry in Iteration Plan without a corresponding entry in risks.md |
-| Issue state vs OBC | Issue state on GitHub reflects the canonical OBC state | Issue closed with non-Operational OBC; Issue open with labels diverging from OBC state |
+| Issue state vs OBC | Issue state on GitHub reflects the canonical OBC state | Issue closed with non-Released OBC; Issue open with labels diverging from OBC state |
 
 ### 2a. Read current Issue state on GitHub
 
@@ -127,7 +127,7 @@ Compare the returned state with the canonical OBC state:
 |---|---|---|
 | Draft / Refining / Readiness | open | Issue is closed |
 | In Delivery | open | Issue is closed |
-| Operational | closed | Issue is open |
+| Released | closed | Issue is open |
 | Any | — | Issue title does not reference the OBC's `artifact_id` |
 
 If `gh` is not available or the repository is not accessible, record as a limitation in the report — not as an OBC divergence.
@@ -145,7 +145,7 @@ Responsável sugerido: Diligence | Assessment | Delivery
 ```
 
 **Alta:** item in Iteration Plan without BDD Feature or without documented risks
-**Média:** OBC committed without Work Item; Work Item open with Operational OBC
+**Medium:** OBC committed without Work Item; Work Item open with Released OBC
 **Baixa:** management artifact outdated with no impact on Delivery gate
 
 ## Events — mandatory emission

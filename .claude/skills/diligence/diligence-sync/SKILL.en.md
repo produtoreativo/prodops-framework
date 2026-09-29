@@ -1,6 +1,6 @@
 ---
 name: diligence/diligence-sync
-description: Event-driven cycle triggered by a product decision. Captures the decision as an OBC, attaches a Work Item, promotes it through the backlog hierarchy, and closes it when the OBC reaches Operational. Runs for a specific OBC.
+description: Event-driven cycle triggered by a product decision. Captures the decision as an OBC, attaches a Work Item, promotes it through the backlog hierarchy, and closes it when the OBC reaches Released. Runs for a specific OBC.
 ---
 
 # DILIGENCE SYNC
@@ -18,7 +18,7 @@ Reactive Diligence cycle. Executed when a product decision (Assessment, Discover
 | **Capture** | Create or update the OBC from the decision. Canonical state only in Markdown. | [steps/capture/SKILL.md](steps/capture/SKILL.md) |
 | **Attach** | Verify or create the Work Item in the external backlog referencing the OBC. | [steps/attach/SKILL.md](steps/attach/SKILL.md) |
 | **Promote** | Advance the item through the backlog hierarchy, checking prerequisites at each transition. | [steps/promote/SKILL.md](steps/promote/SKILL.md) |
-| **Close** | Close the Work Item when the OBC reaches Operational state. | [steps/close/SKILL.md](steps/close/SKILL.md) |
+| **Close** | Close the Work Item when the OBC reaches Released state. | [steps/close/SKILL.md](steps/close/SKILL.md) |
 
 To run an isolated step: `/diligence diligence-sync <step> <obc-id>`.
 
@@ -29,7 +29,7 @@ Completed when **all** of the following are true:
 - OBC exists in `prodops/artifacts/obcs/<obc-id>.md` with updated state
 - Work Item exists in the external backlog referencing the OBC
 - Work Item is in the correct position in the hierarchy (or blocker recorded)
-- If OBC is Operational: Work Item closed
+- If OBC is Released: Work Item closed
 
 ## Guardrails
 
