@@ -7,6 +7,80 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.10.0] — 2026-09-30
+
+### Added — skill `/provision`: provisionamento do GitHub Workspace
+
+**`prodops/skills/provision/SKILL.md` + EN — novo skill**
+
+Introduz o skill `/provision` como ponto de entrada único para setup do
+GitHub Workspace a partir do estado virgem (`project-number: 0`).
+
+**Problema resolvido:**
+
+O `workspace-reconciliation` detecta e repara drift em projetos existentes,
+mas não tinha um skill dedicado para o primeiro provisionamento — quando o
+`project-number` ainda é 0 e o projeto gerenciado ainda não existe. Esse gap
+forçava o operador a executar os passos manualmente sem rastreabilidade.
+
+**Estrutura do skill (6 Momentos):**
+
+1. Verificar estado virgem (`project-number: 0` no runtime.yaml)
+2. Localizar template canônico (`ProdOps — template`) via `gh project list`
+3. Criar projeto gerenciado via `gh project copy <template-number>` + tornar PUBLIC
+4. Vincular ao repositório via GraphQL `linkProjectV2ToRepository`
+5. Registrar `project-number` no `runtime.yaml` + commit
+6. Validar conformidade (27 campos, 1 view BOARD, public, link)
+
+**Known Platform Limitations documentadas:**
+
+- `group_by` em views: não configurável via API
+- DELETE de views: REST retorna 404 — usar GraphQL `deleteProjectV2View`
+- `gh project copy` não vincula ao repositório — Momento 4 obrigatório
+- Visibilidade herdada do template — verificar e corrigir após cópia
+
+**Gate de entrada:** skill recusa execução se `project-number` ≠ 0.
+
+---
+
+### Changed — `github-workspace.md` + EN: spec canônica v2
+
+**`prodops/framework/github-workspace.md` + EN — atualização breaking**
+
+Atualiza a Canonical Specification para refletir o estado real verificado
+em `ProdOps — payments-api` em 2026-09-30.
+
+**Campos custom: 8 → 14**
+
+Adicionados:
+
+| Campo | Tipo |
+|---|---|
+| `Cycle` | SINGLE_SELECT (CI Sync, CI Async) |
+| `Phase` | SINGLE_SELECT (10 fases Diligence) |
+| `Mode` | SINGLE_SELECT (Sync, Async, Manual) |
+| `oem-state` | SINGLE_SELECT (11 opções: PENDING → DONE + BLOCKED/REWORKING) |
+| `oem-last-event` | TEXT |
+| `diligence-status` | SINGLE_SELECT (13 opções) |
+| `diligence-evidence` | SINGLE_SELECT (Missing, Partial, Complete, Invalid) |
+| `runtime-sync` | SINGLE_SELECT (Pending, In Sync, Drift, Repairing, Blocked) |
+| `diligence-block-reason` | TEXT |
+| `diligence-finding-id` | TEXT |
+
+Removidos: `Execution Mode`, `Owner`, `Release`, `Evidence Required`.
+
+**Views canônicas: 5 → 1**
+
+Substituídas as 5 views por 1 view única: `01 — Delivery Timeline`
+(BOARD_LAYOUT), herdada automaticamente via `gh project copy`.
+
+**Known Platform Limitations adicionadas:**
+
+- DELETE de views via REST retorna 404 — documentado com workaround GraphQL
+- `group_by` não configurável via API — mantida a limitação existente
+
+---
+
 ## [2.9.1] — 2026-09-30
 
 ### Fixed — `readiness` Momento 4: sincronização do Iteration Plan

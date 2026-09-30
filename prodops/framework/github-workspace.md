@@ -188,42 +188,58 @@ O Inspect verifica o vínculo; o Reconcile o cria automaticamente.
 
 ### Custom Fields canônicos (obrigatórios em ambos os projetos)
 
+14 campos customizados — derivados do estado canônico verificado em `ProdOps — payments-api` em 2026-09-30.
+
+#### Campos de identificação de artefato
+
 | Campo | Tipo | Opções / Formato |
 |---|---|---|
-| `Artifact Type` | single_select | enums de `artifact_type` do work-item-schema |
 | `Artifact ID` | text | slug ou path relativo do artefato |
-| `Operation` | single_select | enums de `operation` do work-item-schema |
+| `Artifact Type` | single_select | OBC, Business Signal, Business Intent, BDD Feature, Architecture, Reliability Plan, Release Trail, Experiment, Risk Register |
+
+#### Campos de classificação de trabalho
+
+| Campo | Tipo | Opções |
+|---|---|---|
 | `Journey` | single_select | Discovery, Assessment, Delivery, Operation, Diligence |
-| `Execution Mode` | single_select | Upstream, Downstream, N/A |
-| `Owner` | text | responsável principal |
-| `Release` | text | versão alvo (ex: v2.1.0) |
-| `Evidence Required` | single_select | `Required` (campo vazio = false) — implementado como SINGLE_SELECT enquanto API não suporta CHECKBOX em `ProjectV2CustomFieldType` |
+| `Operation` | single_select | Review, Implement, Validate, Approve, Capture, Attach, Reconcile, Promote, Close, Create, Update |
+| `Cycle` | single_select | CI Sync, CI Async |
+| `Phase` | single_select | Capture, Attach, Promote, Close *(Diligence Sync)* · Scan, Flag, Repair *(Diligence Async)* · Inspect, Reconcile, Verify *(Workspace Reconciliation)* |
+| `Mode` | single_select | Sync, Async, Manual |
 
-### Views canônicas (obrigatórias em ambos os projetos)
+#### Campos de estado OEM
 
-> **Automação via REST API (verificado 2026-07-22):**
-> ```bash
-> curl -X POST "https://api.github.com/orgs/{org}/projectsV2/{projectNumber}/views" \
->   -H "Authorization: Bearer $TOKEN" \
->   -H "Accept: application/vnd.github+json" \
->   -d '{"name": "View Name", "layout": "table", "filter": "label:journey:delivery"}'
-> ```
-> Endpoint: `/orgs/{org}/projectsV2/{N}/views` (atenção: `projectsV2`, não `projects`).
-> Suporta: `name`, `layout` (table/board/roadmap), `filter`.
-> **`group_by`:** Known Platform Limitation — GitHub API não suporta configuração de `group_by` em views (REST PATCH retorna 404, GraphQL sem mutation existente). Automation Opportunity via Browser Automation — o agente pode configurar via Browser Automation mediante autorização do usuário. Nunca instruir o usuário a configurar manualmente. Ver Princípio 8 — [Automation First](automation-first.md).
+| Campo | Tipo | Opções |
+|---|---|---|
+| `oem-state` | single_select | PENDING, BOOTSTRAPPING, HACKING, SYNCING, FINISHING, SHIPPING, VALIDATING, PROMOTING, DONE, BLOCKED, REWORKING |
+| `oem-last-event` | text | último evento registrado pelo OEM |
 
-| View | Filtro | Agrupamento | Propósito |
-|---|---|---|---|
-| `All Work Items` | nenhum | Journey | Visão completa do trabalho em andamento |
-| `By Operation` | nenhum | Operation | Triagem por tipo de operação |
-| `Business Signals` | `label:artifact-type:business-signal` | Status | Tracking list operacional |
-| `Delivery` | `label:journey:delivery` | Status | Acompanhamento de Delivery em andamento |
-| `Diligence` | `label:journey:diligence` | Operation | Trabalho ativo da jornada Diligence |
+#### Campos de estado Diligence
 
-**Criar as views no template (uma vez):**
-As views canônicas são criadas automaticamente pelo step `reconcile` da capability `workspace-reconciliation` via REST API. Executar `workspace-reconciliation reconcile` — o agente cria as views programaticamente e confirma via `workspace-reconciliation verify`. A partir daí, todos os novos projetos herdam as views via `gh project copy`.
+| Campo | Tipo | Opções |
+|---|---|---|
+| `diligence-status` | single_select | Pending, Sync In Progress, Captured, Attached, Blocked, Promoting, Promoted, Closing, Closed, Scanning, Flagged, Repairing, Repaired |
+| `diligence-evidence` | single_select | Missing, Partial, Complete, Invalid |
+| `runtime-sync` | single_select | Pending, In Sync, Drift, Repairing, Blocked |
+| `diligence-block-reason` | text | razão do bloqueio do ciclo Diligence |
+| `diligence-finding-id` | text | ID do Finding associado |
 
-> **Nota histórica:** versões anteriores desta especificação descreviam a criação manual de views via UI do GitHub. Esse fluxo foi supersedido pela automação REST API (verificada em 2026-07-22). Ver Princípio 8 — [Automation First](automation-first.md).
+> **Campos removidos em relação à spec anterior:** `Execution Mode`, `Owner`, `Release`, `Evidence Required` — ausentes no canônico derivado de `payments-api`. Não provisionar nesses projetos.
+
+### View canônica (obrigatória em ambos os projetos)
+
+1 view, derivada do estado canônico verificado em `ProdOps — payments-api` em 2026-09-30.
+
+| View | Layout | Criação |
+|---|---|---|
+| `01 — Delivery Timeline` | BOARD_LAYOUT | herdada via `gh project copy` |
+
+A view é herdada automaticamente pela cópia do template — não requer criação separada.
+
+> **Known Platform Limitation — `group_by`:** GitHub API não suporta configuração de `group_by` em views (REST retorna 404, GraphQL sem mutation existente). Configurar via UI quando necessário. Ver Princípio 8 — [Automation First](automation-first.md).
+> **Known Platform Limitation — DELETE de views:** `DELETE /orgs/{org}/projectsV2/{N}/views/{V}` retorna 404 via REST. Usar GraphQL: `deleteProjectV2View(input: { viewId: "..." }) { __typename }`.
+
+> **Nota histórica:** versões anteriores desta especificação declaravam 5 views canônicas (All Work Items, By Operation, Business Signals, Delivery, Diligence) e 8 campos custom. Esse modelo foi supersedido pela adoção do comportamento canônico de `payments-api` em 2026-09-30 — 14 campos e 1 view BOARD como ponto de entrada único.
 
 ---
 
