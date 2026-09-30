@@ -136,9 +136,11 @@ Bootstrap not authorized.
 
 ---
 
-## Moment 4 — Record Gate in commitment-trail.md
+## Moment 4 — Record Gate and update Iteration Plan
 
 Only if the result is APPROVED.
+
+### 4a. Record in commitment-trail.md
 
 Add entry to the `## Readiness Gate` section of `commitment-trail.md`:
 
@@ -151,6 +153,15 @@ Add entry to the `## Readiness Gate` section of `commitment-trail.md`:
 ```
 
 If the section does not exist, create it after the committed OBCs section.
+
+### 4b. Update Iteration Plan
+
+For each approved OBC, update the **Status** column in
+`prodops/artifacts/plans/iteration-plan.md` from `Icebox` to `Pronto para Bootstrap`.
+
+The Iteration Plan does **not** have an Estado column — the canonical state lives
+exclusively in the OBC file. The Iteration Plan tracks only the OBC's position in
+the delivery cycle (Status). Never add an Estado column to the Iteration Plan.
 
 ---
 

@@ -7,6 +7,16 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.9.1] — 2026-09-30
+
+### Fixed — `readiness` Momento 4: sincronização do Iteration Plan
+
+- Momento 4 agora inclui passo 4b: atualizar coluna **Status** do `iteration-plan.md` de `Icebox` → `Pronto para Bootstrap` para cada OBC aprovado.
+- Documenta que o Iteration Plan **não deve ter coluna Estado** — o estado canônico pertence exclusivamente ao OBC file. A ausência da instrução causava drift entre OBC files e o plano.
+- Causa raiz: redundância não governada — Estado duplicado no Iteration Plan sem responsável de atualização definido.
+
+---
+
 ## [2.9.0] — 2026-09-30
 
 ### Added — `readiness` skill: Readiness Gate como gate de lifecycle

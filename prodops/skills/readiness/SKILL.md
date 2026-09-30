@@ -136,9 +136,11 @@ Bootstrap não autorizado.
 
 ---
 
-## Momento 4 — Registrar Gate em commitment-trail.md
+## Momento 4 — Registrar Gate e atualizar Iteration Plan
 
 Apenas se o resultado for APROVADO.
+
+### 4a. Registrar em commitment-trail.md
 
 Adicionar entrada na seção `## Readiness Gate` do `commitment-trail.md`:
 
@@ -151,6 +153,15 @@ Adicionar entrada na seção `## Readiness Gate` do `commitment-trail.md`:
 ```
 
 Se a seção não existir, criá-la após a seção de OBCs comprometidos.
+
+### 4b. Atualizar Iteration Plan
+
+Para cada OBC aprovado, atualizar a coluna **Status** em
+`prodops/artifacts/plans/iteration-plan.md` de `Icebox` para `Pronto para Bootstrap`.
+
+O Iteration Plan **não** possui coluna Estado — o estado canônico vive exclusivamente
+no arquivo OBC. O Iteration Plan rastreia apenas a posição do OBC no ciclo de
+entrega (Status). Nunca adicionar coluna Estado ao Iteration Plan.
 
 ---
 
