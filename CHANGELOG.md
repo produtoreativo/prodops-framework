@@ -7,6 +7,47 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.8.0] — 2026-09-29
+
+### Added — `refine` skill: Discovery Downstream no Icebox
+
+**`prodops/skills/refine/SKILL.md` + EN — novo skill**
+
+Introduz o skill `/refine` para coordenar o Discovery Downstream no período do
+Icebox — entre o CommitmentGate (`/commitment`) e o Readiness Gate (`/diligence`).
+
+**Problema resolvido:**
+
+O lifecycle canônico declara que "o Context Discovery ocorre dentro do compromisso,
+na jornada Discovery em modo Downstream" (Downstream Direto). O framework cobria
+os dois extremos do Icebox (`/commitment` + `/diligence`) mas não definia como
+coordenar o trabalho de produção dos artefatos intermediários.
+
+**Escopo do skill:**
+
+- Opera por **Bounded Context** — não por OBC individual
+- 7 Momentos em ordem obrigatória:
+  1. Context Capsule do BC
+  2. Architecture Decision Record (ADR) → `prodops/artifacts/architecture/<bc-slug>-adr.md`
+  3. UX Flows → `prodops/artifacts/product/ux/<bc-slug>-flows.md`
+  4. OBC `Refining → Readiness` (SLIs/SLOs + acceptance criteria) por OBC
+  5. BDD Feature completada por OBC
+  6. `risks.md` atualizado
+  7. Reliability Plan (condicional — bloqueante no Readiness Gate quando condições se aplicam)
+
+**Posição no lifecycle:**
+
+```
+/commitment → [Icebox] → /refine → /diligence → Bootstrap
+```
+
+**Registrado em `runtime.yaml`:**
+```yaml
+refine: prodops/skills/refine/SKILL.md
+```
+
+---
+
 ## [2.7.0] — 2026-09-29
 
 ### Changed — `commitment` skill: Downstream Direto
