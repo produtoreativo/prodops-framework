@@ -7,6 +7,44 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.9.0] — 2026-09-30
+
+### Added — `readiness` skill: Readiness Gate como gate de lifecycle
+
+**`prodops/skills/readiness/SKILL.md` + EN — novo skill**
+
+Introduz o skill `/readiness` como gate de lifecycle dedicado, paralelo ao
+`/commitment`. Resolve conflito semântico onde o Readiness Gate era executado
+via `/diligence`, uma jornada operacional transversal sem semântica de gate.
+
+**Problema resolvido:**
+
+O `/diligence` é uma jornada operacional contínua (sincronização de OBCs,
+reconciliação de workspace, drift scan). Usá-la para executar um gate pontual
+e bloqueante conflata jornada com gate — a jornada *pode ser invocada por* um
+gate, mas não *é* o gate.
+
+**Estrutura do skill:**
+
+- 5 Momentos em ordem obrigatória:
+  1. Identificar Escopo (OBCs do BC no commitment-trail)
+  2. Checklist de Artefatos por OBC (OBC status, BDD, ADR, UX, Risks, Reliability Plan)
+  3. Gate Decision (APROVADO ou BLOQUEADO — nunca parcial)
+  4. Registrar gate em `commitment-trail.md` (seção `## Readiness Gate`)
+  5. Invocar `diligence-sync promote` para cada OBC aprovado
+
+**Invariantes:**
+- Gate é por BC inteiro — um OBC falhando bloqueia o BC
+- Nunca produz artefatos — apenas verifica
+- Nunca registra gate BLOQUEADO na trail
+- Reliability Plan obrigatório quando condição de obrigatoriedade é atendida
+
+**Atualizações relacionadas:**
+
+- `prodops/skills/commitment/SKILL.md`: referência `→ /readiness` no lugar de `→ /diligence`
+
+---
+
 ## [2.8.0] — 2026-09-29
 
 ### Added — `refine` skill: Discovery Downstream no Icebox
