@@ -1,5 +1,5 @@
 runtime-version: "0.3.0"
-framework-version: "v2.7.0"
+framework-version: "v2.11.0"
 schema-version: "1"
 catalog-version: "1"
 
@@ -19,6 +19,9 @@ datadog:
   environment: development       # override with staging/production as needed
 
 skills:
+  # Setup — executar primeiro em qualquer repo novo
+  setup:         prodops/skills/setup/SKILL.md
+  provision:     prodops/skills/provision/SKILL.md
   # CI Sync
   downstream:    prodops/skills/downstream/SKILL.md
   bootstrap:     prodops/skills/bootstrap/SKILL.md

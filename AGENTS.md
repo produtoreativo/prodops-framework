@@ -6,6 +6,31 @@
 
 ---
 
+## Setup de um Repo Novo
+
+**Após instalar o ProdOps via `install-prodops.sh`, o primeiro skill a invocar é `/setup`.**
+
+O skill `/setup` orquestra automaticamente o setup completo:
+1. Preenche os placeholders `YOUR_*` no `runtime.yaml` (infere do remote origin)
+2. Provisiona os 38 labels canônicos no repo GitHub
+3. Cria o GitHub Project via `/provision` (cópia do template canônico)
+4. Configura o `.env` a partir do `.env.example`
+5. Valida que o repo está 100% pronto para qualquer fluxo
+
+```bash
+# Sequência completa de setup:
+./prodops/scripts/install-prodops.sh --version v2.11.0
+# (após instalação)
+/setup
+```
+
+O `/setup` é **idempotente** — pode ser re-executado sem risco em qualquer estágio.
+
+→ [Skill /setup](prodops/skills/setup/SKILL.md)
+→ [Skill /provision](prodops/skills/provision/SKILL.md)
+
+---
+
 ## ⚠️ REGRA CRÍTICA — VERSÃO DO RUNTIME ACOMPANHA O FRAMEWORK
 
 **Toda vez que o número de versão do framework for incrementado, os seguintes

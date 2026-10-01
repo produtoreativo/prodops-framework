@@ -7,6 +7,65 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.11.0] — 2026-10-01
+
+### Added — skill `/setup`: caminho completo de instalação e configuração
+
+**`prodops/skills/setup/SKILL.md` + EN — novo skill**
+
+Introduz o skill `/setup` como ponto de entrada único para configuração
+completa de um repo recém-instalado com o ProdOps. Resolve o gap onde o
+operador instalava o framework mas não conseguia executar nenhum fluxo
+imediatamente — os passos de configuração eram manuais, dispersos e sem
+rastreabilidade.
+
+**Problema resolvido:**
+
+`install-prodops.sh` copia os arquivos do framework para o repo, mas deixa
+`runtime.yaml` com placeholders (`YOUR_ORG`, `YOUR_REPO`, `YOUR_SERVICE`,
+`project-number: 0`). O operador precisava preencher manualmente, criar labels,
+provisionar o GitHub Project e configurar o `.env` — sem nenhum skill que
+orquestrasse esses passos.
+
+**Estrutura do skill (6 Momentos):**
+
+1. Diagnóstico — detecta campos pendentes no `runtime.yaml` e ausência de labels/projeto
+2. Preencher `runtime.yaml` — infere `owner`/`repository` via `git remote get-url origin`
+3. Provisionar 38 labels canônicos — `operation:*`, `artifact-type:*`, `journey:*` — idempotente
+4. Executar `/provision` — cria GitHub Project via cópia do template, vincula ao repo
+5. Configurar `.env` — copia `.env.example`, garante gitignore
+6. Validar — checklist de conformidade; reporta COMPLETO ou PARCIAL
+
+**Idempotente:** detecta o que já está configurado e pula esses passos.
+Re-executável sem risco em qualquer estágio do setup.
+
+---
+
+### Changed — `runtime.yaml.example`: adiciona `setup` e `provision` na seção `skills:`
+
+Ambos os skills agora são declarados no template que todos os consumidores
+copiam — resolver o gap onde `/provision` existia mas não era encontrado após
+a instalação. A seção `skills:` abre com um bloco `# Setup` destacado.
+
+`framework-version` atualizado para `v2.11.0`.
+
+---
+
+### Changed — `AGENTS.md`: seção **Setup de um Repo Novo**
+
+Adicionada seção no início do guia descrevendo a sequência completa de setup
+e os links para `/setup` e `/provision`. Qualquer agente trabalhando em um
+repo recém-instalado agora sabe que `/setup` é o primeiro skill a invocar.
+
+---
+
+### Changed — `setup-mac.sh` e `setup-wsl.sh`: `PRODOPS_VERSION` → `v2.11.0`
+
+Scripts de setup sincronizados com a versão do framework (estavam em v2.7.0,
+defasados desde as releases v2.8.0–v2.10.0 que foram commits diretos).
+
+---
+
 ## [2.10.0] — 2026-09-30
 
 ### Added — skill `/provision`: provisionamento do GitHub Workspace
