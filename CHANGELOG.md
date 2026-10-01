@@ -7,6 +7,39 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.13.0] — 2026-10-01
+
+### Changed — `install-prodops.sh`: summary aponta `/setup` como próximo passo
+
+O instalador exibia "Required manual steps" com instruções para preencher
+manualmente os placeholders do `runtime.yaml` — um trabalho que o `/setup`
+já faz automaticamente. A saída agora é:
+
+**Instalação nova:** bloco destacado no summary recomenda `/setup`:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Next step: invoke /setup to complete configuration          │
+│                                                              │
+│  /setup handles automatically:                               │
+│    • Fill runtime.yaml placeholders (owner, repo, service)   │
+│    • Provision 38 canonical labels in GitHub                 │
+│    • Create GitHub Project (/provision)                      │
+│    • Configure .env from .env.example                        │
+│    • Validate that everything is ready                       │
+│                                                              │
+│  Open Claude Code in this repo and type: /setup              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Atualização:** mensagem simples informando que `/setup` pode ser re-executado
+se novos campos do `runtime.yaml` precisarem de configuração.
+
+**Passos manuais restantes** (não cobertos por `/setup`) continuam listados,
+mas o título agora é explícito: "Remaining manual steps (not covered by /setup)".
+
+---
+
 ## [2.12.0] — 2026-10-01
 
 ### Changed — skills materializados em todos os players de agente
