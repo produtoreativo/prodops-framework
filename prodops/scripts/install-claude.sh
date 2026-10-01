@@ -63,8 +63,10 @@ mkdir -p "${TARGET_DIR}/.claude/rules"
 mkdir -p "${TARGET_DIR}/.claude/hooks"
 
 # ── 2. Copy pre-materialized skills → .claude/skills/ ────────────────────────
-# The framework ships .claude/skills/ already materialized; copy it directly.
-# Falls back to running materialize-skills.sh for framework versions < v2.3.0.
+# The framework ships .claude/skills/ committed and versioned — copy directly.
+# Files with the "MATERIALIZED FILE" header are framework-managed and always
+# overwritten on update. Files without the header are consumer customizations
+# and are preserved unless --force is passed.
 
 FRAMEWORK_SKILLS_SRC="${REPO_ROOT}/.claude/skills"
 
@@ -72,12 +74,21 @@ if [[ -d "${FRAMEWORK_SKILLS_SRC}" ]]; then
   log "Copying pre-materialized skills → .claude/skills/..."
   copied=0
   skipped=0
+  updated=0
   while IFS= read -r src_file; do
     rel="${src_file#${FRAMEWORK_SKILLS_SRC}/}"
     dest="${TARGET_DIR}/.claude/skills/${rel}"
     if [[ -f "${dest}" && "${FORCE}" == "false" ]]; then
-      log "  SKIP (exists): .claude/skills/${rel}"
-      skipped=$((skipped + 1))
+      # Overwrite if the destination is a framework-managed (materialized) file.
+      if grep -q "MATERIALIZED FILE" "${dest}" 2>/dev/null; then
+        mkdir -p "$(dirname "${dest}")"
+        cp "${src_file}" "${dest}"
+        log "  updated (materialized): .claude/skills/${rel}"
+        updated=$((updated + 1))
+      else
+        log "  SKIP (custom): .claude/skills/${rel}"
+        skipped=$((skipped + 1))
+      fi
     else
       mkdir -p "$(dirname "${dest}")"
       cp "${src_file}" "${dest}"
@@ -85,21 +96,15 @@ if [[ -d "${FRAMEWORK_SKILLS_SRC}" ]]; then
       copied=$((copied + 1))
     fi
   done < <(find "${FRAMEWORK_SKILLS_SRC}" -type f | LC_ALL=C sort)
-  log "  skills: ${copied} copied, ${skipped} skipped"
+  log "  skills: ${copied} copied, ${updated} updated, ${skipped} skipped (custom)"
 else
-  # Fallback: materialize from prodops/skills/ in the target repo
-  MATERIALIZE_SKILLS="${TARGET_DIR}/prodops/scripts/agents/materialize-skills.sh"
-  if [[ -f "${MATERIALIZE_SKILLS}" ]]; then
-    log "Framework .claude/skills/ not found — falling back to materialize-skills.sh..."
-    (cd "${TARGET_DIR}" && bash "${MATERIALIZE_SKILLS}")
-  else
-    warn ".claude/skills/ source not found and materialize-skills.sh missing — .claude/skills/ will be empty"
-  fi
+  warn ".claude/skills/ not found in framework clone — skipping skill installation"
+  warn "This should not happen with framework >= v2.3.0. Please report at ${FRAMEWORK_REPO}."
 fi
 
 # ── 3. Copy pre-materialized agents → .claude/agents/ ────────────────────────
-# The framework ships .claude/agents/ already materialized; copy it directly.
-# Falls back to prodops/agents/ for framework versions < v2.3.0.
+# The framework ships .claude/agents/ committed and versioned — copy directly.
+# Agent files with the "MATERIALIZED FILE" header are always updated on install.
 
 FRAMEWORK_AGENTS_SRC="${REPO_ROOT}/.claude/agents"
 
@@ -107,42 +112,29 @@ if [[ -d "${FRAMEWORK_AGENTS_SRC}" ]]; then
   log "Copying pre-materialized agents → .claude/agents/..."
   installed=0
   skipped=0
+  updated=0
   while IFS= read -r src_file; do
     agent_name="$(basename "${src_file}")"
     target_file="${TARGET_DIR}/.claude/agents/${agent_name}"
     if [[ -f "${target_file}" && "${FORCE}" == "false" ]]; then
-      log "  SKIP (exists): .claude/agents/${agent_name}"
-      skipped=$((skipped + 1))
+      if grep -q "MATERIALIZED FILE" "${target_file}" 2>/dev/null; then
+        cp "${src_file}" "${target_file}"
+        log "  updated (materialized): .claude/agents/${agent_name}"
+        updated=$((updated + 1))
+      else
+        log "  SKIP (custom): .claude/agents/${agent_name}"
+        skipped=$((skipped + 1))
+      fi
     else
       cp "${src_file}" "${target_file}"
       log "  copied: .claude/agents/${agent_name}"
       installed=$((installed + 1))
     fi
   done < <(find "${FRAMEWORK_AGENTS_SRC}" -maxdepth 1 -name "*.md" | LC_ALL=C sort)
-  log "  agents: ${installed} copied, ${skipped} skipped"
+  log "  agents: ${installed} copied, ${updated} updated, ${skipped} skipped (custom)"
 else
-  # Fallback: copy from prodops/agents/ in the target repo
-  AGENTS_SRC="${TARGET_DIR}/prodops/agents"
-  if [[ -d "${AGENTS_SRC}" ]]; then
-    log "Framework .claude/agents/ not found — falling back to prodops/agents/..."
-    installed=0
-    skipped=0
-    while IFS= read -r src_file; do
-      agent_name="$(basename "${src_file}")"
-      target_file="${TARGET_DIR}/.claude/agents/${agent_name}"
-      if [[ -f "${target_file}" && "${FORCE}" == "false" ]]; then
-        log "  SKIP (exists): .claude/agents/${agent_name}"
-        skipped=$((skipped + 1))
-      else
-        cp "${src_file}" "${target_file}"
-        log "  copied: .claude/agents/${agent_name}"
-        installed=$((installed + 1))
-      fi
-    done < <(find "${AGENTS_SRC}" -maxdepth 1 -name "*.md" | LC_ALL=C sort)
-    log "  agents: ${installed} copied, ${skipped} skipped"
-  else
-    warn "prodops/agents/ not found — skipping agent installation"
-  fi
+  warn ".claude/agents/ not found in framework clone — skipping agent installation"
+  warn "This should not happen with framework >= v2.3.0. Please report at ${FRAMEWORK_REPO}."
 fi
 
 # ── 4b. Copy rules → .claude/rules/ ─────────────────────────────────────────

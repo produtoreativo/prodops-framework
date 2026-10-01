@@ -1,4 +1,13 @@
 #!/usr/bin/env bash
+# INTERNAL TOOL — framework development use only.
+#
+# Consumer repositories receive .claude/skills/, .claude/agents/ and
+# .github/skills/ via install-prodops.sh, which copies the committed and
+# versioned artefacts from the framework clone. Do NOT run this script in
+# consumer repositories — it is only needed when creating or modifying a skill
+# inside the prodops-framework repo itself to keep the pre-materialized copies
+# in sync with prodops/skills/.
+#
 # Materialize canonical ProdOps skills into player-specific directories.
 #
 # Source:  prodops/skills/<skill>/SKILL.md

@@ -7,6 +7,37 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.14.0] — 2026-10-01
+
+### Changed — `install-claude.sh`: remove fallback para `materialize-skills.sh`; atualização automática de arquivos materializados
+
+A pasta `.claude/` é commitada e versionada no framework desde v2.3.0.
+O instalador (`install-claude.sh`) mantinha um fallback que invocava
+`materialize-skills.sh` quando `.claude/skills/` não era encontrada no clone —
+código morto que criava ambiguidade sobre a fonte autoritativa dos skills.
+
+**Mudanças:**
+
+- **Fallback removido** — `materialize-skills.sh` não é mais chamado por
+  `install-claude.sh`. A única fonte de `.claude/skills/` e `.claude/agents/`
+  é o clone do framework.
+
+- **Atualização automática de arquivos materializados** — em instalações de
+  update, arquivos com o cabeçalho `MATERIALIZED FILE` são sobrescritos
+  automaticamente (sem precisar de `--force`). Arquivos sem esse cabeçalho são
+  preservados como customizações do consumidor.
+
+- **`materialize-skills.sh` marcado como internal-only** — cabeçalho de aviso
+  adicionado: "INTERNAL TOOL — framework development use only." O script é
+  mantido para uso durante o desenvolvimento do próprio framework (manter
+  `.claude/` em sincronia com `prodops/skills/`), mas não pertence ao fluxo
+  de instalação em repositórios consumidores.
+
+**Resultado:** `install-prodops.sh` em qualquer versão >= v2.3.0 entrega
+`.claude/skills/` e `.claude/agents/` atualizados sem nenhuma etapa adicional.
+
+---
+
 ## [2.13.0] — 2026-10-01
 
 ### Changed — `install-prodops.sh`: summary aponta `/setup` como próximo passo
