@@ -40,7 +40,7 @@ pré-requisitos pode mergear código sem gate.
 
 ### 1. Preencher o body com o template
 
-Preencha o [template de PR](../../../../framework/journeys/delivery/capabilities/commit-workflow/templates/pull_request.md)
+Preencha o [template de PR](../../../../../prodops/framework/journeys/delivery/capabilities/commit-workflow/templates/pull_request.md)
 com evidências reais — objetivo, resumo, contratos alterados, testes executados
 (com o output de `validate`), artefatos ProdOps atualizados e pendências. Não é
 um log de commits; é o que a mudança entrega e como foi verificada.

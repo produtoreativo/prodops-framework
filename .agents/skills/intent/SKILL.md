@@ -6,7 +6,7 @@ description: Formaliza intenções de negócio e de produto. Use para identifica
      Source:    prodops/skills/intent/SKILL.md
      Player:    codex
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:32Z
+     Generated: 2026-10-01T20:01:37Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill intent
 -->
 
@@ -130,10 +130,10 @@ O **Product Intent** é a formalização da Business Intent no nível do produto
 
 ## Referências
 
-→ [Lifecycle](../../framework/lifecycle.md)
-→ [Glossário](../../framework/glossary.md)
-→ [OBC](../../framework/obc.md)
-→ [Backlogs](../../framework/backlogs.md)
-→ [Jornada Discovery](../../framework/journeys/discovery/README.md)
+→ [Lifecycle](../../../prodops/framework/lifecycle.md)
+→ [Glossário](../../../prodops/framework/glossary.md)
+→ [OBC](../../../prodops/framework/obc.md)
+→ [Backlogs](../../../prodops/framework/backlogs.md)
+→ [Jornada Discovery](../../../prodops/framework/journeys/discovery/README.md)
 → [Commitment Skill](../commitment/SKILL.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)

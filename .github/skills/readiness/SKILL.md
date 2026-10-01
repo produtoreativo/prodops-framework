@@ -6,7 +6,7 @@ description: Executa o Readiness Gate para um Bounded Context — verifica bloqu
      Source:    prodops/skills/readiness/SKILL.md
      Player:    copilot
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-10-01T14:12:34Z
+     Generated: 2026-10-01T20:01:54Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill readiness
 -->
 
@@ -204,8 +204,8 @@ rastreamento com `operation: Reconcile` e `journey: Diligence`.
 
 ## Referências
 
-→ [Lifecycle canônico](../../framework/lifecycle.md)
-→ [Commitment Trail](../../artifacts/plans/commitment-trail.md)
+→ [Lifecycle canônico](../../../prodops/framework/lifecycle.md)
+→ [Commitment Trail](../../../prodops/artifacts/plans/commitment-trail.md)
 → [/refine Skill](../refine/SKILL.md) — produz os artefatos verificados por este gate
 → [/commitment Skill](../commitment/SKILL.md) — gate anterior no lifecycle
 → [/bootstrap Skill](../bootstrap/SKILL.md) — skill que este gate autoriza

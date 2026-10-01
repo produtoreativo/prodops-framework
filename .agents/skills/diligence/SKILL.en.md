@@ -91,7 +91,7 @@ Invocable by the user (`/diligence workspace-reconciliation`) and by cycles (Boo
 ### Workspace Reconciliation guardrails
 
 - **Workspace Reconciliation is a command** — invocable directly by the user with `/diligence workspace-reconciliation` or by cycles (Bootstrap, Async, Sync).
-- **Automation First (Principle 8)** — try API → MCP → CLI → SDK → Browser Automation before declaring impossibility. Never instruct the user to execute actions manually without first demonstrating that all automation options have been exhausted. See [automation-first.md](../../framework/automation-first.md).
+- **Automation First (Principle 8)** — try API → MCP → CLI → SDK → Browser Automation before declaring impossibility. Never instruct the user to execute actions manually without first demonstrating that all automation options have been exhausted. See [automation-first.md](../../../prodops/framework/automation-first.md).
 - **No gap without a tracking Issue** — any action that cannot be automated generates an Issue with title `infra: <description>`, labels `operation:provision` and `journey:diligence`, and body containing the API error, the required action, and the resolution criterion.
 - **Never declare "manual action" as floating text** — instructions to the human go in the Issue body, not as agent output messages. The agent output lists Automation Opportunities and Known Platform Limitations.
 - **Sync manifest as the source of truth** — the manifest records: CONFORME (verified via API in this cycle), PARCIAL (Issue #X opened with documented gap), or NÃO CONFORME (automatable problem not resolved).
@@ -99,7 +99,7 @@ Invocable by the user (`/diligence workspace-reconciliation`) and by cycles (Boo
 
 ## References
 
-→ [Diligence journey README](../../framework/journeys/diligence/README.md)
-→ [Execution Mapping](../../framework/execution-mapping/README.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
-→ [Mapping Matrix](../../framework/execution-mapping/matrix.md)
+→ [Diligence journey README](../../../prodops/framework/journeys/diligence/README.md)
+→ [Execution Mapping](../../../prodops/framework/execution-mapping/README.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)
+→ [Mapping Matrix](../../../prodops/framework/execution-mapping/matrix.md)

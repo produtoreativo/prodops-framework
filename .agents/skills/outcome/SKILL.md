@@ -6,7 +6,7 @@ description: Verifica o Business Outcome e o Product Outcome de uma capability f
      Source:    prodops/skills/outcome/SKILL.md
      Player:    codex
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:33Z
+     Generated: 2026-10-01T20:01:39Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill outcome
 -->
 
@@ -207,10 +207,10 @@ A transição para Archived requer registro explícito: data, quem decidiu, e s�
 
 ## Referências
 
-→ [Lifecycle — estágio Outcome](../../framework/lifecycle.md)
-→ [Glossário — Outcome](../../framework/glossary.md)
-→ [OBC](../../framework/obc.md)
+→ [Lifecycle — estágio Outcome](../../../prodops/framework/lifecycle.md)
+→ [Glossário — Outcome](../../../prodops/framework/glossary.md)
+→ [OBC](../../../prodops/framework/obc.md)
 → [Evidence Skill](../evidence/SKILL.md)
 → [Product Context Skill](../product-context/SKILL.md)
-→ [Jornada Operation](../../framework/journeys/operation/README.md)
-→ [DORA Metrics](../../framework/dora-metrics.md)
+→ [Jornada Operation](../../../prodops/framework/journeys/operation/README.md)
+→ [DORA Metrics](../../../prodops/framework/dora-metrics.md)

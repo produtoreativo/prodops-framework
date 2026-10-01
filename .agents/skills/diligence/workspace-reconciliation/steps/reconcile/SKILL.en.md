@@ -178,7 +178,7 @@ curl -s -X POST "https://api.github.com/orgs/<owner>/projectsV2/$N/views" \
   -d '{"name":"Diligence","layout":"table","filter":"label:journey:diligence"}'
 ```
 
-**`group_by`:** Known Platform Limitation — GitHub API does not support configuring `group_by` on views (REST PATCH returns 404, no equivalent GraphQL mutation). Record in the Conformance Report under "Known Platform Limitations". Automation Opportunity: configuration can be done via Browser Automation — record in "Automation Opportunities" and request user authorization before executing. Never instruct the user to configure manually. See Principle 8 — [Automation First](../../../../../framework/automation-first.md).
+**`group_by`:** Known Platform Limitation — GitHub API does not support configuring `group_by` on views (REST PATCH returns 404, no equivalent GraphQL mutation). Record in the Conformance Report under "Known Platform Limitations". Automation Opportunity: configuration can be done via Browser Automation — record in "Automation Opportunities" and request user authorization before executing. Never instruct the user to configure manually. See Principle 8 — [Automation First](../../../../../../prodops/framework/automation-first.md).
 
 ### 4. Managed project — create via copy or provision missing fields
 
@@ -316,7 +316,7 @@ Completed when **all** of the following are true:
 - **Managed projects are PUBLIC by default** — apply `gh project edit --visibility PUBLIC` immediately after creating or copying. Change to PRIVATE only with explicit user directive.
 - **Never create fields or views in manual projects** — verify name before any field/view operation.
 - **Mandatory order:** template before managed project — the copy depends on the template existing.
-- **Automation First (Principle 8)** — try API → MCP → CLI → SDK → Browser Automation before declaring impossibility. See [automation-first.md](../../../../../framework/automation-first.md).
+- **Automation First (Principle 8)** — try API → MCP → CLI → SDK → Browser Automation before declaring impossibility. See [automation-first.md](../../../../../../prodops/framework/automation-first.md).
 - **No gap without an Issue** — non-automatable divergences generate an Issue with a responsible party and resolution criterion.
 - **Never declare "manual action" as floating text** — the instruction goes in the Issue body; Reconcile output lists Automation Opportunities and Known Platform Limitations.
 - Never remove labels, views, or fields without explicit confirmation.

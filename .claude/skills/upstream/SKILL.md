@@ -6,7 +6,7 @@ description: Execute ProdOps exploratory engineering. Use when exploring, experi
      Source:    prodops/skills/upstream/SKILL.md
      Player:    claude
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:45Z
+     Generated: 2026-10-01T20:02:12Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill upstream
 -->
 
@@ -184,6 +184,6 @@ Do not continue implementation after the experiment question has been answered.
 
 ## References
 
-→ [Execution Mapping](../../framework/execution-mapping/README.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
-→ [Mapping Matrix](../../framework/execution-mapping/matrix.md)
+→ [Execution Mapping](../../../prodops/framework/execution-mapping/README.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)
+→ [Mapping Matrix](../../../prodops/framework/execution-mapping/matrix.md)

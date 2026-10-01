@@ -7,6 +7,43 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.15.0] — 2026-10-01
+
+### Fixed — `materialize-skills.sh`: reescrita de caminhos relativos em arquivos materializados
+
+**Problema:** `materialize-skills.sh` copiava `prodops/skills/<skill>/SKILL.md`
+verbatim para `.claude/skills/`, `.agents/skills/` e `.github/skills/`. Caminhos
+relativos como `../../framework/lifecycle.md` resolvem corretamente de
+`prodops/skills/<skill>/` (→ `prodops/framework/lifecycle.md`) mas resolvem
+errado de `.claude/skills/<skill>/` (→ `.claude/framework/lifecycle.md`, que não
+existe). O resultado eram 482 links quebrados nos targets materializados, fazendo
+o `doctor.sh` bloquear o sync em repos consumidores.
+
+**Causa raiz:** a profundidade dos player targets (`.claude/`, `.agents/`,
+`.github/`) é a mesma que `prodops/`, mas estão na raiz do repositório enquanto
+`prodops/` está um nível acima. Um nível extra de `../` é necessário para cruzar
+da raiz do player para a raiz do repositório antes de entrar em `prodops/`.
+
+**Solução:**
+- `rewrite_paths()` adicionado ao materializador: recebe o conteúdo e N
+  (profundidade do arquivo dentro de `<player>/skills/`), reescreve qualquer
+  sequência de exatamente N `../` para `(N+1)` `../` + `prodops/`.
+- Usa lookbehind negativo Perl `(?<![./])` para garantir que apenas sequências
+  exatas de N levels são reescritas — evita falsos positivos em cadeias mais
+  longas como `../../../`.
+- `materialize_skill()` aplica a reescrita (N=2) ao conteúdo de cada SKILL.md
+  antes de escrever nos targets e atualiza a detecção de drift para comparar
+  com o conteúdo reescrito.
+- `materialize_steps()` computa N per-arquivo com base na profundidade de
+  `sub_dir` e aplica a reescrita antes de escrever ou comparar com o target.
+- Bug pré-existente corrigido em `prodops/skills/commitment/SKILL.en.md`:
+  referências `../../../../framework/` corrigidas para `../../framework/`.
+
+**Resultado:** 0 broken links em `.claude/skills/`, `.agents/skills/` e
+`.github/skills/` após re-materialização com `--force`.
+
+---
+
 ## [2.14.0] — 2026-10-01
 
 ### Changed — `install-claude.sh`: remove fallback para `materialize-skills.sh`; atualização automática de arquivos materializados

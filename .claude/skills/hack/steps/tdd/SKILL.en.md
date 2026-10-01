@@ -46,7 +46,7 @@ Read before starting:
 The Yellow Bar is where refactoring **and** the transversal Security, Quality, and
 Documentation validations run. These are not extra steps — they are the cycle's
 exit gates. The full checklist is in
-[`../../../../framework/journeys/delivery/phases/hack/quality-gates.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.md).
+[`../../../../../prodops/framework/journeys/delivery/phases/hack/quality-gates.md`](../../../../../prodops/framework/journeys/delivery/phases/hack/quality-gates.md).
 
 1. **Refactor** — improve names, reduce duplication, apply Clean Code rules.
    Do not change behavior. Re-run tests after each refactor step to stay green.
@@ -59,7 +59,7 @@ exit gates. The full checklist is in
 4. **Quality gate** — confirm the diff contains no forbidden test double
    (`jest.fn()` as a service replacement, `.overrideProvider()`) and no `.only`
    left in a spec. See
-   [`../../../../framework/journeys/delivery/phases/finish/quality-gates.md`](../../../../framework/journeys/delivery/phases/finish/quality-gates.md).
+   [`../../../../../prodops/framework/journeys/delivery/phases/finish/quality-gates.md`](../../../../../prodops/framework/journeys/delivery/phases/finish/quality-gates.md).
 5. **Event Storming** — if the change adds, removes, or renames a domain event
    (`eventEmitter.emit()` or `@OnEvent()`), update
    `prodops/artifacts/event-storming/plan.json`:
@@ -89,7 +89,7 @@ exit gates. The full checklist is in
 - No secrets or PII in the diff; no forbidden mock (`jest.fn()`, `.overrideProvider()`) or `.only` left behind.
 - Impacted ProdOps artifacts updated (Event Storming, architecture, BDD if needed).
 - Release Trail has the full TDD evidence entry.
-- Every gate in [`quality-gates.md`](../../../../framework/journeys/delivery/phases/hack/quality-gates.md) is satisfied.
+- Every gate in [`quality-gates.md`](../../../../../prodops/framework/journeys/delivery/phases/hack/quality-gates.md) is satisfied.
 
 ## Guardrails
 

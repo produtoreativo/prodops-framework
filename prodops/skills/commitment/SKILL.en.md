@@ -181,7 +181,7 @@ status is assigned only after the Readiness Gate (via `/diligence`).
 
 ## References
 
-→ [Lifecycle — Commitment stage](../../../../framework/lifecycle.md)
-→ [OBC — states and transitions](../../../../framework/obc.md)
+→ [Lifecycle — Commitment stage](../../framework/lifecycle.md)
+→ [OBC — states and transitions](../../framework/obc.md)
 → [upstream/move-to-downstream](../upstream/steps/move-to-downstream/SKILL.md)
 → [diligence — Readiness Gate](../diligence/SKILL.md)

@@ -127,7 +127,7 @@ Completed when **all** of the following are true:
 - **Verify all 4 categories** — do not skip any even if the manifest indicates prior conformance.
 - Never mark a category as `CONFORME` in the manifest without having verified it via API in this execution.
 - Clearly distinguish between `PENDENTE — Issue #X documentado` (gap with tracking) and `NÃO CONFORME automatizável` (requires re-running Reconcile). Never use `PENDENTE manual` as a status — every pending item must have a tracking Issue.
-- **Automation First (Principle 8)** — a missing project is always `DIVERGENTE — reconcile required` (automatable via `gh project create`), never "mandatory manual action". See [automation-first.md](../../../../../framework/automation-first.md).
+- **Automation First (Principle 8)** — a missing project is always `DIVERGENTE — reconcile required` (automatable via `gh project create`), never "mandatory manual action". See [automation-first.md](../../../../../../prodops/framework/automation-first.md).
 - Always include "Automation Opportunities" and "Known Platform Limitations" sections in the Conformance Report when applicable.
 - Updating the manifest is mandatory — Verify without manifest update is not complete.
 

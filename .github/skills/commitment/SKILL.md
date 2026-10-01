@@ -6,7 +6,7 @@ description: Execute the CommitmentGate for a Business Intent entering Downstrea
      Source:    prodops/skills/commitment/SKILL.md
      Player:    copilot
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-29T11:47:33Z
+     Generated: 2026-10-01T19:59:55Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill commitment
 -->
 
@@ -187,7 +187,7 @@ Cada OBC comprometido entra com status **`Icebox`** — não `Entrou`. O status
 
 ## Referências
 
-→ [Lifecycle — estágio Commitment](../../framework/lifecycle.md)
-→ [OBC — estados e transições](../../framework/obc.md)
+→ [Lifecycle — estágio Commitment](../../../prodops/framework/lifecycle.md)
+→ [OBC — estados e transições](../../../prodops/framework/obc.md)
 → [upstream/move-to-downstream](../upstream/steps/move-to-downstream/SKILL.md)
 → [diligence — Readiness Gate](../diligence/SKILL.md)

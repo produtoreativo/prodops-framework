@@ -179,6 +179,6 @@ If any criterion fails: report the deviation and do not proceed to commit.
 
 ## References
 
-→ [github-workspace.md](../../framework/github-workspace.md) — canonical spec of fields and views
-→ [runtime.yaml](../../runtime/runtime.yaml) — where project-number is recorded
+→ [github-workspace.md](../../../prodops/framework/github-workspace.md) — canonical spec of fields and views
+→ [runtime.yaml](../../../prodops/runtime/runtime.yaml) — where project-number is recorded
 → [workspace-reconciliation](../diligence/workspace-reconciliation/SKILL.md) — for post-provisioning drift

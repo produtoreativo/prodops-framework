@@ -125,10 +125,10 @@ When the Business Intent does not come from the Portfolio:
 
 ## References
 
-→ [Lifecycle](../../framework/lifecycle.en.md)
-→ [Glossary](../../framework/glossary.en.md)
-→ [OBC](../../framework/obc.md)
-→ [Backlogs](../../framework/backlogs.md)
-→ [Discovery Journey](../../framework/journeys/discovery/README.en.md)
+→ [Lifecycle](../../../prodops/framework/lifecycle.en.md)
+→ [Glossary](../../../prodops/framework/glossary.en.md)
+→ [OBC](../../../prodops/framework/obc.md)
+→ [Backlogs](../../../prodops/framework/backlogs.md)
+→ [Discovery Journey](../../../prodops/framework/journeys/discovery/README.en.md)
 → [Commitment Skill](../commitment/SKILL.en.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)

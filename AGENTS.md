@@ -19,7 +19,7 @@ O skill `/setup` orquestra automaticamente o setup completo:
 
 ```bash
 # Sequência completa de setup:
-./prodops/scripts/install-prodops.sh --version v2.11.0
+./prodops/scripts/install-prodops.sh --version v2.15.0
 # (após instalação)
 /setup
 ```

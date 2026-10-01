@@ -6,7 +6,7 @@ description: Coordena o Discovery Downstream no período do Icebox — entre o C
      Source:    prodops/skills/refine/SKILL.md
      Player:    copilot
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-10-01T14:12:35Z
+     Generated: 2026-10-01T20:01:56Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill refine
 -->
 
@@ -113,8 +113,8 @@ Produzir a decisão de arquitetura do BC. O ADR não é um documento de implemen
 
 ## Referências
 
-→ [BI do BC](../../business-intents/bi-<bc-slug>.md)
-→ [OBCs do BC](../../obcs/)
+→ [BI do BC](../../../prodops/business-intents/bi-<bc-slug>.md)
+→ [OBCs do BC](../../../prodops/obcs/)
 ```
 
 **Guardrails do Momento 2:**
@@ -336,7 +336,7 @@ Política de queima: <ação quando > 50% do budget for consumido em < 50% do pe
 
 ## Referências
 
-→ [OBC](../../obcs/<obc-slug>.md)
+→ [OBC](../../../prodops/obcs/<obc-slug>.md)
 → [ADR do BC](../architecture/<bc-slug>-adr.md)
 ```
 
@@ -379,9 +379,9 @@ O BC está **pronto para o Readiness Gate** quando todos os artefatos acima exis
 
 ## Referências
 
-→ [Lifecycle — estágios 3, 4, 5](../../framework/lifecycle.md)
-→ [Princípios 3, 4, 6](../../framework/principles.md)
+→ [Lifecycle — estágios 3, 4, 5](../../../prodops/framework/lifecycle.md)
+→ [Princípios 3, 4, 6](../../../prodops/framework/principles.md)
 → [commitment/SKILL.md — gate de entrada do Icebox](../commitment/SKILL.md)
 → [diligence/SKILL.md — gate de saída do Icebox](../diligence/SKILL.md)
-→ [OBC — estados e transições](../../framework/obc.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
+→ [OBC — estados e transições](../../../prodops/framework/obc.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)

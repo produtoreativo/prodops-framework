@@ -6,7 +6,7 @@ description: Orquestra a execução do fluxo de entrega governado do ProdOps. Se
      Source:    prodops/skills/downstream/SKILL.md
      Player:    copilot
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-29T11:47:44Z
+     Generated: 2026-10-01T20:01:08Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill downstream
 -->
 
@@ -583,7 +583,7 @@ Isso seta `oem-state = PENDING` e permite que o Bootstrap inicie novamente.
 ## Referências
 
 → Readiness SKILL
-→ [Execution Mapping](../../framework/execution-mapping/README.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
-→ [Mapping Matrix](../../framework/execution-mapping/matrix.md)
-→ [Iteration Plan](../../artifacts/plans/iteration-plan.md)
+→ [Execution Mapping](../../../prodops/framework/execution-mapping/README.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)
+→ [Mapping Matrix](../../../prodops/framework/execution-mapping/matrix.md)
+→ [Iteration Plan](../../../prodops/artifacts/plans/iteration-plan.md)

@@ -175,10 +175,10 @@ The Released OBC must be readable as complete proof that the cycle was honored �
 
 ## References
 
-→ [Lifecycle — Evidence stage](../../framework/lifecycle.en.md)
-→ [Glossary — Evidence](../../framework/glossary.en.md)
-→ [OBC](../../framework/obc.md)
+→ [Lifecycle — Evidence stage](../../../prodops/framework/lifecycle.en.md)
+→ [Glossary — Evidence](../../../prodops/framework/glossary.en.md)
+→ [OBC](../../../prodops/framework/obc.md)
 → [Commitment Skill](../commitment/SKILL.en.md)
 → [Outcome Skill](../outcome/SKILL.en.md)
-→ [Discovery Journey — experiments](../../framework/journeys/discovery/README.en.md)
+→ [Discovery Journey — experiments](../../../prodops/framework/journeys/discovery/README.en.md)
 → [Downstream Skill](../downstream/SKILL.md)

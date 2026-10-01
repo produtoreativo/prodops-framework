@@ -191,7 +191,7 @@ Action: fix manually or re-run /setup
 
 ## References
 
-→ [github-workspace.md](../../framework/github-workspace.md) — canonical label list
+→ [github-workspace.md](../../../prodops/framework/github-workspace.md) — canonical label list
 → [/provision](../provision/SKILL.md) — sub-step of Moment 4
-→ [runtime.yaml](../../runtime/runtime.yaml) — file configured by this skill
-→ [install-prodops.sh](../../scripts/install-prodops.sh) — installation script that precedes this skill
+→ [runtime.yaml](../../../prodops/runtime/runtime.yaml) — file configured by this skill
+→ [install-prodops.sh](../../../prodops/scripts/install-prodops.sh) — installation script that precedes this skill

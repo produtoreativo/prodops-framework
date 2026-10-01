@@ -196,8 +196,8 @@ a tracking issue with `operation: Reconcile` and `journey: Diligence`.
 
 ## References
 
-→ [Canonical Lifecycle](../../framework/lifecycle.md)
-→ [Commitment Trail](../../artifacts/plans/commitment-trail.md)
+→ [Canonical Lifecycle](../../../prodops/framework/lifecycle.md)
+→ [Commitment Trail](../../../prodops/artifacts/plans/commitment-trail.md)
 → [/refine Skill](../refine/SKILL.md) — produces the artifacts verified by this gate
 → [/commitment Skill](../commitment/SKILL.md) — previous gate in the lifecycle
 → [/bootstrap Skill](../bootstrap/SKILL.md) — skill this gate authorizes

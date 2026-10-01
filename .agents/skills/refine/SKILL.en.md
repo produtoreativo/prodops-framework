@@ -106,8 +106,8 @@ Produce the BC's architecture decision. The ADR is not an implementation documen
 
 ## References
 
-→ [BC Business Intent](../../business-intents/bi-<bc-slug>.md)
-→ [BC OBCs](../../obcs/)
+→ [BC Business Intent](../../../prodops/business-intents/bi-<bc-slug>.md)
+→ [BC OBCs](../../../prodops/obcs/)
 ```
 
 **Moment 2 guardrails:**
@@ -329,7 +329,7 @@ Burn policy: <action when > 50% of budget consumed in < 50% of period>
 
 ## References
 
-→ [OBC](../../obcs/<obc-slug>.md)
+→ [OBC](../../../prodops/obcs/<obc-slug>.md)
 → [BC ADR](../architecture/<bc-slug>-adr.md)
 ```
 
@@ -372,9 +372,9 @@ The BC is **ready for the Readiness Gate** when all artifacts above exist. Invok
 
 ## References
 
-→ [Lifecycle — stages 3, 4, 5](../../framework/lifecycle.md)
-→ [Principles 3, 4, 6](../../framework/principles.md)
+→ [Lifecycle — stages 3, 4, 5](../../../prodops/framework/lifecycle.md)
+→ [Principles 3, 4, 6](../../../prodops/framework/principles.md)
 → [commitment/SKILL.md — Icebox entry gate](../commitment/SKILL.md)
 → [diligence/SKILL.md — Icebox exit gate](../diligence/SKILL.md)
-→ [OBC — states and transitions](../../framework/obc.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
+→ [OBC — states and transitions](../../../prodops/framework/obc.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)

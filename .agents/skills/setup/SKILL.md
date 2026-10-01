@@ -6,7 +6,7 @@ description: Configura um repositório recém-instalado com o ProdOps — preenc
      Source:    prodops/skills/setup/SKILL.md
      Player:    codex
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-10-01T14:09:53Z
+     Generated: 2026-10-01T20:01:59Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill setup
 -->
 
@@ -198,7 +198,7 @@ Ação: corrigir manualmente ou re-executar /setup
 
 ## Referências
 
-→ [github-workspace.md](../../framework/github-workspace.md) — lista canônica de labels
+→ [github-workspace.md](../../../prodops/framework/github-workspace.md) — lista canônica de labels
 → [/provision](../provision/SKILL.md) — sub-passo do Momento 4
-→ [runtime.yaml](../../runtime/runtime.yaml) — arquivo configurado por este skill
-→ [install-prodops.sh](../../scripts/install-prodops.sh) — script de instalação que precede este skill
+→ [runtime.yaml](../../../prodops/runtime/runtime.yaml) — arquivo configurado por este skill
+→ [install-prodops.sh](../../../prodops/scripts/install-prodops.sh) — script de instalação que precede este skill

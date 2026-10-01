@@ -166,9 +166,9 @@ This skill does not produce persistent artifacts — the Context Summary is prod
 
 ## References
 
-→ [Lifecycle](../../framework/lifecycle.en.md)
-→ [OBC](../../framework/obc.md)
-→ [Glossary](../../framework/glossary.en.md)
+→ [Lifecycle](../../../prodops/framework/lifecycle.en.md)
+→ [OBC](../../../prodops/framework/obc.md)
+→ [Glossary](../../../prodops/framework/glossary.en.md)
 → [Intent Skill](../intent/SKILL.en.md)
 → [Commitment Skill](../commitment/SKILL.en.md)
 → [Evidence Skill](../evidence/SKILL.en.md)

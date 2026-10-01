@@ -202,10 +202,10 @@ The transition to Archived requires an explicit record: date, who decided, and s
 
 ## References
 
-→ [Lifecycle — Outcome stage](../../framework/lifecycle.en.md)
-→ [Glossary — Outcome](../../framework/glossary.en.md)
-→ [OBC](../../framework/obc.md)
+→ [Lifecycle — Outcome stage](../../../prodops/framework/lifecycle.en.md)
+→ [Glossary — Outcome](../../../prodops/framework/glossary.en.md)
+→ [OBC](../../../prodops/framework/obc.md)
 → [Evidence Skill](../evidence/SKILL.en.md)
 → [Product Context Skill](../product-context/SKILL.en.md)
-→ [Operation Journey](../../framework/journeys/operation/README.md)
-→ [DORA Metrics](../../framework/dora-metrics.md)
+→ [Operation Journey](../../../prodops/framework/journeys/operation/README.md)
+→ [DORA Metrics](../../../prodops/framework/dora-metrics.md)

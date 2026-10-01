@@ -6,7 +6,7 @@ description: Captura, estrutura e vincula evidências ao longo do lifecycle. Use
      Source:    prodops/skills/evidence/SKILL.md
      Player:    codex
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:23Z
+     Generated: 2026-10-01T20:01:11Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill evidence
 -->
 
@@ -180,10 +180,10 @@ O OBC Released deve ser legível como prova completa de que o ciclo foi honrado 
 
 ## Referências
 
-→ [Lifecycle — estágio Evidence](../../framework/lifecycle.md)
-→ [Glossário — Evidence](../../framework/glossary.md)
-→ [OBC](../../framework/obc.md)
+→ [Lifecycle — estágio Evidence](../../../prodops/framework/lifecycle.md)
+→ [Glossário — Evidence](../../../prodops/framework/glossary.md)
+→ [OBC](../../../prodops/framework/obc.md)
 → [Commitment Skill](../commitment/SKILL.md)
 → [Outcome Skill](../outcome/SKILL.md)
-→ [Jornada Discovery — experimentos](../../framework/journeys/discovery/README.md)
+→ [Jornada Discovery — experimentos](../../../prodops/framework/journeys/discovery/README.md)
 → [Downstream Skill](../downstream/SKILL.md)

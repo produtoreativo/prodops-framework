@@ -566,7 +566,7 @@ This sets `oem-state = PENDING` and allows Bootstrap to start again.
 ## References
 
 → Readiness SKILL
-→ [Execution Mapping](../../framework/execution-mapping/README.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
-→ [Mapping Matrix](../../framework/execution-mapping/matrix.md)
-→ [Iteration Plan](../../artifacts/plans/iteration-plan.md)
+→ [Execution Mapping](../../../prodops/framework/execution-mapping/README.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)
+→ [Mapping Matrix](../../../prodops/framework/execution-mapping/matrix.md)
+→ [Iteration Plan](../../../prodops/artifacts/plans/iteration-plan.md)

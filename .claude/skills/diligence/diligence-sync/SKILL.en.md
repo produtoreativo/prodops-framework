@@ -41,4 +41,4 @@ Completed when **all** of the following are true:
 ## References
 
 → [Diligence SKILL.md](../SKILL.md)
-→ [Diligence journey README](../../../framework/journeys/diligence/README.md)
+→ [Diligence journey README](../../../../prodops/framework/journeys/diligence/README.md)

@@ -6,7 +6,7 @@ description: Provisiona o GitHub Workspace do produto a partir do estado virgem 
      Source:    prodops/skills/provision/SKILL.md
      Player:    claude
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-10-01T14:12:33Z
+     Generated: 2026-10-01T20:01:48Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill provision
 -->
 
@@ -187,6 +187,6 @@ Se qualquer critério falhar: reportar o desvio e não avançar para o commit.
 
 ## Referências
 
-→ [github-workspace.md](../../framework/github-workspace.md) — spec canônica de campos e views
-→ [runtime.yaml](../../runtime/runtime.yaml) — onde project-number é registrado
+→ [github-workspace.md](../../../prodops/framework/github-workspace.md) — spec canônica de campos e views
+→ [runtime.yaml](../../../prodops/runtime/runtime.yaml) — onde project-number é registrado
 → [workspace-reconciliation](../diligence/workspace-reconciliation/SKILL.md) — para drift pós-provisionamento

@@ -177,6 +177,6 @@ Do not continue implementation after the experiment question has been answered.
 
 ## References
 
-→ [Execution Mapping](../../framework/execution-mapping/README.md)
-→ [Work Item Schema](../../framework/execution-mapping/work-item-schema.md)
-→ [Mapping Matrix](../../framework/execution-mapping/matrix.md)
+→ [Execution Mapping](../../../prodops/framework/execution-mapping/README.md)
+→ [Work Item Schema](../../../prodops/framework/execution-mapping/work-item-schema.md)
+→ [Mapping Matrix](../../../prodops/framework/execution-mapping/matrix.md)

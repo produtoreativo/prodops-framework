@@ -6,7 +6,7 @@ description: Lê e apresenta o estado atual do produto para uma capability ou OB
      Source:    prodops/skills/product-context/SKILL.md
      Player:    codex
      Generator: prodops/scripts/agents/materialize-skills.sh
-     Generated: 2026-09-22T21:28:36Z
+     Generated: 2026-10-01T20:01:43Z
      To update: bash prodops/scripts/agents/materialize-skills.sh --skill product-context
 -->
 
@@ -171,9 +171,9 @@ Esta skill não produz artefatos persistentes — o Context Summary é produzido
 
 ## Referências
 
-→ [Lifecycle](../../framework/lifecycle.md)
-→ [OBC](../../framework/obc.md)
-→ [Glossário](../../framework/glossary.md)
+→ [Lifecycle](../../../prodops/framework/lifecycle.md)
+→ [OBC](../../../prodops/framework/obc.md)
+→ [Glossário](../../../prodops/framework/glossary.md)
 → [Intent Skill](../intent/SKILL.md)
 → [Commitment Skill](../commitment/SKILL.md)
 → [Evidence Skill](../evidence/SKILL.md)
