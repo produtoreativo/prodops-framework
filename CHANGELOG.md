@@ -7,6 +7,30 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.12.0] — 2026-10-01
+
+### Changed — skills materializados em todos os players de agente
+
+Skills que existiam em `prodops/skills/` mas não haviam sido materializados
+em `.claude/skills/`, `.agents/skills/` e `.github/skills/`:
+
+| Skill | Status |
+|---|---|
+| `/setup` | novo — materializado em todos os players |
+| `/provision` | novo — materializado em todos os players |
+| `/readiness` | novo — materializado em todos os players |
+| `/refine` | novo — materializado em todos os players |
+
+O `/setup` em particular não aparecia como skill invocável no Claude Code
+porque o arquivo `.claude/skills/setup/SKILL.md` não existia — o skill estava
+definido em `prodops/skills/` mas nunca havia sido materializado.
+
+**Causa raiz:** após a criação de um novo skill via arquivo em `prodops/skills/`,
+é obrigatório rodar `prodops/scripts/agents/materialize-skills.sh --skill <name>`
+para que o skill fique disponível nos players (Claude Code, Codex, GitHub Copilot).
+
+---
+
 ## [2.11.0] — 2026-10-01
 
 ### Added — skill `/setup`: caminho completo de instalação e configuração
