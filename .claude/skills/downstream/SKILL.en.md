@@ -2,6 +2,7 @@
 name: downstream
 description: Orchestrates the governed ProdOps delivery flow. Without arguments, reads the Iteration Plan and executes Entrou items in priority order. With a Downstream ID, executes only that item.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/downstream/SKILL.en.md -->
 
 # DOWNSTREAM
 

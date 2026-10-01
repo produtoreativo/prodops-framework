@@ -2,6 +2,7 @@
 name: finish
 description: Close technical work by delivering a fully autonomous Pull Request. Use before considering a task complete, especially after implementation or artifact updates.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/finish/SKILL.en.md -->
 
 # FINISH
 

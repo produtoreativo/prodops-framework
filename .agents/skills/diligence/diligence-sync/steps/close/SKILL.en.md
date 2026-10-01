@@ -2,6 +2,7 @@
 name: diligence/close
 description: Close the Work Item when the OBC reaches Released state and update management artifacts. Use when the Release Trail confirms the delivery is complete.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-sync/steps/close/SKILL.en.md -->
 
 # DILIGENCE SYNC → CLOSE
 

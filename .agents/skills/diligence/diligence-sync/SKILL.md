@@ -2,6 +2,7 @@
 name: diligence/diligence-sync
 description: Event-driven cycle triggered by a product decision. Captures the decision as an OBC, attaches a Work Item, promotes it through the backlog hierarchy, and closes it when the OBC reaches Released. Runs for a specific OBC.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-sync/SKILL.md -->
 
 # DILIGENCE SYNC
 

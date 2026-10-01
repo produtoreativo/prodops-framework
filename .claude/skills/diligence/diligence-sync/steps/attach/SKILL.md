@@ -2,6 +2,7 @@
 name: diligence/attach
 description: Verify or create a Work Item in the external backlog referencing the OBC, operation, and journey. Use after Capture has stabilized the canonical OBC state.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-sync/steps/attach/SKILL.md -->
 
 # DILIGENCE SYNC → ATTACH
 

@@ -2,6 +2,7 @@
 name: provision
 description: Provisions the product's GitHub Workspace from virgin state — creates the managed project by copying the canonical template, links it to the repository, and records the project-number in runtime.yaml. Executes only when project-number = 0 in runtime.yaml.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/provision/SKILL.en.md -->
 
 # Provision Skill
 

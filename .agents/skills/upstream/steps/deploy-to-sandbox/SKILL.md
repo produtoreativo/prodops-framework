@@ -2,6 +2,7 @@
 name: upstream/deploy-to-sandbox
 description: Fazer deploy de uma branch de experimento em um ambiente de sandbox real na nuvem, sem o rigor Downstream. Use quando um experimento precisa validar comportamento contra um provedor externo real que não pode ser exercitado localmente.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/upstream/steps/deploy-to-sandbox/SKILL.md -->
 
 # UPSTREAM / DEPLOY TO SANDBOX
 

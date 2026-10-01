@@ -2,6 +2,7 @@
 name: diligence/workspace-reconciliation/verify
 description: Confirm that the GitHub repository state matches the Canonical Specification across all 4 categories. Reads Views via GraphQL. Updates the sync manifest with the verified conformance state. Produces the Conformance Report.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/workspace-reconciliation/steps/verify/SKILL.en.md -->
 
 # WORKSPACE RECONCILIATION → VERIFY
 

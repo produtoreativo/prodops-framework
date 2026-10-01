@@ -2,6 +2,7 @@
 name: bootstrap
 description: Prepare the local environment required by a ProdOps execution before Git flow, tests, or implementation begin. Emits Bootstrap.Started, Bootstrap.Dependencies.Installed, Bootstrap.Services.Ready, Bootstrap.Smoke.Passed, and Bootstrap.Completed via prodops_emit_event.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/bootstrap/SKILL.en.md -->
 
 # BOOTSTRAP
 

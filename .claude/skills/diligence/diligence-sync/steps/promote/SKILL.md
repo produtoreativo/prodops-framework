@@ -2,6 +2,7 @@
 name: diligence/promote
 description: Advance an OBC through the backlog hierarchy (Icebox → Iteration Backlog → Iteration Plan), checking prerequisites at each transition. Use after Attach has confirmed a Work Item exists.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-sync/steps/promote/SKILL.md -->
 
 # DILIGENCE SYNC → PROMOTE
 

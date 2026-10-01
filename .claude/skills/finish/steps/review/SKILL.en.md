@@ -2,6 +2,7 @@
 name: finish/review
 description: Inspect the pipeline and confirm the rules for a safe automatic PR are valid — without running the pipeline. Use before enabling auto-approval, to catch a missing branch-protection condition as a blocker instead of after merge.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/finish/steps/review/SKILL.en.md -->
 
 # FINISH → REVIEW
 

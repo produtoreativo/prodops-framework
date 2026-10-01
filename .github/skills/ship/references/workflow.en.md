@@ -1,3 +1,4 @@
+<!-- MATERIALIZED FILE — prodops/skills/ship/references/workflow.en.md -->
 # SHIP Workflow
 
 SHIP is the observation and orchestration phase. The agent observes the execution of the autonomous Pull Request created by Finish — checks, approval, merge, Staging deploy — without executing any of these steps directly.

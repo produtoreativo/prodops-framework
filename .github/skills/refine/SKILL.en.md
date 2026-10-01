@@ -2,6 +2,7 @@
 name: refine
 description: Coordinates Downstream Discovery during the Icebox period — between the CommitmentGate (/commitment) and the Readiness Gate (/diligence). Receives a Bounded Context as argument and produces all artifacts required by the Readiness Gate: ADR, UX Flows, OBCs at Readiness state, complete BDD Features, updated risks.md, and Reliability Plans when mandatory.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/refine/SKILL.en.md -->
 
 [Português](SKILL.md)
 

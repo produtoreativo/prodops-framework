@@ -2,6 +2,7 @@
 name: diligence/repair
 description: Execute corrections identified by Flag — update OBCs, create missing Work Items, close orphaned ones. Never touches product code or creates implementation PRs.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-async/steps/repair/SKILL.md -->
 
 # DILIGENCE ASYNC → REPAIR
 

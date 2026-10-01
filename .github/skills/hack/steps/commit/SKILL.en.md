@@ -2,6 +2,7 @@
 name: hack/commit
 description: Stage and commit completed implementation work. Use after tests are green, lint is clean, and the Release Trail has been updated.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/hack/steps/commit/SKILL.en.md -->
 
 # HACK → COMMIT
 

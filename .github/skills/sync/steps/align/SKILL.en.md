@@ -2,6 +2,7 @@
 name: sync/align
 description: Align ProdOps artifacts with the current implementation. Use when BDD Features, Event Storming, architecture diagrams, or the Release Trail are stale relative to what was implemented in Hack.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/sync/steps/align/SKILL.en.md -->
 
 # SYNC → ALIGN
 

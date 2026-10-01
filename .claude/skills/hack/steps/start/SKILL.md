@@ -2,6 +2,7 @@
 name: hack/start
 description: Prepare the working branch before implementation. Check for incomplete work, sync the base branch, and create a correctly named feature branch.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/hack/steps/start/SKILL.md -->
 
 # HACK → START
 

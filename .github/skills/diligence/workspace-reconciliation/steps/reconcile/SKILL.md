@@ -2,6 +2,7 @@
 name: diligence/workspace-reconciliation/reconcile
 description: Create or update Labels, Template project, and Managed project to match the Canonical Specification. Tries every API path. On API failure, creates a tracking Issue. Never leaves a gap without a trail entry. Never touches manual projects. Idempotent.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/workspace-reconciliation/steps/reconcile/SKILL.md -->
 
 # WORKSPACE RECONCILIATION → RECONCILE
 

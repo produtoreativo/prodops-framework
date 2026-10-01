@@ -2,6 +2,7 @@
 name: diligence
 description: Synchronize OBC state across backlogs and tools. Runs event-driven cycle (diligence-sync) or proactive drift-scan cycle (diligence-async). Never touches product code.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/SKILL.en.md -->
 
 # DILIGENCE
 

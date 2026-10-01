@@ -2,6 +2,7 @@
 name: ship
 description: Observe and orchestrate the autonomous PR flow — merge, CI, and Staging deploy. Use when observing the PR created by Finish traversing checks, approval, merge, and Staging deployment.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/ship/SKILL.en.md -->
 
 # SHIP
 

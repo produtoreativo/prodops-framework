@@ -2,6 +2,7 @@
 name: diligence/workspace-reconciliation
 description: Orchestrate Inspect → Reconcile → Verify to align the GitHub Workspace with the Canonical Specification. Entry point for any caller (Bootstrap, Diligence Async, Diligence Sync). Never runs standalone as a third cycle.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/workspace-reconciliation/SKILL.md -->
 
 # WORKSPACE RECONCILIATION — Orchestrator
 

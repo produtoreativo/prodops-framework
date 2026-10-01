@@ -4,6 +4,7 @@ description: Emit a ProdOps Delivery lifecycle event via the player-neutral prod
 tool: prodops/runtime/tools/emit-event/scripts/emit-event
 schema-version: "1"
 ---
+<!-- MATERIALIZED FILE — prodops/skills/prodops-emit-event/SKILL.en.md -->
 
 # PRODOPS EMIT EVENT
 

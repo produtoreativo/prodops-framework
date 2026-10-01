@@ -160,15 +160,39 @@ materialize_steps() {
     fi
     N_sub=$((2 + sub_depth))
 
-    # Read source, apply path rewriting, then check against target.
-    local sub_content transformed_content
+    # Read source, apply path rewriting, then prepend a provenance comment.
+    # The comment marks the file as framework-managed so install-claude.sh
+    # overwrites it on update rather than skipping it as a custom file.
+    local sub_content transformed_content materialized_content
     sub_content=$(cat "$sub_src")
     transformed_content=$(rewrite_paths "$sub_content" "$N_sub")
+
+    local sub_provenance="<!-- MATERIALIZED FILE — prodops/skills/${skill}/${sub_rel} -->"
+    if [[ "$transformed_content" == ---* ]]; then
+      # Preserve YAML frontmatter at line 1 by inserting the comment after it.
+      local fm_end_line
+      fm_end_line=$(printf '%s\n' "$transformed_content" | awk 'NR==1{next} /^---/{print NR; exit}')
+      if [[ -n "$fm_end_line" ]]; then
+        local -a sub_lines sub_fm sub_body
+        mapfile -t sub_lines <<< "$transformed_content"
+        sub_fm=$(printf '%s\n' "${sub_lines[@]:0:fm_end_line}")
+        sub_body=$(printf '%s\n' "${sub_lines[@]:fm_end_line}")
+        materialized_content="${sub_fm}
+${sub_provenance}
+${sub_body}"
+      else
+        materialized_content="${sub_provenance}
+${transformed_content}"
+      fi
+    else
+      materialized_content="${sub_provenance}
+${transformed_content}"
+    fi
 
     if [[ -f "$sub_target" ]]; then
       local current_content
       current_content=$(cat "$sub_target")
-      if [[ "$current_content" == "$transformed_content" ]]; then
+      if [[ "$current_content" == "$materialized_content" ]]; then
         continue
       fi
     fi
@@ -179,7 +203,7 @@ materialize_steps() {
       continue
     fi
     mkdir -p "$(dirname "$sub_target")"
-    printf '%s\n' "$transformed_content" > "$sub_target"
+    printf '%s\n' "$materialized_content" > "$sub_target"
     log "  → written: $sub_target"
     WRITTEN_COUNT=$((WRITTEN_COUNT + 1))
   done < <(find "$skill_src" -type f -name '*.md' | sort)

@@ -2,6 +2,7 @@
 name: upstream
 description: Execute ProdOps exploratory engineering. Use when exploring, experimenting, implementing disposable code, creating endpoints or integrations, updating contracts, building prototypes, validating hypotheses, refining OBCs, preparing BDDs, updating Reliability Plan or Event Storming, updating the Validation Workbench, or turning uncertainty into Downstream-ready work.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/upstream/SKILL.en.md -->
 
 # Upstream Skill
 

@@ -2,6 +2,7 @@
 name: validate
 description: Validate release behavior with evidence, metrics, SLOs, and operational signals. Emits Validate.Started, Shared.Gate.Passed, and Validate.Completed via prodops_emit_event.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/validate/SKILL.en.md -->
 
 # VALIDATE
 

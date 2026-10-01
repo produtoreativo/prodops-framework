@@ -2,6 +2,7 @@
 name: finish/validate
 description: Static quality analysis before push. Use to replicate locally what the remote pipeline will run, so failures surface before a push instead of on a red PR.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/finish/steps/validate/SKILL.en.md -->
 
 # FINISH → VALIDATE
 

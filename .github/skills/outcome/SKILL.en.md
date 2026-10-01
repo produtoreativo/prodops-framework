@@ -1,3 +1,4 @@
+<!-- MATERIALIZED FILE — prodops/skills/outcome/SKILL.en.md -->
 [Português](SKILL.md)
 
 ---

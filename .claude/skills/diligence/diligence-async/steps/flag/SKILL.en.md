@@ -2,6 +2,7 @@
 name: diligence/flag
 description: Classify divergences from Scan and register them as pending Diligence items with severity and corrective action. Does not repair — only signals.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-async/steps/flag/SKILL.en.md -->
 
 # DILIGENCE ASYNC → FLAG
 

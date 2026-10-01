@@ -2,6 +2,7 @@
 name: finish/request
 description: Open the PR in auto-approval mode — filled from the PR template with evidence, with auto-merge configured so it merges on its own once CI passes. Use as the last Finish step, after validate is clean, review has no blockers, and the commits are pushed.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/finish/steps/request/SKILL.md -->
 
 # FINISH → REQUEST
 

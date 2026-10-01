@@ -2,6 +2,7 @@
 name: diligence/trail
 description: Post a phase trail comment on the iteration tracking issue whenever a key Delivery event is received. Triggered by the dispatcher — never invoked directly by Delivery skills.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-sync/steps/trail/SKILL.en.md -->
 
 # DILIGENCE SYNC → TRAIL
 

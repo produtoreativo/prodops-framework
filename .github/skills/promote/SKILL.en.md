@@ -2,6 +2,7 @@
 name: promote
 description: Promote the Feature from Staging to Sandbox (Release Candidate). Use when moving a Ship-completed Feature from its ephemeral Staging environment to the shared Sandbox.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/promote/SKILL.en.md -->
 
 # PROMOTE
 

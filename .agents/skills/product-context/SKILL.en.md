@@ -1,3 +1,4 @@
+<!-- MATERIALIZED FILE — prodops/skills/product-context/SKILL.en.md -->
 [Português](SKILL.md)
 
 ---

@@ -2,6 +2,7 @@
 name: diligence/workspace-reconciliation/inspect
 description: Read the Canonical Specification and the Actual Workspace state via GitHub API. Produce a Drift Report. Does not create or update anything.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/workspace-reconciliation/steps/inspect/SKILL.en.md -->
 
 # WORKSPACE RECONCILIATION → INSPECT
 

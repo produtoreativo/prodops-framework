@@ -2,6 +2,7 @@
 name: upstream/move-to-downstream
 description: Promote a completed upstream experiment to the Downstream delivery flow. Use after the Decision Package is complete and the Product Manager + Tech Lead have approved the capability for delivery.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/upstream/steps/move-to-downstream/SKILL.en.md -->
 
 # UPSTREAM → MOVE-TO-DOWNSTREAM
 

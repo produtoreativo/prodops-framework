@@ -2,6 +2,7 @@
 name: restart
 description: Non-destructive restart of a Delivery Journey. Preserves the existing timeline, assigns a new correlation-id, and emits Restart.Requested → Restart.Started → Restart.Completed. Use when a feature needs to re-run Bootstrap from scratch without losing audit history.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/restart/SKILL.en.md -->
 
 # RESTART
 

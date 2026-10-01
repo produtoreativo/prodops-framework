@@ -1,3 +1,4 @@
+<!-- MATERIALIZED FILE — prodops/skills/sync/references/workflow.en.md -->
 # SYNC Workflow
 
 SYNC is the synchronization phase. The agent repeats the work engineers did manually: fetch newest code, update local branches, integrate current base, resolve conflicts, preserve TDD evidence, validate.

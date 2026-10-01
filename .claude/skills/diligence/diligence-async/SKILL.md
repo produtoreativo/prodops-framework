@@ -2,6 +2,7 @@
 name: diligence/diligence-async
 description: Proactive drift-scan cycle. Reads all active OBCs and Issues, identifies divergences, and repairs what can be automated. Runs across the entire active backlog, not for a specific OBC.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-async/SKILL.md -->
 
 # DILIGENCE ASYNC
 

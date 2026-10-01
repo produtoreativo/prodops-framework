@@ -1,3 +1,4 @@
+<!-- MATERIALIZED FILE — prodops/skills/hack/references/workflow.md -->
 # HACK Workflow
 
 HACK is the implementation phase. The agent repeats the work engineers did manually: branch, focused reading, TDD, code, lint, validation, commit.

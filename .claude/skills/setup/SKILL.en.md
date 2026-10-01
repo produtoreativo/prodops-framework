@@ -2,6 +2,7 @@
 name: setup
 description: Configures a newly installed ProdOps repository — fills runtime.yaml placeholders, provisions canonical labels, creates the GitHub Project, and prepares the .env. Idempotent — executes only pending steps. Should be the first skill invoked in any new repo.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/setup/SKILL.en.md -->
 
 # Setup Skill
 

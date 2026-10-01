@@ -2,6 +2,7 @@
 name: hack
 description: Execute implementation work with TDD. Use when changing code, behavior, contracts, tests, or release artifacts as part of a ProdOps-backed task. Emits Hack.Started and Hack.Completed via prodops_emit_event.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/hack/SKILL.en.md -->
 
 # HACK
 

@@ -2,6 +2,7 @@
 name: diligence/capture
 description: Create or update an OBC from the decision that triggered the Diligence Sync cycle. Use when an Assessment decision, Discovery experiment, or Operation signal requires canonical state to be recorded before Work Items are created.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-sync/steps/capture/SKILL.md -->
 
 # DILIGENCE SYNC → CAPTURE
 

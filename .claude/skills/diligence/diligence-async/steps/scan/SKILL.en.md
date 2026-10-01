@@ -2,6 +2,7 @@
 name: diligence/scan
 description: Read all active OBCs and compare declared state with backlogs and external tools. Produces a divergence list. Does not repair — only identifies gaps.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/diligence/diligence-async/steps/scan/SKILL.en.md -->
 
 # DILIGENCE ASYNC → SCAN
 

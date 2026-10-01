@@ -2,6 +2,7 @@
 name: sync
 description: Emits Sync.Started and Sync.Completed via prodops_emit_event.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/sync/SKILL.en.md -->
 
 # SYNC
 

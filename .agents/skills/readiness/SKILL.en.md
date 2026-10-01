@@ -2,6 +2,7 @@
 name: readiness
 description: Executes the Readiness Gate for a Bounded Context — blockingly verifies that all /refine artifacts are present and complete before authorizing Bootstrap (OBC: Refining → verified Readiness). Gate parallel to CommitmentGate. Never produces artifacts; only verifies and records the gate.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/readiness/SKILL.en.md -->
 
 # Readiness Gate Skill
 

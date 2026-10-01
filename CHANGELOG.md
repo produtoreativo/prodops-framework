@@ -7,6 +7,26 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.15.2] — 2026-10-01
+
+### Fixed — `materialize-skills.sh`: provenance header em sub-arquivos do skill tree
+
+`materialize_steps()` copiava sub-arquivos (`SKILL.en.md`, `references/`,
+`steps/`) sem o cabeçalho `MATERIALIZED FILE`. `install-claude.sh` usa esse
+cabeçalho para distinguir arquivos gerenciados pelo framework de customizações
+do consumidor — sem ele, os sub-arquivos eram pulados (`SKIP (custom)`) em
+atualizações, preservando versões desatualizadas com links quebrados.
+
+**Fix:** `materialize_steps()` agora prefixa cada sub-arquivo `.md` com:
+`<!-- MATERIALIZED FILE — prodops/skills/<skill>/<sub_rel> -->`
+O comentário é inserido após o YAML frontmatter quando presente, ou no início
+do arquivo. A detecção de drift compara contra o conteúdo com o cabeçalho.
+
+**Resultado:** todos os sub-arquivos são atualizados em `install-claude.sh`
+na próxima instalação (`updated (materialized):` em vez de `SKIP (custom):`).
+
+---
+
 ## [2.15.1] — 2026-10-01
 
 ### Fixed — `install-prodops.sh`: install-claude.sh chamado do clone do framework

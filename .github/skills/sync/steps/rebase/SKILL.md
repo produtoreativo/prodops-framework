@@ -2,6 +2,7 @@
 name: sync/rebase
 description: Synchronize the feature branch with its base. Use when the branch is behind origin, has conflicts to resolve, or needs to incorporate upstream changes before Finish.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/sync/steps/rebase/SKILL.md -->
 
 # SYNC → REBASE
 

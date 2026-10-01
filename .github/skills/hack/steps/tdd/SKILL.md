@@ -2,6 +2,7 @@
 name: hack/tdd
 description: Execute the ProdOps TDD cycle. Use after bootstrap to implement a behavior change through red, green, and yellow phases.
 ---
+<!-- MATERIALIZED FILE — prodops/skills/hack/steps/tdd/SKILL.md -->
 
 # HACK → TDD
 
