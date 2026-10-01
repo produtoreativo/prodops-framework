@@ -308,7 +308,8 @@ PYEOF
     warn "Could not set framework-version automatically"
     manual "Set framework-version to \"${VERSION}\" in prodops/runtime/runtime.yaml"
   fi
-  manual "Fill in product-specific values in prodops/runtime/runtime.yaml (github org, project number, Datadog service, CloudEvents source)"
+  # runtime.yaml placeholder values (owner, repo, project-number, DD service) are
+  # filled automatically by /setup — no manual step needed here.
 elif [[ ! -f "${RUNTIME_YAML}" ]]; then
   skip "prodops/runtime/runtime.yaml not found and runtime.yaml.example unavailable"
   manual "Create prodops/runtime/runtime.yaml from runtime.yaml.example when available"
@@ -937,6 +938,24 @@ else
 fi
 printf '%s━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━%s\n' "${BOLD}" "${RESET}"
 
+if [[ "${IS_UPDATE}" == "true" ]]; then
+  printf '\n%sNext step — update complete:%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '  Re-run %s/setup%s if any new runtime.yaml fields need configuration.\n' "${BOLD}" "${RESET}"
+else
+  printf '\n%s┌─────────────────────────────────────────────────────────────┐%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│  Next step: invoke /setup to complete configuration          │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│                                                              │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│  /setup handles automatically:                               │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│    • Fill runtime.yaml placeholders (owner, repo, service)   │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│    • Provision 38 canonical labels in GitHub                 │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│    • Create GitHub Project (/provision)                      │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│    • Configure .env from .env.example                        │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│    • Validate that everything is ready                       │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│                                                              │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s│  Open Claude Code in this repo and type: /setup              │%s\n' "${BOLD}${GREEN}" "${RESET}"
+  printf '%s└─────────────────────────────────────────────────────────────┘%s\n' "${BOLD}${GREEN}" "${RESET}"
+fi
+
 if [[ ${#WARNINGS[@]} -gt 0 ]]; then
   printf '\n%sWarnings (%d):%s\n' "${YELLOW}${BOLD}" "${#WARNINGS[@]}" "${RESET}"
   for w in "${WARNINGS[@]}"; do
@@ -945,7 +964,7 @@ if [[ ${#WARNINGS[@]} -gt 0 ]]; then
 fi
 
 if [[ ${#MANUAL_STEPS[@]} -gt 0 ]]; then
-  printf '\n%sRequired manual steps:%s\n' "${BOLD}" "${RESET}"
+  printf '\n%sRemaining manual steps (not covered by /setup):%s\n' "${BOLD}" "${RESET}"
   IDX=1
   for m in "${MANUAL_STEPS[@]}"; do
     printf '  %s%d.%s %s\n' "${BOLD}" "${IDX}" "${RESET}" "${m}"
