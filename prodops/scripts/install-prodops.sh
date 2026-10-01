@@ -5,11 +5,11 @@
 # into the current (or target) repository and runs all setup steps.
 #
 # Usage:
-#   ./prodops/scripts/install-prodops.sh --version <tag> [--target <dir>]
+#   ./prodops/scripts/install-prodops.sh [--version <tag>] [--target <dir>]
 #                                        [--skip-hooks] [--skip-claude]
 #
 # Flags:
-#   --version <tag>   Framework version to install (required)
+#   --version <tag>   Framework version to install (default: latest release)
 #   --target <dir>    Target repository root (default: current directory)
 #   --skip-hooks      Do not configure git commit hooks
 #   --skip-claude     Do not run install-claude.sh
@@ -19,7 +19,7 @@
 #
 # Exit codes:
 #   0  success
-#   1  missing --version, version not found, or installation error
+#   1  version not found or installation error
 
 set -euo pipefail
 
@@ -84,8 +84,9 @@ err()  { printf '\n%s[ERROR]%s %s\n' "${RED}" "${RESET}" "$1" >&2; }
 manual() { MANUAL_STEPS+=("$1"); }
 
 usage() {
-  printf 'Usage: %s --version <tag> [--target <dir>] [--skip-hooks] [--skip-claude]\n' "$0" >&2
+  printf 'Usage: %s [--version <tag>] [--target <dir>] [--skip-hooks] [--skip-claude]\n' "$0" >&2
   printf 'Example: %s --version v1.6.1\n' "$0" >&2
+  printf 'Example: %s               (installs latest release)\n' "$0" >&2
   exit 1
 }
 
@@ -107,8 +108,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "${VERSION}" ]]; then
-  err "--version is required"
-  usage
+  printf 'Resolving latest release from %s...\n' "${FRAMEWORK_REPO}"
+  VERSION=$(gh release view --repo "${FRAMEWORK_REPO}" --json tagName --jq '.tagName' 2>/dev/null || true)
+  if [[ -z "${VERSION}" ]]; then
+    err "Could not resolve latest release from ${FRAMEWORK_REPO}. Pass --version <tag> explicitly."
+    exit 1
+  fi
+  printf 'Latest release: %s\n' "${VERSION}"
 fi
 
 # ── Header ────────────────────────────────────────────────────────────────────

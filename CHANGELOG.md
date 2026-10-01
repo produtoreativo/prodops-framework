@@ -66,6 +66,25 @@ defasados desde as releases v2.8.0–v2.10.0 que foram commits diretos).
 
 ---
 
+### Changed — `install-prodops.sh`: `--version` agora opcional (default: latest)
+
+Quando `--version` não é passado, o script resolve automaticamente a última
+release publicada via `gh release view --repo produtoreativo/prodops-framework`.
+
+```bash
+# Antes — obrigatório:
+./prodops/scripts/install-prodops.sh --version v2.11.0
+
+# Agora — funciona sem flag:
+./prodops/scripts/install-prodops.sh
+```
+
+Útil para repos que já têm o ProdOps instalado e querem atualizar para latest
+sem precisar consultar o CHANGELOG. O flag `--version` continua funcionando para
+fixar uma versão específica.
+
+---
+
 ## [2.10.0] — 2026-09-30
 
 ### Added — skill `/provision`: provisionamento do GitHub Workspace
