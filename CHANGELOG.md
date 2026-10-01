@@ -7,6 +7,24 @@ export from `payments-api` (empirical upstream) when applicable.
 
 ---
 
+## [2.15.1] — 2026-10-01
+
+### Fixed — `install-prodops.sh`: install-claude.sh chamado do clone do framework
+
+`install-prodops.sh` chamava `install-claude.sh` do repositório ALVO
+(`${TARGET_DIR}/prodops/scripts/install-claude.sh`). Dentro desse script,
+`REPO_ROOT` resolve para o diretório alvo, fazendo com que
+`FRAMEWORK_SKILLS_SRC` aponte para `.claude/skills/` do próprio consumidor —
+uma cópia de si mesmo que não atualiza nada.
+
+**Fix:** `INSTALL_CLAUDE` agora aponta para
+`${SCRATCH}/framework/prodops/scripts/install-claude.sh` (o clone do framework),
+garantindo que `REPO_ROOT` dentro do script seja o clone com os arquivos
+materializados da versão instalada. Fallback para o path do alvo caso o clone
+não exista (compatibilidade com cenários de uso direto do script).
+
+---
+
 ## [2.15.0] — 2026-10-01
 
 ### Fixed — `materialize-skills.sh`: reescrita de caminhos relativos em arquivos materializados

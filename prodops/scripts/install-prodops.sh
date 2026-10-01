@@ -603,7 +603,14 @@ fi
 
 step "Install Claude Code support (.claude/)"
 
-INSTALL_CLAUDE="${TARGET_DIR}/prodops/scripts/install-claude.sh"
+# Use install-claude.sh from the framework clone so that REPO_ROOT inside the
+# script resolves to the clone (with the versioned .claude/skills/), not to the
+# consumer repo. Falling back to the target copy is safe for first installs but
+# would copy nothing on updates (source == destination).
+INSTALL_CLAUDE="${SCRATCH}/framework/prodops/scripts/install-claude.sh"
+if [[ ! -f "${INSTALL_CLAUDE}" ]]; then
+  INSTALL_CLAUDE="${TARGET_DIR}/prodops/scripts/install-claude.sh"
+fi
 
 if [[ "${SKIP_CLAUDE}" == "true" ]]; then
   skip "Skipped (--skip-claude)"
